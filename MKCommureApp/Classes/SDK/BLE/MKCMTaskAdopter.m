@@ -309,25 +309,6 @@ NSString *const mk_cm_contentKey = @"mk_cm_contentKey";
             @"dns":dns
         };
         operationID = mk_cm_taskReadNetworkIpInfosOperation;
-    }else if ([cmd isEqualToString:@"60"]) {
-        //读取RSSI过滤规则
-        resultDic = @{
-            @"rssi":[NSString stringWithFormat:@"%ld",(long)[[MKBLEBaseSDKAdopter signedHexTurnString:content] integerValue]],
-        };
-        operationID = mk_cm_taskReadRssiFilterValueOperation;
-    }else if ([cmd isEqualToString:@"61"]) {
-        //读取广播内容过滤逻辑
-        resultDic = @{
-            @"relationship":[MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)],
-        };
-        operationID = mk_cm_taskReadFilterRelationshipOperation;
-    }else if ([cmd isEqualToString:@"64"]) {
-        //读取MAC过滤列表
-        NSArray *macList = [MKCMSDKDataAdopter parseFilterMacList:content];
-        resultDic = @{
-            @"macList":(MKValidArray(macList) ? macList : @[]),
-        };
-        operationID = mk_cm_taskReadFilterMACAddressListOperation;
     }
     
     return [self dataParserGetDataSuccess:resultDic operationID:operationID];
@@ -402,15 +383,6 @@ NSString *const mk_cm_contentKey = @"mk_cm_contentKey";
     }else if ([cmd isEqualToString:@"4c"]) {
         //配置IP地址相关信息
         operationID = mk_cm_taskConfigIpInfoOperation;
-    }else if ([cmd isEqualToString:@"60"]) {
-        //配置扫描RSSI过滤
-        operationID = mk_cm_taskConfigRssiFilterValueOperation;
-    }else if ([cmd isEqualToString:@"61"]) {
-        //配置扫描过滤逻辑
-        operationID = mk_cm_taskConfigFilterRelationshipOperation;
-    }else if ([cmd isEqualToString:@"64"]) {
-        //配置MAC过滤规则
-        operationID = mk_cm_taskConfigFilterMACAddressListOperation;
     }
     
     return [self dataParserGetDataSuccess:@{@"success":@(success)} operationID:operationID];
@@ -438,9 +410,6 @@ NSString *const mk_cm_contentKey = @"mk_cm_contentKey";
     }else if ([cmd isEqualToString:@"24"]) {
         //读取服务器登录密码
         operationID = mk_cm_taskReadServerPasswordOperation;
-    }else if ([cmd isEqualToString:@"67"]) {
-        //读取BLE Name过滤规则
-        operationID = mk_cm_taskReadFilterAdvNameListOperation;
     }
     return [self dataParserGetDataSuccess:resultDic operationID:operationID];
 }
@@ -472,9 +441,6 @@ NSString *const mk_cm_contentKey = @"mk_cm_contentKey";
     }else if ([cmd isEqualToString:@"4a"]) {
         //配置WIFI Client key file
         operationID = mk_cm_taskConfigWIFIClientPrivateKeyOperation;
-    }else if ([cmd isEqualToString:@"67"]) {
-        //配置Adv Name过滤规则
-        operationID = mk_cm_taskConfigFilterAdvNameListOperation;
     }
     return [self dataParserGetDataSuccess:@{@"success":@(success)} operationID:operationID];
 }

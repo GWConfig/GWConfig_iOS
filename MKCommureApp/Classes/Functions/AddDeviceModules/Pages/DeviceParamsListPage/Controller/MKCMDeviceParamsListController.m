@@ -35,7 +35,6 @@
 #import "MKCMServerForDeviceController.h"
 #import "MKCMBleNetworkSettingsController.h"
 #import "MKCMBleNTPTimezoneController.h"
-#import "MKCMBleScannerFilterController.h"
 #import "MKCMBleDeviceInfoController.h"
 #import "MKCMConnectSuccessController.h"
 
@@ -141,12 +140,6 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
         return;
     }
     if (indexPath.section == 1 && indexPath.row == 2) {
-        //Scanner Filter
-        MKCMBleScannerFilterController *vc = [[MKCMBleScannerFilterController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
-    if (indexPath.section == 1 && indexPath.row == 3) {
         //Device Information
         MKCMBleDeviceInfoController *vc = [[MKCMBleDeviceInfoController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -317,12 +310,8 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
     [self.section1List addObject:cellModel2];
     
     MKSettingTextCellModel *cellModel3 = [[MKSettingTextCellModel alloc] init];
-    cellModel3.leftMsg = @"Scanner Filter";
+    cellModel3.leftMsg = @"Device Information";
     [self.section1List addObject:cellModel3];
-    
-    MKSettingTextCellModel *cellModel4 = [[MKSettingTextCellModel alloc] init];
-    cellModel4.leftMsg = @"Device Information";
-    [self.section1List addObject:cellModel4];
 }
 
 #pragma mark - UI

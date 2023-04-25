@@ -170,6 +170,20 @@ TODO: Add long description of the pod here.
      
      s.subspec 'Functions' do |ss|
        
+       ss.subspec 'AboutPage' do |sss|
+           sss.subspec 'Controller' do |ssss|
+             ssss.source_files = 'MKCommureApp/Classes/Functions/AboutPage/Controller/**'
+             
+             ssss.dependency 'MKCommureApp/Functions/LogPage'
+           end
+       end
+       
+       ss.subspec 'LogPage' do |sss|
+           sss.subspec 'Controller' do |ssss|
+             ssss.source_files = 'MKCommureApp/Classes/Functions/LogPage/Controller/**'
+           end
+       end
+       
        ss.subspec 'AddDeviceModules' do |sss|
            sss.subspec 'ParamsModel'  do |ssss|
                ssss.source_files = 'MKCommureApp/Classes/Functions/AddDeviceModules/ParamsModel/**'
@@ -196,18 +210,6 @@ TODO: Add long description of the pod here.
                    
                    sssss.subspec 'Model' do |ssssss|
                      ssssss.source_files = 'MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model/**'
-                   end
-               end
-               
-               ssss.subspec 'BleScannerFilterPage' do |sssss|
-                   sssss.subspec 'Controller' do |ssssss|
-                     ssssss.source_files = 'MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller/**'
-                     
-                     ssssss.dependency 'MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model'
-                   end
-                   
-                   sssss.subspec 'Model' do |ssssss|
-                     ssssss.source_files = 'MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model/**'
                    end
                end
                
@@ -240,7 +242,6 @@ TODO: Add long description of the pod here.
                  
                    ssssss.dependency 'MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage'
                    ssssss.dependency 'MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage'
-                   ssssss.dependency 'MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage'
                    ssssss.dependency 'MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage'
                    ssssss.dependency 'MKCommureApp/Functions/AddDeviceModules/Pages/ConnectSuccessPage'
                    ssssss.dependency 'MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage'
@@ -309,6 +310,8 @@ TODO: Add long description of the pod here.
              ssss.dependency 'MKCommureApp/Functions/ServerForApp'
              ssss.dependency 'MKCommureApp/Functions/ScanPage'
              ssss.dependency 'MKCommureApp/Functions/DeviceDataPage'
+             ssss.dependency 'MKCommureApp/Functions/AboutPage'
+             
            end
            
            sss.subspec 'Model' do |ssss|

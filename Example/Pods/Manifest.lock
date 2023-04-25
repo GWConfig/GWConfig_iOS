@@ -152,14 +152,34 @@ PODS:
     - MKCommureApp/CTMediator
     - MKCommureApp/DeviceModel
     - MKCommureApp/Expand
+    - MKCommureApp/Functions/AboutPage (= 0.0.1)
     - MKCommureApp/Functions/AddDeviceModules (= 0.0.1)
     - MKCommureApp/Functions/DeviceDataPage (= 0.0.1)
     - MKCommureApp/Functions/DeviceListPage (= 0.0.1)
     - MKCommureApp/Functions/FilterPages (= 0.0.1)
+    - MKCommureApp/Functions/LogPage (= 0.0.1)
     - MKCommureApp/Functions/ManageBleModules (= 0.0.1)
     - MKCommureApp/Functions/ScanPage (= 0.0.1)
     - MKCommureApp/Functions/ServerForApp (= 0.0.1)
     - MKCommureApp/Functions/SettingPages (= 0.0.1)
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKCommureApp/Functions/AboutPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/AboutPage/Controller (= 0.0.1)
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKCommureApp/Functions/AboutPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/LogPage
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
@@ -180,7 +200,6 @@ PODS:
     - MKCommureApp/Expand
     - MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (= 0.0.1)
     - MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (= 0.0.1)
-    - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage (= 0.0.1)
     - MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (= 0.0.1)
     - MKCommureApp/Functions/AddDeviceModules/Pages/ConnectSuccessPage (= 0.0.1)
     - MKCommureApp/Functions/AddDeviceModules/Pages/DeviceParamsListPage (= 0.0.1)
@@ -242,36 +261,6 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCommureApp/CTMediator
-    - MKCommureApp/DeviceModel
-    - MKCommureApp/Expand
-    - MKCommureApp/Functions/AddDeviceModules/ParamsModel
-    - MKCommureApp/SDK
-    - MKCustomUIModule
-    - MLInputDodger
-  - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCommureApp/CTMediator
-    - MKCommureApp/DeviceModel
-    - MKCommureApp/Expand
-    - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller (= 0.0.1)
-    - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model (= 0.0.1)
-    - MKCommureApp/Functions/AddDeviceModules/ParamsModel
-    - MKCommureApp/SDK
-    - MKCustomUIModule
-    - MLInputDodger
-  - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCommureApp/CTMediator
-    - MKCommureApp/DeviceModel
-    - MKCommureApp/Expand
-    - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model
-    - MKCommureApp/Functions/AddDeviceModules/ParamsModel
-    - MKCommureApp/SDK
-    - MKCustomUIModule
-    - MLInputDodger
-  - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
     - MKCommureApp/DeviceModel
@@ -357,7 +346,6 @@ PODS:
     - MKCommureApp/Expand
     - MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage
     - MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage
-    - MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage
     - MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage
     - MKCommureApp/Functions/AddDeviceModules/Pages/ConnectSuccessPage
     - MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage
@@ -491,6 +479,7 @@ PODS:
     - MKCommureApp/CTMediator
     - MKCommureApp/DeviceModel
     - MKCommureApp/Expand
+    - MKCommureApp/Functions/AboutPage
     - MKCommureApp/Functions/DeviceDataPage
     - MKCommureApp/Functions/DeviceListPage/Model
     - MKCommureApp/Functions/DeviceListPage/View
@@ -671,6 +660,23 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
   - MKCommureApp/Functions/FilterPages/UploadOptionPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKCommureApp/Functions/LogPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/LogPage/Controller (= 0.0.1)
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKCommureApp/Functions/LogPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
     - MKCommureApp/DeviceModel
@@ -1923,7 +1929,7 @@ SPEC CHECKSUMS:
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
   MKBaseModuleLibrary: 6de43aeeb519d1c5f3aa94ebaffe8b3a57351312
   MKBaseMQTTModule: b3a5c4776b60d5c395da4fd7019fc1cf64ec48a6
-  MKCommureApp: 7ece274bbbc54e111f1f9f2dab24b5f69f98e924
+  MKCommureApp: fb1a9d5761870105c1094d928fc9802235388060
   MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   MQTTClient: 0dfa04e789479c2e461786464969895c1fcb0875

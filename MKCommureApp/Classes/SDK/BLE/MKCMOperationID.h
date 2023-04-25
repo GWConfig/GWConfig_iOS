@@ -42,13 +42,6 @@ typedef NS_ENUM(NSInteger, mk_cm_taskOperationID) {
     mk_cm_taskReadPublishTopicOperation,        //读取Publish topic
     mk_cm_taskReadConnectModeOperation,         //读取MTQQ服务器通信加密方式
     
-#pragma mark - Filter Params
-    mk_cm_taskReadRssiFilterValueOperation,             //读取扫描RSSI过滤
-    mk_cm_taskReadFilterRelationshipOperation,          //读取扫描过滤逻辑
-    mk_cm_taskReadFilterMACAddressListOperation,        //读取MAC过滤列表
-    mk_cm_taskReadFilterAdvNameListOperation,           //读取ADV Name过滤列表
-    
-    
 #pragma mark - 密码特征
     mk_cm_connectPasswordOperation,             //连接设备时候发送密码
     
@@ -88,11 +81,5 @@ typedef NS_ENUM(NSInteger, mk_cm_taskOperationID) {
     mk_cm_taskConfigCAFileOperation,                //配置CA证书
     mk_cm_taskConfigClientCertOperation,            //配置设备证书
     mk_cm_taskConfigClientPrivateKeyOperation,      //配置私钥
-        
-#pragma mark - 过滤参数
-    mk_cm_taskConfigRssiFilterValueOperation,                   //配置扫描RSSI过滤
-    mk_cm_taskConfigFilterRelationshipOperation,                //配置扫描过滤逻辑
-    mk_cm_taskConfigFilterMACAddressListOperation,           //配置MAC过滤规则
-    mk_cm_taskConfigFilterAdvNameListOperation,             //配置Adv Name过滤规则
 };
 

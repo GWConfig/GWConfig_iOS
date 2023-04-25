@@ -41,6 +41,7 @@
 #import "MKCMServerForAppController.h"
 #import "MKCMScanPageController.h"
 #import "MKCMDeviceDataController.h"
+#import "MKCMAboutController.h"
 
 static NSTimeInterval const kRefreshInterval = 0.5f;
 
@@ -95,9 +96,13 @@ MKCMDeviceModelDelegate>
 }
 
 #pragma mark - super method
+- (void)leftButtonMethod {
+    MKCMServerForAppController *vc = [[MKCMServerForAppController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)rightButtonMethod {
-    MKCMServerForAppController *vc = [[MKCMServerForAppController alloc] init];
+    MKCMAboutController *vc = [[MKCMAboutController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -379,7 +384,7 @@ MKCMDeviceModelDelegate>
 - (void)addButtonPressed {
     if (!ValidStr([MKCMMQTTDataManager shared].serverParams.host)) {
         //如果MQTT服务器参数不存在，则去引导用户添加服务器参数，让app连接MQTT服务器
-        [self rightButtonMethod];
+        [self leftButtonMethod];
         return;
     }
     //MQTT服务器参数存在，则添加设备
@@ -557,7 +562,8 @@ MKCMDeviceModelDelegate>
 #pragma mark - UI
 - (void)loadSubViews {
     self.defaultTitle = @"Gateway Config";
-    [self.rightButton setImage:LOADICON(@"MKCommureApp", @"MKCMDeviceListController", @"cm_menuIcon.png") forState:UIControlStateNormal];
+    [self.leftButton setImage:LOADICON(@"MKCommureApp", @"MKCMDeviceListController", @"cm_menuIcon.png") forState:UIControlStateNormal];
+    [self.rightButton setImage:LOADICON(@"MKCommureApp", @"MKCMDeviceListController", @"cm_aboutMenuIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.footerView];
     [self.footerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);

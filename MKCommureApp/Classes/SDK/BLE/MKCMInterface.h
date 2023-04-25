@@ -347,68 +347,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)cm_readNetworkIpInfosWithSucBlock:(void (^)(id returnData))sucBlock
                               failedBlock:(void (^)(NSError *error))failedBlock;
 
-#pragma mark *********************Filter Params************************
-
-/// The device will uplink valid ADV data with RSSI no less than xx dBm.
-/*
- @{
- @"rssi":@"-127"
- }
- */
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_readRssiFilterValueWithSucBlock:(void (^)(id returnData))sucBlock
-                               failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Broadcast content filtering logic.
-/*
- @{
- @"relationship":@"4"
- }
- @"0":Null
- @"1":Only MAC
- @"2":Only ADV Name
- @"3":Only Raw Data
- @"4":ADV Name & Raw Data
- @"5":MAC & ADV Name & Raw Data
- @"6":ADV Name | Raw Data
- @"7":ADV Name & MAC
- */
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_readFilterRelationshipWithSucBlock:(void (^)(id returnData))sucBlock
-                                  failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Filtered list of mac addresses.
-/*
- @{
- @"macList":@[
-    @"aabb",
- @"aabbccdd",
- @"ddeeff"
- ],
- }
- */
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_readFilterMACAddressListWithSucBlock:(void (^)(id returnData))sucBlock
-                                    failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Filtered list of mac addresses.
-/*
- @{
- @"nameList":@[
-    @"moko",
- @"LW004-PB",
- @"asdf"
- ],
- }
- */
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_readFilterAdvNameListWithSucBlock:(void (^)(id returnData))sucBlock
-                                 failedBlock:(void (^)(NSError *error))failedBlock;
-
 @end
 
 NS_ASSUME_NONNULL_END

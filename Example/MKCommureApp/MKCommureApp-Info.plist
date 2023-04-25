@@ -2,18 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Commure need your location information for connecting device</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Commure need your location information for connecting device</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Commure need your location information for connecting device</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Commure need your location information for connecting device</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Commure</string>
+	<string>GWConfig</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -36,6 +28,14 @@
 	<string>Commure need to use your mobile phone bluetooth to communicate with devices</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Commure need to use your mobile phone bluetooth to communicate with devices</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Commure need your location information for connecting device</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Commure need your location information for connecting device</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Commure need your location information for connecting device</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Commure need your location information for connecting device</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -231,6 +231,29 @@
       },
       "subspecs": [
         {
+          "name": "AboutPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/AboutPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/LogPage": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "LogPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/LogPage/Controller/**"
+            }
+          ]
+        },
+        {
           "name": "AddDeviceModules",
           "subspecs": [
             {
@@ -282,24 +305,6 @@
                   ]
                 },
                 {
-                  "name": "BleScannerFilterPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller/**",
-                      "dependencies": {
-                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model/**"
-                    }
-                  ]
-                },
-                {
                   "name": "BleWifiSettingsPage",
                   "subspecs": [
                     {
@@ -344,9 +349,6 @@
 
                         ],
                         "MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage": [
-
-                        ],
-                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleScannerFilterPage": [
 
                         ],
                         "MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage": [
@@ -459,6 +461,9 @@
 
                 ],
                 "MKCommureApp/Functions/DeviceDataPage": [
+
+                ],
+                "MKCommureApp/Functions/AboutPage": [
 
                 ]
               }

@@ -266,40 +266,6 @@ NS_ASSUME_NONNULL_BEGIN
                   sucBlock:(void (^)(void))sucBlock
                failedBlock:(void (^)(NSError *error))failedBlock;
 
-#pragma mark *********************Filter Params************************
-
-/// The device will uplink valid ADV data with RSSI no less than rssi dBm.
-/// @param rssi -127 dBm ~ 0 dBm.
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_configRssiFilterValue:(NSInteger)rssi
-                        sucBlock:(void (^)(void))sucBlock
-                     failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Broadcast content filtering logic.
-/// @param relationship relationship
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_configFilterRelationship:(mk_cm_filterRelationship)relationship
-                           sucBlock:(void (^)(void))sucBlock
-                        failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Filtered list of mac addresses.
-/// @param macList You can set up to 10 filters.1-6 Bytes.
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_configFilterMACAddressList:(NSArray <NSString *>*)macList
-                             sucBlock:(void (^)(void))sucBlock
-                          failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Filtered list of Adv Name.
-/// @param nameList You can set up to 10 filters.1-20 Characters.
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cm_configFilterAdvNameList:(NSArray <NSString *>*)nameList
-                          sucBlock:(void (^)(void))sucBlock
-                       failedBlock:(void (^)(NSError *error))failedBlock;
-
 @end
 
 NS_ASSUME_NONNULL_END
