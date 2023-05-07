@@ -417,48 +417,6 @@ static NSString *const defaultKeyValueString = @"value:";
     worksheet_write_string(worksheet, 12, 1, [certValue UTF8String], NULL);
     worksheet_write_string(worksheet, 12, 2, certlMsg, format);
     
-    //LWT
-    const char *lwtStatusMsg = "Range: 0/1 \n0:Disable \n1:Enable";
-    worksheet_write_string(worksheet, 13, 0, "LWT", NULL);
-    NSString *lwtString = [defaultKeyValueString stringByAppendingString:@"0"];
-    if (protocol.lwtStatus) {
-        lwtString = [defaultKeyValueString stringByAppendingString:@"1"];
-    }
-    worksheet_write_string(worksheet, 13, 1, [lwtString UTF8String], NULL);
-    worksheet_write_string(worksheet, 13, 2, lwtStatusMsg, format);
-    
-    //LWT Retain
-    const char *lwtRetainMsg = "Range: 0/1 \n0:NO \n1:YES";
-    worksheet_write_string(worksheet, 14, 0, "LWT Retain", NULL);
-    NSString *lwtRetainString = [defaultKeyValueString stringByAppendingString:@"0"];
-    if (protocol.lwtRetain) {
-        lwtRetainString = [defaultKeyValueString stringByAppendingString:@"1"];
-    }
-    worksheet_write_string(worksheet, 14, 1, [lwtRetainString UTF8String], NULL);
-    worksheet_write_string(worksheet, 14, 2, lwtRetainMsg, format);
-    
-    //Qos
-    const char *lwtQosMsg = "Range: 0/1/2 \n0:qos0 \n1:qos1 \n2:qos2";
-    NSString *lwtQos = [NSString stringWithFormat:@"%@%ld",defaultKeyValueString,(long)protocol.lwtQos];
-    worksheet_write_string(worksheet, 15, 0, "LWT Qos", NULL);
-    worksheet_write_string(worksheet, 15, 1, [lwtQos UTF8String], NULL);
-    worksheet_write_string(worksheet, 15, 2, lwtQosMsg, format);
-    
-    //LWT Topic
-    const char *lwtTopicMsg = "1-128 characters (When LWT is enabled) ";
-    worksheet_write_string(worksheet, 16, 0, "LWT Topic", NULL);
-    NSString *lwtTopicString = [defaultKeyValueString stringByAppendingString:SafeStr(protocol.lwtTopic)];
-    worksheet_write_string(worksheet, 16, 1, [lwtTopicString UTF8String], NULL);
-    worksheet_write_string(worksheet, 16, 2, lwtTopicMsg, format);
-    
-    //LWT Payload
-    const char *lwtPayloadMsg = "1-128 characters (When LWT is enabled) ";
-    worksheet_write_string(worksheet, 17, 0, "LWT Payload", NULL);
-    NSString *lwtPayloadString = [defaultKeyValueString stringByAppendingString:SafeStr(protocol.lwtPayload)];
-    worksheet_write_string(worksheet, 17, 1, [lwtPayloadString UTF8String], NULL);
-    worksheet_write_string(worksheet, 17, 2, lwtPayloadMsg, format);
-    
-    
     //关闭，保存文件
     lxw_error errorCode = workbook_close(workbook);
     if (errorCode != LXW_NO_ERROR) {
@@ -738,17 +696,6 @@ static NSString *const defaultKeyValueString = @"value:";
     }
     if (protocol.sslIsOn) {
         if (protocol.certificate < 0 || protocol.certificate > 2) {
-            return NO;
-        }
-    }
-    if (protocol.lwtStatus) {
-        if (!ValidStr(protocol.lwtTopic) || protocol.lwtTopic.length > 128 || ![protocol.lwtTopic isAsciiString]) {
-            return NO;
-        }
-        if (!ValidStr(protocol.lwtPayload) || protocol.lwtPayload.length > 128 || ![protocol.lwtPayload isAsciiString]) {
-            return NO;
-        }
-        if (protocol.lwtQos < 0 || protocol.lwtQos > 2) {
             return NO;
         }
     }

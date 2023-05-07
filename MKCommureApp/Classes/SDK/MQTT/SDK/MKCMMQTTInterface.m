@@ -517,11 +517,6 @@
             @"qos":@(protocol.qos),
             @"clean_session":(protocol.cleanSession ? @(1) : @(0)),
             @"keepalive":@([protocol.keepAlive integerValue]),
-            @"lwt_en":(protocol.lwtStatus ? @(1) : @(0)),
-            @"lwt_qos":@(protocol.lwtQos),
-            @"lwt_retain":(protocol.lwtRetain ? @(1) : @(0)),
-            @"lwt_topic":SafeStr(protocol.lwtTopic),
-            @"lwt_payload":SafeStr(protocol.lwtPayload),
         },
     };
     [[MKCMMQTTDataManager shared] sendData:data
@@ -2421,7 +2416,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (interval < 100 || interval > 65535 || duration < 0 || duration > 65535) {
+    if (interval < 100 || interval > 65535 || duration < 1 || duration > 65535) {
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
@@ -2741,17 +2736,7 @@
     if (protocol.connectMode < 0 || protocol.connectMode > 3) {
         return NO;
     }
-    if (protocol.lwtStatus) {
-        if (protocol.lwtQos < 0 || protocol.lwtQos > 2) {
-            return NO;
-        }
-        if (!ValidStr(protocol.lwtTopic) || protocol.lwtTopic.length > 128 || ![protocol.lwtTopic isAsciiString]) {
-            return NO;
-        }
-        if (!ValidStr(protocol.lwtPayload) || protocol.lwtPayload.length > 128 || ![protocol.lwtPayload isAsciiString]) {
-            return NO;
-        }
-    }
+    
     return YES;
 }
 

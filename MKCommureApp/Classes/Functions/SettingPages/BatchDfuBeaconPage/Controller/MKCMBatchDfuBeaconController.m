@@ -138,7 +138,7 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
 
 #pragma mark - event method
 - (void)configDataToDevice {
-    if (!self.dataList.count == 0 || self.dataList.count > 20) {
+    if (self.dataList.count == 0 || self.dataList.count > 20) {
         [self.view showCentralToast:@"Beacon list MAC error"];
         return;
     }

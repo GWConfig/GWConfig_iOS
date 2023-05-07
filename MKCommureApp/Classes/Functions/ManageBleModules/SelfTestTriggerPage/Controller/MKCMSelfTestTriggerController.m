@@ -75,8 +75,13 @@
         [self.view showCentralToast:@"Cannot be empty!"];
         return;
     }
+    NSInteger value = [self.textField.text integerValue];
+    if (value < 1 || value > 255) {
+        [self.view showCentralToast:@"Params error"];
+        return;
+    }
     [[MKHudManager share] showHUDWithTitle:@"Config" inView:self.view isPenetration:NO];
-    [MKCMMQTTInterface cm_configSelfTestTriggeredByButton:[self.textField.text integerValue] bleMac:self.bleMac macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKCMMQTTInterface cm_configSelfTestTriggeredByButton:value bleMac:self.bleMac macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             [self.view showCentralToast:@"Read Failed"];

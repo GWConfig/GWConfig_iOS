@@ -244,19 +244,6 @@ typedef NS_ENUM(NSInteger, mk_cm_txPower) {
 /// 0:TCP    1:CA signed server certificate     2:CA certificate     3:Self signed certificates
 @property (nonatomic, assign)NSInteger connectMode;
 
-@property (nonatomic, assign)BOOL lwtStatus;
-
-@property (nonatomic, assign)BOOL lwtRetain;
-
-/// 0/1/2
-@property (nonatomic, assign)NSInteger lwtQos;
-
-/// 1-128 Characters
-@property (nonatomic, copy)NSString *lwtTopic;
-
-/// 1-128 Characters
-@property (nonatomic, copy)NSString *lwtPayload;
-
 @end
 
 

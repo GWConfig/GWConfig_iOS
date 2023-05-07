@@ -210,7 +210,7 @@ MKCMImportServerControllerDelegate>
 #pragma mark - MKCMMqttServerConfigFooterViewDelegate
 /// 用户改变了开关状态
 /// @param isOn isOn
-/// @param statusID 0:cleanSession   1:ssl    2:lwtStatus  3:lwtRetain
+/// @param statusID 0:cleanSession   1:ssl
 - (void)cm_mqtt_serverForDevice_switchStatusChanged:(BOOL)isOn statusID:(NSInteger)statusID {
     if (statusID == 0) {
         //cleanSession
@@ -227,23 +227,11 @@ MKCMImportServerControllerDelegate>
         self.sslParamsView.dataModel = self.sslParamsModel;
         return;
     }
-    if (statusID == 2) {
-        //lwtStatus
-        self.dataModel.lwtStatus = isOn;
-        self.sslParamsModel.lwtStatus = isOn;
-        return;
-    }
-    if (statusID == 3) {
-        //lwtRetain
-        self.dataModel.lwtRetain = isOn;
-        self.sslParamsModel.lwtRetain = isOn;
-        return;
-    }
 }
 
 /// 输入框内容发生了改变
 /// @param text 最新的输入框内容
-/// @param textID 0:keepAlive    1:userName     2:password    3:deviceID   4:ntpURL  5:lwtTopic   6:lwtPayload 7:ssl host   8:ssl port         9:CA File Path     10:Client Key File           11:Client Cert  File
+/// @param textID 0:keepAlive    1:userName     2:password    3:deviceID   4:ntpURL  7:ssl host   8:ssl port         9:CA File Path     10:Client Key File           11:Client Cert  File
 - (void)cm_mqtt_serverForDevice_textFieldValueChanged:(NSString *)text textID:(NSInteger)textID {
     if (textID == 0) {
         //keepAlive
@@ -261,18 +249,6 @@ MKCMImportServerControllerDelegate>
         //password
         self.dataModel.password = text;
         self.sslParamsModel.password = text;
-        return;
-    }
-    if (textID == 5) {
-        //LWT Topic
-        self.dataModel.lwtTopic = text;
-        self.sslParamsModel.lwtTopic = text;
-        return;
-    }
-    if (textID == 6) {
-        //LWT Payload
-        self.dataModel.lwtPayload = text;
-        self.sslParamsModel.lwtPayload = text;
         return;
     }
     if (textID == 7) {
@@ -300,12 +276,6 @@ MKCMImportServerControllerDelegate>
         //qos
         self.dataModel.qos = qos;
         self.sslParamsModel.qos = qos;
-        return;
-    }
-    if (qosID == 1) {
-        //lwtQos
-        self.dataModel.lwtQos = qos;
-        self.sslParamsModel.lwtQos = qos;
         return;
     }
 }
@@ -495,8 +465,6 @@ MKCMImportServerControllerDelegate>
 - (void)clearAllParams {
     MKCMMqttServerModel *model = [[MKCMMqttServerModel alloc] init];
     model.cleanSession = YES;
-    model.lwtStatus = YES;
-    model.lwtQos = 1;
     
     [self.dataModel updateValue:model];
     [self.section0List removeAllObjects];
@@ -520,7 +488,7 @@ MKCMImportServerControllerDelegate>
     MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
     cellModel1.index = 0;
     cellModel1.msg = @"Host";
-    cellModel1.textPlaceholder = @"Less than 64 Characters";
+    cellModel1.textPlaceholder = @"1-64 Characters";
     cellModel1.textFieldType = mk_normal;
     cellModel1.textFieldValue = self.dataModel.host;
     cellModel1.maxLength = 64;
@@ -589,11 +557,6 @@ MKCMImportServerControllerDelegate>
     self.sslParamsModel.caFilePath = self.dataModel.caFilePath;
     self.sslParamsModel.clientKeyPath = self.dataModel.clientKeyPath;
     self.sslParamsModel.clientCertPath = self.dataModel.clientCertPath;
-    self.sslParamsModel.lwtStatus = self.dataModel.lwtStatus;
-    self.sslParamsModel.lwtRetain = self.dataModel.lwtRetain;
-    self.sslParamsModel.lwtQos = self.dataModel.lwtQos;
-    self.sslParamsModel.lwtTopic = self.dataModel.lwtTopic;
-    self.sslParamsModel.lwtPayload = self.dataModel.lwtPayload;
     
     //动态布局底部footer
     [self setupSSLViewFrames];

@@ -148,21 +148,19 @@ MKTextFieldCellDelegate>
     if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKCMDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
-    if (!ValidStr(user[@"data"][@"mac"]) || ![self.bleMac isEqualToString:user[@"data"][@"mac"]]) {
-        return;
-    }
     [[MKHudManager share] hide];
     self.receiveComplete = YES;
     self.progressLabel.hidden = YES;
-    NSDictionary *dataDic = user[@"data"];
-    NSInteger result = [dataDic[@"result_code"] integerValue];
     self.leftButton.enabled = YES;
-    if (result == 0) {
-        [self.view showCentralToast:@"Beacon DFU successfully!"];
-        [self performSelector:@selector(gotoLastPage) withObject:nil afterDelay:0.5f];
-        return;
+    NSDictionary *dataDic = user[@"data"];
+    NSInteger result = [dataDic[@"multi_dfu_result_code"] integerValue];
+    NSArray *failureList = dataDic[@"fail_dev"];
+    NSString *updateResult = @"Beacon DFU failed!";
+    if (result == 1 && !ValidArray(failureList)) {
+        //升级成功
+        updateResult = @"Beacon DFU successfully!";
     }
-    [self.view showCentralToast:@"Beacon DFU failed!"];
+    [self.view showCentralToast:updateResult];
     [self performSelector:@selector(gotoLastPage) withObject:nil afterDelay:0.5f];
 }
 

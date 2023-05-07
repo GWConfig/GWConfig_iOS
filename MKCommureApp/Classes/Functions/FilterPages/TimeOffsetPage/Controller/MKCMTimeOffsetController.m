@@ -115,7 +115,7 @@
     if (!_textField) {
         _textField = [[MKTextField alloc] initWithTextFieldType:mk_realNumberOnly];
         _textField.maxLength = 3;
-        _textField.placeholder = @"1-600, minutes";
+        _textField.placeholder = @"0-600, minutes";
         _textField.borderStyle = UITextBorderStyleNone;
         _textField.font = MKFont(13.f);
         

@@ -17,7 +17,6 @@
 
 #import "MKCMMqttServerSSLView.h"
 #import "MKCMMqttServerSettingView.h"
-#import "MKCMMqttServerLwtView.h"
 #import "MKMQTTUserCredentialsView.h"
 
 @implementation MKCMMqttServerConfigFooterViewModel
@@ -31,8 +30,7 @@ static CGFloat const defaultScrollViewHeight = 320.f;
 MKMQTTGeneralParamsViewDelegate,
 MKMQTTUserCredentialsViewDelegate,
 MKCMMqttServerSSLViewDelegate,
-MKCMMqttServerSettingViewDelegate,
-MKCMMqttServerLwtViewDelegate>
+MKCMMqttServerSettingViewDelegate>
 
 @property (nonatomic, strong)UIView *topLineView;
 
@@ -41,8 +39,6 @@ MKCMMqttServerLwtViewDelegate>
 @property (nonatomic, strong)UIButton *credentialsButton;
 
 @property (nonatomic, strong)UIButton *sslButton;
-
-@property (nonatomic, strong)UIButton *lwtButton;
 
 @property (nonatomic, strong)UIScrollView *scrollView;
 
@@ -53,8 +49,6 @@ MKCMMqttServerLwtViewDelegate>
 @property (nonatomic, strong)MKMQTTUserCredentialsView *credentialsView;
 
 @property (nonatomic, strong)MKCMMqttServerSSLView *sslView;
-
-@property (nonatomic, strong)MKCMMqttServerLwtView *lwtView;
 
 @property (nonatomic, strong)MKCMMqttServerSettingView *settingView;
 
@@ -79,7 +73,7 @@ MKCMMqttServerLwtViewDelegate>
         make.top.mas_equalTo(0);
         make.height.mas_equalTo(40.f);
     }];
-    CGFloat buttonWidth = (self.frame.size.width - 5 * 10.f) / 4;
+    CGFloat buttonWidth = (self.frame.size.width - 4 * 10.f) / 3;
     [self.generalButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10.f);
         make.width.mas_equalTo(buttonWidth);
@@ -94,12 +88,6 @@ MKCMMqttServerLwtViewDelegate>
     }];
     [self.sslButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.credentialsButton.mas_right).mas_offset(10.f);
-        make.width.mas_equalTo(buttonWidth);
-        make.centerY.mas_equalTo(self.generalButton.mas_centerY);
-        make.height.mas_equalTo(buttonHeight);
-    }];
-    [self.lwtButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-10.f);
         make.width.mas_equalTo(buttonWidth);
         make.centerY.mas_equalTo(self.generalButton.mas_centerY);
         make.height.mas_equalTo(buttonHeight);
@@ -129,14 +117,9 @@ MKCMMqttServerLwtViewDelegate>
         make.width.equalTo(self.scrollView);
         make.left.mas_equalTo(self.credentialsView.mas_right);
     }];
-    [self.lwtView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.and.bottom.equalTo(self.containerView);
-        make.width.equalTo(self.scrollView);
-        make.left.mas_equalTo(self.sslView.mas_right);
-    }];
     // 设置过渡视图的右距（此设置将影响到scrollView的contentSize）这个也是关键的一步
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.lwtView.mas_right);
+        make.right.mas_equalTo(self.sslView.mas_right);
     }];
     [self.settingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
@@ -226,37 +209,6 @@ MKCMMqttServerLwtViewDelegate>
     }
 }
 
-#pragma mark - MKCMMqttServerLwtViewDelegate
-- (void)cm_lwt_statusChanged:(BOOL)isOn {
-    if ([self.delegate respondsToSelector:@selector(cm_mqtt_serverForDevice_switchStatusChanged:statusID:)]) {
-        [self.delegate cm_mqtt_serverForDevice_switchStatusChanged:isOn statusID:2];
-    }
-}
-
-- (void)cm_lwt_retainChanged:(BOOL)isOn {
-    if ([self.delegate respondsToSelector:@selector(cm_mqtt_serverForDevice_switchStatusChanged:statusID:)]) {
-        [self.delegate cm_mqtt_serverForDevice_switchStatusChanged:isOn statusID:3];
-    }
-}
-
-- (void)cm_lwt_qosChanged:(NSInteger)qos {
-    if ([self.delegate respondsToSelector:@selector(cm_mqtt_serverForDevice_qosChanged:qosID:)]) {
-        [self.delegate cm_mqtt_serverForDevice_qosChanged:qos qosID:1];
-    }
-}
-
-- (void)cm_lwt_topicChanged:(NSString *)text {
-    if ([self.delegate respondsToSelector:@selector(cm_mqtt_serverForDevice_textFieldValueChanged:textID:)]) {
-        [self.delegate cm_mqtt_serverForDevice_textFieldValueChanged:text textID:5];
-    }
-}
-
-- (void)cm_lwt_payloadChanged:(NSString *)text {
-    if ([self.delegate respondsToSelector:@selector(cm_mqtt_serverForDevice_textFieldValueChanged:textID:)]) {
-        [self.delegate cm_mqtt_serverForDevice_textFieldValueChanged:text textID:6];
-    }
-}
-
 #pragma mark - event method
 - (void)generalButtonPressed {
     if (self.index == 0) {
@@ -283,15 +235,6 @@ MKCMMqttServerLwtViewDelegate>
     self.index = 2;
     [self loadButtonUI];
     [self.scrollView setContentOffset:CGPointMake(2 * kViewWidth, 0) animated:YES];
-}
-
-- (void)lwtButtonPressed {
-    if (self.index == 3) {
-        return;
-    }
-    self.index = 3;
-    [self loadButtonUI];
-    [self.scrollView setContentOffset:CGPointMake(3 * kViewWidth, 0) animated:YES];
 }
 
 #pragma mark - public method
@@ -350,14 +293,6 @@ MKCMMqttServerLwtViewDelegate>
     sslModel.clientCertPath = _dataModel.clientCertPath;
     self.sslView.dataModel = sslModel;
     
-    MKCMMqttServerLwtViewModel *lwtModel = [[MKCMMqttServerLwtViewModel alloc] init];
-    lwtModel.lwtStatus = _dataModel.lwtStatus;
-    lwtModel.lwtRetain = _dataModel.lwtRetain;
-    lwtModel.lwtQos = _dataModel.lwtQos;
-    lwtModel.lwtTopic = _dataModel.lwtTopic;
-    lwtModel.lwtPayload = _dataModel.lwtPayload;
-    self.lwtView.dataModel = lwtModel;
-    
     [self loadSubViews];
     [self setNeedsLayout];
 }
@@ -368,28 +303,18 @@ MKCMMqttServerLwtViewDelegate>
         [self.generalButton setTitleColor:NAVBAR_COLOR_MACROS forState:UIControlStateNormal];
         [self.credentialsButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
         [self.sslButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
-        [self.lwtButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
         return;
     }
     if (self.index == 1) {
         [self.generalButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
         [self.credentialsButton setTitleColor:NAVBAR_COLOR_MACROS forState:UIControlStateNormal];
         [self.sslButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
-        [self.lwtButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
         return;
     }
     if (self.index == 2) {
         [self.generalButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
         [self.credentialsButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
         [self.sslButton setTitleColor:NAVBAR_COLOR_MACROS forState:UIControlStateNormal];
-        [self.lwtButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
-        return;
-    }
-    if (self.index == 3) {
-        [self.generalButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
-        [self.credentialsButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
-        [self.sslButton setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];
-        [self.lwtButton setTitleColor:NAVBAR_COLOR_MACROS forState:UIControlStateNormal];
         return;
     }
 }
@@ -407,9 +332,6 @@ MKCMMqttServerLwtViewDelegate>
     if (self.sslButton.superview) {
         [self.sslButton removeFromSuperview];
     }
-    if (self.lwtButton.superview) {
-        [self.lwtButton removeFromSuperview];
-    }
     if (self.scrollView.superview) {
         [self.scrollView removeFromSuperview];
     }
@@ -425,9 +347,6 @@ MKCMMqttServerLwtViewDelegate>
     if (self.sslView.superview) {
         [self.sslView removeFromSuperview];
     }
-    if (self.lwtView.superview) {
-        [self.lwtView removeFromSuperview];
-    }
     if (self.settingView.superview) {
         [self.settingView removeFromSuperview];
     }
@@ -435,13 +354,11 @@ MKCMMqttServerLwtViewDelegate>
     [self.topLineView addSubview:self.generalButton];
     [self.topLineView addSubview:self.credentialsButton];
     [self.topLineView addSubview:self.sslButton];
-    [self.topLineView addSubview:self.lwtButton];
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.containerView];
     [self.containerView addSubview:self.generalView];
     [self.containerView addSubview:self.credentialsView];
     [self.containerView addSubview:self.sslView];
-    [self.containerView addSubview:self.lwtView];
     [self addSubview:self.settingView];
 }
 
@@ -498,21 +415,6 @@ MKCMMqttServerLwtViewDelegate>
         _sslView.delegate = self;
     }
     return _sslView;
-}
-
-- (UIButton *)lwtButton {
-    if (!_lwtButton) {
-        _lwtButton = [self loadButtonWithTitle:@"LWT" action:@selector(lwtButtonPressed)];
-    }
-    return _lwtButton;
-}
-
-- (MKCMMqttServerLwtView *)lwtView {
-    if (!_lwtView) {
-        _lwtView = [[MKCMMqttServerLwtView alloc] init];
-        _lwtView.delegate = self;
-    }
-    return _lwtView;
 }
 
 - (UIScrollView *)scrollView {

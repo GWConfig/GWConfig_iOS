@@ -78,15 +78,5 @@
 ///0:CA signed server certificate     1:CA certificate     2:Self signed certificates    仅对sslIsOn=YES情况下有效
 @property (nonatomic, assign)NSInteger certificate;
 
-@property (nonatomic, assign)BOOL lwtStatus;
-
-@property (nonatomic, assign)BOOL lwtRetain;
-
-@property (nonatomic, assign)NSInteger lwtQos;
-
-@property (nonatomic, copy)NSString *lwtTopic;
-
-@property (nonatomic, copy)NSString *lwtPayload;
-
 @end
 

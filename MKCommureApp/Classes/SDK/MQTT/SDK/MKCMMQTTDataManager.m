@@ -146,7 +146,7 @@ static dispatch_once_t onceToken;
                                                           userInfo:data];
         return;
     }
-    if (msgID == 3203) {
+    if (msgID == 3204) {
         //BXP-Button升级结果
         [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveBxpButtonDfuResultNotification
                                                             object:nil

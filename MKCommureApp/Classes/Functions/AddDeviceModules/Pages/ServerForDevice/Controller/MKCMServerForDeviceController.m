@@ -476,8 +476,6 @@ MKCMImportServerControllerDelegate>
 - (void)clearAllParams {
     MKCMServerForDeviceModel *emptyModel = [[MKCMServerForDeviceModel alloc] init];
     emptyModel.cleanSession = YES;
-    emptyModel.lwtStatus = YES;
-    emptyModel.lwtQos = 1;
     [self.dataModel updateValue:emptyModel];
     [self.section0List removeAllObjects];
     [self.section1List removeAllObjects];
@@ -500,7 +498,7 @@ MKCMImportServerControllerDelegate>
     MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
     cellModel1.index = 0;
     cellModel1.msg = @"Host";
-    cellModel1.textPlaceholder = @"Less than 64 Characters";
+    cellModel1.textPlaceholder = @"1-64 Characters";
     cellModel1.textFieldType = mk_normal;
     cellModel1.textFieldValue = self.dataModel.host;
     cellModel1.maxLength = 64;

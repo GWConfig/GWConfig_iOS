@@ -471,7 +471,7 @@ MKCMDeviceConnectedButtonCellDelegate>
 }
 
 - (void)sendEncryptionKeyToDevice {
-    if (!ValidStr(self.encryptionKey) || self.encryptionKey.length != 64 || [self.encryptionKey regularExpressions:isHexadecimal]) {
+    if (!ValidStr(self.encryptionKey) || self.encryptionKey.length != 64 || ![self.encryptionKey regularExpressions:isHexadecimal]) {
         [self.view showCentralToast:@"Params Error"];
         return;
     }

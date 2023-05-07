@@ -71,17 +71,6 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
             }
         }
     }
-    if (self.lwtStatus) {
-        if (self.lwtQos < 0 || self.lwtQos > 2) {
-            return @"LWT Qos error";
-        }
-        if (!ValidStr(self.lwtTopic) || self.lwtTopic.length > 128 || ![self.lwtTopic isAsciiString]) {
-            return @"LWT Topic error";
-        }
-        if (!ValidStr(self.lwtPayload) || self.lwtPayload.length > 128 || ![self.lwtPayload isAsciiString]) {
-            return @"LWT Payload error";
-        }
-    }
     return @"";
 }
 
@@ -106,11 +95,6 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
     self.caFilePath = model.caFilePath;
     self.clientKeyPath = model.clientKeyPath;
     self.clientCertPath = model.clientCertPath;
-    self.lwtStatus = model.lwtStatus;
-    self.lwtRetain = model.lwtRetain;
-    self.lwtQos = model.lwtQos;
-    self.lwtTopic = model.lwtTopic;
-    self.lwtPayload = model.lwtPayload;
 }
 
 - (void)readDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock {
@@ -192,11 +176,6 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
         }else if (self.connectMode == 3) {
             self.certificate = 2;
         }
-        self.lwtStatus = ([returnData[@"data"][@"lwt_en"] integerValue] == 1);
-        self.lwtRetain = ([returnData[@"data"][@"lwt_retain"] integerValue] == 1);
-        self.lwtQos = [returnData[@"data"][@"lwt_qos"] integerValue];
-        self.lwtTopic = returnData[@"data"][@"lwt_topic"];
-        self.lwtPayload = returnData[@"data"][@"lwt_payload"];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);
@@ -207,10 +186,6 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
 
 - (BOOL)configMqttInfos {
     __block BOOL success = NO;
-    if ([self.lwtTopic isEqualToString:defaultPubTopic]) {
-        //用户使用默认的LWT topic
-        self.lwtTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKCMDeviceModeManager shared].deviceName,self.clientID,@"device_to_app"];
-    }
     if ([self.publishTopic isEqualToString:defaultPubTopic]) {
         //用户使用默认的topic
         self.publishTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKCMDeviceModeManager shared].deviceName,self.clientID,@"device_to_app"];

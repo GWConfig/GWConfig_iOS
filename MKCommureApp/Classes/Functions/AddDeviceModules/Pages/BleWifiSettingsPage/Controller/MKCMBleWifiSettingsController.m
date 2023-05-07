@@ -138,6 +138,7 @@ MKCAFileSelectControllerDelegate>
         self.dataModel.security = dataListIndex;
         MKTextButtonCellModel *cellModel = self.section0List[0];
         cellModel.dataListIndex = dataListIndex;
+        self.noteLabel.hidden = !(self.dataModel.security == 1 && self.dataModel.eapType == 2);
         [self.tableView reloadData];
         return;
     }
@@ -146,7 +147,7 @@ MKCAFileSelectControllerDelegate>
         self.dataModel.eapType = dataListIndex;
         MKTextButtonCellModel *cellModel = self.section1List[0];
         cellModel.dataListIndex = dataListIndex;
-        self.noteLabel.hidden = (self.dataModel.eapType != 2);
+        self.noteLabel.hidden = !(self.dataModel.security == 1 && self.dataModel.eapType == 2);
         [self.tableView reloadData];
         return;
     }
@@ -460,7 +461,7 @@ MKCAFileSelectControllerDelegate>
         [self.headerList addObject:headerModel];
     }
     
-    self.noteLabel.hidden = (self.dataModel.eapType != 2);
+    self.noteLabel.hidden = !(self.dataModel.security == 1 && self.dataModel.eapType == 2);
     
     [self.tableView reloadData];
 }

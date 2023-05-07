@@ -210,19 +210,19 @@
     if (!ValidStr(self.configInterval) || [self.configInterval integerValue] < 100 || [self.configInterval integerValue] > 65535) {
         return NO;
     }
-    if (!ValidStr(self.configDuration) || [self.configDuration integerValue] < 0 || [self.configDuration integerValue] > 65535) {
+    if (!ValidStr(self.configDuration) || [self.configDuration integerValue] < 1 || [self.configDuration integerValue] > 65535) {
         return NO;
     }
     if (!ValidStr(self.normalInterval) || [self.normalInterval integerValue] < 100 || [self.normalInterval integerValue] > 65535) {
         return NO;
     }
-    if (!ValidStr(self.normalDuration) || [self.normalDuration integerValue] < 0 || [self.normalDuration integerValue] > 65535) {
+    if (!ValidStr(self.normalDuration) || [self.normalDuration integerValue] < 1 || [self.normalDuration integerValue] > 65535) {
         return NO;
     }
     if (!ValidStr(self.triggerInterval) || [self.triggerInterval integerValue] < 100 || [self.triggerInterval integerValue] > 65535) {
         return NO;
     }
-    if (!ValidStr(self.triggerDuration) || [self.triggerDuration integerValue] < 0 || [self.triggerDuration integerValue] > 65535) {
+    if (!ValidStr(self.triggerDuration) || [self.triggerDuration integerValue] < 1 || [self.triggerDuration integerValue] > 65535) {
         return NO;
     }
     return YES;

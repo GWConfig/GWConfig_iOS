@@ -179,9 +179,9 @@ MKTextButtonCellDelegate>
     }
     if (index == 3) {
         //Normal Adv duration
-        self.dataModel.normalDuration = value;
-        MKTextFieldCellModel *cellModel = self.section2List[1];
-        cellModel.textFieldValue = value;
+//        self.dataModel.normalDuration = value;
+//        MKTextFieldCellModel *cellModel = self.section2List[1];
+//        cellModel.textFieldValue = value;
         return;
     }
     if (index == 4) {
@@ -298,7 +298,7 @@ MKTextButtonCellDelegate>
     MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
     cellModel2.index = 1;
     cellModel2.msg = @"Adv duration";
-    cellModel2.textPlaceholder = @"0-65535";
+    cellModel2.textPlaceholder = @"1-65535";
     cellModel2.maxLength = 5;
     cellModel2.textFieldType = mk_realNumberOnly;
     cellModel2.textFieldValue = self.dataModel.configDuration;
@@ -326,15 +326,15 @@ MKTextButtonCellDelegate>
     cellModel1.unit = @"ms";
     [self.section2List addObject:cellModel1];
     
-    MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
-    cellModel2.index = 3;
-    cellModel2.msg = @"Adv duration";
-    cellModel2.textPlaceholder = @"0-65535";
-    cellModel2.maxLength = 5;
-    cellModel2.textFieldType = mk_realNumberOnly;
-    cellModel2.textFieldValue = self.dataModel.normalDuration;
-    cellModel2.unit = @"s";
-    [self.section2List addObject:cellModel2];
+//    MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
+//    cellModel2.index = 3;
+//    cellModel2.msg = @"Adv duration";
+//    cellModel2.textPlaceholder = @"1-65535";
+//    cellModel2.maxLength = 5;
+//    cellModel2.textFieldType = mk_realNumberOnly;
+//    cellModel2.textFieldValue = self.dataModel.normalDuration;
+//    cellModel2.unit = @"s";
+//    [self.section2List addObject:cellModel2];
 }
 
 - (void)loadSection3Datas {
@@ -360,7 +360,7 @@ MKTextButtonCellDelegate>
     MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
     cellModel2.index = 5;
     cellModel2.msg = @"Adv duration";
-    cellModel2.textPlaceholder = @"0-65535";
+    cellModel2.textPlaceholder = @"1-65535";
     cellModel2.maxLength = 5;
     cellModel2.textFieldType = mk_realNumberOnly;
     cellModel2.textFieldValue = self.dataModel.triggerDuration;

@@ -33,33 +33,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *clientCertPath;
 
-@property (nonatomic, assign)BOOL lwtStatus;
-
-@property (nonatomic, assign)BOOL lwtRetain;
-
-@property (nonatomic, assign)NSInteger lwtQos;
-
-@property (nonatomic, copy)NSString *lwtTopic;
-
-@property (nonatomic, copy)NSString *lwtPayload;
-
 @end
 
 @protocol MKCMMqttServerConfigFooterViewDelegate <NSObject>
 
 /// 用户改变了开关状态
 /// @param isOn isOn
-/// @param statusID 0:cleanSession   1:ssl   2:lwtStatus  3:lwtRetain
+/// @param statusID 0:cleanSession   1:ssl
 - (void)cm_mqtt_serverForDevice_switchStatusChanged:(BOOL)isOn statusID:(NSInteger)statusID;
 
 /// 输入框内容发生了改变
 /// @param text 最新的输入框内容
-/// @param textID 0:keepAlive    1:userName     2:password    3:deviceID   4:ntpURL   5:lwtTopic   6:lwtPayload   7:CA File Path     8:Client Key File           9:Client Cert  File
+/// @param textID 0:keepAlive    1:userName     2:password    3:deviceID   4:ntpURL    7:CA File Path     8:Client Key File           9:Client Cert  File
 - (void)cm_mqtt_serverForDevice_textFieldValueChanged:(NSString *)text textID:(NSInteger)textID;
 
 /// Qos发生改变
 /// @param qos qos
-/// @param qosID 0:qos   1:lwtQos
+/// @param qosID 0:qos
 - (void)cm_mqtt_serverForDevice_qosChanged:(NSInteger)qos qosID:(NSInteger)qosID;
 
 /// 用户选择了加密方式

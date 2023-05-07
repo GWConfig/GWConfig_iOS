@@ -175,7 +175,7 @@
 #pragma mark - getter
 - (UIButton *)uploadButton {
     if (!_uploadButton) {
-        _uploadButton = [MKCustomUIAdopter customButtonWithTitle:@"Scanner and upload option"
+        _uploadButton = [MKCustomUIAdopter customButtonWithTitle:@"Scanner and decryption option"
                                                           target:self
                                                           action:@selector(uploadButtonPressed)];
     }

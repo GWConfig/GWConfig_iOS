@@ -958,7 +958,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param type type
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
 /// @param interval Adv interval.100ms-65535ms.
-/// @param duration Adv duration.0s-65535s.
+/// @param duration Adv duration.1s-65535s.
 /// @param txPower txPower
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters

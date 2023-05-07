@@ -46,16 +46,6 @@ mk_cm_modifyMqttServerCertsProtocol>
 /// 0:TCP    1:CA signed server certificate     2:CA certificate     3:Self signed certificates
 @property (nonatomic, assign)NSInteger connectMode;
 
-@property (nonatomic, assign)BOOL lwtStatus;
-
-@property (nonatomic, assign)BOOL lwtRetain;
-
-@property (nonatomic, assign)NSInteger lwtQos;
-
-@property (nonatomic, copy)NSString *lwtTopic;
-
-@property (nonatomic, copy)NSString *lwtPayload;
-
 
 @property (nonatomic, copy)NSString *caFilePath;
 
