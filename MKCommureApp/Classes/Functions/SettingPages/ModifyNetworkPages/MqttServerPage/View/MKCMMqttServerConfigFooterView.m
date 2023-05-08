@@ -16,7 +16,6 @@
 #import "MKMQTTGeneralParamsView.h"
 
 #import "MKCMMqttServerSSLView.h"
-#import "MKCMMqttServerSettingView.h"
 #import "MKMQTTUserCredentialsView.h"
 
 @implementation MKCMMqttServerConfigFooterViewModel
@@ -29,8 +28,7 @@ static CGFloat const defaultScrollViewHeight = 320.f;
 @interface MKCMMqttServerConfigFooterView ()<UIScrollViewDelegate,
 MKMQTTGeneralParamsViewDelegate,
 MKMQTTUserCredentialsViewDelegate,
-MKCMMqttServerSSLViewDelegate,
-MKCMMqttServerSettingViewDelegate>
+MKCMMqttServerSSLViewDelegate>
 
 @property (nonatomic, strong)UIView *topLineView;
 
@@ -49,8 +47,6 @@ MKCMMqttServerSettingViewDelegate>
 @property (nonatomic, strong)MKMQTTUserCredentialsView *credentialsView;
 
 @property (nonatomic, strong)MKCMMqttServerSSLView *sslView;
-
-@property (nonatomic, strong)MKCMMqttServerSettingView *settingView;
 
 @property (nonatomic, assign)NSInteger index;
 
@@ -96,7 +92,7 @@ MKCMMqttServerSettingViewDelegate>
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.top.mas_equalTo(self.topLineView.mas_bottom).mas_offset(10.f);
-        make.bottom.mas_equalTo(self.settingView.mas_top);
+        make.bottom.mas_equalTo(0);
     }];
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.scrollView);
@@ -120,12 +116,6 @@ MKCMMqttServerSettingViewDelegate>
     // 设置过渡视图的右距（此设置将影响到scrollView的contentSize）这个也是关键的一步
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.sslView.mas_right);
-    }];
-    [self.settingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(settingViewHeight);
     }];
 }
 
@@ -196,16 +186,6 @@ MKCMMqttServerSettingViewDelegate>
     }
     if ([self.delegate respondsToSelector:@selector(cm_mqtt_serverForDevice_textFieldValueChanged:textID:)]) {
         [self.delegate cm_mqtt_serverForDevice_textFieldValueChanged:value textID:tempIndex];
-    }
-}
-
-#pragma mark - MKCMMqttServerSettingViewDelegate
-
-/// 底部按钮
-/// @param index 0:Export Demo File   1:Import Config File
-- (void)cm_mqtt_deviecSetting_fileButtonPressed:(NSInteger)index {
-    if ([self.delegate respondsToSelector:@selector(cm_mqtt_serverForDevice_bottomButtonPressed:)]) {
-        [self.delegate cm_mqtt_serverForDevice_bottomButtonPressed:index];
     }
 }
 
@@ -347,9 +327,6 @@ MKCMMqttServerSettingViewDelegate>
     if (self.sslView.superview) {
         [self.sslView removeFromSuperview];
     }
-    if (self.settingView.superview) {
-        [self.settingView removeFromSuperview];
-    }
     [self addSubview:self.topLineView];
     [self.topLineView addSubview:self.generalButton];
     [self.topLineView addSubview:self.credentialsButton];
@@ -359,7 +336,6 @@ MKCMMqttServerSettingViewDelegate>
     [self.containerView addSubview:self.generalView];
     [self.containerView addSubview:self.credentialsView];
     [self.containerView addSubview:self.sslView];
-    [self addSubview:self.settingView];
 }
 
 #pragma mark - getter
@@ -433,14 +409,6 @@ MKCMMqttServerSettingViewDelegate>
         _containerView = [[UIView alloc] init];
     }
     return _containerView;
-}
-
-- (MKCMMqttServerSettingView *)settingView {
-    if (!_settingView) {
-        _settingView = [[MKCMMqttServerSettingView alloc] init];
-        _settingView.delegate = self;
-    }
-    return _settingView;
 }
 
 - (UIButton *)loadButtonWithTitle:(NSString *)title action:(SEL)action {
