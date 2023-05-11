@@ -805,11 +805,11 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (password.length > 16) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSDictionary *data = @{
@@ -845,11 +845,11 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (interval < 0 || interval > 10000 || duration < 1 || duration > 255) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSString *ledColor = @"red";
@@ -892,11 +892,11 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (interval < 0 || interval > 10000 || duration < 1 || duration > 255) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     
@@ -931,7 +931,7 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     
@@ -964,7 +964,7 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     
@@ -998,7 +998,7 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     
@@ -1033,11 +1033,11 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (!ValidStr(tagID) || tagID.length != 6 || ![tagID regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSDictionary *data = @{
@@ -1071,7 +1071,7 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSDictionary *data = @{
@@ -1105,11 +1105,11 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (time < 1 || time > 255) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSDictionary *data = @{
@@ -1144,19 +1144,29 @@
         return;
     }
     if (!firmwareUrl || firmwareUrl.length > 256 || !dataUrl || dataUrl.length > 256) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (!ValidArray(beaconList) || beaconList.count > 20) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSMutableArray *devList = [NSMutableArray array];
     for (NSInteger i = 0; i < beaconList.count; i ++) {
         NSDictionary *dic = beaconList[i];
+        NSString *macAddress = SafeStr(dic[@"macAddress"]);
+        NSString *password = SafeStr(dic[@"password"]);
+        if (macAddress.length != 12 || ![macAddress regularExpressions:isHexadecimal]) {
+            [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+            return;
+        }
+        if (password.length > 16) {
+            [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+            return;
+        }
         NSDictionary *dataDic = @{
-            @"mac":SafeStr(dic[@"macAddress"]),
-            @"passwd":SafeStr(dic[@"password"]),
+            @"mac":macAddress,
+            @"passwd":password,
         };
         [devList addObject:dataDic];
     }
@@ -1192,19 +1202,29 @@
         return;
     }
     if (!ValidStr(key) || key.length != 64 || ![key regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (!ValidArray(beaconList) || beaconList.count > 20) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSMutableArray *devList = [NSMutableArray array];
     for (NSInteger i = 0; i < beaconList.count; i ++) {
         NSDictionary *dic = beaconList[i];
+        NSString *macAddress = SafeStr(dic[@"macAddress"]);
+        NSString *password = SafeStr(dic[@"password"]);
+        if (macAddress.length != 12 || ![macAddress regularExpressions:isHexadecimal]) {
+            [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+            return;
+        }
+        if (password.length > 16) {
+            [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+            return;
+        }
         NSDictionary *dataDic = @{
-            @"mac":SafeStr(dic[@"macAddress"]),
-            @"passwd":SafeStr(dic[@"password"]),
+            @"mac":macAddress,
+            @"passwd":password,
         };
         [devList addObject:dataDic];
     }
@@ -1240,11 +1260,11 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     if (!firmwareUrl || firmwareUrl.length > 256 || !dataUrl || dataUrl.length > 256) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSDictionary *data = @{
@@ -1278,7 +1298,7 @@
         return;
     }
     if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
     NSDictionary *data = @{
