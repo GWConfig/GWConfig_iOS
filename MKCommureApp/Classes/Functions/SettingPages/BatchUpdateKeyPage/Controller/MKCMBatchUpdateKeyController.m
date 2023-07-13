@@ -16,6 +16,7 @@
 #import "MKBaseTableView.h"
 #import "UIView+MKAdd.h"
 #import "NSString+MKAdd.h"
+#import "UITableView+MKAdd.h"
 
 #import "MKHudManager.h"
 #import "MKCustomUIAdopter.h"
@@ -48,12 +49,22 @@ MKCMBatchUpdateKeyHeaderViewDelegate>
 
 @property (nonatomic, strong)MKCMBatchUpdateKeyHeaderView *tableHeaderView;
 
+@property (nonatomic, strong)NSMutableDictionary *macCache;
+
+@property (nonatomic, strong)dispatch_source_t updateTimer;
+
+@property (nonatomic, assign)NSInteger updateCount;
+
 @end
 
 @implementation MKCMBatchUpdateKeyController
 
 - (void)dealloc {
     NSLog(@"MKCMBatchUpdateKeyController销毁");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,12 +118,15 @@ MKCMBatchUpdateKeyHeaderViewDelegate>
     [MKCMExcelDataManager parseBeaconExcel:fileName sucBlock:^(NSArray<NSDictionary *> * _Nonnull beaconInfoList) {
         [[MKHudManager share] hide];
         [self.dataList removeAllObjects];
+        [self.macCache removeAllObjects];
         for (NSInteger i = 0; i < beaconInfoList.count; i ++) {
             NSDictionary *beaconDic = beaconInfoList[i];
             MKCMBatchUpdateKeyCellModel *cellModel = [[MKCMBatchUpdateKeyCellModel alloc] init];
             cellModel.macAddress = beaconDic[@"macAddress"];
             cellModel.password = beaconDic[@"password"];
+            cellModel.status = mk_cm_batchUpdateKeyStatus_normal;
             [self.dataList addObject:cellModel];
+            [self.macCache setObject:@(i) forKey:beaconDic[@"macAddress"]];
         }
         [self.tableView reloadData];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -132,6 +146,65 @@ MKCMBatchUpdateKeyHeaderViewDelegate>
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - note
+- (void)receiveUpdateKeyResult:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKCMDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+        return;
+    }
+    NSString *macAddress = user[@"data"][@"mac"];
+    if (!ValidStr(macAddress)) {
+        return;
+    }
+    NSNumber *indexNumber = self.macCache[macAddress];
+    if (!ValidNum(indexNumber) || [indexNumber integerValue] >= self.dataList.count) {
+        return;
+    }
+    
+    self.updateCount = 0;
+    
+    NSInteger result = [user[@"data"][@"result_code"] integerValue];
+    MKCMBatchUpdateKeyCellModel *cellModel = self.dataList[[indexNumber integerValue]];
+    if (result == 0) {
+        cellModel.status = mk_cm_batchUpdateKeyStatus_success;
+    }else if (result == 1) {
+        cellModel.status = mk_cm_batchUpdateKeyStatus_failed;
+    }
+    [self.tableView mk_reloadRow:[indexNumber integerValue] inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)receiveBatchUpdateKeyResult:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKCMDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+        return;
+    }
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
+    self.updateCount = 0;
+    [[MKHudManager share] hide];
+    self.leftButton.enabled = YES;
+    self.rightButton.enabled = YES;
+    NSDictionary *dataDic = user[@"data"];
+    NSArray *failureList = dataDic[@"fail_dev"];
+    if (!ValidArray(failureList)) {
+        //批量升级全部成功
+        for (NSInteger i = 0; i < self.dataList.count; i ++) {
+            MKCMBatchUpdateKeyCellModel *cellModel = self.dataList[i];
+            cellModel.status = mk_cm_batchUpdateKeyStatus_success;
+        }
+    }else {
+        //有部分升级失败
+        for (NSInteger i = 0; i < self.dataList.count; i ++) {
+            MKCMBatchUpdateKeyCellModel *cellModel = self.dataList[i];
+            if (cellModel.status != mk_cm_batchUpdateKeyStatus_success) {
+                cellModel.status = mk_cm_batchUpdateKeyStatus_failed;
+            }
+        }
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - event method
 - (void)configDataToDevice {
     if (self.dataList.count == 0 || self.dataList.count > 20) {
@@ -142,22 +215,67 @@ MKCMBatchUpdateKeyHeaderViewDelegate>
     NSMutableArray *list = [NSMutableArray array];
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKCMBatchUpdateKeyCellModel *cellModel = self.dataList[i];
+        cellModel.status = mk_cm_batchUpdateKeyStatus_normal;
         NSDictionary *dic = @{
             @"macAddress":cellModel.macAddress,
             @"password":SafeStr(cellModel.password)
         };
         [list addObject:dic];
     }
-    
+    [self.tableView reloadData];
+    self.leftButton.enabled = NO;
+    self.rightButton.enabled = NO;
     @weakify(self);
     [self.dataModel configDataWithBeaconList:list sucBlock:^{
-        [[MKHudManager share] hide];
-        [self.view showCentralToast:@"setup succeed!"];
+        @strongify(self);
+        [self addNotifications];
+        [self operateUpdateTimer];
     } failedBlock:^(NSError * _Nonnull error) {
         @strongify(self);
+        self.leftButton.enabled = YES;
+        self.rightButton.enabled = YES;
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
+}
+
+#pragma mark - private method
+- (void)operateUpdateTimer {
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
+    [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
+    self.updateCount = 0;
+    self.updateTimer = nil;
+    self.updateTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
+    dispatch_source_set_timer(self.updateTimer, dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    @weakify(self);
+    dispatch_source_set_event_handler(self.updateTimer, ^{
+        @strongify(self);
+        if (self.updateCount == 300) {
+            dispatch_cancel(self.updateTimer);
+            self.updateCount = 0;
+            moko_dispatch_main_safe((^{
+                [[MKHudManager share] hide];
+                self.leftButton.enabled = YES;
+                self.rightButton.enabled = YES;
+            }));
+            return;
+        }
+        self.updateCount ++;
+    });
+    dispatch_resume(self.updateTimer);
+}
+
+- (void)addNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveUpdateKeyResult:)
+                                                 name:MKCMReceiveBxpButtonUpdateKeyResultNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveBatchUpdateKeyResult:)
+                                                 name:MKCMReceiveBxpButtonBatchUpdateKeyResultNotification
+                                               object:nil];
 }
 
 #pragma mark - loadSectionDatas
@@ -212,6 +330,13 @@ MKCMBatchUpdateKeyHeaderViewDelegate>
         _tableHeaderView.delegate = self;
     }
     return _tableHeaderView;
+}
+
+- (NSMutableDictionary *)macCache {
+    if (!_macCache) {
+        _macCache = [NSMutableDictionary dictionary];
+    }
+    return _macCache;
 }
 
 @end

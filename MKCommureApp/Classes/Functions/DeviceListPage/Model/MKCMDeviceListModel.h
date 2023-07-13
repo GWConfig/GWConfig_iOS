@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKCMDeviceListModel : MKCMDeviceModel
 
-/// 0:Good 1:Medium 2:Poor
+/// rssi
 @property (nonatomic, assign)NSInteger wifiLevel;
 
 @end

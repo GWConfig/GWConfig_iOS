@@ -32,6 +32,9 @@ NSString *const MKCMReceiveBxpButtonDfuProgressNotification = @"MKCMReceiveBxpBu
 NSString *const MKCMReceiveBxpButtonDfuResultNotification = @"MKCMReceiveBxpButtonDfuResultNotification";
 NSString *const MKCMReceiveBxpButtonBatchDfuResultNotification = @"MKCMReceiveBxpButtonBatchDfuResultNotification";
 
+NSString *const MKCMReceiveBxpButtonUpdateKeyResultNotification = @"MKCMReceiveBxpButtonUpdateKeyResultNotification";
+NSString *const MKCMReceiveBxpButtonBatchUpdateKeyResultNotification = @"MKCMReceiveBxpButtonBatchUpdateKeyResultNotification";
+
 
 static MKCMMQTTDataManager *manager = nil;
 static dispatch_once_t onceToken;
@@ -157,6 +160,20 @@ static dispatch_once_t onceToken;
     if (msgID == 3204) {
         //批量BXP-Button升级结果
         [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveBxpButtonBatchDfuResultNotification
+                                                            object:nil
+                                                          userInfo:data];
+        return;
+    }
+    if (msgID == 3206) {
+        //单个Update Key升级结果
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveBxpButtonUpdateKeyResultNotification
+                                                            object:nil
+                                                          userInfo:data];
+        return;
+    }
+    if (msgID == 3207) {
+        //批量Update Key升级结果
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveBxpButtonBatchUpdateKeyResultNotification
                                                             object:nil
                                                           userInfo:data];
         return;

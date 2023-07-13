@@ -51,6 +51,10 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
 
 @property (nonatomic, strong)NSMutableDictionary *macCache;
 
+@property (nonatomic, strong)dispatch_source_t updateTimer;
+
+@property (nonatomic, assign)NSInteger updateCount;
+
 @end
 
 @implementation MKCMBatchDfuBeaconController
@@ -58,6 +62,9 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
 - (void)dealloc {
     NSLog(@"MKCMBatchDfuBeaconController销毁");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -157,6 +164,9 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     if (!ValidNum(indexNumber) || [indexNumber integerValue] >= self.dataList.count) {
         return;
     }
+    
+    self.updateCount = 0;
+    
     NSInteger result = [user[@"data"][@"status"] integerValue];
     MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[[indexNumber integerValue]];
     if (result == 0) {
@@ -172,13 +182,16 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKCMDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
+    self.updateCount = 0;
     [[MKHudManager share] hide];
     self.leftButton.enabled = YES;
     self.rightButton.enabled = YES;
     NSDictionary *dataDic = user[@"data"];
     NSInteger result = [dataDic[@"multi_dfu_result_code"] integerValue];
     NSArray *failureList = dataDic[@"fail_dev"];
-    NSString *updateResult = @"Beacon DFU failed!";
     if (result == 1 && !ValidArray(failureList)) {
         //批量升级全部成功
         for (NSInteger i = 0; i < self.dataList.count; i ++) {
@@ -221,8 +234,11 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     [self.dataModel configDataWithBeaconList:list sucBlock:^{
         @strongify(self);
         [self addNotifications];
+        [self operateUpdateTimer];
     } failedBlock:^(NSError * _Nonnull error) {
         @strongify(self);
+        self.leftButton.enabled = YES;
+        self.rightButton.enabled = YES;
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
@@ -238,6 +254,33 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
                                              selector:@selector(receiveBeaconBatchDfuResult:)
                                                  name:MKCMReceiveBxpButtonBatchDfuResultNotification
                                                object:nil];
+}
+
+- (void)operateUpdateTimer {
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
+    [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
+    self.updateCount = 0;
+    self.updateTimer = nil;
+    self.updateTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
+    dispatch_source_set_timer(self.updateTimer, dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    @weakify(self);
+    dispatch_source_set_event_handler(self.updateTimer, ^{
+        @strongify(self);
+        if (self.updateCount == 300) {
+            dispatch_cancel(self.updateTimer);
+            self.updateCount = 0;
+            moko_dispatch_main_safe((^{
+                [[MKHudManager share] hide];
+                self.leftButton.enabled = YES;
+                self.rightButton.enabled = YES;
+            }));
+            return;
+        }
+        self.updateCount ++;
+    });
+    dispatch_resume(self.updateTimer);
 }
 
 #pragma mark - loadSectionDatas

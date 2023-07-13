@@ -10,11 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, mk_cm_batchUpdateKeyStatus) {
+    mk_cm_batchUpdateKeyStatus_normal,
+    mk_cm_batchUpdateKeyStatus_upgrading,
+    mk_cm_batchUpdateKeyStatus_success,
+    mk_cm_batchUpdateKeyStatus_failed,
+};
+
 @interface MKCMBatchUpdateKeyCellModel : NSObject
 
 @property (nonatomic, copy)NSString *macAddress;
 
 @property (nonatomic, copy)NSString *password;
+
+@property (nonatomic, assign)mk_cm_batchUpdateKeyStatus status;
 
 @end
 

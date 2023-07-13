@@ -42,6 +42,10 @@ extern NSString *const MKCMReceiveBxpButtonDfuResultNotification;
 
 extern NSString *const MKCMReceiveBxpButtonBatchDfuResultNotification;
 
+extern NSString *const MKCMReceiveBxpButtonUpdateKeyResultNotification;
+
+extern NSString *const MKCMReceiveBxpButtonBatchUpdateKeyResultNotification;
+
 
 @protocol MKCMReceiveDeviceDatasDelegate <NSObject>
 

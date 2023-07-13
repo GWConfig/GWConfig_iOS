@@ -30,6 +30,8 @@
 
 @property (nonatomic, strong)UILabel *passwordLabel;
 
+@property (nonatomic, strong)UILabel *statusLabel;
+
 @end
 
 @implementation MKCMBatchUpdateKeyHeaderView
@@ -42,6 +44,7 @@
         [self addSubview:self.selectedButton];
         [self addSubview:self.macLabel];
         [self addSubview:self.passwordLabel];
+        [self addSubview:self.statusLabel];
     }
     return self;
 }
@@ -72,16 +75,22 @@
         make.centerY.mas_equalTo(self.selectedButton.mas_centerY);
         make.height.mas_equalTo(MKFont(14.f).lineHeight);
     }];
+    [self.statusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-75.f);
+        make.width.mas_equalTo(60.f);
+        make.top.mas_equalTo(self.selectedButton.mas_bottom).mas_offset(10.f);
+        make.height.mas_equalTo(MKFont(15.f).lineHeight);
+    }];
     [self.macLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.right.mas_equalTo(self.mas_centerX).mas_offset(-5.f);
-        make.top.mas_equalTo(self.selectedButton.mas_bottom).mas_offset(15.f);
-        make.height.mas_equalTo(MKFont(14.f).lineHeight);
+        make.width.mas_equalTo(110.f);
+        make.centerY.mas_equalTo(self.statusLabel.mas_centerY);
+        make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
     [self.passwordLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-15.f);
-        make.left.mas_equalTo(self.mas_centerX).mas_offset(5.f);
-        make.top.mas_equalTo(self.selectedButton.mas_bottom).mas_offset(15.f);
+        make.right.mas_equalTo(self.statusLabel.mas_left).mas_offset(-5.f);
+        make.left.mas_equalTo(self.macLabel.mas_right).mas_offset(5.f);
+        make.centerY.mas_equalTo(self.statusLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(14.f).lineHeight);
     }];
 }
@@ -111,7 +120,7 @@
         @weakify(self);
         _keyTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);
-            if ([self.delegate respondsToSelector:@selector(cm_keyUrlChanged:)]) {
+            if ([self.delegate respondsToSelector:@selector(cm_encryptionKeyChanged:)]) {
                 [self.delegate cm_encryptionKeyChanged:text];
             }
         };
@@ -166,11 +175,22 @@
     if (!_passwordLabel) {
         _passwordLabel = [[UILabel alloc] init];
         _passwordLabel.textColor = DEFAULT_TEXT_COLOR;
-        _passwordLabel.textAlignment = NSTextAlignmentRight;
+        _passwordLabel.textAlignment = NSTextAlignmentCenter;
         _passwordLabel.font = MKFont(14.f);
         _passwordLabel.text = @"Password";
     }
     return _passwordLabel;
+}
+
+- (UILabel *)statusLabel {
+    if (!_statusLabel) {
+        _statusLabel = [[UILabel alloc] init];
+        _statusLabel.textColor = DEFAULT_TEXT_COLOR;
+        _statusLabel.textAlignment = NSTextAlignmentRight;
+        _statusLabel.font = MKFont(14.f);
+        _statusLabel.text = @"Status";
+    }
+    return _statusLabel;
 }
 
 @end
