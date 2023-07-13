@@ -227,6 +227,9 @@
         ],
         "MLInputDodger": [
 
+        ],
+        "SGQRCode": [
+
         ]
       },
       "subspecs": [
@@ -241,6 +244,34 @@
 
                 ]
               }
+            }
+          ]
+        },
+        {
+          "name": "BatchOtaPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/BatchOtaPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/BatchOtaPage/Model": [
+
+                ],
+                "MKCommureApp/Functions/BatchOtaPage/View": [
+
+                ],
+                "MKCommureApp/Functions/QRCodePage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKCommureApp/Classes/Functions/BatchOtaPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/BatchOtaPage/View/**"
             }
           ]
         },
@@ -464,6 +495,9 @@
 
                 ],
                 "MKCommureApp/Functions/AboutPage": [
+
+                ],
+                "MKCommureApp/Functions/BatchOtaPage": [
 
                 ]
               }
@@ -811,6 +845,24 @@
           ]
         },
         {
+          "name": "QRCodePage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/QRCodePage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/QRCodePage/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/QRCodePage/View/**"
+            }
+          ]
+        },
+        {
           "name": "ServerForApp",
           "subspecs": [
             {
@@ -1017,6 +1069,24 @@
                     {
                       "name": "Model",
                       "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "DataReportPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Model/**"
                     }
                   ]
                 },

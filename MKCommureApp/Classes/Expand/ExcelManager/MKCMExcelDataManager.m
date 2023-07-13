@@ -623,6 +623,51 @@ static NSString *const defaultKeyValueString = @"value:";
     }
 }
 
++ (void)parseBeaconOtaExcel:(NSString *)excelName
+                   sucBlock:(void (^)(NSArray <NSString *>*beaconList))sucBlock
+                failedBlock:(void (^)(NSError *error))failedBlock {
+    if (!ValidStr(excelName)) {
+        [self operationFailedBlockWithMsg:@"File Name Cannot be empty" block:failedBlock];
+        return;
+    }
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentPath stringByAppendingPathComponent:excelName];
+    NSURL *excelUrl = [[NSURL alloc] initFileURLWithPath:path];
+    if (!excelUrl) {
+        [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
+        return;
+    }
+    MKCMExcelWookbook *workbook = [[MKCMExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
+    if (!workbook || workbook.sheetArray.count == 0) {
+        [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
+        return;
+    }
+    MKCMExcelSheet *sheet = workbook.sheetArray.firstObject;
+    if (![sheet isKindOfClass:MKCMExcelSheet.class]) {
+        [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
+        return;
+    }
+    NSArray *list = sheet.cellArray;
+    NSMutableArray *macList = [NSMutableArray array];
+    //根据横竖坐标，获取单元格
+    for (NSInteger i = 0; i < list.count; i ++) {
+        MKCMExcelCell *cell = list[i];
+        if ([cell.column isEqualToString:@"A"]) {
+            //MAC地址列
+            NSString *macAddress = [cell.stringValue stringByReplacingOccurrencesOfString:@":" withString:@""];
+            macAddress = [macAddress stringByReplacingOccurrencesOfString:@" " withString:@""];
+            if (macAddress.length == 12 && [macAddress regularExpressions:isHexadecimal]) {
+                //必须是有效的mac地址
+                [macList addObject:macAddress];
+            }
+        }
+    }
+    
+    if (sucBlock) {
+        sucBlock(macList);
+    }
+}
+
 #pragma mark - Private method
 + (BOOL)checkExcelAppProtocol:(id <MKCMExcelAppProtocol>)protocol {
     if (!protocol || ![protocol conformsToProtocol:@protocol(MKCMExcelAppProtocol)]) {

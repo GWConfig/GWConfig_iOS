@@ -178,6 +178,25 @@ TODO: Add long description of the pod here.
            end
        end
        
+       ss.subspec 'BatchOtaPage' do |sss|
+           sss.subspec 'Controller' do |ssss|
+             ssss.source_files = 'MKCommureApp/Classes/Functions/BatchOtaPage/Controller/**'
+             
+             ssss.dependency 'MKCommureApp/Functions/BatchOtaPage/Model'
+             ssss.dependency 'MKCommureApp/Functions/BatchOtaPage/View'
+             
+             ssss.dependency 'MKCommureApp/Functions/QRCodePage/Controller'
+           end
+           sss.subspec 'Model' do |ssss|
+             ssss.source_files = 'MKCommureApp/Classes/Functions/BatchOtaPage/Model/**'
+             
+           end
+           sss.subspec 'View' do |ssss|
+             ssss.source_files = 'MKCommureApp/Classes/Functions/BatchOtaPage/View/**'
+             
+           end
+       end
+       
        ss.subspec 'LogPage' do |sss|
            sss.subspec 'Controller' do |ssss|
              ssss.source_files = 'MKCommureApp/Classes/Functions/LogPage/Controller/**'
@@ -311,6 +330,7 @@ TODO: Add long description of the pod here.
              ssss.dependency 'MKCommureApp/Functions/ScanPage'
              ssss.dependency 'MKCommureApp/Functions/DeviceDataPage'
              ssss.dependency 'MKCommureApp/Functions/AboutPage'
+             ssss.dependency 'MKCommureApp/Functions/BatchOtaPage'
              
            end
            
@@ -551,6 +571,18 @@ TODO: Add long description of the pod here.
            end
        end
        
+       ss.subspec 'QRCodePage' do |sss|
+           sss.subspec 'Controller' do |ssss|
+             ssss.source_files = 'MKCommureApp/Classes/Functions/QRCodePage/Controller/**'
+             
+             ssss.dependency 'MKCommureApp/Functions/QRCodePage/View'
+           end
+           
+           sss.subspec 'View' do |ssss|
+             ssss.source_files = 'MKCommureApp/Classes/Functions/QRCodePage/View/**'
+           end
+       end
+       
        ss.subspec 'ServerForApp' do |sss|
            sss.subspec 'Controller' do |ssss|
              ssss.source_files = 'MKCommureApp/Classes/Functions/ServerForApp/Controller/**'
@@ -678,6 +710,17 @@ TODO: Add long description of the pod here.
                    end
                end
                
+               ssss.subspec 'DataReportPage' do |sssss|
+                   sssss.subspec 'Controller'  do |ssssss|
+                     ssssss.source_files = 'MKCommureApp/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Controller/**'
+                     
+                     ssssss.dependency 'MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Model'
+                   end
+                   sssss.subspec 'Model'  do |ssssss|
+                     ssssss.source_files = 'MKCommureApp/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Model/**'
+                   end
+               end
+               
                ssss.subspec 'NetworkStatusPage' do |sssss|
                    sssss.subspec 'Controller'  do |ssssss|
                      ssssss.source_files = 'MKCommureApp/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller/**'
@@ -768,7 +811,7 @@ TODO: Add long description of the pod here.
        ss.dependency 'MKCustomUIModule'
        
        ss.dependency 'MLInputDodger'
-       
+       ss.dependency 'SGQRCode'
      end
    
 end

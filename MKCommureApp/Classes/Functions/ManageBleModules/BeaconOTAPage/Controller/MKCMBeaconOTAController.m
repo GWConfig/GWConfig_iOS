@@ -194,7 +194,7 @@ MKTextFieldCellDelegate>
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDfuResult:)
-                                                 name:MKCMReceiveBxpButtonDfuResultNotification
+                                                 name:MKCMReceiveBxpButtonBatchDfuResultNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDisconnect:)

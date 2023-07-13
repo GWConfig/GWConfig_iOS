@@ -154,17 +154,20 @@ PODS:
     - MKCommureApp/Expand
     - MKCommureApp/Functions/AboutPage (= 0.0.1)
     - MKCommureApp/Functions/AddDeviceModules (= 0.0.1)
+    - MKCommureApp/Functions/BatchOtaPage (= 0.0.1)
     - MKCommureApp/Functions/DeviceDataPage (= 0.0.1)
     - MKCommureApp/Functions/DeviceListPage (= 0.0.1)
     - MKCommureApp/Functions/FilterPages (= 0.0.1)
     - MKCommureApp/Functions/LogPage (= 0.0.1)
     - MKCommureApp/Functions/ManageBleModules (= 0.0.1)
+    - MKCommureApp/Functions/QRCodePage (= 0.0.1)
     - MKCommureApp/Functions/ScanPage (= 0.0.1)
     - MKCommureApp/Functions/ServerForApp (= 0.0.1)
     - MKCommureApp/Functions/SettingPages (= 0.0.1)
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AboutPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -174,6 +177,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AboutPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -183,6 +187,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -193,6 +198,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -209,6 +215,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -220,6 +227,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -230,6 +238,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -239,6 +248,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -250,6 +260,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -260,6 +271,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -269,6 +281,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -281,6 +294,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -292,6 +306,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -301,6 +316,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -310,6 +326,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/ConnectSuccessPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -320,6 +337,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -329,6 +347,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/DeviceParamsListPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -339,6 +358,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -354,6 +374,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -365,6 +386,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -375,6 +397,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -384,6 +407,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -396,6 +420,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -407,6 +432,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -416,6 +442,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -425,6 +452,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/AddDeviceModules/ParamsModel (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -433,6 +461,49 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/BatchOtaPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/BatchOtaPage/Controller (= 0.0.1)
+    - MKCommureApp/Functions/BatchOtaPage/Model (= 0.0.1)
+    - MKCommureApp/Functions/BatchOtaPage/View (= 0.0.1)
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/BatchOtaPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/BatchOtaPage/Model
+    - MKCommureApp/Functions/BatchOtaPage/View
+    - MKCommureApp/Functions/QRCodePage/Controller
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/BatchOtaPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/BatchOtaPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/DeviceDataPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -443,6 +514,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/DeviceDataPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -455,6 +527,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/DeviceDataPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -463,6 +536,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/DeviceListPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -474,12 +548,14 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/DeviceListPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
     - MKCommureApp/DeviceModel
     - MKCommureApp/Expand
     - MKCommureApp/Functions/AboutPage
+    - MKCommureApp/Functions/BatchOtaPage
     - MKCommureApp/Functions/DeviceDataPage
     - MKCommureApp/Functions/DeviceListPage/Model
     - MKCommureApp/Functions/DeviceListPage/View
@@ -488,6 +564,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/DeviceListPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -496,6 +573,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/DeviceListPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -505,6 +583,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -518,6 +597,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/DecryptionKeyPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -528,6 +608,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/DecryptionKeyPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -537,6 +618,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/DecryptionKeyPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -545,6 +627,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/FilterByMacPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -555,6 +638,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/FilterByMacPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -564,6 +648,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/FilterByMacPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -572,6 +657,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/FilterByTag (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -582,6 +668,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/FilterByTag/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -591,6 +678,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/FilterByTag/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -599,6 +687,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/TimeOffsetPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -609,6 +698,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/TimeOffsetPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -618,6 +708,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/TimeOffsetPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -626,6 +717,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/UploadOptionPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -637,6 +729,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/UploadOptionPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -651,6 +744,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/UploadOptionPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -659,6 +753,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/FilterPages/UploadOptionPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -667,6 +762,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/LogPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -676,6 +772,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/LogPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -684,6 +781,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -701,6 +799,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/AccelerometerPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -711,6 +810,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/AccelerometerPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -720,6 +820,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/AccelerometerPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -728,6 +829,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -738,6 +840,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -747,6 +850,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -755,6 +859,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/BatteryTestPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -765,6 +870,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/BatteryTestPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -774,6 +880,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/BatteryTestPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -782,6 +889,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/BeaconOTAPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -792,6 +900,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/BeaconOTAPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -801,6 +910,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/BeaconOTAPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -809,6 +919,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ConnectedPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -820,6 +931,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ConnectedPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -837,6 +949,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ConnectedPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -845,6 +958,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ConnectedPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -853,6 +967,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ManageBleDevicesPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -863,6 +978,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ManageBleDevicesPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -873,6 +989,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ManageBleDevicesPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -881,6 +998,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/SelfTestTriggerPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -890,6 +1008,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/SelfTestTriggerPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -898,6 +1017,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/SleepModePage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -907,6 +1027,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/SleepModePage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -915,6 +1036,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/SosTriggerPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -925,6 +1047,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/SosTriggerPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -934,6 +1057,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/SosTriggerPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -942,6 +1066,37 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/QRCodePage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/QRCodePage/Controller (= 0.0.1)
+    - MKCommureApp/Functions/QRCodePage/View (= 0.0.1)
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/QRCodePage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/QRCodePage/View
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/QRCodePage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ScanPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -953,6 +1108,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ScanPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -964,6 +1120,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ScanPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -972,6 +1129,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ScanPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -981,6 +1139,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ServerForApp (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -992,6 +1151,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ServerForApp/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1002,6 +1162,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ServerForApp/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1010,6 +1171,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ServerForApp/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1018,6 +1180,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1033,6 +1196,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchDfuBeaconPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1044,6 +1208,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchDfuBeaconPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1054,6 +1219,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchDfuBeaconPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1062,6 +1228,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchDfuBeaconPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1070,6 +1237,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchUpdateKeyPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1081,6 +1249,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchUpdateKeyPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1091,6 +1260,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchUpdateKeyPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1099,6 +1269,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/BatchUpdateKeyPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1107,6 +1278,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/DeviceInfoPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1117,6 +1289,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/DeviceInfoPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1126,6 +1299,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/DeviceInfoPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1134,6 +1308,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1146,6 +1321,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1156,6 +1332,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1165,6 +1342,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1173,6 +1351,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1183,6 +1362,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1195,6 +1375,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1203,6 +1384,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1214,6 +1396,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1224,6 +1407,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1232,6 +1416,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1240,6 +1425,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1250,6 +1436,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1259,6 +1446,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1267,12 +1455,14 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
     - MKCommureApp/DeviceModel
     - MKCommureApp/Expand
     - MKCommureApp/Functions/SettingPages/NormalSettings/CommunicatePage (= 0.0.1)
+    - MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage (= 0.0.1)
     - MKCommureApp/Functions/SettingPages/NormalSettings/NetworkStatusPage (= 0.0.1)
     - MKCommureApp/Functions/SettingPages/NormalSettings/NTPServerPage (= 0.0.1)
     - MKCommureApp/Functions/SettingPages/NormalSettings/ResetByButtonPage (= 0.0.1)
@@ -1280,6 +1470,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/CommunicatePage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1290,6 +1481,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1299,6 +1491,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/CommunicatePage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1307,6 +1500,37 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Controller (= 0.0.1)
+    - MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Model (= 0.0.1)
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Model
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/NetworkStatusPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1317,6 +1541,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1326,6 +1551,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1334,6 +1560,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/NTPServerPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1344,6 +1571,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1353,6 +1581,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/NTPServerPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1361,6 +1590,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/ResetByButtonPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1371,6 +1601,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1380,6 +1611,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1388,6 +1620,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/SystemTimePage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1398,6 +1631,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1408,6 +1642,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/NormalSettings/SystemTimePage/View (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1416,6 +1651,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/OTAPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1426,6 +1662,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/OTAPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1435,6 +1672,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/OTAPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1443,6 +1681,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/SettingPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1453,6 +1692,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/SettingPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1468,6 +1708,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/SettingPages/SettingPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1476,6 +1717,7 @@ PODS:
     - MKCommureApp/SDK
     - MKCustomUIModule
     - MLInputDodger
+    - SGQRCode
   - MKCommureApp/SDK (0.0.1):
     - MKCommureApp/SDK/BLE (= 0.0.1)
     - MKCommureApp/SDK/MQTT (= 0.0.1)
@@ -1886,6 +2128,7 @@ PODS:
   - MQTTClient/Manager (0.15.3):
     - MQTTClient/Min
   - MQTTClient/Min (0.15.3)
+  - SGQRCode (4.1.0)
   - SSZipArchive (2.4.3)
   - Toast (4.0.0)
   - WRNavigationBar (1.4.0)
@@ -1909,6 +2152,7 @@ SPEC REPOS:
     - MKCustomUIModule
     - MLInputDodger
     - MQTTClient
+    - SGQRCode
     - SSZipArchive
     - Toast
     - WRNavigationBar
@@ -1929,10 +2173,11 @@ SPEC CHECKSUMS:
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
   MKBaseModuleLibrary: 6de43aeeb519d1c5f3aa94ebaffe8b3a57351312
   MKBaseMQTTModule: b3a5c4776b60d5c395da4fd7019fc1cf64ec48a6
-  MKCommureApp: fb1a9d5761870105c1094d928fc9802235388060
+  MKCommureApp: b6ac6f0f5c54db18acd28fca6551884a69405fe0
   MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   MQTTClient: 0dfa04e789479c2e461786464969895c1fcb0875
+  SGQRCode: 6ad664d63f38f2842503bc5087812c5a3136d924
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   WRNavigationBar: 10bfdf96addf14d640d07c2ef08a029c18d8af10

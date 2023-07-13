@@ -42,6 +42,7 @@
 #import "MKCMScanPageController.h"
 #import "MKCMDeviceDataController.h"
 #import "MKCMAboutController.h"
+#import "MKCMBatchOtaController.h"
 
 static NSTimeInterval const kRefreshInterval = 0.5f;
 
@@ -102,7 +103,7 @@ MKCMDeviceModelDelegate>
 }
 
 - (void)rightButtonMethod {
-    MKCMAboutController *vc = [[MKCMAboutController alloc] init];
+    MKCMBatchOtaController *vc = [[MKCMBatchOtaController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -563,7 +564,7 @@ MKCMDeviceModelDelegate>
 - (void)loadSubViews {
     self.defaultTitle = @"Gateway Config";
     [self.leftButton setImage:LOADICON(@"MKCommureApp", @"MKCMDeviceListController", @"cm_menuIcon.png") forState:UIControlStateNormal];
-    [self.rightButton setImage:LOADICON(@"MKCommureApp", @"MKCMDeviceListController", @"cm_aboutMenuIcon.png") forState:UIControlStateNormal];
+    [self.rightButton setImage:LOADICON(@"MKCommureApp", @"MKCMDeviceListController", @"cm_batchOtaIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.footerView];
     [self.footerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);

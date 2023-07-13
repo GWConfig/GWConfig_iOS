@@ -16,6 +16,7 @@
 #import "MKBaseTableView.h"
 #import "UIView+MKAdd.h"
 #import "NSString+MKAdd.h"
+#import "UITableView+MKAdd.h"
 
 #import "MKHudManager.h"
 #import "MKCustomUIAdopter.h"
@@ -48,12 +49,15 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
 
 @property (nonatomic, strong)MKCMBatchDfuBeaconHeaderView *tableHeaderView;
 
+@property (nonatomic, strong)NSMutableDictionary *macCache;
+
 @end
 
 @implementation MKCMBatchDfuBeaconController
 
 - (void)dealloc {
     NSLog(@"MKCMBatchDfuBeaconController销毁");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,12 +111,15 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     [MKCMExcelDataManager parseBeaconExcel:fileName sucBlock:^(NSArray<NSDictionary *> * _Nonnull beaconInfoList) {
         [[MKHudManager share] hide];
         [self.dataList removeAllObjects];
+        [self.macCache removeAllObjects];
         for (NSInteger i = 0; i < beaconInfoList.count; i ++) {
             NSDictionary *beaconDic = beaconInfoList[i];
             MKCMBatchDfuBeaconCellModel *cellModel = [[MKCMBatchDfuBeaconCellModel alloc] init];
             cellModel.macAddress = beaconDic[@"macAddress"];
             cellModel.password = beaconDic[@"password"];
+            cellModel.status = mk_cm_batchDfuBeaconStatus_normal;
             [self.dataList addObject:cellModel];
+            [self.macCache setObject:@(i) forKey:beaconDic[@"macAddress"]];
         }
         [self.tableView reloadData];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -136,6 +143,60 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - note
+- (void)receiveBeaconDfuResult:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKCMDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+        return;
+    }
+    NSString *macAddress = user[@"data"][@"mac"];
+    if (!ValidStr(macAddress)) {
+        return;
+    }
+    NSNumber *indexNumber = self.macCache[macAddress];
+    if (!ValidNum(indexNumber) || [indexNumber integerValue] >= self.dataList.count) {
+        return;
+    }
+    NSInteger result = [user[@"data"][@"status"] integerValue];
+    MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[[indexNumber integerValue]];
+    if (result == 0) {
+        cellModel.status = mk_cm_batchDfuBeaconStatus_upgrading;
+    }else if (result == 1) {
+        cellModel.status = mk_cm_batchDfuBeaconStatus_success;
+    }
+    [self.tableView mk_reloadRow:[indexNumber integerValue] inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)receiveBeaconBatchDfuResult:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKCMDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+        return;
+    }
+    [[MKHudManager share] hide];
+    self.leftButton.enabled = YES;
+    self.rightButton.enabled = YES;
+    NSDictionary *dataDic = user[@"data"];
+    NSInteger result = [dataDic[@"multi_dfu_result_code"] integerValue];
+    NSArray *failureList = dataDic[@"fail_dev"];
+    NSString *updateResult = @"Beacon DFU failed!";
+    if (result == 1 && !ValidArray(failureList)) {
+        //批量升级全部成功
+        for (NSInteger i = 0; i < self.dataList.count; i ++) {
+            MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[i];
+            cellModel.status = mk_cm_batchDfuBeaconStatus_success;
+        }
+    }else {
+        //有部分升级失败
+        for (NSInteger i = 0; i < self.dataList.count; i ++) {
+            MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[i];
+            if (cellModel.status != mk_cm_batchDfuBeaconStatus_success) {
+                cellModel.status = mk_cm_batchDfuBeaconStatus_failed;
+            }
+        }
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - event method
 - (void)configDataToDevice {
     if (self.dataList.count == 0 || self.dataList.count > 20) {
@@ -146,22 +207,37 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     NSMutableArray *list = [NSMutableArray array];
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[i];
+        cellModel.status = mk_cm_batchDfuBeaconStatus_normal;
         NSDictionary *dic = @{
             @"macAddress":cellModel.macAddress,
             @"password":SafeStr(cellModel.password)
         };
         [list addObject:dic];
     }
-    
+    [self.tableView reloadData];
+    self.leftButton.enabled = NO;
+    self.rightButton.enabled = NO;
     @weakify(self);
     [self.dataModel configDataWithBeaconList:list sucBlock:^{
-        [[MKHudManager share] hide];
-        [self.view showCentralToast:@"setup succeed!"];
+        @strongify(self);
+        [self addNotifications];
     } failedBlock:^(NSError * _Nonnull error) {
         @strongify(self);
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
+}
+
+#pragma mark - private method
+- (void)addNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveBeaconDfuResult:)
+                                                 name:MKCMReceiveBxpButtonDfuResultNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveBeaconBatchDfuResult:)
+                                                 name:MKCMReceiveBxpButtonBatchDfuResultNotification
+                                               object:nil];
 }
 
 #pragma mark - loadSectionDatas
@@ -216,6 +292,13 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
         _tableHeaderView.delegate = self;
     }
     return _tableHeaderView;
+}
+
+- (NSMutableDictionary *)macCache {
+    if (!_macCache) {
+        _macCache = [NSMutableDictionary dictionary];
+    }
+    return _macCache;
 }
 
 @end

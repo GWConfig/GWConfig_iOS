@@ -107,7 +107,7 @@
 
 - (MKTextField *)keyTextField {
     if (!_keyTextField) {
-        _keyTextField = [[MKTextField alloc] initWithTextFieldType:mk_normal];
+        _keyTextField = [[MKTextField alloc] initWithTextFieldType:mk_hexCharOnly];
         @weakify(self);
         _keyTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);
@@ -115,9 +115,10 @@
                 [self.delegate cm_encryptionKeyChanged:text];
             }
         };
+        _keyTextField.placeholder = @"32 Bytes";
         _keyTextField.textColor = DEFAULT_TEXT_COLOR;
         _keyTextField.textAlignment = NSTextAlignmentLeft;
-        _keyTextField.maxLength = 256;
+        _keyTextField.maxLength = 64;
         _keyTextField.font = MKFont(13.f);
         
         _keyTextField.layer.masksToBounds = YES;

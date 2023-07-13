@@ -290,6 +290,18 @@ NS_ASSUME_NONNULL_BEGIN
                     sucBlock:(void (^)(id returnData))sucBlock
                  failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Data report timeout.
+/// @param timeout 100ms ~ 3000ms
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cm_configDataReportTimeout:(NSInteger)timeout
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// The allowed time offset between gateway and badge.
 /// @param timeOffset 0Min ~ 600Mins.
 /// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
@@ -692,6 +704,16 @@ NS_ASSUME_NONNULL_BEGIN
                                     topic:(NSString *)topic
                                  sucBlock:(void (^)(id returnData))sucBlock
                               failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Data report timeout.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cm_readDataReportTimeoutWithMacAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock;
 
 /// The allowed time offset between gateway and badge.
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)

@@ -10,11 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, mk_cm_batchDfuBeaconStatus) {
+    mk_cm_batchDfuBeaconStatus_normal,
+    mk_cm_batchDfuBeaconStatus_upgrading,
+    mk_cm_batchDfuBeaconStatus_success,
+    mk_cm_batchDfuBeaconStatus_failed,
+};
+
 @interface MKCMBatchDfuBeaconCellModel : NSObject
 
 @property (nonatomic, copy)NSString *macAddress;
 
 @property (nonatomic, copy)NSString *password;
+
+@property (nonatomic, assign)mk_cm_batchDfuBeaconStatus status;
 
 @end
 

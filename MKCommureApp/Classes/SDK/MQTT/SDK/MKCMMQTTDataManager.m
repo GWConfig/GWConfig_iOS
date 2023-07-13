@@ -30,6 +30,7 @@ NSString *const MKCMReceiveGatewayConnectedDeviceDatasNotification = @"MKCMRecei
 
 NSString *const MKCMReceiveBxpButtonDfuProgressNotification = @"MKCMReceiveBxpButtonDfuProgressNotification";
 NSString *const MKCMReceiveBxpButtonDfuResultNotification = @"MKCMReceiveBxpButtonDfuResultNotification";
+NSString *const MKCMReceiveBxpButtonBatchDfuResultNotification = @"MKCMReceiveBxpButtonBatchDfuResultNotification";
 
 
 static MKCMMQTTDataManager *manager = nil;
@@ -146,9 +147,16 @@ static dispatch_once_t onceToken;
                                                           userInfo:data];
         return;
     }
-    if (msgID == 3204) {
-        //BXP-Button升级结果
+    if (msgID == 3203) {
+        //单个Beacon升级结果
         [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveBxpButtonDfuResultNotification
+                                                            object:nil
+                                                          userInfo:data];
+        return;
+    }
+    if (msgID == 3204) {
+        //批量BXP-Button升级结果
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveBxpButtonBatchDfuResultNotification
                                                             object:nil
                                                           userInfo:data];
         return;

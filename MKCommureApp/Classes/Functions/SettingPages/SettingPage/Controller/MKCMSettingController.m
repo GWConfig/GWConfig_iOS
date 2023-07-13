@@ -32,6 +32,7 @@
 
 #import "MKCMNetworkStatusController.h"
 #import "MKCMCommunicateController.h"
+#import "MKCMDataReportController.h"
 #import "MKCMSystemTimeController.h"
 #import "MKCMResetByButtonController.h"
 #import "MKCMOTAController.h"
@@ -114,12 +115,18 @@ UITableViewDataSource>
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 2) {
+        //Data report timout
+        MKCMDataReportController *vc = [[MKCMDataReportController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    if (indexPath.section == 0 && indexPath.row == 3) {
         //System time
         MKCMSystemTimeController *vc = [[MKCMSystemTimeController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    if (indexPath.section == 0 && indexPath.row == 3) {
+    if (indexPath.section == 0 && indexPath.row == 4) {
         //Reset device by button
         MKCMResetByButtonController *vc = [[MKCMResetByButtonController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -480,9 +487,9 @@ UITableViewDataSource>
     cellModel4.leftMsg = @"Communication timeout";
     [self.section0List addObject:cellModel4];
     
-//    MKSettingTextCellModel *cellModel5 = [[MKSettingTextCellModel alloc] init];
-//    cellModel5.leftMsg = @"Data report timeout";
-//    [self.section0List addObject:cellModel5];
+    MKSettingTextCellModel *cellModel5 = [[MKSettingTextCellModel alloc] init];
+    cellModel5.leftMsg = @"Data report timeout";
+    [self.section0List addObject:cellModel5];
     
     MKSettingTextCellModel *cellModel6 = [[MKSettingTextCellModel alloc] init];
     cellModel6.leftMsg = @"System time";

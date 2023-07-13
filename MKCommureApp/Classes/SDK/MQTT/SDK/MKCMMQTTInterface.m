@@ -159,6 +159,7 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_cm_server_taskConfigOTAHostOperation
+                                   timeout:30
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }
@@ -725,6 +726,37 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_cm_server_taskConfigFilterByTagOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cm_configDataReportTimeout:(NSInteger)timeout
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (timeout < 100 || timeout > 3000) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1045),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"timeout":@(timeout),
+        }
+    };
+    [[MKCMMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cm_server_taskConfigDataReportTimeoutOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }
@@ -1753,6 +1785,29 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_cm_server_taskReadFilterBXPTagOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cm_readDataReportTimeoutWithMacAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(2045),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+    };
+    [[MKCMMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cm_server_taskReadDataReportTimeoutOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }

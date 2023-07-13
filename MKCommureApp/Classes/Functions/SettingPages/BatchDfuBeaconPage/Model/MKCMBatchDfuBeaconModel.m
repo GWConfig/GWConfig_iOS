@@ -28,6 +28,14 @@
 
 @implementation MKCMBatchDfuBeaconModel
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.firmwareUrl = @"http://47.104.172.169:8080/updata_fold/CommureTag_V1.0.4.bin";
+        self.dataUrl = @"http://47.104.172.169:8080/updata_fold/CommureTag_V1.0.4.dat";
+    }
+    return self;
+}
+
 - (void)configDataWithBeaconList:(NSArray <NSDictionary *>*)list
                         sucBlock:(void (^)(void))sucBlock
                      failedBlock:(void (^)(NSError *error))failedBlock {

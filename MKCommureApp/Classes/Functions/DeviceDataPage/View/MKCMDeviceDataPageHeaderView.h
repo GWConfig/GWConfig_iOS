@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)cm_manageBleDeviceAction;
 
+- (void)cm_filterTestButtonAction;
+
 @end
 
 @interface MKCMDeviceDataPageHeaderView : UIView

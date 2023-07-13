@@ -28,6 +28,8 @@
 
 #import "MKCMDeviceDataPageHeaderView.h"
 #import "MKCMDeviceDataPageCell.h"
+#import "MKCMFilterTestAlert.h"
+#import "MKCMFilterTestResultAlert.h"
 
 #import "MKCMSettingController.h"
 #import "MKCMUploadOptionController.h"
@@ -54,6 +56,14 @@ MKCMReceiveDeviceDatasDelegate>
 //不能立即刷新列表，降低刷新频率
 @property (nonatomic, assign)BOOL isNeedRefresh;
 
+@property (nonatomic, strong)dispatch_source_t filterTimer;
+
+@property (nonatomic, assign)NSInteger filterTime;
+
+@property (nonatomic, assign)NSInteger alermStatus;
+
+@property (nonatomic, assign)NSInteger totalAlarmStatus;
+
 @end
 
 @implementation MKCMDeviceDataController
@@ -64,6 +74,9 @@ MKCMReceiveDeviceDatasDelegate>
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //移除runloop的监听
     CFRunLoopRemoveObserver(CFRunLoopGetCurrent(), self.observerRef, kCFRunLoopCommonModes);
+    if (self.filterTimer) {
+        dispatch_cancel(self.filterTimer);
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -160,6 +173,23 @@ MKCMReceiveDeviceDatasDelegate>
     }];
 }
 
+- (void)cm_filterTestButtonAction {
+    MKCMFilterTestAlert *alertView = [[MKCMFilterTestAlert alloc] init];
+    [alertView showWithHandler:^(NSString * duration, NSString * alarmStatus) {
+        if (!ValidStr(duration) || [duration integerValue] < 10 || [duration integerValue] > 600) {
+            [self.view showCentralToast:@"The duration must be 10-600"];
+            return;
+        }
+        if (!ValidStr(alarmStatus) || !([alarmStatus isEqualToString:@"01"] || [alarmStatus isEqualToString:@"02"] || [alarmStatus isEqualToString:@"03"])) {
+            [self.view showCentralToast:@"The alarm status must be 01/02/03"];
+            return;
+        }
+        self.filterTime = [duration integerValue];
+        self.alermStatus = [alarmStatus integerValue];
+        [self operatefilterTimer];
+    }];
+}
+
 #pragma mark - MKCMReceiveDeviceDatasDelegate
 - (void)mk_cm_receiveDeviceDatas:(NSDictionary *)data {
     if (!ValidDict(data) || !ValidStr(data[@"device_info"][@"mac"]) || ![[MKCMDeviceModeManager shared].macAddress isEqualToString:data[@"device_info"][@"mac"]]) {
@@ -170,6 +200,9 @@ MKCMReceiveDeviceDatasDelegate>
         return;
     }
     for (NSDictionary *dic in tempList) {
+        if (self.alermStatus > 0 && [dic[@"alarm_status"] integerValue] == self.alermStatus) {
+            self.totalAlarmStatus ++;
+        }
         NSString *jsonString = [self convertToJsonData:dic];
         if (ValidStr(jsonString)) {
             MKCMDeviceDataPageCellModel *cellModel = [[MKCMDeviceDataPageCellModel alloc] init];
@@ -253,6 +286,30 @@ MKCMReceiveDeviceDatasDelegate>
     [MKCMMQTTDataManager shared].dataDelegate = nil;
 }
 
+- (void)operatefilterTimer {
+    if (self.filterTimer) {
+        dispatch_cancel(self.filterTimer);
+    }
+    [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
+    self.totalAlarmStatus = 0;
+    self.filterTimer = nil;
+    self.filterTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
+    dispatch_source_set_timer(self.filterTimer, dispatch_time(DISPATCH_TIME_NOW, self.filterTime * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    @weakify(self);
+    dispatch_source_set_event_handler(self.filterTimer, ^{
+        @strongify(self);
+        dispatch_cancel(self.filterTimer);
+        moko_dispatch_main_safe((^{
+            [[MKHudManager share] hide];
+            self.filterTime = 0;
+            self.alermStatus = 0;
+            MKCMFilterTestResultAlert *alertView = [[MKCMFilterTestResultAlert alloc] init];
+            [alertView show:self.totalAlarmStatus];
+        }));
+    });
+    dispatch_resume(self.filterTimer);
+}
+
 #pragma mark - 定时刷新
 
 - (void)needRefreshList {
@@ -322,7 +379,7 @@ MKCMReceiveDeviceDatasDelegate>
 
 - (MKCMDeviceDataPageHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[MKCMDeviceDataPageHeaderView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 175.f)];
+        _headerView = [[MKCMDeviceDataPageHeaderView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 200.f)];
         _headerView.delegate = self;
     }
     return _headerView;

@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
                 sucBlock:(void (^)(NSArray <NSDictionary *>*beaconInfoList))sucBlock
              failedBlock:(void (^)(NSError *error))failedBlock;
 
++ (void)parseBeaconOtaExcel:(NSString *)excelName
+                   sucBlock:(void (^)(NSArray <NSString *>*beaconList))sucBlock
+                failedBlock:(void (^)(NSError *error))failedBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

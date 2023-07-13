@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, mk_cm_serverOperationID) {
     mk_cm_server_taskConfigFilterByRSSIOperation,         //配置过滤RSSI
     mk_cm_server_taskConfigFilterByMacAddressOperation,     //配置过滤mac
     mk_cm_server_taskConfigFilterByTagOperation,            //配置过滤Tag
+    mk_cm_server_taskConfigDataReportTimeoutOperation,      //配置数据包上报超时时间
     mk_cm_server_taskConfigBXBDecryptTimeOffsetOperation,   //配置BXP-B解析时间偏移
     mk_cm_server_taskConfigBXBDecryptKeyOperation,          //配置BXP-B秘钥
     
@@ -67,6 +68,7 @@ typedef NS_ENUM(NSInteger, mk_cm_serverOperationID) {
     mk_cm_server_taskReadFilterByRSSIOperation,         //读取过滤RSSI
     mk_cm_server_taskReadFilterByMacOperation,          //读取过滤MAC
     mk_cm_server_taskReadFilterBXPTagOperation,         //读取过滤Tag
+    mk_cm_server_taskReadDataReportTimeoutOperation,    //读取数据上报超时时间
     mk_cm_server_taskReadBXBDecryptTimeOffsetOperation, //读取BXP-B解析时间偏移
     mk_cm_server_taskReadBXBDecryptKeyOperation,        //读取BXP-B秘钥
     

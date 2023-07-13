@@ -343,6 +343,9 @@
     }else if (msgID == 1044) {
         //设置过滤Tag
         operationID = mk_cm_server_taskConfigFilterByTagOperation;
+    }else if (msgID == 1045) {
+        //配置数据包上报超时时间
+        operationID = mk_cm_server_taskConfigDataReportTimeoutOperation;
     }else if (msgID == 1046) {
         //配置BXP-B解析时间偏移
         operationID = mk_cm_server_taskConfigBXBDecryptTimeOffsetOperation;
@@ -424,6 +427,9 @@
     }else if (msgID == 2044) {
         //读取过滤Tag
         operationID = mk_cm_server_taskReadFilterBXPTagOperation;
+    }else if (msgID == 2045) {
+        //读取数据上报超时时间
+        operationID = mk_cm_server_taskReadDataReportTimeoutOperation;
     }else if (msgID == 2046) {
         //读取BXP-B解析时间偏移
         operationID = mk_cm_server_taskReadBXBDecryptTimeOffsetOperation;

@@ -82,6 +82,8 @@
 
 @property (nonatomic, strong)UILabel *totalLabel;
 
+@property (nonatomic, strong)UIButton *filterTestButton;
+
 @property (nonatomic, strong)MKCMDeviceDataPageManageBleButton *manageBleButton;
 
 @end
@@ -96,6 +98,7 @@
         [self addSubview:self.scannerButton];
         [self addSubview:self.manageBleButton];
         [self addSubview:self.totalLabel];
+        [self addSubview:self.filterTestButton];
     }
     return self;
 }
@@ -128,9 +131,15 @@
     }];
     [self.totalLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30.f);
-        make.right.mas_equalTo(-30.f);
-        make.top.mas_equalTo(self.manageBleButton.mas_bottom).mas_offset(10.f);
+        make.right.mas_equalTo(self.filterTestButton.mas_left).mas_offset(-15.f);
+        make.centerY.mas_equalTo(self.filterTestButton.mas_centerY);
         make.height.mas_equalTo(MKFont(14.f).lineHeight);
+    }];
+    [self.filterTestButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-30.f);
+        make.width.mas_equalTo(80.f);
+        make.top.mas_equalTo(self.manageBleButton.mas_bottom).mas_offset(10.f);
+        make.height.mas_equalTo(30.f);
     }];
 }
 
@@ -150,6 +159,12 @@
 - (void)manageBleButtonPressed {
     if ([self.delegate respondsToSelector:@selector(cm_manageBleDeviceAction)]) {
         [self.delegate cm_manageBleDeviceAction];
+    }
+}
+
+- (void)filterTestButtonPressed {
+    if ([self.delegate respondsToSelector:@selector(cm_filterTestButtonAction)]) {
+        [self.delegate cm_filterTestButtonAction];
     }
 }
 
@@ -222,6 +237,15 @@
         _totalLabel.text = @"Total 0 pieces of data";
     }
     return _totalLabel;
+}
+
+- (UIButton *)filterTestButton {
+    if (!_filterTestButton) {
+        _filterTestButton = [MKCustomUIAdopter customButtonWithTitle:@"Filter Test"
+                                                              target:self
+                                                              action:@selector(filterTestButtonPressed)];
+    }
+    return _filterTestButton;
 }
 
 @end
