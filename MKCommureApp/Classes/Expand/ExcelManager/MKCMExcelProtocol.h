@@ -40,8 +40,6 @@
 
 
 
-
-
 @protocol MKCMExcelDeviceProtocol <NSObject>
 
 /// 1-64 Characters
