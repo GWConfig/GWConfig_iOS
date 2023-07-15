@@ -112,7 +112,7 @@
     if (!_textField) {
         _textField = [[MKTextField alloc] initWithTextFieldType:mk_realNumberOnly];
         _textField.maxLength = 3;
-        _textField.placeholder = @"0-255，unit:second";
+        _textField.placeholder = @"1-255，unit:second";
         _textField.borderStyle = UITextBorderStyleNone;
         _textField.font = MKFont(13.f);
         

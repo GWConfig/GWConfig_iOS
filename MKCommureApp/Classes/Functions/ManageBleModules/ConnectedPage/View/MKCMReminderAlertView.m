@@ -390,8 +390,8 @@ static CGFloat const textFieldHeight = 30.f;
         _intervalTextField.backgroundColor = COLOR_WHITE_MACROS;
         _intervalTextField.font = MKFont(13.f);
         _intervalTextField.textColor = DEFAULT_TEXT_COLOR;
-        _intervalTextField.maxLength = 5;
-        _intervalTextField.placeholder = @"0-10000";
+        _intervalTextField.maxLength = 3;
+        _intervalTextField.placeholder = @"0-100";
         
         _intervalTextField.layer.masksToBounds = YES;
         _intervalTextField.layer.borderColor = CUTTING_LINE_COLOR.CGColor;
@@ -407,7 +407,7 @@ static CGFloat const textFieldHeight = 30.f;
         _intervalUnitLabel.textAlignment = NSTextAlignmentLeft;
         _intervalUnitLabel.font = MKFont(11.f);
         _intervalUnitLabel.textColor = DEFAULT_TEXT_COLOR;
-        _intervalUnitLabel.text = @"ms";
+        _intervalUnitLabel.text = @"x100ms";
     }
     return _intervalUnitLabel;
 }

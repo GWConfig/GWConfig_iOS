@@ -340,7 +340,7 @@ static dispatch_once_t onceToken;
 - (NSOperationQueue *)operationQueue{
     if (!_operationQueue) {
         _operationQueue = [[NSOperationQueue alloc] init];
-        _operationQueue.maxConcurrentOperationCount = 1;
+        _operationQueue.maxConcurrentOperationCount = 10;
     }
     return _operationQueue;
 }

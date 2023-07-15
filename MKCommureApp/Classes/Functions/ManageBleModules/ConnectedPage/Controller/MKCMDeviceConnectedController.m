@@ -422,7 +422,7 @@ MKCMDeviceConnectedButtonCellDelegate>
         return;
     }
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKCMMQTTInterface cm_configDeviceLedReminderWithBleMac:self.deviceBleInfo[@"data"][@"mac"] color:color interval:[interval integerValue] duration:[duration integerValue] macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKCMMQTTInterface cm_configDeviceLedReminderWithBleMac:self.deviceBleInfo[@"data"][@"mac"] color:color interval:([interval integerValue] * 100) duration:[duration integerValue] macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             [self.view showCentralToast:@"setup failed!"];

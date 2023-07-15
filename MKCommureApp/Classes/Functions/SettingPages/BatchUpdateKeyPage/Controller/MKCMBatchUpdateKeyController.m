@@ -119,7 +119,11 @@ MKCMBatchUpdateKeyHeaderViewDelegate>
         [[MKHudManager share] hide];
         [self.dataList removeAllObjects];
         [self.macCache removeAllObjects];
-        for (NSInteger i = 0; i < beaconInfoList.count; i ++) {
+        NSInteger number = 20;
+        if (beaconInfoList.count < 20) {
+            number = beaconInfoList.count;
+        }
+        for (NSInteger i = 0; i < number; i ++) {
             NSDictionary *beaconDic = beaconInfoList[i];
             MKCMBatchUpdateKeyCellModel *cellModel = [[MKCMBatchUpdateKeyCellModel alloc] init];
             cellModel.macAddress = beaconDic[@"macAddress"];

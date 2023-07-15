@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)startBatchOta:(NSArray <NSString *>*)macList
    statusChangedBlock:(void (^)(NSString *macAddress,cm_batchOtaStatus status))statusBlock
-        completeBlock:(void (^)(void))completeBlock;
+        completeBlock:(void (^)(BOOL complete))completeBlock;
 
 @end
 

@@ -119,6 +119,10 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
         [[MKHudManager share] hide];
         [self.dataList removeAllObjects];
         [self.macCache removeAllObjects];
+        NSInteger number = 20;
+        if (beaconInfoList.count < 20) {
+            number = beaconInfoList.count;
+        }
         for (NSInteger i = 0; i < beaconInfoList.count; i ++) {
             NSDictionary *beaconDic = beaconInfoList[i];
             MKCMBatchDfuBeaconCellModel *cellModel = [[MKCMBatchDfuBeaconCellModel alloc] init];

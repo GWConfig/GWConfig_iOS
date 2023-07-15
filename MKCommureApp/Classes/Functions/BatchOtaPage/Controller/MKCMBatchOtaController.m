@@ -109,11 +109,14 @@ MKCMBatchOtaCellDelegate>
     [self.otaManager startBatchOta:macList statusChangedBlock:^(NSString * _Nonnull macAddress, cm_batchOtaStatus status) {
         @strongify(self);
         [self updateCellWithMac:macAddress status:status];
-    } completeBlock:^{
+    } completeBlock:^(BOOL complete) {
         @strongify(self);
         self.leftButton.enabled = YES;
         self.rightButton.enabled = YES;
         [[MKHudManager share] hide];
+        if (!complete) {
+            [self.view showCentralToast:@"Without Respond!"];
+        }
     }];
 }
 
@@ -145,7 +148,11 @@ MKCMBatchOtaCellDelegate>
         [[MKHudManager share] hide];
         [self.dataList removeAllObjects];
         [self.macCache removeAllObjects];
-        for (NSInteger i = 0; i < beaconList.count; i ++) {
+        NSInteger number = 20;
+        if (beaconList.count < 20) {
+            number = beaconList.count;
+        }
+        for (NSInteger i = 0; i < number; i ++) {
             MKCMBatchOtaCellModel *cellModel = [[MKCMBatchOtaCellModel alloc] init];
             cellModel.macAddress = [beaconList[i] lowercaseString];
             cellModel.index = i;

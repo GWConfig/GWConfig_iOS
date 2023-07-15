@@ -22,9 +22,13 @@ const NSString *defaultOtaPubTopic = @"/gateway/data/#";
 
 @property (nonatomic, copy)void (^otaBlock)(NSString *macAddress,cm_batchOtaStatus status);
 
-@property (nonatomic, copy)void (^completeBlock)(void);
+@property (nonatomic, copy)void (^completeBlock)(BOOL complete);
 
 @property (nonatomic, strong)NSMutableArray *otaList;
+
+@property (nonatomic, strong)dispatch_source_t updateTimer;
+
+@property (nonatomic, assign)NSInteger updateCount;
 
 @end
 
@@ -33,6 +37,9 @@ const NSString *defaultOtaPubTopic = @"/gateway/data/#";
 - (void)dealloc {
     NSLog(@"MKCMBatchOtaManager销毁");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
 }
 
 - (instancetype)init {
@@ -46,7 +53,7 @@ const NSString *defaultOtaPubTopic = @"/gateway/data/#";
 
 - (void)startBatchOta:(NSArray <NSString *>*)macList
    statusChangedBlock:(void (^)(NSString *macAddress,cm_batchOtaStatus status))statusBlock
-        completeBlock:(void (^)(void))completeBlock  {
+        completeBlock:(void (^)(BOOL complete))completeBlock  {
     self.otaBlock = statusBlock;
     self.completeBlock = completeBlock;
     [self.otaList removeAllObjects];
@@ -59,10 +66,40 @@ const NSString *defaultOtaPubTopic = @"/gateway/data/#";
         otaModel.filePath = self.filePath;
         [self.otaList addObject:otaModel];
     }
+    [self operateUpdateTimer];
     [self processOtaModel];
 }
 
 #pragma mark - private method
+- (void)operateUpdateTimer {
+    if (self.updateTimer) {
+        dispatch_cancel(self.updateTimer);
+    }
+    self.updateCount = 0;
+    self.updateTimer = nil;
+    self.updateTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
+    dispatch_source_set_timer(self.updateTimer, dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    @weakify(self);
+    dispatch_source_set_event_handler(self.updateTimer, ^{
+        @strongify(self);
+        if (self.updateCount == 300) {
+            dispatch_cancel(self.updateTimer);
+            self.updateCount = 0;
+            [self.otaList removeAllObjects];
+            moko_dispatch_main_safe((^{
+                if (self.completeBlock) {
+                    self.completeBlock(NO);
+                }
+                self.otaBlock = nil;
+                self.completeBlock = nil;
+            }));
+            return;
+        }
+        self.updateCount ++;
+    });
+    dispatch_resume(self.updateTimer);
+}
+
 - (NSString *)subTopicWithMac:(NSString *)macAddress {
     if ([self.subTopic isEqualToString:defaultOtaSubTopic]) {
         return [NSString stringWithFormat:@"/gateway/provision/%@",macAddress];
@@ -79,17 +116,22 @@ const NSString *defaultOtaPubTopic = @"/gateway/data/#";
 
 - (void)processOtaModel {
     if (self.otaList.count == 0) {
+        if (self.updateTimer) {
+            dispatch_cancel(self.updateTimer);
+        }
         if (self.completeBlock) {
-            self.completeBlock();
+            self.completeBlock(YES);
         }
         self.otaBlock = nil;
         self.completeBlock = nil;
+        self.updateCount = 0;
         return;
     }
     MKCMBatchOtaModel *otaModel = [self.otaList firstObject];
     @weakify(self);
     [otaModel otaWithResultBlock:^(NSString * _Nonnull macAddress, cm_batchOtaStatus status) {
         @strongify(self);
+        self.updateCount = 0;
         if (self.otaBlock) {
             self.otaBlock(macAddress, status);
         }
