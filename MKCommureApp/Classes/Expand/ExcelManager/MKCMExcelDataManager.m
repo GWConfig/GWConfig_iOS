@@ -13,7 +13,7 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
-#import "MKCMExcelWookbook.h"
+#import "MKExcelWookbook.h"
 
 static NSString *const defaultKeyValueString = @"value:";
 
@@ -190,13 +190,13 @@ static NSString *const defaultKeyValueString = @"value:";
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelWookbook *workbook = [[MKCMExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
+    MKExcelWookbook *workbook = [[MKExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
     if (!workbook || workbook.sheetArray.count == 0) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelSheet *sheet = workbook.sheetArray.firstObject;
-    if (![sheet isKindOfClass:MKCMExcelSheet.class]) {
+    MKExcelSheet *sheet = workbook.sheetArray.firstObject;
+    if (![sheet isKindOfClass:MKExcelSheet.class]) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
@@ -204,34 +204,34 @@ static NSString *const defaultKeyValueString = @"value:";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     //根据横竖坐标，获取单元格
     //Host
-    MKCMExcelCell *hostCell = [sheet getCellWithColumn:@"B" row:2 error:nil];
+    MKExcelCell *hostCell = [sheet getCellWithColumn:@"B" row:2 error:nil];
     NSString *host = [SafeStr(hostCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(host) forKey:@"host"];
     //Port
-    MKCMExcelCell *portCell = [sheet getCellWithColumn:@"B" row:3 error:nil];
+    MKExcelCell *portCell = [sheet getCellWithColumn:@"B" row:3 error:nil];
     NSString *port = [SafeStr(portCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     port = [port stringByReplacingOccurrencesOfString:@" " withString:@""];
     [dic setObject:SafeStr(port) forKey:@"port"];
     //Client id
-    MKCMExcelCell *clientIDCell = [sheet getCellWithColumn:@"B" row:4 error:nil];
+    MKExcelCell *clientIDCell = [sheet getCellWithColumn:@"B" row:4 error:nil];
     NSString *clientID = [SafeStr(clientIDCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(clientID) forKey:@"clientID"];
     //Subscribe Topic
-    MKCMExcelCell *subTopicCell = [sheet getCellWithColumn:@"B" row:5 error:nil];
+    MKExcelCell *subTopicCell = [sheet getCellWithColumn:@"B" row:5 error:nil];
     NSString *subTopic = [SafeStr(subTopicCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(subTopic) forKey:@"subscribeTopic"];
     //Publish Topic
-    MKCMExcelCell *pubTopicCell = [sheet getCellWithColumn:@"B" row:6 error:nil];
+    MKExcelCell *pubTopicCell = [sheet getCellWithColumn:@"B" row:6 error:nil];
     NSString *pubTopic = [SafeStr(pubTopicCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(pubTopic) forKey:@"publishTopic"];
     //Clean Session
-    MKCMExcelCell *cleanSessionCell = [sheet getCellWithColumn:@"B" row:7 error:nil];
+    MKExcelCell *cleanSessionCell = [sheet getCellWithColumn:@"B" row:7 error:nil];
     NSString *sessionString = [SafeStr(cleanSessionCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     sessionString = [sessionString stringByReplacingOccurrencesOfString:@" " withString:@""];
     BOOL cleanSession = ([sessionString isEqualToString:@"1"]);
     [dic setObject:@(cleanSession) forKey:@"cleanSession"];
     //Qos
-    MKCMExcelCell *qosCell = [sheet getCellWithColumn:@"B" row:8 error:nil];
+    MKExcelCell *qosCell = [sheet getCellWithColumn:@"B" row:8 error:nil];
     NSString *tempQos = [SafeStr(qosCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     tempQos = [tempQos stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSInteger qosValue = [tempQos integerValue];
@@ -241,7 +241,7 @@ static NSString *const defaultKeyValueString = @"value:";
     }
     [dic setObject:@(qosValue) forKey:@"qos"];
     //Keep Alive
-    MKCMExcelCell *keepAliveCell = [sheet getCellWithColumn:@"B" row:9 error:nil];
+    MKExcelCell *keepAliveCell = [sheet getCellWithColumn:@"B" row:9 error:nil];
     NSString *keepAlive = [SafeStr(keepAliveCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     keepAlive = [keepAlive stringByReplacingOccurrencesOfString:@" " withString:@""];
 //    NSInteger keepValue = [keepAlive integerValue];
@@ -251,21 +251,21 @@ static NSString *const defaultKeyValueString = @"value:";
 //    }
     [dic setObject:keepAlive forKey:@"keepAlive"];
     //MQTT Username
-    MKCMExcelCell *usernameCell = [sheet getCellWithColumn:@"B" row:10 error:nil];
+    MKExcelCell *usernameCell = [sheet getCellWithColumn:@"B" row:10 error:nil];
     NSString *username = [SafeStr(usernameCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(username) forKey:@"userName"];
     //MQTT Password
-    MKCMExcelCell *passwordCell = [sheet getCellWithColumn:@"B" row:11 error:nil];
+    MKExcelCell *passwordCell = [sheet getCellWithColumn:@"B" row:11 error:nil];
     NSString *password = [SafeStr(passwordCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(password) forKey:@"password"];
     //SSL/TLS
-    MKCMExcelCell *sslCell = [sheet getCellWithColumn:@"B" row:12 error:nil];
+    MKExcelCell *sslCell = [sheet getCellWithColumn:@"B" row:12 error:nil];
     NSString *sslString = [SafeStr(sslCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     sslString = [sslString stringByReplacingOccurrencesOfString:@" " withString:@""];
     BOOL ssl = ([sslString isEqualToString:@"1"]);
     [dic setObject:@(ssl) forKey:@"sslIsOn"];
     //Certificate type
-    MKCMExcelCell *certificateCell = [sheet getCellWithColumn:@"B" row:13 error:nil];
+    MKExcelCell *certificateCell = [sheet getCellWithColumn:@"B" row:13 error:nil];
     NSString *certString = [SafeStr(certificateCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     certString = [certString stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSInteger certValue = [certString integerValue] - 1;
@@ -444,13 +444,13 @@ static NSString *const defaultKeyValueString = @"value:";
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelWookbook *workbook = [[MKCMExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
+    MKExcelWookbook *workbook = [[MKExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
     if (!workbook || workbook.sheetArray.count == 0) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelSheet *sheet = workbook.sheetArray.firstObject;
-    if (![sheet isKindOfClass:MKCMExcelSheet.class]) {
+    MKExcelSheet *sheet = workbook.sheetArray.firstObject;
+    if (![sheet isKindOfClass:MKExcelSheet.class]) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
@@ -458,32 +458,32 @@ static NSString *const defaultKeyValueString = @"value:";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     //根据横竖坐标，获取单元格
     //Host
-    MKCMExcelCell *hostCell = [sheet getCellWithColumn:@"B" row:2 error:nil];
+    MKExcelCell *hostCell = [sheet getCellWithColumn:@"B" row:2 error:nil];
     NSString *host = [SafeStr(hostCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(host) forKey:@"host"];
     //Port
-    MKCMExcelCell *portCell = [sheet getCellWithColumn:@"B" row:3 error:nil];
+    MKExcelCell *portCell = [sheet getCellWithColumn:@"B" row:3 error:nil];
     NSString *port = [SafeStr(portCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(port) forKey:@"port"];
     //Client id
-    MKCMExcelCell *clientIDCell = [sheet getCellWithColumn:@"B" row:4 error:nil];
+    MKExcelCell *clientIDCell = [sheet getCellWithColumn:@"B" row:4 error:nil];
     NSString *clientID = [SafeStr(clientIDCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(clientID) forKey:@"clientID"];
     //Subscribe Topic
-    MKCMExcelCell *subTopicCell = [sheet getCellWithColumn:@"B" row:5 error:nil];
+    MKExcelCell *subTopicCell = [sheet getCellWithColumn:@"B" row:5 error:nil];
     NSString *subTopic = [SafeStr(subTopicCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(subTopic) forKey:@"subscribeTopic"];
     //Publish Topic
-    MKCMExcelCell *pubTopicCell = [sheet getCellWithColumn:@"B" row:6 error:nil];
+    MKExcelCell *pubTopicCell = [sheet getCellWithColumn:@"B" row:6 error:nil];
     NSString *pubTopic = [SafeStr(pubTopicCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(pubTopic) forKey:@"publishTopic"];
     //Clean Session
-    MKCMExcelCell *cleanSessionCell = [sheet getCellWithColumn:@"B" row:7 error:nil];
+    MKExcelCell *cleanSessionCell = [sheet getCellWithColumn:@"B" row:7 error:nil];
     NSString *sessionString = [SafeStr(cleanSessionCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     BOOL cleanSession = ([sessionString isEqualToString:@"1"]);
     [dic setObject:@(cleanSession) forKey:@"cleanSession"];
     //Qos
-    MKCMExcelCell *qosCell = [sheet getCellWithColumn:@"B" row:8 error:nil];
+    MKExcelCell *qosCell = [sheet getCellWithColumn:@"B" row:8 error:nil];
     NSString *tempQos = [SafeStr(qosCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     NSInteger qosValue = [tempQos integerValue];
     if (qosValue < 0 || qosValue > 2) {
@@ -492,7 +492,7 @@ static NSString *const defaultKeyValueString = @"value:";
     }
     [dic setObject:@(qosValue) forKey:@"qos"];
     //Keep Alive
-    MKCMExcelCell *keepAliveCell = [sheet getCellWithColumn:@"B" row:9 error:nil];
+    MKExcelCell *keepAliveCell = [sheet getCellWithColumn:@"B" row:9 error:nil];
     NSString *keepAlive = [SafeStr(keepAliveCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     keepAlive = [keepAlive stringByReplacingOccurrencesOfString:@" " withString:@""];
 //    NSInteger keepValue = [keepAlive integerValue];
@@ -502,20 +502,20 @@ static NSString *const defaultKeyValueString = @"value:";
 //    }
     [dic setObject:keepAlive forKey:@"keepAlive"];
     //MQTT Username
-    MKCMExcelCell *usernameCell = [sheet getCellWithColumn:@"B" row:10 error:nil];
+    MKExcelCell *usernameCell = [sheet getCellWithColumn:@"B" row:10 error:nil];
     NSString *username = [SafeStr(usernameCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(username) forKey:@"userName"];
     //MQTT Password
-    MKCMExcelCell *passwordCell = [sheet getCellWithColumn:@"B" row:11 error:nil];
+    MKExcelCell *passwordCell = [sheet getCellWithColumn:@"B" row:11 error:nil];
     NSString *password = [SafeStr(passwordCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(password) forKey:@"password"];
     //SSL/TLS
-    MKCMExcelCell *sslCell = [sheet getCellWithColumn:@"B" row:12 error:nil];
+    MKExcelCell *sslCell = [sheet getCellWithColumn:@"B" row:12 error:nil];
     NSString *sslString = [SafeStr(sslCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     BOOL ssl = ([sslString isEqualToString:@"1"]);
     [dic setObject:@(ssl) forKey:@"sslIsOn"];
     //Certificate type
-    MKCMExcelCell *certificateCell = [sheet getCellWithColumn:@"B" row:13 error:nil];
+    MKExcelCell *certificateCell = [sheet getCellWithColumn:@"B" row:13 error:nil];
     NSString *certString = [SafeStr(certificateCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     NSInteger certValue = [certString integerValue] - 1;
     if (certValue < 0 || certValue > 2) {
@@ -523,17 +523,17 @@ static NSString *const defaultKeyValueString = @"value:";
     }
     [dic setObject:@(certValue) forKey:@"certificate"];
     //LWT
-    MKCMExcelCell *lwtCell = [sheet getCellWithColumn:@"B" row:14 error:nil];
+    MKExcelCell *lwtCell = [sheet getCellWithColumn:@"B" row:14 error:nil];
     NSString *lwtString = [SafeStr(lwtCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     BOOL lwt = ([lwtString isEqualToString:@"1"]);
     [dic setObject:@(lwt) forKey:@"lwtStatus"];
     //LWT Retain
-    MKCMExcelCell *lwtRetainCell = [sheet getCellWithColumn:@"B" row:15 error:nil];
+    MKExcelCell *lwtRetainCell = [sheet getCellWithColumn:@"B" row:15 error:nil];
     NSString *lwtRetainString = [SafeStr(lwtRetainCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     BOOL lwtRetain = ([lwtRetainString isEqualToString:@"1"]);
     [dic setObject:@(lwtRetain) forKey:@"lwtRetain"];
     //LWT Qos
-    MKCMExcelCell *lwtQosCell = [sheet getCellWithColumn:@"B" row:16 error:nil];
+    MKExcelCell *lwtQosCell = [sheet getCellWithColumn:@"B" row:16 error:nil];
     NSString *tempLWTQos = [SafeStr(lwtQosCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     NSInteger lwtQosValue = [tempLWTQos integerValue];
     if (lwtQosValue < 0 || lwtQosValue > 2) {
@@ -542,11 +542,11 @@ static NSString *const defaultKeyValueString = @"value:";
     }
     [dic setObject:@(lwtQosValue) forKey:@"lwtQos"];
     //LWT Topic
-    MKCMExcelCell *lwtTopicCell = [sheet getCellWithColumn:@"B" row:17 error:nil];
+    MKExcelCell *lwtTopicCell = [sheet getCellWithColumn:@"B" row:17 error:nil];
     NSString *lwtTopic = [SafeStr(lwtTopicCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(lwtTopic) forKey:@"lwtTopic"];
     //LWT Payload
-    MKCMExcelCell *lwtPayloadCell = [sheet getCellWithColumn:@"B" row:18 error:nil];
+    MKExcelCell *lwtPayloadCell = [sheet getCellWithColumn:@"B" row:18 error:nil];
     NSString *lwtPayload = [SafeStr(lwtPayloadCell.stringValue) stringByReplacingOccurrencesOfString:defaultKeyValueString withString:@""];
     [dic setObject:SafeStr(lwtPayload) forKey:@"lwtPayload"];
     
@@ -569,13 +569,13 @@ static NSString *const defaultKeyValueString = @"value:";
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelWookbook *workbook = [[MKCMExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
+    MKExcelWookbook *workbook = [[MKExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
     if (!workbook || workbook.sheetArray.count == 0) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelSheet *sheet = workbook.sheetArray.firstObject;
-    if (![sheet isKindOfClass:MKCMExcelSheet.class]) {
+    MKExcelSheet *sheet = workbook.sheetArray.firstObject;
+    if (![sheet isKindOfClass:MKExcelSheet.class]) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
@@ -584,7 +584,7 @@ static NSString *const defaultKeyValueString = @"value:";
     NSMutableArray *passwordList = [NSMutableArray array];
     //根据横竖坐标，获取单元格
     for (NSInteger i = 0; i < list.count; i ++) {
-        MKCMExcelCell *cell = list[i];
+        MKExcelCell *cell = list[i];
         if ([cell.column isEqualToString:@"A"]) {
             //MAC地址列
             [macList addObject:cell];
@@ -599,13 +599,13 @@ static NSString *const defaultKeyValueString = @"value:";
     NSMutableArray *resultList = [NSMutableArray array];
     NSInteger totalNum = macList.count;
     for (NSInteger i = 0; i < totalNum; i ++) {
-        MKCMExcelCell *macCell = macList[i];
+        MKExcelCell *macCell = macList[i];
         NSString *macAddress = [macCell.stringValue stringByReplacingOccurrencesOfString:@":" withString:@""];
         macAddress = [macAddress stringByReplacingOccurrencesOfString:@" " withString:@""];
         if (macAddress.length == 12 && [macAddress regularExpressions:isHexadecimal]) {
             //必须是有效的mac地址
             for (NSInteger j = 0; j < totalNum; j ++) {
-                MKCMExcelCell *passwordCell = passwordList[j];
+                MKExcelCell *passwordCell = passwordList[j];
                 if (macCell.row == passwordCell.row) {
                     //同一行的mac对应password
                     NSDictionary *dic = @{
@@ -637,13 +637,13 @@ static NSString *const defaultKeyValueString = @"value:";
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelWookbook *workbook = [[MKCMExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
+    MKExcelWookbook *workbook = [[MKExcelWookbook alloc] initWithExcelFilePathUrl:excelUrl];
     if (!workbook || workbook.sheetArray.count == 0) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    MKCMExcelSheet *sheet = workbook.sheetArray.firstObject;
-    if (![sheet isKindOfClass:MKCMExcelSheet.class]) {
+    MKExcelSheet *sheet = workbook.sheetArray.firstObject;
+    if (![sheet isKindOfClass:MKExcelSheet.class]) {
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
@@ -651,7 +651,7 @@ static NSString *const defaultKeyValueString = @"value:";
     NSMutableArray *macList = [NSMutableArray array];
     //根据横竖坐标，获取单元格
     for (NSInteger i = 0; i < list.count; i ++) {
-        MKCMExcelCell *cell = list[i];
+        MKExcelCell *cell = list[i];
         if ([cell.column isEqualToString:@"A"]) {
             //MAC地址列
             NSString *macAddress = [cell.stringValue stringByReplacingOccurrencesOfString:@":" withString:@""];

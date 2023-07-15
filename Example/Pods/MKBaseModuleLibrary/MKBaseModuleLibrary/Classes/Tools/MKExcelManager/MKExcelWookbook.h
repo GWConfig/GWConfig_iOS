@@ -1,23 +1,23 @@
 //
-//  MKCMExcelWookbook.h
-//  MKCommureApp_Example
+//  MKExcelWookbook.h
+//  MKBaseModuleLibrary_Example
 //
-//  Created by aa on 2023/2/7.
+//  Created by aa on 2023/7/15.
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "MKCMExcelCell.h"
-#import "MKCMExcelSheet.h"
+#import "MKExcelCell.h"
+#import "MKExcelSheet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKCMExcelWookbook : NSObject
+@interface MKExcelWookbook : NSObject
 
 @property(nonatomic,copy)NSString *wookbookName;//工作簿名
 
-@property(nonatomic,strong)NSMutableArray <MKCMExcelSheet *>*sheetArray;//工作表数组
+@property(nonatomic,strong)NSMutableArray <MKExcelSheet *>*sheetArray;//工作表数组
 
 /**
  初始化工作簿
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param sheetName 工作表名
  @return 工作表
  */
--(MKCMExcelSheet *)getSheetWithSheetName:(NSString *)sheetName;
+-(MKExcelSheet *)getSheetWithSheetName:(NSString *)sheetName;
 
 @end
 

@@ -1,8 +1,8 @@
 //
-//  MKCMExcelSheet.h
-//  MKCommureApp_Example
+//  MKExcelSheet.h
+//  MKBaseModuleLibrary_Example
 //
-//  Created by aa on 2023/2/7.
+//  Created by aa on 2023/7/15.
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
@@ -10,14 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MKCMExcelCell;
-@interface MKCMExcelSheet : NSObject
+@class MKExcelCell;
+@interface MKExcelSheet : NSObject
 
 @property(nonatomic,assign)NSInteger sheetId;//表id
 
 @property(nonatomic,copy)NSString *sheetName;//表名
 
-@property(nonatomic,strong)NSMutableArray <MKCMExcelCell *>*cellArray;
+@property(nonatomic,strong)NSMutableArray <MKExcelCell *>*cellArray;
 
 /**
  根据 横竖坐标 查找cell
@@ -26,7 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
  @param error 错误信息
  @return 单元格数据
  */
--(MKCMExcelCell *)getCellWithColumn:(NSString *)column row:(NSInteger )row error:(NSError **)error;
+-(MKExcelCell *)getCellWithColumn:(NSString *)column
+                              row:(NSInteger )row
+                            error:(NSError **)error;
 
 
 /**
@@ -35,7 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param sharedStringsArray 公共字符串数组
  @return sheet里所有cell数组
  */
-+(NSMutableArray <MKCMExcelCell *>*)analysisSheetDataWithSheetDic:(NSDictionary *)sheetDic sharedStringsArray:(NSArray *)sharedStringsArray;
++(NSMutableArray <MKExcelCell *>*)analysisSheetDataWithSheetDic:(NSDictionary *)sheetDic
+                                             sharedStringsArray:(NSArray *)sharedStringsArray;
 
 @end
 

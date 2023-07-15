@@ -1,17 +1,17 @@
 //
-//  MKCMXMLReader.m
-//  MKCommureApp_Example
+//  MKXMLReader.m
+//  MKBaseModuleLibrary_Example
 //
-//  Created by aa on 2023/2/7.
+//  Created by aa on 2023/7/15.
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
-#import "MKCMXMLReader.h"
+#import "MKXMLReader.h"
 
 NSString *const kXMLReaderTextNodeKey        = @"text";
 NSString *const kXMLReaderAttributePrefix    = @"@";
 
-@interface MKCMXMLReader ()
+@interface MKXMLReader ()
 
 @property (nonatomic, strong) NSMutableArray *dictionaryStack;
 @property (nonatomic, strong) NSMutableString *textInProgress;
@@ -20,13 +20,13 @@ NSString *const kXMLReaderAttributePrefix    = @"@";
 @end
 
 
-@implementation MKCMXMLReader
+@implementation MKXMLReader
 
 #pragma mark - Public methods
 
 + (NSDictionary *)dictionaryForXMLData:(NSData *)data error:(NSError **)error
 {
-    MKCMXMLReader *reader = [[MKCMXMLReader alloc] initWithError:error];
+    MKXMLReader *reader = [[MKXMLReader alloc] initWithError:error];
     NSDictionary *rootDictionary = [reader objectWithData:data options:0];
     return rootDictionary;
 }
@@ -34,12 +34,12 @@ NSString *const kXMLReaderAttributePrefix    = @"@";
 + (NSDictionary *)dictionaryForXMLString:(NSString *)string error:(NSError **)error
 {
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    return [MKCMXMLReader dictionaryForXMLData:data error:error];
+    return [MKXMLReader dictionaryForXMLData:data error:error];
 }
 
 + (NSDictionary *)dictionaryForXMLData:(NSData *)data options:(XMLReaderOptions)options error:(NSError **)error
 {
-    MKCMXMLReader *reader = [[MKCMXMLReader alloc] initWithError:error];
+    MKXMLReader *reader = [[MKXMLReader alloc] initWithError:error];
     NSDictionary *rootDictionary = [reader objectWithData:data options:options];
     return rootDictionary;
 }
@@ -47,7 +47,7 @@ NSString *const kXMLReaderAttributePrefix    = @"@";
 + (NSDictionary *)dictionaryForXMLString:(NSString *)string options:(XMLReaderOptions)options error:(NSError **)error
 {
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    return [MKCMXMLReader dictionaryForXMLData:data options:options error:error];
+    return [MKXMLReader dictionaryForXMLData:data options:options error:error];
 }
 
 

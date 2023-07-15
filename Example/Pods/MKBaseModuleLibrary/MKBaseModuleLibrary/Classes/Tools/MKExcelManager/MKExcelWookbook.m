@@ -1,17 +1,19 @@
 //
-//  MKCMExcelWookbook.m
-//  MKCommureApp_Example
+//  MKExcelWookbook.m
+//  MKBaseModuleLibrary_Example
 //
-//  Created by aa on 2023/2/7.
+//  Created by aa on 2023/7/15.
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
-#import "MKCMExcelWookbook.h"
+#import "MKExcelWookbook.h"
 
 #import "ZipArchive.h"
-#import "MKCMXMLReader.h"
+#import "MKXMLReader.h"
 
-@interface MKCMExcelWookbook()
+#import "MKMacroDefines.h"
+
+@interface MKExcelWookbook()
 
 @property(nonatomic,copy)NSString *originFileFolderPath;//原excel文件的文件夹路径
 
@@ -19,7 +21,7 @@
 
 @end
 
-@implementation MKCMExcelWookbook
+@implementation MKExcelWookbook
 
 /**
  根据excel文件路径解析
@@ -30,8 +32,7 @@
 -(instancetype)initWithExcelFilePathUrl:(NSURL *)pathUrl
 {
     self = [super init];
-    if(self)
-    {
+    if(self) {
         BOOL analysisSuccess = [self analysisPathAndFileNameWithPath:pathUrl.path];
 
         //获取原文件二进制
@@ -73,11 +74,11 @@
                         {
                             NSDictionary *sheetDic = [array objectAtIndex:i];
                             
-                            MKCMExcelSheet *sheet = [[MKCMExcelSheet alloc]init];
+                            MKExcelSheet *sheet = [[MKExcelSheet alloc]init];
                             
                             sheet.sheetId = [[sheetDic objectForKey:@"sheetId"] integerValue];
                             
-                            sheet.cellArray = [MKCMExcelSheet analysisSheetDataWithSheetDic:sheetDic sharedStringsArray:stringValueArray];
+                            sheet.cellArray = [MKExcelSheet analysisSheetDataWithSheetDic:sheetDic sharedStringsArray:stringValueArray];
                             
                             sheet.sheetName = [self getSheetNameWithSheetId:sheet.sheetId path:tempFolderPath];
                             
@@ -106,9 +107,9 @@
  @param sheetName 工作表名
  @return 工作表
  */
--(MKCMExcelSheet *)getSheetWithSheetName:(NSString *)sheetName
+-(MKExcelSheet *)getSheetWithSheetName:(NSString *)sheetName
 {
-    MKCMExcelSheet *sheet = nil;
+    MKExcelSheet *sheet = nil;
     
     
     return sheet;
@@ -128,8 +129,7 @@
  @param path excel文件路径
  @return 是否解析成功
  */
--(BOOL)analysisPathAndFileNameWithPath:(NSString *)path
-{
+-(BOOL)analysisPathAndFileNameWithPath:(NSString *)path {
     BOOL analysisSuccess = NO;
     
     self.wookbookName = [[path lastPathComponent] stringByDeletingPathExtension];
@@ -243,7 +243,7 @@
     {
         NSError *error = nil;
         
-        xmlDic = [MKCMXMLReader dictionaryForXMLData:xmlData error:&error];
+        xmlDic = [MKXMLReader dictionaryForXMLData:xmlData error:&error];
     }
     return xmlDic;
 }
@@ -325,11 +325,11 @@
             {
                 NSError *error = nil;
                 
-                NSInteger sheetId = [[MKCMExcelCell getNumberFromStr:fileName] integerValue];
+                NSInteger sheetId = [[MKExcelCell getNumberFromStr:fileName] integerValue];
                 
                 NSMutableDictionary *sheetDic = [[NSMutableDictionary alloc]init];
                 
-                NSDictionary *xmlDic = [MKCMXMLReader dictionaryForXMLData:xmlData error:&error];
+                NSDictionary *xmlDic = [MKXMLReader dictionaryForXMLData:xmlData error:&error];
                 
                 [sheetDic setObject:[NSNumber numberWithInteger:sheetId] forKey:@"sheetId"];
                 
@@ -394,7 +394,7 @@
     
     NSError *error = nil;
     
-    NSDictionary *sheetNameInfoDic = [MKCMXMLReader dictionaryForXMLData:xmlData error:&error];
+    NSDictionary *sheetNameInfoDic = [MKXMLReader dictionaryForXMLData:xmlData error:&error];
     
     if(sheetNameInfoDic && [sheetNameInfoDic isKindOfClass:[NSDictionary class]])
     {

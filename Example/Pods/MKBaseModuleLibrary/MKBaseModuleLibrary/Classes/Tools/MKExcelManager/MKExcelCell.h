@@ -1,8 +1,8 @@
 //
-//  MKCMExcelCell.h
-//  MKCommureApp_Example
+//  MKExcelCell.h
+//  MKBaseModuleLibrary_Example
 //
-//  Created by aa on 2023/2/7.
+//  Created by aa on 2023/7/15.
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKCMExcelCell : NSObject
+@interface MKExcelCell : NSObject
 
 @property(nonatomic,strong)NSDictionary *cellDic;//源数据
 
@@ -39,14 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  获取字符串内数字
  */
-+(NSString *)getNumberFromStr:(NSString *)str;
++ (NSString *)getNumberFromStr:(NSString *)str;
 
 
 
 /**
  获取字符串内字母
  */
-+(NSString *)getLetterFromStr:(NSString *)str;
++ (NSString *)getLetterFromStr:(NSString *)str;
 
 @end
 

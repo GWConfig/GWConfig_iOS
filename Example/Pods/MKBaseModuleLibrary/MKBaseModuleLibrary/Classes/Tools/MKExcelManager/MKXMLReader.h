@@ -1,8 +1,8 @@
 //
-//  MKCMXMLReader.h
-//  MKCommureApp_Example
+//  MKXMLReader.h
+//  MKBaseModuleLibrary_Example
 //
-//  Created by aa on 2023/2/7.
+//  Created by aa on 2023/7/15.
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
@@ -17,7 +17,7 @@ enum {
 };
 typedef NSUInteger XMLReaderOptions;
 
-@interface MKCMXMLReader : NSObject <NSXMLParserDelegate>
+@interface MKXMLReader : NSObject <NSXMLParserDelegate>
 
 + (NSDictionary *)dictionaryForXMLData:(NSData *)data error:(NSError **)errorPointer;
 + (NSDictionary *)dictionaryForXMLString:(NSString *)string error:(NSError **)errorPointer;

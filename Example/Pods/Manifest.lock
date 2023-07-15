@@ -24,43 +24,48 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.5)
   - MKBaseBleModule (1.1.4)
-  - MKBaseModuleLibrary (1.1.6):
-    - MKBaseModuleLibrary/Base (= 1.1.6)
-    - MKBaseModuleLibrary/Category (= 1.1.6)
-    - MKBaseModuleLibrary/Defines (= 1.1.6)
-    - MKBaseModuleLibrary/Tools (= 1.1.6)
-  - MKBaseModuleLibrary/Base (1.1.6):
-    - MKBaseModuleLibrary/Base/Cell (= 1.1.6)
-    - MKBaseModuleLibrary/Base/Controller (= 1.1.6)
-    - MKBaseModuleLibrary/Base/NavigationController (= 1.1.6)
-    - MKBaseModuleLibrary/Base/View (= 1.1.6)
-  - MKBaseModuleLibrary/Base/Cell (1.1.6):
-    - MKBaseModuleLibrary/Base/Cell/MKBaseCell (= 1.1.6)
-  - MKBaseModuleLibrary/Base/Cell/MKBaseCell (1.1.6):
+  - MKBaseModuleLibrary (1.1.7):
+    - MKBaseModuleLibrary/Base (= 1.1.7)
+    - MKBaseModuleLibrary/Category (= 1.1.7)
+    - MKBaseModuleLibrary/Defines (= 1.1.7)
+    - MKBaseModuleLibrary/Tools (= 1.1.7)
+  - MKBaseModuleLibrary/Base (1.1.7):
+    - MKBaseModuleLibrary/Base/Cell (= 1.1.7)
+    - MKBaseModuleLibrary/Base/Controller (= 1.1.7)
+    - MKBaseModuleLibrary/Base/NavigationController (= 1.1.7)
+    - MKBaseModuleLibrary/Base/View (= 1.1.7)
+  - MKBaseModuleLibrary/Base/Cell (1.1.7):
+    - MKBaseModuleLibrary/Base/Cell/MKBaseCell (= 1.1.7)
+  - MKBaseModuleLibrary/Base/Cell/MKBaseCell (1.1.7):
     - Masonry
     - MKBaseModuleLibrary/Defines
-  - MKBaseModuleLibrary/Base/Controller (1.1.6):
+  - MKBaseModuleLibrary/Base/Controller (1.1.7):
     - MKBaseModuleLibrary/Category
     - MKBaseModuleLibrary/Defines
     - WRNavigationBar
-  - MKBaseModuleLibrary/Base/NavigationController (1.1.6)
-  - MKBaseModuleLibrary/Base/View (1.1.6):
-    - MKBaseModuleLibrary/Base/View/CollectionView (= 1.1.6)
-    - MKBaseModuleLibrary/Base/View/TableView (= 1.1.6)
-  - MKBaseModuleLibrary/Base/View/CollectionView (1.1.6)
-  - MKBaseModuleLibrary/Base/View/TableView (1.1.6)
-  - MKBaseModuleLibrary/Category (1.1.6):
+  - MKBaseModuleLibrary/Base/NavigationController (1.1.7)
+  - MKBaseModuleLibrary/Base/View (1.1.7):
+    - MKBaseModuleLibrary/Base/View/CollectionView (= 1.1.7)
+    - MKBaseModuleLibrary/Base/View/TableView (= 1.1.7)
+  - MKBaseModuleLibrary/Base/View/CollectionView (1.1.7)
+  - MKBaseModuleLibrary/Base/View/TableView (1.1.7)
+  - MKBaseModuleLibrary/Category (1.1.7):
     - MKBaseModuleLibrary/Defines
     - MKBaseModuleLibrary/Tools/MKClassInfo
     - Toast
-  - MKBaseModuleLibrary/Defines (1.1.6)
-  - MKBaseModuleLibrary/Tools (1.1.6):
-    - MKBaseModuleLibrary/Tools/MKClassInfo (= 1.1.6)
-    - MKBaseModuleLibrary/Tools/MKDateFormatter (= 1.1.6)
-    - MKBaseModuleLibrary/Tools/MKModuleManager (= 1.1.6)
-  - MKBaseModuleLibrary/Tools/MKClassInfo (1.1.6)
-  - MKBaseModuleLibrary/Tools/MKDateFormatter (1.1.6)
-  - MKBaseModuleLibrary/Tools/MKModuleManager (1.1.6)
+  - MKBaseModuleLibrary/Defines (1.1.7)
+  - MKBaseModuleLibrary/Tools (1.1.7):
+    - MKBaseModuleLibrary/Tools/MKClassInfo (= 1.1.7)
+    - MKBaseModuleLibrary/Tools/MKDateFormatter (= 1.1.7)
+    - MKBaseModuleLibrary/Tools/MKExcelManager (= 1.1.7)
+    - MKBaseModuleLibrary/Tools/MKModuleManager (= 1.1.7)
+  - MKBaseModuleLibrary/Tools/MKClassInfo (1.1.7)
+  - MKBaseModuleLibrary/Tools/MKDateFormatter (1.1.7)
+  - MKBaseModuleLibrary/Tools/MKExcelManager (1.1.7):
+    - libxlsxwriter
+    - MKBaseModuleLibrary/Defines
+    - SSZipArchive
+  - MKBaseModuleLibrary/Tools/MKModuleManager (1.1.7)
   - MKBaseMQTTModule (0.0.3):
     - MKBaseMQTTModule/MQTT (= 0.0.3)
     - MKBaseMQTTModule/NetworkManager (= 0.0.3)
@@ -2171,7 +2176,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
-  MKBaseModuleLibrary: 6de43aeeb519d1c5f3aa94ebaffe8b3a57351312
+  MKBaseModuleLibrary: 9ab75dfc3c79d88aa3ad13068cc5d47cba77bdd2
   MKBaseMQTTModule: b3a5c4776b60d5c395da4fd7019fc1cf64ec48a6
   MKCommureApp: b6ac6f0f5c54db18acd28fca6551884a69405fe0
   MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
