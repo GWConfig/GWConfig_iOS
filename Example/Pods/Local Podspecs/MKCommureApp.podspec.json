@@ -1,0 +1,1341 @@
+{
+  "name": "MKCommureApp",
+  "version": "0.0.2",
+  "summary": "A short description of MKCommureApp.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/aadyx2007@163.com/MKCommureApp",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "aadyx2007@163.com": "aadyx2007@163.com"
+  },
+  "source": {
+    "git": "https://github.com/aadyx2007@163.com/MKCommureApp.git",
+    "tag": "0.0.2"
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "resource_bundles": {
+    "MKCommureApp": [
+      "MKCommureApp/Assets/*.png"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Target",
+      "source_files": "MKCommureApp/Classes/Target/**",
+      "dependencies": {
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCommureApp/Functions": [
+
+        ]
+      }
+    },
+    {
+      "name": "CTMediator",
+      "source_files": "MKCommureApp/Classes/CTMediator/**",
+      "dependencies": {
+        "CTMediator": [
+
+        ],
+        "MKBaseModuleLibrary": [
+
+        ]
+      }
+    },
+    {
+      "name": "DeviceModel",
+      "source_files": "MKCommureApp/Classes/DeviceModel/**",
+      "dependencies": {
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCommureApp/SDK/MQTT": [
+
+        ]
+      }
+    },
+    {
+      "name": "Expand",
+      "dependencies": {
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCustomUIModule": [
+
+        ]
+      },
+      "subspecs": [
+        {
+          "name": "BleBaseController",
+          "source_files": "MKCommureApp/Classes/Expand/BleBaseController/**",
+          "dependencies": {
+            "MKCommureApp/SDK/BLE": [
+
+            ]
+          }
+        },
+        {
+          "name": "BaseController",
+          "source_files": "MKCommureApp/Classes/Expand/BaseController/**",
+          "dependencies": {
+            "MKCommureApp/SDK/MQTT": [
+
+            ],
+            "MKCommureApp/DeviceModel": [
+
+            ]
+          }
+        },
+        {
+          "name": "DatabaseManager",
+          "source_files": "MKCommureApp/Classes/Expand/DatabaseManager/**",
+          "dependencies": {
+            "FMDB": [
+
+            ],
+            "MKCommureApp/DeviceModel": [
+
+            ]
+          }
+        },
+        {
+          "name": "ExcelManager",
+          "source_files": "MKCommureApp/Classes/Expand/ExcelManager/**",
+          "dependencies": {
+            "libxlsxwriter": [
+
+            ],
+            "SSZipArchive": [
+
+            ]
+          }
+        },
+        {
+          "name": "View",
+          "subspecs": [
+            {
+              "name": "AlertView",
+              "source_files": "MKCommureApp/Classes/Expand/View/AlertView/**"
+            },
+            {
+              "name": "BleWifiSettingsCell",
+              "source_files": "MKCommureApp/Classes/Expand/View/BleWifiSettingsCell/**"
+            },
+            {
+              "name": "FilterCell",
+              "subspecs": [
+                {
+                  "name": "FilterBeaconCell",
+                  "source_files": "MKCommureApp/Classes/Expand/View/FilterCell/FilterBeaconCell/**"
+                },
+                {
+                  "name": "FilterByRawDataCell",
+                  "source_files": "MKCommureApp/Classes/Expand/View/FilterCell/FilterByRawDataCell/**"
+                },
+                {
+                  "name": "FilterEditSectionHeaderView",
+                  "source_files": "MKCommureApp/Classes/Expand/View/FilterCell/FilterEditSectionHeaderView/**"
+                },
+                {
+                  "name": "FilterNormalTextFieldCell",
+                  "source_files": "MKCommureApp/Classes/Expand/View/FilterCell/FilterNormalTextFieldCell/**"
+                }
+              ]
+            },
+            {
+              "name": "UserCredentialsView",
+              "source_files": "MKCommureApp/Classes/Expand/View/UserCredentialsView/**"
+            },
+            {
+              "name": "WifiSettingsBandCell",
+              "source_files": "MKCommureApp/Classes/Expand/View/WifiSettingsBandCell/**"
+            }
+          ]
+        },
+        {
+          "name": "ImportServerPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Expand/ImportServerPage/Controller/**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SDK",
+      "subspecs": [
+        {
+          "name": "BLE",
+          "source_files": "MKCommureApp/Classes/SDK/BLE/**",
+          "dependencies": {
+            "MKBaseBleModule": [
+
+            ]
+          }
+        },
+        {
+          "name": "MQTT",
+          "subspecs": [
+            {
+              "name": "Manager",
+              "source_files": "MKCommureApp/Classes/SDK/MQTT/Manager/**",
+              "dependencies": {
+                "MKBaseModuleLibrary": [
+
+                ],
+                "MKBaseMQTTModule": [
+
+                ]
+              }
+            },
+            {
+              "name": "SDK",
+              "source_files": "MKCommureApp/Classes/SDK/MQTT/SDK/**",
+              "dependencies": {
+                "MKBaseModuleLibrary": [
+
+                ],
+                "MKCommureApp/SDK/MQTT/Manager": [
+
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Functions",
+      "dependencies": {
+        "MKCommureApp/SDK": [
+
+        ],
+        "MKCommureApp/Expand": [
+
+        ],
+        "MKCommureApp/CTMediator": [
+
+        ],
+        "MKCommureApp/DeviceModel": [
+
+        ],
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCustomUIModule": [
+
+        ],
+        "MLInputDodger": [
+
+        ],
+        "SGQRCode": [
+
+        ]
+      },
+      "subspecs": [
+        {
+          "name": "AboutPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/AboutPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/LogPage": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "BatchOtaPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/BatchOtaPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/BatchOtaPage/Model": [
+
+                ],
+                "MKCommureApp/Functions/BatchOtaPage/View": [
+
+                ],
+                "MKCommureApp/Functions/QRCodePage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKCommureApp/Classes/Functions/BatchOtaPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/BatchOtaPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "ConfiguredGatewayPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/ConfiguredGatewayPage/Model": [
+
+                ],
+                "MKCommureApp/Functions/ConfiguredGatewayPage/View": [
+
+                ],
+                "MKCommureApp/Functions/QRCodePage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "LogPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/LogPage/Controller/**"
+            }
+          ]
+        },
+        {
+          "name": "AddDeviceModules",
+          "subspecs": [
+            {
+              "name": "ParamsModel",
+              "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/ParamsModel/**"
+            },
+            {
+              "name": "Pages",
+              "dependencies": {
+                "MKCommureApp/Functions/AddDeviceModules/ParamsModel": [
+
+                ]
+              },
+              "subspecs": [
+                {
+                  "name": "BleDeviceInfoPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "BleDeviceParamsForGWT",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleDeviceParamsForGWT/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkForGWT": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/ConnectSuccessPage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "BleNetworkForGWT",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleNetworkForGWT/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkForGWT/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleNetworkForGWT/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "BleNetworkSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "BleWifiSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ConnectSuccessPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "DeviceParamsListPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleDeviceInfoPage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/BleWifiSettingsPage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/ConnectSuccessPage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "NTPTimezonePage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ServerForDevice",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice/Model": [
+
+                        ],
+                        "MKCommureApp/Functions/AddDeviceModules/Pages/ServerForDevice/View": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Model/**"
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKCommureApp/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/View/**"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DeviceDataPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/DeviceDataPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/DeviceDataPage/View": [
+
+                ],
+                "MKCommureApp/Functions/SettingPages": [
+
+                ],
+                "MKCommureApp/Functions/FilterPages/UploadOptionPage": [
+
+                ],
+                "MKCommureApp/Functions/ManageBleModules": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/DeviceDataPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "DeviceListPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/DeviceListPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/DeviceListPage/View": [
+
+                ],
+                "MKCommureApp/Functions/DeviceListPage/Model": [
+
+                ],
+                "MKCommureApp/Functions/ServerForApp": [
+
+                ],
+                "MKCommureApp/Functions/ScanPage": [
+
+                ],
+                "MKCommureApp/Functions/DeviceDataPage": [
+
+                ],
+                "MKCommureApp/Functions/AboutPage": [
+
+                ],
+                "MKCommureApp/Functions/BatchOtaPage": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKCommureApp/Classes/Functions/DeviceListPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/DeviceListPage/View/**",
+              "dependencies": {
+                "MKCommureApp/Functions/DeviceListPage/Model": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "FilterPages",
+          "subspecs": [
+            {
+              "name": "FilterByMacPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/FilterByMacPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/FilterPages/FilterByMacPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/FilterByMacPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "FilterByTag",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/FilterByTag/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/FilterPages/FilterByTag/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/FilterByTag/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "TimeOffsetPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/TimeOffsetPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/FilterPages/TimeOffsetPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/TimeOffsetPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "DecryptionKeyPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/DecryptionKeyPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/FilterPages/DecryptionKeyPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/DecryptionKeyPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "UploadOptionPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/UploadOptionPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/FilterPages/UploadOptionPage/Model": [
+
+                    ],
+                    "MKCommureApp/Functions/FilterPages/UploadOptionPage/View": [
+
+                    ],
+                    "MKCommureApp/Functions/FilterPages/FilterByMacPage": [
+
+                    ],
+                    "MKCommureApp/Functions/FilterPages/FilterByTag": [
+
+                    ],
+                    "MKCommureApp/Functions/FilterPages/TimeOffsetPage": [
+
+                    ],
+                    "MKCommureApp/Functions/FilterPages/DecryptionKeyPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/UploadOptionPage/Model/**"
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKCommureApp/Classes/Functions/FilterPages/UploadOptionPage/View/**"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ManageBleModules",
+          "subspecs": [
+            {
+              "name": "AccelerometerPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/AccelerometerPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/AccelerometerPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/AccelerometerPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "AdvParamsConfigPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/AdvParamsConfigPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/AdvParamsConfigPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "BatteryTestPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/BatteryTestPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/BatteryTestPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/BatteryTestPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "BeaconOTAPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/BeaconOTAPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/BeaconOTAPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/BeaconOTAPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "ConnectedPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/ConnectedPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/ConnectedPage/View": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/ConnectedPage/Model": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/BeaconOTAPage": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/SelfTestTriggerPage": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/SosTriggerPage": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/BatteryTestPage": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/AccelerometerPage": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/SleepModePage": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/ConnectedPage/Model/**"
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/ConnectedPage/View/**"
+                }
+              ]
+            },
+            {
+              "name": "ManageBleDevicesPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/ManageBleDevicesPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/ManageBleDevicesPage/View": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/ConnectedPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/ManageBleDevicesPage/View/**"
+                }
+              ]
+            },
+            {
+              "name": "SelfTestTriggerPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/SelfTestTriggerPage/Controller/**"
+                }
+              ]
+            },
+            {
+              "name": "SleepModePage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/SleepModePage/Controller/**"
+                }
+              ]
+            },
+            {
+              "name": "SosTriggerPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/SosTriggerPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/SosTriggerPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/SosTriggerPage/View/**"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ScanPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/ScanPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/ScanPage/Model": [
+
+                ],
+                "MKCommureApp/Functions/ScanPage/View": [
+
+                ],
+                "MKCommureApp/Functions/AddDeviceModules": [
+
+                ],
+                "MKCommureApp/Functions/ConfiguredGatewayPage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKCommureApp/Classes/Functions/ScanPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/ScanPage/View/**",
+              "dependencies": {
+                "MKCommureApp/Functions/ScanPage/Model": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "QRCodePage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/QRCodePage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/QRCodePage/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/QRCodePage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "ServerForApp",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/ServerForApp/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/ServerForApp/Model": [
+
+                ],
+                "MKCommureApp/Functions/ServerForApp/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKCommureApp/Classes/Functions/ServerForApp/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/ServerForApp/View/**"
+            }
+          ]
+        },
+        {
+          "name": "SettingPages",
+          "subspecs": [
+            {
+              "name": "BatchDfuBeaconPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/BatchDfuBeaconPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/SettingPages/BatchDfuBeaconPage/Model": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/BatchDfuBeaconPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/BatchDfuBeaconPage/View/**"
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/BatchDfuBeaconPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "BatchUpdateKeyPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/BatchUpdateKeyPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/SettingPages/BatchUpdateKeyPage/Model": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/BatchUpdateKeyPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/BatchUpdateKeyPage/View/**"
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/BatchUpdateKeyPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "DeviceInfoPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/DeviceInfoPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/SettingPages/DeviceInfoPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/DeviceInfoPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "ModifyNetworkPages",
+              "subspecs": [
+                {
+                  "name": "MqttNetworkSettingForGWT",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingForGWT/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingForGWT/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingForGWT/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttNetworkSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttParamsForGWT",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsForGWT/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttParamsForGWT/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsForGWT/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttParamsListPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model": [
+
+                        ],
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage": [
+
+                        ],
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttServerPage": [
+
+                        ],
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttServerPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model": [
+
+                        ],
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model/**"
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttWifiSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model/**"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "NormalSettings",
+              "subspecs": [
+                {
+                  "name": "CommunicatePage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/CommunicatePage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "DataReportPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/DataReportPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "NetworkStatusPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "NTPServerPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/NTPServerPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ResetByButtonPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/ResetByButtonPage/View": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/View/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "SystemTimePage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/SystemTimePage/View": [
+
+                        ],
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/NTPServerPage": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/View/**"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "OTAPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/OTAPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/SettingPages/OTAPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/OTAPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "SettingPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/SettingPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/SettingPages/SettingPage/Model": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/DeviceInfoPage": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/ModifyNetworkPages": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/NormalSettings": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/OTAPage": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/BatchDfuBeaconPage": [
+
+                    ],
+                    "MKCommureApp/Functions/SettingPages/BatchUpdateKeyPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "MKCommureApp/Classes/Functions/SettingPages/SettingPage/Model/**"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
