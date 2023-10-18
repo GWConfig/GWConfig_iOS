@@ -284,34 +284,6 @@
           ]
         },
         {
-          "name": "ConfiguredGatewayPage",
-          "subspecs": [
-            {
-              "name": "Controller",
-              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Controller/**",
-              "dependencies": {
-                "MKCommureApp/Functions/ConfiguredGatewayPage/Model": [
-
-                ],
-                "MKCommureApp/Functions/ConfiguredGatewayPage/View": [
-
-                ],
-                "MKCommureApp/Functions/QRCodePage/Controller": [
-
-                ]
-              }
-            },
-            {
-              "name": "Model",
-              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Model/**"
-            },
-            {
-              "name": "View",
-              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/View/**"
-            }
-          ]
-        },
-        {
           "name": "LogPage",
           "subspecs": [
             {
@@ -898,9 +870,6 @@
 
                 ],
                 "MKCommureApp/Functions/AddDeviceModules": [
-
-                ],
-                "MKCommureApp/Functions/ConfiguredGatewayPage/Controller": [
 
                 ]
               }

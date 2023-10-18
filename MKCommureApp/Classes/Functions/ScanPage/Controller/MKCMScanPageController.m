@@ -27,7 +27,7 @@
 
 #import "MKCMDeviceParamsListController.h"
 #import "MKCMBleDeviceParamsForGWTController.h"
-#import "MKCMConfiguredGatewayController.h"
+//#import "MKCMConfiguredGatewayController.h"
 
 #import "MKCMScanPageCell.h"
 
@@ -145,8 +145,8 @@ mk_cm_centralManagerScanDelegate>
 
 #pragma mark - event method
 - (void)addConfiguredDevice {
-    MKCMConfiguredGatewayController *vc = [[MKCMConfiguredGatewayController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    MKCMConfiguredGatewayController *vc = [[MKCMConfiguredGatewayController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 刷新

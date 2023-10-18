@@ -170,7 +170,6 @@ PODS:
     - MKCommureApp/Functions/AboutPage (= 0.0.2)
     - MKCommureApp/Functions/AddDeviceModules (= 0.0.2)
     - MKCommureApp/Functions/BatchOtaPage (= 0.0.2)
-    - MKCommureApp/Functions/ConfiguredGatewayPage (= 0.0.2)
     - MKCommureApp/Functions/DeviceDataPage (= 0.0.2)
     - MKCommureApp/Functions/DeviceListPage (= 0.0.2)
     - MKCommureApp/Functions/FilterPages (= 0.0.2)
@@ -561,48 +560,6 @@ PODS:
     - MLInputDodger
     - SGQRCode
   - MKCommureApp/Functions/BatchOtaPage/View (0.0.2):
-    - MKBaseModuleLibrary
-    - MKCommureApp/CTMediator
-    - MKCommureApp/DeviceModel
-    - MKCommureApp/Expand
-    - MKCommureApp/SDK
-    - MKCustomUIModule
-    - MLInputDodger
-    - SGQRCode
-  - MKCommureApp/Functions/ConfiguredGatewayPage (0.0.2):
-    - MKBaseModuleLibrary
-    - MKCommureApp/CTMediator
-    - MKCommureApp/DeviceModel
-    - MKCommureApp/Expand
-    - MKCommureApp/Functions/ConfiguredGatewayPage/Controller (= 0.0.2)
-    - MKCommureApp/Functions/ConfiguredGatewayPage/Model (= 0.0.2)
-    - MKCommureApp/Functions/ConfiguredGatewayPage/View (= 0.0.2)
-    - MKCommureApp/SDK
-    - MKCustomUIModule
-    - MLInputDodger
-    - SGQRCode
-  - MKCommureApp/Functions/ConfiguredGatewayPage/Controller (0.0.2):
-    - MKBaseModuleLibrary
-    - MKCommureApp/CTMediator
-    - MKCommureApp/DeviceModel
-    - MKCommureApp/Expand
-    - MKCommureApp/Functions/ConfiguredGatewayPage/Model
-    - MKCommureApp/Functions/ConfiguredGatewayPage/View
-    - MKCommureApp/Functions/QRCodePage/Controller
-    - MKCommureApp/SDK
-    - MKCustomUIModule
-    - MLInputDodger
-    - SGQRCode
-  - MKCommureApp/Functions/ConfiguredGatewayPage/Model (0.0.2):
-    - MKBaseModuleLibrary
-    - MKCommureApp/CTMediator
-    - MKCommureApp/DeviceModel
-    - MKCommureApp/Expand
-    - MKCommureApp/SDK
-    - MKCustomUIModule
-    - MLInputDodger
-    - SGQRCode
-  - MKCommureApp/Functions/ConfiguredGatewayPage/View (0.0.2):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
     - MKCommureApp/DeviceModel
@@ -1222,7 +1179,6 @@ PODS:
     - MKCommureApp/DeviceModel
     - MKCommureApp/Expand
     - MKCommureApp/Functions/AddDeviceModules
-    - MKCommureApp/Functions/ConfiguredGatewayPage/Controller
     - MKCommureApp/Functions/ScanPage/Model
     - MKCommureApp/Functions/ScanPage/View
     - MKCommureApp/SDK
@@ -2334,7 +2290,7 @@ SPEC CHECKSUMS:
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
   MKBaseModuleLibrary: 8d0292b517d87552083f9180eeaa4569605707db
   MKBaseMQTTModule: 5434692b017865eede3b2ac6d2b4df52acd65a91
-  MKCommureApp: 057433bf65f8bf7296d40ff6148cd75e3a8b8bb7
+  MKCommureApp: fb4b3aa585d207e7ef162a93cc768d1e1985bba4
   MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   SGQRCode: 6ad664d63f38f2842503bc5087812c5a3136d924
