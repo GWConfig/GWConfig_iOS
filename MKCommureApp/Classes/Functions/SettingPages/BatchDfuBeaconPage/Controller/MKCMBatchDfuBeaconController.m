@@ -12,6 +12,8 @@
 
 #import "MLInputDodger.h"
 
+#import <SGQRCode/SGQRCode.h>
+
 #import "MKMacroDefines.h"
 #import "MKBaseTableView.h"
 #import "UIView+MKAdd.h"
@@ -20,6 +22,7 @@
 
 #import "MKHudManager.h"
 #import "MKCustomUIAdopter.h"
+#import "MKAlertView.h"
 
 #import "MKCMMQTTDataManager.h"
 #import "MKCMMQTTInterface.h"
@@ -27,19 +30,22 @@
 #import "MKCMDeviceModeManager.h"
 #import "MKCMDeviceModel.h"
 
+#import "MKCMBatchUpdateCell.h"
+
 #import "MKCMExcelDataManager.h"
 
 #import "MKCMImportServerController.h"
+#import "MKCMQRCodeController.h"
 
 #import "MKCMBatchDfuBeaconModel.h"
 
 #import "MKCMBatchDfuBeaconHeaderView.h"
-#import "MKCMBatchDfuBeaconCell.h"
 
 @interface MKCMBatchDfuBeaconController ()<UITableViewDelegate,
 UITableViewDataSource,
 MKCMImportServerControllerDelegate,
-MKCMBatchDfuBeaconHeaderViewDelegate>
+MKCMBatchDfuBeaconHeaderViewDelegate,
+MKCMBatchUpdateCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
@@ -107,8 +113,9 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MKCMBatchDfuBeaconCell *cell = [MKCMBatchDfuBeaconCell initCellWithTableView:tableView];
+    MKCMBatchUpdateCell *cell = [MKCMBatchUpdateCell initCellWithTableView:tableView];
     cell.dataModel = self.dataList[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 
@@ -125,10 +132,9 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
         }
         for (NSInteger i = 0; i < beaconInfoList.count; i ++) {
             NSDictionary *beaconDic = beaconInfoList[i];
-            MKCMBatchDfuBeaconCellModel *cellModel = [[MKCMBatchDfuBeaconCellModel alloc] init];
+            MKCMBatchUpdateCellModel *cellModel = [[MKCMBatchUpdateCellModel alloc] init];
             cellModel.macAddress = beaconDic[@"macAddress"];
-            cellModel.password = beaconDic[@"password"];
-            cellModel.status = mk_cm_batchDfuBeaconStatus_normal;
+            cellModel.status = mk_cm_batchUpdateStatus_normal;
             [self.dataList addObject:cellModel];
             [self.macCache setObject:@(i) forKey:beaconDic[@"macAddress"]];
         }
@@ -137,6 +143,39 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
+}
+
+#pragma mark - MKCMBatchUpdateCellDelegate
+- (void)cm_batchUpdateCell_delete:(NSInteger)index {
+    if (index >= self.dataList.count) {
+        return;
+    }
+    @weakify(self);
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"Confirm" handler:^{
+        @strongify(self);
+        MKCMBatchUpdateCellModel *cellModel = self.dataList[index];
+        [self.dataList removeObject:cellModel];
+        [self.macCache removeAllObjects];
+        for (NSInteger i = 0; i < self.dataList.count; i ++) {
+            MKCMBatchUpdateCellModel *cellModel = self.dataList[i];
+            cellModel.index = i;
+            [self.macCache setObject:@(i) forKey:cellModel.macAddress];
+        }
+        [self.tableView reloadData];
+    }];
+    MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"Cancel" handler:^{
+    }];
+    NSString *msg = @"Please confirm again whether to delete the MAC？";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView addAction:cancelAction];
+    [alertView showAlertWithTitle:@"Waring!" message:msg notificationName:@"mk_cm_needDismissAlert"];
+}
+
+- (void)cm_batchUpdateCell_retry:(NSInteger)index {
+    MKCMBatchUpdateCellModel *cellModel = self.dataList[index];
+    cellModel.status = 0;
+    [self.tableView mk_reloadRow:index inSection:0 withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - MKCMBatchDfuBeaconHeaderViewDelegate
@@ -148,10 +187,52 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     self.dataModel.dataUrl = url;
 }
 
+- (void)cm_dataPasswordChanged:(NSString *)password {
+    self.dataModel.password = password;
+}
+
 - (void)cm_beaconListButtonPressed {
     MKCMImportServerController *vc = [[MKCMImportServerController alloc] init];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)cm_scanCodeButtonPressed {
+    [SGPermission permissionWithType:SGPermissionTypeCamera completion:^(SGPermission * _Nonnull permission, SGPermissionStatus status) {
+        if (status == SGPermissionStatusNotDetermined) {
+            [permission request:^(BOOL granted) {
+                if (granted) {
+                    MKCMQRCodeController *vc = [[MKCMQRCodeController alloc] init];
+                    @weakify(self);
+                    vc.scanMacAddressBlock = ^(NSString * _Nonnull macAddress) {
+                        @strongify(self);
+                        [self addQRCode:macAddress];
+                    };
+                    [self.navigationController pushViewController:vc animated:YES];
+
+                } else {
+                    NSLog(@"第一次授权失败");
+                }
+            }];
+        } else if (status == SGPermissionStatusAuthorized) {
+            NSLog(@"SGPermissionStatusAuthorized");
+            MKCMQRCodeController *vc = [[MKCMQRCodeController alloc] init];
+            @weakify(self);
+            vc.scanMacAddressBlock = ^(NSString * _Nonnull macAddress) {
+                @strongify(self);
+                [self addQRCode:macAddress];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+
+        } else if (status == SGPermissionStatusDenied) {
+            NSLog(@"SGPermissionStatusDenied");
+            [self failed];
+        } else if (status == SGPermissionStatusRestricted) {
+            NSLog(@"SGPermissionStatusRestricted");
+            [self unknown];
+        }
+
+    }];
 }
 
 #pragma mark - note
@@ -172,11 +253,11 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     self.updateCount = 0;
     
     NSInteger result = [user[@"data"][@"status"] integerValue];
-    MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[[indexNumber integerValue]];
+    MKCMBatchUpdateCellModel *cellModel = self.dataList[[indexNumber integerValue]];
     if (result == 0) {
-        cellModel.status = mk_cm_batchDfuBeaconStatus_upgrading;
+        cellModel.status = mk_cm_batchUpdateStatus_upgrading;
     }else if (result == 1) {
-        cellModel.status = mk_cm_batchDfuBeaconStatus_success;
+        cellModel.status = mk_cm_batchUpdateStatus_success;
     }
     [self.tableView mk_reloadRow:[indexNumber integerValue] inSection:0 withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -199,15 +280,18 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
     if (result == 1 && !ValidArray(failureList)) {
         //批量升级全部成功
         for (NSInteger i = 0; i < self.dataList.count; i ++) {
-            MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[i];
-            cellModel.status = mk_cm_batchDfuBeaconStatus_success;
+            MKCMBatchUpdateCellModel *cellModel = self.dataList[i];
+            cellModel.status = mk_cm_batchUpdateStatus_success;
         }
     }else {
         //有部分升级失败
-        for (NSInteger i = 0; i < self.dataList.count; i ++) {
-            MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[i];
-            if (cellModel.status != mk_cm_batchDfuBeaconStatus_success) {
-                cellModel.status = mk_cm_batchDfuBeaconStatus_failed;
+        for (NSInteger i = 0; i < failureList.count; i ++) {
+            NSDictionary *dic = failureList[i];
+            NSNumber *indexNumber = self.macCache[dic[@"mac"]];
+            if (ValidNum(indexNumber) && [indexNumber integerValue] < self.dataList.count) {
+                NSInteger reason = [dic[@"reason"] integerValue];
+                MKCMBatchUpdateCellModel *cellModel = self.dataList[[indexNumber integerValue]];
+                cellModel.status = (reason == 3 ? mk_cm_batchUpdateStatus_failed : mk_cm_batchUpdateStatus_timeout);
             }
         }
     }
@@ -216,22 +300,32 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
 
 #pragma mark - event method
 - (void)configDataToDevice {
-    if (self.dataList.count == 0 || self.dataList.count > 20) {
+    NSMutableArray *list = [NSMutableArray array];
+    for (NSInteger i = 0; i < self.dataList.count; i ++) {
+        MKCMBatchUpdateCellModel *cellModel = self.dataList[i];
+        if (cellModel.status == 0) {
+            //Wait
+            [list addObject:cellModel.macAddress];
+        }
+    }
+    if (list.count == 0 || list.count > 20) {
         [self.view showCentralToast:@"Beacon list MAC error"];
         return;
     }
-    [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    NSMutableArray *list = [NSMutableArray array];
-    for (NSInteger i = 0; i < self.dataList.count; i ++) {
-        MKCMBatchDfuBeaconCellModel *cellModel = self.dataList[i];
-        cellModel.status = mk_cm_batchDfuBeaconStatus_normal;
-        NSDictionary *dic = @{
-            @"macAddress":cellModel.macAddress,
-            @"password":SafeStr(cellModel.password)
-        };
-        [list addObject:dic];
+    if (!ValidStr(self.dataModel.firmwareUrl) || self.dataModel.firmwareUrl.length > 256) {
+        [self.view showCentralToast:@"Firmware file URL must be 1 - 256 Characters"];
+        return;
     }
-    [self.tableView reloadData];
+    if (!ValidStr(self.dataModel.dataUrl) || self.dataModel.dataUrl.length > 256) {
+        [self.view showCentralToast:@"Init data file URL must be 1 - 256 Characters"];
+        return;
+    }
+    if (self.dataModel.password.length > 16) {
+        [self.view showCentralToast:@"Beacon password must be 0 - 16 Characters"];
+        return;
+    }
+    [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
+    
     self.leftButton.enabled = NO;
     self.rightButton.enabled = NO;
     @weakify(self);
@@ -260,6 +354,38 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
                                                object:nil];
 }
 
+- (void)addQRCode:(NSString *)macAddress {
+    if (self.dataList.count >= 20) {
+        [self.view showCentralToast:@"Max 20 gateways are allowed!"];
+        return;
+    }
+    NSNumber *contain = self.macCache[macAddress];
+    if (contain) {
+        //已经包含，重复添加
+        [self.view showCentralToast:@"The current device is already in the list."];
+        return;
+    }
+    MKCMBatchUpdateCellModel *cellModel = [[MKCMBatchUpdateCellModel alloc] init];
+    cellModel.macAddress = macAddress;
+    cellModel.status = 0;
+    
+    if (self.dataList.count > 0) {
+        [self.dataList insertObject:cellModel atIndex:0];
+    }else {
+        [self.dataList addObject:cellModel];
+    }
+    
+    [self.macCache removeAllObjects];
+    
+    for (NSInteger i = 0; i < self.dataList.count; i ++) {
+        MKCMBatchUpdateCellModel *cellModel = self.dataList[i];
+        cellModel.index = i;
+        
+        [self.macCache setObject:@(i) forKey:cellModel.macAddress];
+    }
+    [self.tableView reloadData];
+}
+
 - (void)operateUpdateTimer {
     if (self.updateTimer) {
         dispatch_cancel(self.updateTimer);
@@ -285,6 +411,24 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
         self.updateCount ++;
     });
     dispatch_resume(self.updateTimer);
+}
+
+- (void)failed {
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+    }];
+    NSString *msg = @"[Go to: Settings - Privacy - Camera - SGQRCode] Turn on the access switch.";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_cm_needDismissAlert"];
+}
+
+- (void)unknown {
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+    }];
+    NSString *msg = @"We couldn't detect your camera.";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_cm_needDismissAlert"];
 }
 
 #pragma mark - loadSectionDatas
@@ -335,7 +479,7 @@ MKCMBatchDfuBeaconHeaderViewDelegate>
 
 - (MKCMBatchDfuBeaconHeaderView *)tableHeaderView {
     if (!_tableHeaderView) {
-        _tableHeaderView = [[MKCMBatchDfuBeaconHeaderView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 160.f)];
+        _tableHeaderView = [[MKCMBatchDfuBeaconHeaderView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 190.f)];
         _tableHeaderView.delegate = self;
     }
     return _tableHeaderView;

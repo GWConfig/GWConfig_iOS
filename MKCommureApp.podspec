@@ -103,6 +103,10 @@ TODO: Add long description of the pod here.
            ssss.source_files = 'MKCommureApp/Classes/Expand/View/AlertView/**'
          end
          
+         sss.subspec 'BatchUpdateCell' do |ssss|
+           ssss.source_files = 'MKCommureApp/Classes/Expand/View/BatchUpdateCell/**'
+         end
+         
          sss.subspec 'BleWifiSettingsCell' do |ssss|
            ssss.source_files = 'MKCommureApp/Classes/Expand/View/BleWifiSettingsCell/**'
          end
@@ -205,26 +209,26 @@ TODO: Add long description of the pod here.
            end
        end
        
-#       ss.subspec 'ConfiguredGatewayPage' do |sss|
-#         sss.subspec 'Controller' do |ssss|
-#           ssss.source_files = 'MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Controller/**'
-#
-#           ssss.dependency 'MKCommureApp/Functions/ConfiguredGatewayPage/Model'
-#           ssss.dependency 'MKCommureApp/Functions/ConfiguredGatewayPage/View'
-#
-#           ssss.dependency 'MKCommureApp/Functions/QRCodePage/Controller'
-#         end
-#
-#         sss.subspec 'Model' do |ssss|
-#           ssss.source_files = 'MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Model/**'
-#
-#         end
-#         sss.subspec 'View' do |ssss|
-#           ssss.source_files = 'MKCommureApp/Classes/Functions/ConfiguredGatewayPage/View/**'
-#
-#         end
-#
-#       end
+       ss.subspec 'ConfiguredGatewayPage' do |sss|
+         sss.subspec 'Controller' do |ssss|
+           ssss.source_files = 'MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Controller/**'
+
+           ssss.dependency 'MKCommureApp/Functions/ConfiguredGatewayPage/Model'
+           ssss.dependency 'MKCommureApp/Functions/ConfiguredGatewayPage/View'
+
+           ssss.dependency 'MKCommureApp/Functions/QRCodePage/Controller'
+         end
+
+         sss.subspec 'Model' do |ssss|
+           ssss.source_files = 'MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Model/**'
+
+         end
+         sss.subspec 'View' do |ssss|
+           ssss.source_files = 'MKCommureApp/Classes/Functions/ConfiguredGatewayPage/View/**'
+
+         end
+
+       end
        
        ss.subspec 'LogPage' do |sss|
            sss.subspec 'Controller' do |ssss|
@@ -606,7 +610,7 @@ TODO: Add long description of the pod here.
              ssss.dependency 'MKCommureApp/Functions/ScanPage/View'
              
              ssss.dependency 'MKCommureApp/Functions/AddDeviceModules'
-#             ssss.dependency 'MKCommureApp/Functions/ConfiguredGatewayPage/Controller'
+             ssss.dependency 'MKCommureApp/Functions/ConfiguredGatewayPage/Controller'
            end
            
            sss.subspec 'Model' do |ssss|
@@ -778,6 +782,17 @@ TODO: Add long description of the pod here.
                    end
                    sssss.subspec 'Model'  do |ssssss|
                      ssssss.source_files = 'MKCommureApp/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Model/**'
+                   end
+               end
+               
+               ssss.subspec 'ConnectBeaconTimeout' do |sssss|
+                   sssss.subspec 'Controller'  do |ssssss|
+                     ssssss.source_files = 'MKCommureApp/Classes/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller/**'
+                     
+                     ssssss.dependency 'MKCommureApp/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model'
+                   end
+                   sssss.subspec 'Model'  do |ssssss|
+                     ssssss.source_files = 'MKCommureApp/Classes/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model/**'
                    end
                end
                

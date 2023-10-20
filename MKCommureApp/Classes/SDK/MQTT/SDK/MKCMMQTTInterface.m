@@ -261,6 +261,37 @@
                                failedBlock:failedBlock];
 }
 
++ (void)cm_configConnectBeaconTimeout:(NSInteger)timeout
+                           macAddress:(NSString *)macAddress
+                                topic:(NSString *)topic
+                             sucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (timeout < 1 || timeout > 200) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1049),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+                @"timeout":@(timeout),
+        },
+    };
+    [[MKCMMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cm_server_taskConfigConnectBeaconTimeoutOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 + (void)cm_configIndicatorLightStatus:(id <cm_indicatorLightStatusProtocol>)protocol
                            macAddress:(NSString *)macAddress
                                 topic:(NSString *)topic
@@ -332,7 +363,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (advTime < 1 || advTime > 10) {
+    if (advTime < 1 || advTime > 65535) {
         [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
@@ -1580,6 +1611,29 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_cm_server_taskReadCommunicateTimeoutOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cm_readConnectBeaconTimeoutWithMacAddress:(NSString *)macAddress
+                                            topic:(NSString *)topic
+                                         sucBlock:(void (^)(id returnData))sucBlock
+                                      failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(2049),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+    };
+    [[MKCMMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cm_server_taskReadConnectBeaconTimeoutOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }

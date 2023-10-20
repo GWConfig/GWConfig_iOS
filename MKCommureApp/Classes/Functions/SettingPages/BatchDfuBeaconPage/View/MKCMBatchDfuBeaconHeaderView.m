@@ -29,13 +29,17 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
 
 @property (nonatomic, strong)MKTextField *dataTextField;
 
-@property (nonatomic, strong)UILabel *beaconLabel;
+@property (nonatomic, strong)UILabel *passwordFileLabel;
 
-@property (nonatomic, strong)UIButton *selectedButton;
+@property (nonatomic, strong)MKTextField *passwordTextField;
+
+@property (nonatomic, strong)UILabel *listLabel;
+
+@property (nonatomic, strong)UIButton *excelButton;
+
+@property (nonatomic, strong)UIButton *scanButton;
 
 @property (nonatomic, strong)UILabel *macLabel;
-
-@property (nonatomic, strong)UILabel *passwordLabel;
 
 @property (nonatomic, strong)UILabel *statusLabel;
 
@@ -49,10 +53,12 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
         [self addSubview:self.firmwareTextField];
         [self addSubview:self.dataFileLabel];
         [self addSubview:self.dataTextField];
-        [self addSubview:self.beaconLabel];
-        [self addSubview:self.selectedButton];
+        [self addSubview:self.passwordFileLabel];
+        [self addSubview:self.passwordTextField];
+        [self addSubview:self.listLabel];
+        [self addSubview:self.excelButton];
+        [self addSubview:self.scanButton];
         [self addSubview:self.macLabel];
-        [self addSubview:self.passwordLabel];
         [self addSubview:self.statusLabel];
     }
     return self;
@@ -84,22 +90,40 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
         make.centerY.mas_equalTo(self.dataTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(14.f).lineHeight);
     }];
-    [self.selectedButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.dataFileLabel.mas_right).mas_offset(10.f);
         make.right.mas_equalTo(-15.f);
-        make.width.mas_equalTo(40.f);
         make.top.mas_equalTo(self.dataTextField.mas_bottom).mas_offset(15.f);
+        make.height.mas_equalTo(25.f);
+    }];
+    [self.passwordFileLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15.f);
+        make.width.mas_equalTo(120.f);
+        make.centerY.mas_equalTo(self.passwordTextField.mas_centerY);
+        make.height.mas_equalTo(MKFont(14.f).lineHeight);
+    }];
+    [self.scanButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-15.f);
+        make.width.mas_equalTo(30.f);
+        make.top.mas_equalTo(self.passwordTextField.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(30.f);
     }];
-    [self.beaconLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.excelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.scanButton.mas_left).mas_offset(-10.f);
+        make.width.mas_equalTo(45.f);
+        make.centerY.mas_equalTo(self.scanButton.mas_centerY);
+        make.height.mas_equalTo(30.f);
+    }];
+    [self.listLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.right.mas_equalTo(self.selectedButton.mas_left).mas_offset(-15.f);
-        make.centerY.mas_equalTo(self.selectedButton.mas_centerY);
-        make.height.mas_equalTo(MKFont(14.f).lineHeight);
+        make.width.mas_equalTo(110.f);
+        make.centerY.mas_equalTo(self.scanButton.mas_centerY);
+        make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
     [self.statusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-75.f);
         make.width.mas_equalTo(60.f);
-        make.top.mas_equalTo(self.selectedButton.mas_bottom).mas_offset(10.f);
+        make.top.mas_equalTo(self.scanButton.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
     [self.macLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -108,18 +132,18 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
         make.centerY.mas_equalTo(self.statusLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
-    [self.passwordLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.statusLabel.mas_left).mas_offset(-5.f);
-        make.left.mas_equalTo(self.macLabel.mas_right).mas_offset(5.f);
-        make.centerY.mas_equalTo(self.statusLabel.mas_centerY);
-        make.height.mas_equalTo(MKFont(14.f).lineHeight);
-    }];
 }
 
 #pragma mark - event method
-- (void)selectedButtonPressed {
+- (void)excelButtonPressed {
     if ([self.delegate respondsToSelector:@selector(cm_beaconListButtonPressed)]) {
         [self.delegate cm_beaconListButtonPressed];
+    }
+}
+
+- (void)scanButtonPressed {
+    if ([self.delegate respondsToSelector:@selector(cm_scanCodeButtonPressed)]) {
+        [self.delegate cm_scanCodeButtonPressed];
     }
 }
 
@@ -194,59 +218,92 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
     return _dataTextField;
 }
 
-- (UILabel *)beaconLabel {
-    if (!_beaconLabel) {
-        _beaconLabel = [[UILabel alloc] init];
-        _beaconLabel.textColor = DEFAULT_TEXT_COLOR;
-        _beaconLabel.textAlignment = NSTextAlignmentLeft;
-        _beaconLabel.font = MKFont(14.f);
-        _beaconLabel.text = @"Beacon list";
+- (UILabel *)passwordFileLabel {
+    if (!_passwordFileLabel) {
+        _passwordFileLabel = [[UILabel alloc] init];
+        _passwordFileLabel.textColor = DEFAULT_TEXT_COLOR;
+        _passwordFileLabel.textAlignment = NSTextAlignmentLeft;
+        _passwordFileLabel.font = MKFont(14.f);
+        _passwordFileLabel.text = @"Beacon password";
     }
-    return _beaconLabel;
+    return _passwordFileLabel;
 }
 
-- (UIButton *)selectedButton {
-    if (!_selectedButton) {
-        _selectedButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_selectedButton setImage:LOADICON(@"MKCommureApp", @"MKCMBatchDfuBeaconHeaderView", @"cm_config_certAddIcon.png") forState:UIControlStateNormal];
-        [_selectedButton addTarget:self
-                            action:@selector(selectedButtonPressed)
-                  forControlEvents:UIControlEventTouchUpInside];
+- (MKTextField *)passwordTextField {
+    if (!_passwordTextField) {
+        _passwordTextField = [[MKTextField alloc] initWithTextFieldType:mk_normal];
+        @weakify(self);
+        _passwordTextField.textChangedBlock = ^(NSString * _Nonnull text) {
+            @strongify(self);
+            if ([self.delegate respondsToSelector:@selector(cm_dataPasswordChanged:)]) {
+                [self.delegate cm_dataPasswordChanged:text];
+            }
+        };
+        _passwordTextField.textColor = DEFAULT_TEXT_COLOR;
+        _passwordTextField.textAlignment = NSTextAlignmentLeft;
+        _passwordTextField.maxLength = 16;
+        _passwordTextField.font = MKFont(13.f);
+        _passwordTextField.placeholder = @"0-16 Characters";
+        
+        _passwordTextField.layer.masksToBounds = YES;
+        _passwordTextField.layer.borderColor = CUTTING_LINE_COLOR.CGColor;
+        _passwordTextField.layer.borderWidth = CUTTING_LINE_HEIGHT;
+        _passwordTextField.layer.cornerRadius = 6;
     }
-    return _selectedButton;
+    return _passwordTextField;
+}
+
+- (UILabel *)listLabel {
+    if (!_listLabel) {
+        _listLabel = [self loadLabelWithMsg:@"Beacon list"];
+    }
+    return _listLabel;
+}
+
+- (UIButton *)excelButton {
+    if (!_excelButton) {
+        _excelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_excelButton setImage:LOADICON(@"MKCommureApp", @"MKCMBatchDfuBeaconHeaderView", @"cm_batchOtaListSelectIcon.png") forState:UIControlStateNormal];
+        [_excelButton addTarget:self
+                         action:@selector(excelButtonPressed)
+               forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _excelButton;
+}
+
+- (UIButton *)scanButton {
+    if (!_scanButton) {
+        _scanButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_scanButton setImage:LOADICON(@"MKCommureApp", @"MKCMBatchDfuBeaconHeaderView", @"cm_batchOtaQRCodeIcon.png") forState:UIControlStateNormal];
+        [_scanButton addTarget:self
+                        action:@selector(scanButtonPressed)
+              forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _scanButton;
 }
 
 - (UILabel *)macLabel {
     if (!_macLabel) {
-        _macLabel = [[UILabel alloc] init];
-        _macLabel.textColor = DEFAULT_TEXT_COLOR;
-        _macLabel.textAlignment = NSTextAlignmentLeft;
-        _macLabel.font = MKFont(14.f);
-        _macLabel.text = @"Beacon Mac";
+        _macLabel = [self loadLabelWithMsg:@"Beacon Mac"];
     }
     return _macLabel;
 }
 
-- (UILabel *)passwordLabel {
-    if (!_passwordLabel) {
-        _passwordLabel = [[UILabel alloc] init];
-        _passwordLabel.textColor = DEFAULT_TEXT_COLOR;
-        _passwordLabel.textAlignment = NSTextAlignmentCenter;
-        _passwordLabel.font = MKFont(14.f);
-        _passwordLabel.text = @"Password";
-    }
-    return _passwordLabel;
-}
-
 - (UILabel *)statusLabel {
     if (!_statusLabel) {
-        _statusLabel = [[UILabel alloc] init];
-        _statusLabel.textColor = DEFAULT_TEXT_COLOR;
-        _statusLabel.textAlignment = NSTextAlignmentRight;
-        _statusLabel.font = MKFont(14.f);
-        _statusLabel.text = @"Status";
+        _statusLabel = [self loadLabelWithMsg:@"Status"];
     }
     return _statusLabel;
+}
+
+
+- (UILabel *)loadLabelWithMsg:(NSString *)msg {
+    UILabel *tempLabel = [[UILabel alloc] init];
+    tempLabel.textColor = DEFAULT_TEXT_COLOR;
+    tempLabel.font = MKFont(15.f);
+    tempLabel.textAlignment = NSTextAlignmentLeft;
+    tempLabel.text = msg;
+    return tempLabel;
 }
 
 @end

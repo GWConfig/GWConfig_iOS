@@ -1,12 +1,12 @@
 //
-//  MKCMConfiguredGatewayTableHeader.m
+//  MKCMConfiguredGatewayHeaderView.m
 //  MKCommureApp_Example
 //
-//  Created by aa on 2023/7/7.
-//  Copyright © 2023 aadyx2007@163.com. All rights reserved.
+//  Created by aa on 2023/10/18.
+//  Copyright © 2023 lovexiaoxia. All rights reserved.
 //
 
-#import "MKCMConfiguredGatewayTableHeader.h"
+#import "MKCMConfiguredGatewayHeaderView.h"
 
 #import "Masonry.h"
 
@@ -15,16 +15,13 @@
 
 #import "MKTextField.h"
 #import "MKCustomUIAdopter.h"
+#import "MKPickerView.h"
 
-const NSString *defaultUrl = @"http://47.104.172.169:8080/updata_fold/commureMK110_V1.0.4.bin";
-const NSString *defaultSubTopic = @"/gateway/provision/#";
-const NSString *defaultPubTopic = @"/gateway/data/#";
+@interface MKCMConfiguredGatewayHeaderView ()
 
-@interface MKCMConfiguredGatewayTableHeader ()
+@property (nonatomic, strong)UILabel *deviceTypeLabel;
 
-@property (nonatomic, strong)UILabel *urlLabel;
-
-@property (nonatomic, strong)MKTextField *urlTextField;
+@property (nonatomic, strong)UIButton *deviceButton;
 
 @property (nonatomic, strong)UILabel *subTopicLabel;
 
@@ -44,14 +41,16 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 
 @property (nonatomic, strong)UILabel *statusLabel;
 
+@property (nonatomic, assign)NSInteger deviceType;
+
 @end
 
-@implementation MKCMConfiguredGatewayTableHeader
+@implementation MKCMConfiguredGatewayHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self addSubview:self.urlLabel];
-        [self addSubview:self.urlTextField];
+        [self addSubview:self.deviceTypeLabel];
+        [self addSubview:self.deviceButton];
         [self addSubview:self.subTopicLabel];
         [self addSubview:self.subTextField];
         [self addSubview:self.pubTopicLabel];
@@ -67,46 +66,47 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.urlTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.deviceButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15.f);
-        make.left.mas_equalTo(self.urlLabel.mas_right).mas_offset(5.f);
+        make.left.mas_equalTo(self.deviceTypeLabel.mas_right).mas_offset(5.f);
         make.top.mas_equalTo(15.f);
         make.height.mas_equalTo(25.f);
     }];
-    [self.urlLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.deviceTypeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
         make.width.mas_equalTo(110.f);
-        make.centerY.mas_equalTo(self.urlTextField.mas_centerY);
-        make.height.mas_equalTo(MKFont(15.f).lineHeight);
-    }];
-    [self.subTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-15.f);
-        make.left.mas_equalTo(self.subTopicLabel.mas_right).mas_offset(5.f);
-        make.top.mas_equalTo(self.urlTextField.mas_bottom).mas_offset(10.f);
-        make.height.mas_equalTo(25.f);
-    }];
-    [self.subTopicLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(110.f);
-        make.centerY.mas_equalTo(self.subTextField.mas_centerY);
+        make.centerY.mas_equalTo(self.deviceButton.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
     [self.pubTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15.f);
         make.left.mas_equalTo(self.pubTopicLabel.mas_right).mas_offset(5.f);
-        make.top.mas_equalTo(self.subTextField.mas_bottom).mas_offset(10.f);
+        make.top.mas_equalTo(self.deviceButton.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(25.f);
     }];
     [self.pubTopicLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(110.f);
+        make.width.mas_equalTo(180.f);
         make.centerY.mas_equalTo(self.pubTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
+    [self.subTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-15.f);
+        make.left.mas_equalTo(self.subTopicLabel.mas_right).mas_offset(5.f);
+        make.top.mas_equalTo(self.pubTextField.mas_bottom).mas_offset(10.f);
+        make.height.mas_equalTo(25.f);
+    }];
+    [self.subTopicLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15.f);
+        make.width.mas_equalTo(180.f);
+        make.centerY.mas_equalTo(self.subTextField.mas_centerY);
+        make.height.mas_equalTo(MKFont(15.f).lineHeight);
+    }];
+    
     [self.scanButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15.f);
         make.width.mas_equalTo(30.f);
-        make.top.mas_equalTo(self.pubTextField.mas_bottom).mas_offset(10.f);
+        make.top.mas_equalTo(self.subTextField.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(30.f);
     }];
     [self.excelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -136,6 +136,19 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 }
 
 #pragma mark - event method
+- (void)deviceButtonPressed {
+    NSArray *deviceList = @[@"MK110",@"MK110 Plus",@"MKGW3"];
+    
+    MKPickerView *pickView = [[MKPickerView alloc] init];
+    [pickView showPickViewWithDataList:deviceList selectedRow:self.deviceType block:^(NSInteger currentRow) {
+        [self.deviceButton setTitle:deviceList[currentRow] forState:UIControlStateNormal];
+        self.deviceType = currentRow;
+        if ([self.delegate respondsToSelector:@selector(cm_deviceButtonChanged:)]) {
+            [self.delegate cm_deviceButtonChanged:currentRow];
+        }
+    }];
+}
+
 - (void)excelButtonPressed {
     if ([self.delegate respondsToSelector:@selector(cm_listButtonPressed)]) {
         [self.delegate cm_listButtonPressed];
@@ -149,26 +162,20 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 }
 
 #pragma mark - getter
-- (UILabel *)urlLabel {
-    if (!_urlLabel) {
-        _urlLabel = [self loadLabelWithMsg:@"Firmware file URL"];
+- (UILabel *)deviceTypeLabel {
+    if (!_deviceTypeLabel) {
+        _deviceTypeLabel = [self loadLabelWithMsg:@"Device type"];
     }
-    return _urlLabel;
+    return _deviceTypeLabel;
 }
 
-- (MKTextField *)urlTextField {
-    if (!_urlTextField) {
-        _urlTextField = [MKCustomUIAdopter customNormalTextFieldWithText:defaultUrl placeHolder:@"1- 256 Characters" textType:mk_normal];
-        _urlTextField.maxLength = 256;
-        @weakify(self);
-        _urlTextField.textChangedBlock = ^(NSString * _Nonnull text) {
-            @strongify(self);
-            if ([self.delegate respondsToSelector:@selector(cm_urlValueChanged:)]) {
-                [self.delegate cm_urlValueChanged:text];
-            }
-        };
+- (UIButton *)deviceButton {
+    if (!_deviceButton) {
+        _deviceButton = [MKCustomUIAdopter customButtonWithTitle:@"MK110"
+                                                          target:self
+                                                          action:@selector(deviceButtonPressed)];
     }
-    return _urlTextField;
+    return _deviceButton;
 }
 
 - (UILabel *)subTopicLabel {
@@ -180,7 +187,7 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 
 - (MKTextField *)subTextField {
     if (!_subTextField) {
-        _subTextField = [MKCustomUIAdopter customNormalTextFieldWithText:defaultSubTopic
+        _subTextField = [MKCustomUIAdopter customNormalTextFieldWithText:@"/provision/gateway/cmd"
                                                                placeHolder:@"1- 128 Characters"
                                                                   textType:mk_normal];
         _subTextField.maxLength = 128;
@@ -204,7 +211,7 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 
 - (MKTextField *)pubTextField {
     if (!_pubTextField) {
-        _pubTextField = [MKCustomUIAdopter customNormalTextFieldWithText:defaultPubTopic
+        _pubTextField = [MKCustomUIAdopter customNormalTextFieldWithText:@"/provision/gateway/data"
                                                                placeHolder:@"1- 128 Characters"
                                                                   textType:mk_normal];
         _pubTextField.maxLength = 128;
@@ -229,7 +236,7 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 - (UIButton *)excelButton {
     if (!_excelButton) {
         _excelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_excelButton setImage:LOADICON(@"MKCommureApp", @"MKCMConfiguredGatewayTableHeader", @"cm_ConfiguredGatewayListSelectIcon.png") forState:UIControlStateNormal];
+        [_excelButton setImage:LOADICON(@"MKCommureApp", @"MKCMConfiguredGatewayHeaderView", @"cm_batchOtaListSelectIcon.png") forState:UIControlStateNormal];
         [_excelButton addTarget:self
                          action:@selector(excelButtonPressed)
                forControlEvents:UIControlEventTouchUpInside];
@@ -240,7 +247,7 @@ const NSString *defaultPubTopic = @"/gateway/data/#";
 - (UIButton *)scanButton {
     if (!_scanButton) {
         _scanButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_scanButton setImage:LOADICON(@"MKCommureApp", @"MKCMConfiguredGatewayTableHeader", @"cm_ConfiguredGatewayQRCodeIcon.png") forState:UIControlStateNormal];
+        [_scanButton setImage:LOADICON(@"MKCommureApp", @"MKCMConfiguredGatewayHeaderView", @"cm_batchOtaQRCodeIcon.png") forState:UIControlStateNormal];
         [_scanButton addTarget:self
                         action:@selector(scanButtonPressed)
               forControlEvents:UIControlEventTouchUpInside];

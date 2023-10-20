@@ -28,7 +28,7 @@
 
 @implementation MKCMBatchUpdateKeyModel
 
-- (void)configDataWithBeaconList:(NSArray <NSDictionary *>*)list
+- (void)configDataWithBeaconList:(NSArray <NSString *>*)list
                         sucBlock:(void (^)(void))sucBlock
                      failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
@@ -46,7 +46,17 @@
 
 - (BOOL)configDatas:(NSArray *)list {
     __block BOOL success = NO;
-    [MKCMMQTTInterface cm_batchUpdateKey:self.encryptionKey beaconList:list macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    
+    NSMutableArray *dfuList = [NSMutableArray array];
+    for (NSInteger i = 0; i < list.count; i ++) {
+        NSDictionary *dic = @{
+            @"macAddress":list[i],
+            @"password":SafeStr(self.password),
+        };
+        [dfuList addObject:dic];
+    }
+    
+    [MKCMMQTTInterface cm_batchUpdateKey:self.encryptionKey beaconList:dfuList macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         if ([returnData[@"data"][@"result_code"] integerValue] == 0) {
             success = YES;
         }

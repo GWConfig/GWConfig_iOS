@@ -114,6 +114,18 @@ NS_ASSUME_NONNULL_BEGIN
                              sucBlock:(void (^)(id returnData))sucBlock
                           failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Connect beacon timeout.
+/// @param timeout 1~200 s.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cm_configConnectBeaconTimeout:(NSInteger)timeout
+                           macAddress:(NSString *)macAddress
+                                topic:(NSString *)topic
+                             sucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// Configure indicator status.
 /// @param protocol protocol.
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
@@ -138,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Ble Adv Status
 /// @param isOn isOn
-/// @param advTime 1 min ~ 10 mins.
+/// @param advTime 1 s ~ 65535 s.
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters
 /// @param sucBlock Success callback
@@ -608,6 +620,16 @@ NS_ASSUME_NONNULL_BEGIN
                                           topic:(NSString *)topic
                                        sucBlock:(void (^)(id returnData))sucBlock
                                     failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Connect Beacon Timeout.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cm_readConnectBeaconTimeoutWithMacAddress:(NSString *)macAddress
+                                            topic:(NSString *)topic
+                                         sucBlock:(void (^)(id returnData))sucBlock
+                                      failedBlock:(void (^)(NSError *error))failedBlock;
 
 /// Indicator Status
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)

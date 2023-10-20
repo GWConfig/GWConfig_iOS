@@ -381,6 +381,56 @@ MKCMDeviceModelDelegate>
     [[MKCMMQTTDataManager shared] subscriptions:topicList];
 }
 
+- (void)receiveBatchDevices:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user)) {
+        return;
+    }
+    NSArray *deviceList = user[@"deviceList"];
+    NSString *publishedTopic = @"";
+    for (NSInteger i = 0; i < deviceList.count; i ++) {
+        MKCMDeviceModel *receiveModel = deviceList[i];
+        MKCMDeviceListModel *deviceModel = [[MKCMDeviceListModel alloc] init];
+        deviceModel.deviceType = receiveModel.deviceType;
+        deviceModel.clientID = receiveModel.clientID;
+        deviceModel.deviceName = receiveModel.deviceName;
+        deviceModel.subscribedTopic = receiveModel.subscribedTopic;
+        deviceModel.publishedTopic = receiveModel.publishedTopic;
+        deviceModel.macAddress = receiveModel.macAddress;
+        deviceModel.onLineState = receiveModel.onLineState;
+        deviceModel.wifiLevel = 2;
+        deviceModel.delegate = self;
+        [deviceModel startStateMonitoringTimer];
+        
+        publishedTopic = [deviceModel currentPublishedTopic];
+        
+        NSInteger index = 0;
+        BOOL contain = NO;
+        for (NSInteger i = 0; i < self.dataList.count; i ++) {
+            MKCMDeviceListModel *model = self.dataList[i];
+            if ([model.macAddress isEqualToString:deviceModel.macAddress]) {
+                index = i;
+                contain = YES;
+                break;
+            }
+        }
+        if (contain) {
+            //当前设备列表存在deviceID相同的设备，替换，本地数据库已经替换过了
+            [self.dataList replaceObjectAtIndex:index withObject:deviceModel];
+        }else {
+            //不存在，则添加到设备列表
+            if (self.dataList.count > 0) {
+                [self.dataList insertObject:deviceModel atIndex:0];
+            }else {
+                [self.dataList addObject:deviceModel];
+            }
+        }
+    }
+    
+    [self loadMainViews];
+    [[MKCMMQTTDataManager shared] subscriptions:@[publishedTopic]];
+}
+
 #pragma mark - event method
 - (void)addButtonPressed {
     if (!ValidStr([MKCMMQTTDataManager shared].serverParams.host)) {
@@ -526,6 +576,10 @@ MKCMDeviceModelDelegate>
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadDeviceTopics)
                                                  name:@"mk_cm_needReloadTopicsNotification"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveBatchDevices:)
+                                                 name:@"mk_cm_addBatchDeviceNotification"
                                                object:nil];
 }
 

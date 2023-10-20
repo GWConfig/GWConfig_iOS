@@ -36,7 +36,7 @@
     return self;
 }
 
-- (void)configDataWithBeaconList:(NSArray <NSDictionary *>*)list
+- (void)configDataWithBeaconList:(NSArray <NSString *>*)list
                         sucBlock:(void (^)(void))sucBlock
                      failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
@@ -52,9 +52,17 @@
 
 #pragma mark - interface
 
-- (BOOL)configDatas:(NSArray *)list {
+- (BOOL)configDatas:(NSArray <NSString *>*)list {
+    NSMutableArray *dfuList = [NSMutableArray array];
+    for (NSInteger i = 0; i < list.count; i ++) {
+        NSDictionary *dic = @{
+            @"macAddress":list[i],
+            @"password":SafeStr(self.password),
+        };
+        [dfuList addObject:dic];
+    }
     __block BOOL success = NO;
-    [MKCMMQTTInterface cm_batchDfuBeacon:self.firmwareUrl dataFileUrl:self.dataUrl beaconList:list macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKCMMQTTInterface cm_batchDfuBeacon:self.firmwareUrl dataFileUrl:self.dataUrl beaconList:dfuList macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         if ([returnData[@"data"][@"result_code"] integerValue] == 0) {
             success = YES;
         }

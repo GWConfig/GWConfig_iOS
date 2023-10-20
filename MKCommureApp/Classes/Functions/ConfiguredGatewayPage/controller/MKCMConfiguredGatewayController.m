@@ -2,8 +2,8 @@
 //  MKCMConfiguredGatewayController.m
 //  MKCommureApp_Example
 //
-//  Created by aa on 2023/7/7.
-//  Copyright © 2023 aadyx2007@163.com. All rights reserved.
+//  Created by aa on 2023/10/18.
+//  Copyright © 2023 lovexiaoxia. All rights reserved.
 //
 
 #import "MKCMConfiguredGatewayController.h"
@@ -21,13 +21,19 @@
 #import "MKAlertView.h"
 
 #import "MKHudManager.h"
+#import "MKCustomUIAdopter.h"
+
+#import "MKCMDeviceDatabaseManager.h"
 
 #import "MKCMExcelDataManager.h"
 
-#import "MKCMConfiguredGatewayTableHeader.h"
+#import "MKCMMQTTDataManager.h"
+
+#import "MKCMDeviceModel.h"
+
+#import "MKCMConfiguredGatewayHeaderView.h"
 #import "MKCMConfiguredGatewayCell.h"
 
-#import "MKCMConfiguredGatewayManager.h"
 #import "MKCMConfiguredGatewayModel.h"
 
 #import "MKCMImportServerController.h"
@@ -36,18 +42,21 @@
 @interface MKCMConfiguredGatewayController ()<UITableViewDelegate,
 UITableViewDataSource,
 MKCMImportServerControllerDelegate,
-MKCMConfiguredGatewayTableHeaderDelegate,
-MKCMConfiguredGatewayCellDelegate>
+MKCMConfiguredGatewayHeaderViewDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
+@property (nonatomic, strong)MKCMConfiguredGatewayModel *dataModel;
+
 @property (nonatomic, strong)NSMutableArray *dataList;
 
-@property (nonatomic, strong)MKCMConfiguredGatewayTableHeader *headerView;
+@property (nonatomic, strong)MKCMConfiguredGatewayHeaderView *headerView;
 
 @property (nonatomic, strong)NSMutableDictionary *macCache;
 
-@property (nonatomic, strong)MKCMConfiguredGatewayManager *otaManager;
+@property (nonatomic, strong)UIView *addView;
+
+@property (nonatomic, strong)UIButton *addButton;
 
 @end
 
@@ -55,6 +64,7 @@ MKCMConfiguredGatewayCellDelegate>
 
 - (void)dealloc {
     NSLog(@"MKCMConfiguredGatewayController销毁");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -77,49 +87,6 @@ MKCMConfiguredGatewayCellDelegate>
     [self loadSubViews];
 }
 
-#pragma mark - super method
-- (void)rightButtonMethod {
-    if (self.dataList.count == 0) {
-        [self.view showCentralToast:@"Gateway list cannot be empty!"];
-        return;
-    }
-    if (!ValidStr(self.otaManager.filePath) || self.otaManager.filePath.length > 256) {
-        [self.view showCentralToast:@"Firmware file URL must be 1 - 256 Characters"];
-        return;
-    }
-    if (!ValidStr(self.otaManager.subTopic) || self.otaManager.subTopic.length > 128) {
-        [self.view showCentralToast:@"Gateway subscribe topic must be 1 - 128 Characters"];
-        return;
-    }
-    if (!ValidStr(self.otaManager.pubTopic) || self.otaManager.pubTopic.length > 128) {
-        [self.view showCentralToast:@"Gateway publish topic must be 1 - 128 Characters"];
-        return;
-    }
-    [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    self.leftButton.enabled = NO;
-    self.rightButton.enabled = NO;
-    NSMutableArray *macList = [NSMutableArray array];
-    for (NSInteger i = 0; i < self.dataList.count; i ++) {
-        MKCMConfiguredGatewayCellModel *cellModel = self.dataList[i];
-        cellModel.status = @"Wait";
-        [macList addObject:cellModel.macAddress];
-    }
-    [self.tableView reloadData];
-    @weakify(self);
-    [self.otaManager startConfiguredGateway:macList statusChangedBlock:^(NSString * _Nonnull macAddress, cm_ConfiguredGatewayStatus status) {
-        @strongify(self);
-        [self updateCellWithMac:macAddress status:status];
-    } completeBlock:^(BOOL complete) {
-        @strongify(self);
-        self.leftButton.enabled = YES;
-        self.rightButton.enabled = YES;
-        [[MKHudManager share] hide];
-        if (!complete) {
-            [self.view showCentralToast:@"Without Respond!"];
-        }
-    }];
-}
-
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44.f;
@@ -137,7 +104,6 @@ MKCMConfiguredGatewayCellDelegate>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MKCMConfiguredGatewayCell *cell = [MKCMConfiguredGatewayCell initCellWithTableView:tableView];
     cell.dataModel = self.dataList[indexPath.row];
-    cell.delegate = self;
     return cell;
 }
 
@@ -156,7 +122,7 @@ MKCMConfiguredGatewayCellDelegate>
             MKCMConfiguredGatewayCellModel *cellModel = [[MKCMConfiguredGatewayCellModel alloc] init];
             cellModel.macAddress = [beaconList[i] lowercaseString];
             cellModel.index = i;
-            cellModel.status = @"Wait";
+            cellModel.added = NO;
             [self.dataList addObject:cellModel];
             [self.macCache setObject:@(i) forKey:beaconList[i]];
         }
@@ -167,20 +133,21 @@ MKCMConfiguredGatewayCellDelegate>
     }];
 }
 
-#pragma mark - MKCMConfiguredGatewayTableHeaderDelegate
-- (void)cm_urlValueChanged:(NSString *)url {
-    self.otaManager.filePath = url;
+#pragma mark - MKCMConfiguredGatewayHeaderViewDelegate
+/// 0:MK110   1:MK110 Plus   2:MKGW3
+- (void)cm_deviceButtonChanged:(NSInteger)deviceType {
+    self.dataModel.deviceType = deviceType;
 }
 
 - (void)cm_topicValueChanged:(NSString *)topic type:(NSInteger)type {
     if (type == 0) {
         //Gateway subscribe topic
-        self.otaManager.subTopic = topic;
+        self.dataModel.subTopic = topic;
         return;
     }
     if (type == 1) {
         //Gateway publish topic
-        self.otaManager.pubTopic = topic;
+        self.dataModel.pubTopic = topic;
         return;
     }
 }
@@ -229,39 +196,59 @@ MKCMConfiguredGatewayCellDelegate>
     }];
 }
 
-#pragma mark - MKCMConfiguredGatewayCellDelegate
-- (void)cm_ConfiguredGatewayCell_delete:(NSInteger)index {
-    if (index >= self.dataList.count) {
+#pragma mark - note
+- (void)receiveDeviceOnline:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"macAddress"])) {
         return;
     }
-    @weakify(self);
-    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"Confirm" handler:^{
-        @strongify(self);
-        MKCMConfiguredGatewayCellModel *cellModel = self.dataList[index];
-        [self.dataList removeObject:cellModel];
-        [self.macCache removeAllObjects];
-        for (NSInteger i = 0; i < self.dataList.count; i ++) {
-            MKCMConfiguredGatewayCellModel *cellModel = self.dataList[i];
-            cellModel.index = i;
-            [self.macCache setObject:@(i) forKey:cellModel.macAddress];
+    //接收到设备的网络状态上报，认为设备入网成功
+    
+    for (NSInteger i = 0; i < self.dataList.count; i ++) {
+        MKCMConfiguredGatewayCellModel *cellModel = self.dataList[i];
+        if ([cellModel.macAddress isEqual:user[@"macAddress"]]) {
+            cellModel.added = YES;
+            break;
         }
-        [self.tableView reloadData];
-    }];
-    MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"Cancel" handler:^{
-    }];
-    NSString *msg = @"Please confirm again whether to delete the MAC？";
-    MKAlertView *alertView = [[MKAlertView alloc] init];
-    [alertView addAction:confirmAction];
-    [alertView addAction:cancelAction];
-    [alertView showAlertWithTitle:@"Waring!" message:msg notificationName:@"mk_cm_needDismissAlert"];
+    }
+    [self.tableView reloadData];
+}
+
+#pragma mark - event method
+- (void)addConfiguredDevice {
+    //c8f09ebecd88
+    if ([self.addButton.titleLabel.text isEqualToString:@"Start"]) {
+        if (!ValidStr(self.dataModel.pubTopic) || self.dataModel.pubTopic.length > 128) {
+            [self.view showCentralToast:@"Gateway publish topic error!"];
+            return;
+        }
+        if (!ValidStr(self.dataModel.subTopic) || self.dataModel.subTopic.length > 128) {
+            [self.view showCentralToast:@"Gateway subscribe topic error!"];
+            return;
+        }
+        if (self.dataList.count == 0) {
+            [self.view showCentralToast:@"Gateway list is empty!"];
+            return;
+        }
+        [self.addButton setTitle:@"Done" forState:UIControlStateNormal];
+        [self.view showCentralToast:@"Add Device..."];
+        [[MKCMMQTTDataManager shared] subscriptions:@[self.dataModel.pubTopic]];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveDeviceOnline:)
+                                                     name:MKCMReceiveDeviceOnlineNotification
+                                                   object:nil];
+        return;
+    }
+    //Done
+    [self addDeviceToLocal];
 }
 
 #pragma mark - interface
 
 #pragma mark - private method
 - (void)addQRCode:(NSString *)macAddress {
-    if (self.dataList.count >= 20) {
-        [self.view showCentralToast:@"Max 20 gateways are allowed!"];
+    if (self.dataList.count >= 50) {
+        [self.view showCentralToast:@"Max 50 gateways are allowed!"];
         return;
     }
     NSNumber *contain = self.macCache[macAddress];
@@ -272,7 +259,7 @@ MKCMConfiguredGatewayCellDelegate>
     }
     MKCMConfiguredGatewayCellModel *cellModel = [[MKCMConfiguredGatewayCellModel alloc] init];
     cellModel.macAddress = macAddress;
-    cellModel.status = @"Wait";
+    cellModel.added = NO;
     
     if (self.dataList.count > 0) {
         [self.dataList insertObject:cellModel atIndex:0];
@@ -291,30 +278,15 @@ MKCMConfiguredGatewayCellDelegate>
     [self.tableView reloadData];
 }
 
-- (void)updateCellWithMac:(NSString *)macAddress status:(cm_ConfiguredGatewayStatus)status {
+- (void)updateCellWithMac:(NSString *)macAddress status:(BOOL)added {
     NSNumber *index = self.macCache[macAddress];
     if (!ValidNum(index)) {
         [self.view showCentralToast:@"Current Device is not exsit!"];
         return;
     }
     MKCMConfiguredGatewayCellModel *cellModel = self.dataList[[index integerValue]];
-    cellModel.status = [self cellStatusMsg:status];
+    cellModel.added = added;
     [self.tableView mk_reloadRow:[index integerValue] inSection:0 withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (NSString *)cellStatusMsg:(cm_ConfiguredGatewayStatus)status {
-    switch (status) {
-        case cm_ConfiguredGatewayStatus_nornal:
-            return @"Wait";
-        case cm_ConfiguredGatewayStatus_upgrading:
-            return @"Upgrading";
-        case cm_ConfiguredGatewayStatus_timeout:
-            return @"timeout";
-        case cm_ConfiguredGatewayStatus_success:
-            return @"Success";
-        case cm_ConfiguredGatewayStatus_failed:
-            return @"Failed";
-    }
 }
 
 - (void)failed {
@@ -335,16 +307,103 @@ MKCMConfiguredGatewayCellDelegate>
     [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_cm_needDismissAlert"];
 }
 
+- (void)addDeviceToLocal {
+    if (self.dataList.count == 0) {
+        return;
+    }
+    
+    NSMutableArray *deviceList = [NSMutableArray array];
+    for (NSInteger i = 0; i < self.dataList.count; i ++) {
+        MKCMConfiguredGatewayCellModel *cellModel = self.dataList[i];
+        if (cellModel.added) {
+            //已经接收到设备数据了
+            MKCMDeviceModel *model = [self loadDeviceModel:cellModel.macAddress];
+            [deviceList addObject:model];
+        }
+    }
+    if (deviceList.count == 0) {
+        [super leftButtonMethod];
+        return;
+    }
+    [[MKHudManager share] showHUDWithTitle:@"Save..." inView:self.view isPenetration:NO];
+    [MKCMDeviceDatabaseManager insertDeviceList:deviceList sucBlock:^{
+        [[MKHudManager share] hide];
+        [self popToViewControllerWithClassName:@"MKCMDeviceListController"];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_cm_addBatchDeviceNotification"
+                                                            object:nil
+                                                          userInfo:@{@"deviceList":deviceList}];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (MKCMDeviceModel *)loadDeviceModel:(NSString *)macAddress {
+    MKCMDeviceModel *deviceModel = [[MKCMDeviceModel alloc] init];
+    deviceModel.deviceType = [self deviceType];
+    deviceModel.clientID = macAddress;
+    deviceModel.deviceName = [self deviceName:macAddress];
+    deviceModel.subscribedTopic = self.dataModel.subTopic;
+    deviceModel.publishedTopic = self.dataModel.pubTopic;
+    deviceModel.macAddress = macAddress;
+    deviceModel.onLineState = MKCMDeviceModelStateOnline;
+    
+    return deviceModel;
+}
+
+- (NSString *)deviceType {
+    if (self.dataModel.deviceType == 0) {
+        return @"00";
+    }
+    if (self.dataModel.deviceType == 1) {
+        return @"20";
+    }
+    if (self.dataModel.deviceType == 2) {
+        return @"10";
+    }
+    return @"";
+}
+
+- (NSString *)deviceName:(NSString *)macAddress {
+    NSString *temp = [[macAddress substringFromIndex:8] uppercaseString];
+    if (self.dataModel.deviceType == 0) {
+        return [@"MK110-" stringByAppendingString:temp];
+    }
+    if (self.dataModel.deviceType == 1) {
+        return [@"MK110 Plus 03-" stringByAppendingString:temp];
+    }
+    if (self.dataModel.deviceType == 2) {
+        return [@"MKGW3-" stringByAppendingString:temp];
+    }
+    return @"";
+}
+
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = @"Batch OTA";
-    [self.rightButton setImage:LOADICON(@"MKCommureApp", @"MKCMConfiguredGatewayController", @"cm_saveIcon.png") forState:UIControlStateNormal];
+    self.defaultTitle = @"Add Device";
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.addView];
+    [self.addView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(defaultTopInset);
         make.bottom.mas_equalTo(-VirtualHomeHeight);
+        make.height.mas_equalTo(60.f);
+    }];
+    
+    [self.addView addSubview:self.addButton];
+    [self.addButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(40);
+        make.right.mas_equalTo(-40);
+        make.centerY.mas_equalTo(self.addView.mas_centerY);
+        make.height.mas_equalTo(35);
+    }];
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10.f);
+        make.right.mas_equalTo(-10.f);
+        make.top.mas_equalTo(defaultTopInset);
+        make.bottom.mas_equalTo(self.addView.mas_top);
     }];
 }
 
@@ -368,9 +427,9 @@ MKCMConfiguredGatewayCellDelegate>
     return _dataList;
 }
 
-- (MKCMConfiguredGatewayTableHeader *)headerView {
+- (MKCMConfiguredGatewayHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[MKCMConfiguredGatewayTableHeader alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 190.f)];
+        _headerView = [[MKCMConfiguredGatewayHeaderView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 190.f)];
         _headerView.delegate = self;
     }
     return _headerView;
@@ -383,11 +442,28 @@ MKCMConfiguredGatewayCellDelegate>
     return _macCache;
 }
 
-- (MKCMConfiguredGatewayManager *)otaManager {
-    if (!_otaManager) {
-        _otaManager = [[MKCMConfiguredGatewayManager alloc] init];
+- (MKCMConfiguredGatewayModel *)dataModel {
+    if (!_dataModel) {
+        _dataModel = [[MKCMConfiguredGatewayModel alloc] init];
     }
-    return _otaManager;
+    return _dataModel;
+}
+
+- (UIView *)addView {
+    if (!_addView) {
+        _addView = [[UIView alloc] init];
+        _addView.backgroundColor = COLOR_WHITE_MACROS;
+    }
+    return _addView;
+}
+
+- (UIButton *)addButton {
+    if (!_addButton) {
+        _addButton = [MKCustomUIAdopter customButtonWithTitle:@"Start"
+                                                       target:self
+                                                       action:@selector(addConfiguredDevice)];
+    }
+    return _addButton;
 }
 
 @end

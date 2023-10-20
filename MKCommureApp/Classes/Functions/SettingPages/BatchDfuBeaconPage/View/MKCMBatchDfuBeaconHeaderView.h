@@ -16,7 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)cm_dataFileUrlChanged:(NSString *)url;
 
+- (void)cm_dataPasswordChanged:(NSString *)password;
+
 - (void)cm_beaconListButtonPressed;
+
+- (void)cm_scanCodeButtonPressed;
 
 @end
 

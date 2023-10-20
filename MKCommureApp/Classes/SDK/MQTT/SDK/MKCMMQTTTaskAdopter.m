@@ -298,9 +298,6 @@
     }else if (msgID == 1009) {
         //配置设备UTC时间
         operationID = mk_cm_server_taskConfigDeviceTimeZoneOperation;
-    }else if (msgID == 1048) {
-        //配置通信超时时间
-        operationID = mk_cm_server_taskConfigCommunicationTimeoutOperation;
     }else if (msgID == 1011) {
         //配置指示灯开关
         operationID = mk_cm_server_taskConfigIndicatorLightStatusOperation;
@@ -358,6 +355,12 @@
     }else if (msgID == 1047) {
         //配置BXP-B秘钥
         operationID = mk_cm_server_taskConfigBXBDecryptKeyOperation;
+    }else if (msgID == 1048) {
+        //配置通信超时时间
+        operationID = mk_cm_server_taskConfigCommunicationTimeoutOperation;
+    }else if (msgID == 1049) {
+        //配置BXP-B连接扫描等待超时时间
+        operationID = mk_cm_server_taskConfigConnectBeaconTimeoutOperation;
     }else if (msgID == 1103) {
         //断开连接
         operationID = mk_cm_server_taskDisconnectBleDeviceOperation;
@@ -394,9 +397,6 @@
     }else if (msgID == 2009) {
         //读取UTC时间
         operationID = mk_cm_server_taskReadDeviceUTCTimeOperation;
-    }else if (msgID == 2048) {
-        //读取通信超时时间
-        operationID = mk_cm_server_taskReadCommunicateTimeoutOperation;
     }else if (msgID == 2011) {
         //读取指示灯开关
         operationID = mk_cm_server_taskReadIndicatorLightStatusOperation;
@@ -448,6 +448,12 @@
     }else if (msgID == 2047) {
         //读取BXP-B秘钥
         operationID = mk_cm_server_taskReadBXBDecryptKeyOperation;
+    }else if (msgID == 2048) {
+        //读取通信超时时间
+        operationID = mk_cm_server_taskReadCommunicateTimeoutOperation;
+    }else if (msgID == 2049) {
+        //读取通信超时时间
+        operationID = mk_cm_server_taskReadConnectBeaconTimeoutOperation;
     }else if (msgID == 2102) {
         //读取网关蓝牙连接的状态
         operationID = mk_cm_server_taskReadGatewayBleConnectStatusOperation;

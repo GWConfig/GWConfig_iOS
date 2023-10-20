@@ -48,7 +48,7 @@
 
 - (void)configDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
-        if (!ValidStr(self.advTime) || [self.advTime integerValue] < 1 || [self.advTime integerValue] > 10) {
+        if (!ValidStr(self.advTime) || [self.advTime integerValue] < 1 || [self.advTime integerValue] > 65535) {
             [self operationFailedBlockWithMsg:@"Params error" block:failedBlock];
             return;
         }

@@ -25,7 +25,7 @@
 #import "MKCMExcelDataManager.h"
 
 #import "MKCMBatchOtaTableHeader.h"
-#import "MKCMBatchOtaCell.h"
+#import "MKCMBatchUpdateCell.h"
 
 #import "MKCMBatchOtaManager.h"
 #import "MKCMBatchOtaModel.h"
@@ -37,7 +37,7 @@
 UITableViewDataSource,
 MKCMImportServerControllerDelegate,
 MKCMBatchOtaTableHeaderDelegate,
-MKCMBatchOtaCellDelegate>
+MKCMBatchUpdateCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
@@ -79,8 +79,16 @@ MKCMBatchOtaCellDelegate>
 
 #pragma mark - super method
 - (void)rightButtonMethod {
-    if (self.dataList.count == 0) {
-        [self.view showCentralToast:@"Gateway list cannot be empty!"];
+    NSMutableArray *macList = [NSMutableArray array];
+    for (NSInteger i = 0; i < self.dataList.count; i ++) {
+        MKCMBatchUpdateCellModel *cellModel = self.dataList[i];
+        if (cellModel.status == 0) {
+            //Wait
+            [macList addObject:cellModel.macAddress];
+        }
+    }
+    if (macList.count == 0 || macList.count > 20) {
+        [self.view showCentralToast:@"Gateway list error"];
         return;
     }
     if (!ValidStr(self.otaManager.filePath) || self.otaManager.filePath.length > 256) {
@@ -98,13 +106,7 @@ MKCMBatchOtaCellDelegate>
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
     self.leftButton.enabled = NO;
     self.rightButton.enabled = NO;
-    NSMutableArray *macList = [NSMutableArray array];
-    for (NSInteger i = 0; i < self.dataList.count; i ++) {
-        MKCMBatchOtaCellModel *cellModel = self.dataList[i];
-        cellModel.status = @"Wait";
-        [macList addObject:cellModel.macAddress];
-    }
-    [self.tableView reloadData];
+    
     @weakify(self);
     [self.otaManager startBatchOta:macList statusChangedBlock:^(NSString * _Nonnull macAddress, cm_batchOtaStatus status) {
         @strongify(self);
@@ -135,7 +137,7 @@ MKCMBatchOtaCellDelegate>
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MKCMBatchOtaCell *cell = [MKCMBatchOtaCell initCellWithTableView:tableView];
+    MKCMBatchUpdateCell *cell = [MKCMBatchUpdateCell initCellWithTableView:tableView];
     cell.dataModel = self.dataList[indexPath.row];
     cell.delegate = self;
     return cell;
@@ -153,10 +155,10 @@ MKCMBatchOtaCellDelegate>
             number = beaconList.count;
         }
         for (NSInteger i = 0; i < number; i ++) {
-            MKCMBatchOtaCellModel *cellModel = [[MKCMBatchOtaCellModel alloc] init];
+            MKCMBatchUpdateCellModel *cellModel = [[MKCMBatchUpdateCellModel alloc] init];
             cellModel.macAddress = [beaconList[i] lowercaseString];
             cellModel.index = i;
-            cellModel.status = @"Wait";
+            cellModel.status = 0;
             [self.dataList addObject:cellModel];
             [self.macCache setObject:@(i) forKey:beaconList[i]];
         }
@@ -229,7 +231,7 @@ MKCMBatchOtaCellDelegate>
     }];
 }
 
-#pragma mark - MKCMBatchOtaCellDelegate
+#pragma mark - MKCMBatchUpdateCellDelegate
 - (void)cm_batchOtaCell_delete:(NSInteger)index {
     if (index >= self.dataList.count) {
         return;
@@ -237,11 +239,11 @@ MKCMBatchOtaCellDelegate>
     @weakify(self);
     MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"Confirm" handler:^{
         @strongify(self);
-        MKCMBatchOtaCellModel *cellModel = self.dataList[index];
+        MKCMBatchUpdateCellModel *cellModel = self.dataList[index];
         [self.dataList removeObject:cellModel];
         [self.macCache removeAllObjects];
         for (NSInteger i = 0; i < self.dataList.count; i ++) {
-            MKCMBatchOtaCellModel *cellModel = self.dataList[i];
+            MKCMBatchUpdateCellModel *cellModel = self.dataList[i];
             cellModel.index = i;
             [self.macCache setObject:@(i) forKey:cellModel.macAddress];
         }
@@ -254,6 +256,12 @@ MKCMBatchOtaCellDelegate>
     [alertView addAction:confirmAction];
     [alertView addAction:cancelAction];
     [alertView showAlertWithTitle:@"Waring!" message:msg notificationName:@"mk_cm_needDismissAlert"];
+}
+
+- (void)cm_batchOtaCell_retry:(NSInteger)index {
+    MKCMBatchUpdateCellModel *cellModel = self.dataList[index];
+    cellModel.status = 0;
+    [self.tableView mk_reloadRow:index inSection:0 withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - interface
@@ -270,9 +278,9 @@ MKCMBatchOtaCellDelegate>
         [self.view showCentralToast:@"The current device is already in the list."];
         return;
     }
-    MKCMBatchOtaCellModel *cellModel = [[MKCMBatchOtaCellModel alloc] init];
+    MKCMBatchUpdateCellModel *cellModel = [[MKCMBatchUpdateCellModel alloc] init];
     cellModel.macAddress = macAddress;
-    cellModel.status = @"Wait";
+    cellModel.status = 0;
     
     if (self.dataList.count > 0) {
         [self.dataList insertObject:cellModel atIndex:0];
@@ -283,7 +291,7 @@ MKCMBatchOtaCellDelegate>
     [self.macCache removeAllObjects];
     
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
-        MKCMBatchOtaCellModel *cellModel = self.dataList[i];
+        MKCMBatchUpdateCellModel *cellModel = self.dataList[i];
         cellModel.index = i;
         
         [self.macCache setObject:@(i) forKey:cellModel.macAddress];
@@ -297,24 +305,9 @@ MKCMBatchOtaCellDelegate>
         [self.view showCentralToast:@"Current Device is not exsit!"];
         return;
     }
-    MKCMBatchOtaCellModel *cellModel = self.dataList[[index integerValue]];
-    cellModel.status = [self cellStatusMsg:status];
+    MKCMBatchUpdateCellModel *cellModel = self.dataList[[index integerValue]];
+    cellModel.status = status;
     [self.tableView mk_reloadRow:[index integerValue] inSection:0 withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (NSString *)cellStatusMsg:(cm_batchOtaStatus)status {
-    switch (status) {
-        case cm_batchOtaStatus_nornal:
-            return @"Wait";
-        case cm_batchOtaStatus_upgrading:
-            return @"Upgrading";
-        case cm_batchOtaStatus_timeout:
-            return @"timeout";
-        case cm_batchOtaStatus_success:
-            return @"Success";
-        case cm_batchOtaStatus_failed:
-            return @"Failed";
-    }
 }
 
 - (void)failed {

@@ -30,7 +30,7 @@ extern NSString *const MKCMDeviceModelOfflineNotification;
 
 @interface MKCMDeviceModel : NSObject<MKCMDeviceModeManagerDataProtocol>
 
-/// 设备类型  00:Commure  10:GW3
+/// 设备类型  00:Commure  10:GW3   20:MK110 Plus
 @property (nonatomic, copy)NSString *deviceType;
 
 /// MTQQ通信所需的ID，如果存在重复的，会出现交替上线的情况

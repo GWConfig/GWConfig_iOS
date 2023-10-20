@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *encryptionKey;
 
-- (void)configDataWithBeaconList:(NSArray <NSDictionary *>*)list
+@property (nonatomic, copy)NSString *password;
+
+- (void)configDataWithBeaconList:(NSArray <NSString *>*)list
                         sucBlock:(void (^)(void))sucBlock
                      failedBlock:(void (^)(NSError *error))failedBlock;
 

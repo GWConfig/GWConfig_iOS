@@ -2,8 +2,8 @@
 //  MKCMConfiguredGatewayCell.m
 //  MKCommureApp_Example
 //
-//  Created by aa on 2023/7/7.
-//  Copyright © 2023 aadyx2007@163.com. All rights reserved.
+//  Created by aa on 2023/10/18.
+//  Copyright © 2023 lovexiaoxia. All rights reserved.
 //
 
 #import "MKCMConfiguredGatewayCell.h"
@@ -22,8 +22,6 @@
 
 @property (nonatomic, strong)UILabel *statusLabel;
 
-@property (nonatomic, strong)UIButton *deleteButton;
-
 @end
 
 @implementation MKCMConfiguredGatewayCell
@@ -38,41 +36,28 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = RGBCOLOR(242, 242, 242);
         [self.contentView addSubview:self.macLabel];
         [self.contentView addSubview:self.statusLabel];
-        [self.contentView addSubview:self.deleteButton];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     [self.macLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
         make.width.mas_equalTo(120.f);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
-    [self.deleteButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-15.f);
-        make.width.mas_equalTo(30.f);
-        make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.height.mas_equalTo(25.f);
-    }];
+    
     [self.statusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.deleteButton.mas_left).mas_offset(-15.f);
+        make.right.mas_equalTo(-60);
         make.width.mas_equalTo(70.f);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
-}
-
-#pragma mark - event method
-- (void)deleteButtonPressed {
-    if ([self.delegate respondsToSelector:@selector(cm_ConfiguredGatewayCell_delete:)]) {
-        [self.delegate cm_ConfiguredGatewayCell_delete:self.dataModel.index];
-    }
 }
 
 #pragma mark - setter
@@ -83,7 +68,8 @@
         return;
     }
     self.macLabel.text = SafeStr(_dataModel.macAddress);
-    self.statusLabel.text = SafeStr(_dataModel.status);
+    self.statusLabel.textColor = (_dataModel.added ? [UIColor greenColor] : DEFAULT_TEXT_COLOR);
+    self.statusLabel.text = (_dataModel.added ? @"Added" : @"Wait");
 }
 
 #pragma mark - getter
@@ -107,15 +93,6 @@
     return _statusLabel;
 }
 
-- (UIButton *)deleteButton {
-    if (!_deleteButton) {
-        _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_deleteButton setImage:LOADICON(@"MKCommureApp", @"MKCMConfiguredGatewayCell", @"cm_subIcon.png") forState:UIControlStateNormal];
-        [_deleteButton addTarget:self
-                          action:@selector(deleteButtonPressed)
-                forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _deleteButton;
-}
 
 @end
+

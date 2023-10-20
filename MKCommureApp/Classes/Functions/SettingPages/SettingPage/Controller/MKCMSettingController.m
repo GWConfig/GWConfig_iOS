@@ -41,6 +41,7 @@
 #import "MKCMBatchDfuBeaconController.h"
 #import "MKCMBatchUpdateKeyController.h"
 #import "MKCMDeviceInfoController.h"
+#import "MKCMConnectBeaconTimeoutController.h"
 
 #import "MKCMSettingModel.h"
 
@@ -122,12 +123,18 @@ UITableViewDataSource>
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 3) {
+        //Connect Beacon timeout
+        MKCMConnectBeaconTimeoutController *vc = [[MKCMConnectBeaconTimeoutController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    if (indexPath.section == 0 && indexPath.row == 4) {
         //System time
         MKCMSystemTimeController *vc = [[MKCMSystemTimeController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    if (indexPath.section == 0 && indexPath.row == 4) {
+    if (indexPath.section == 0 && indexPath.row == 5) {
         //Reset device by button
         MKCMResetByButtonController *vc = [[MKCMResetByButtonController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -409,9 +416,9 @@ UITableViewDataSource>
         [self configDataToDevice];
     }];
     MKAlertViewTextField *textField = [[MKAlertViewTextField alloc] initWithTextValue:@""
-                                                                          placeholder:@"1-10, unit: minute"
+                                                                          placeholder:@"1-65535, unit: second"
                                                                         textFieldType:mk_normal
-                                                                            maxLength:2
+                                                                            maxLength:5
                                                                               handler:^(NSString * _Nonnull text) {
         @strongify(self);
         self.dataModel.advTime = text;
@@ -479,33 +486,29 @@ UITableViewDataSource>
 }
 
 - (void)loadSection0Datas {
-//    MKSettingTextCellModel *cellModel1 = [[MKSettingTextCellModel alloc] init];
-//    cellModel1.leftMsg = @"Indicator settings";
-//    [self.section0List addObject:cellModel1];
+    MKSettingTextCellModel *cellModel1 = [[MKSettingTextCellModel alloc] init];
+    cellModel1.leftMsg = @"Network status report interval";
+    [self.section0List addObject:cellModel1];
     
     MKSettingTextCellModel *cellModel2 = [[MKSettingTextCellModel alloc] init];
-    cellModel2.leftMsg = @"Network status report interval";
+    cellModel2.leftMsg = @"Communication timeout";
     [self.section0List addObject:cellModel2];
     
-//    MKSettingTextCellModel *cellModel3 = [[MKSettingTextCellModel alloc] init];
-//    cellModel3.leftMsg = @"Reconnect timeout";
-//    [self.section0List addObject:cellModel3];
+    MKSettingTextCellModel *cellModel3 = [[MKSettingTextCellModel alloc] init];
+    cellModel3.leftMsg = @"Data report timeout";
+    [self.section0List addObject:cellModel3];
     
     MKSettingTextCellModel *cellModel4 = [[MKSettingTextCellModel alloc] init];
-    cellModel4.leftMsg = @"Communication timeout";
+    cellModel4.leftMsg = @"Connect Beacon timeout";
     [self.section0List addObject:cellModel4];
     
     MKSettingTextCellModel *cellModel5 = [[MKSettingTextCellModel alloc] init];
-    cellModel5.leftMsg = @"Data report timeout";
+    cellModel5.leftMsg = @"System time";
     [self.section0List addObject:cellModel5];
     
     MKSettingTextCellModel *cellModel6 = [[MKSettingTextCellModel alloc] init];
-    cellModel6.leftMsg = @"System time";
+    cellModel6.leftMsg = @"Reset device by button";
     [self.section0List addObject:cellModel6];
-    
-    MKSettingTextCellModel *cellModel7 = [[MKSettingTextCellModel alloc] init];
-    cellModel7.leftMsg = @"Reset device by button";
-    [self.section0List addObject:cellModel7];
 }
 
 - (void)loadSection1Datas {

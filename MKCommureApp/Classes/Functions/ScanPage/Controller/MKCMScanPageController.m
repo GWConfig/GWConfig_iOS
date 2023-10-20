@@ -27,7 +27,7 @@
 
 #import "MKCMDeviceParamsListController.h"
 #import "MKCMBleDeviceParamsForGWTController.h"
-//#import "MKCMConfiguredGatewayController.h"
+#import "MKCMConfiguredGatewayController.h"
 
 #import "MKCMScanPageCell.h"
 
@@ -58,6 +58,8 @@ mk_cm_centralManagerScanDelegate>
 
 /// 保存当前密码输入框ascii字符部分
 @property (nonatomic, copy)NSString *asciiText;
+
+@property (nonatomic, strong)UIView *addView;
 
 @end
 
@@ -145,8 +147,8 @@ mk_cm_centralManagerScanDelegate>
 
 #pragma mark - event method
 - (void)addConfiguredDevice {
-//    MKCMConfiguredGatewayController *vc = [[MKCMConfiguredGatewayController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    MKCMConfiguredGatewayController *vc = [[MKCMConfiguredGatewayController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 刷新
@@ -303,13 +305,29 @@ mk_cm_centralManagerScanDelegate>
         make.centerY.mas_equalTo(self.rightButton.mas_centerY);
         make.height.mas_equalTo(22.f);
     }];
-    
+    [self.view addSubview:self.addView];
+    [self.addView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(-VirtualHomeHeight);
+        make.height.mas_equalTo(60.f);
+    }];
+    UIButton *addButton = [MKCustomUIAdopter customButtonWithTitle:@"Add configured device"
+                                                            target:self
+                                                            action:@selector(addConfiguredDevice)];
+    [self.addView addSubview:addButton];
+    [addButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(40);
+        make.right.mas_equalTo(-40);
+        make.centerY.mas_equalTo(self.addView.mas_centerY);
+        make.height.mas_equalTo(35);
+    }];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10.f);
         make.right.mas_equalTo(-10.f);
         make.top.mas_equalTo(defaultTopInset);
-        make.bottom.mas_equalTo(-VirtualHomeHeight);
+        make.bottom.mas_equalTo(self.addView.mas_top);
     }];
 }
 
@@ -319,8 +337,6 @@ mk_cm_centralManagerScanDelegate>
         _tableView = [[MKBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
-        _tableView.tableFooterView = [self tableFooterView];
     }
     return _tableView;
 }
@@ -347,17 +363,12 @@ mk_cm_centralManagerScanDelegate>
     return _deviceCache;
 }
 
-- (UIView *)tableFooterView {
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 60)];
-    footerView.backgroundColor = COLOR_WHITE_MACROS;
-    
-    UIButton *addButton = [MKCustomUIAdopter customButtonWithTitle:@"Add configured device"
-                                                            target:self
-                                                            action:@selector(addConfiguredDevice)];
-    addButton.frame = CGRectMake(40.f, 10.f, kViewWidth - 2 * 40.f, 35.f);
-    [footerView addSubview:addButton];
-    
-    return footerView;
+- (UIView *)addView {
+    if (!_addView) {
+        _addView = [[UIView alloc] init];
+        _addView.backgroundColor = COLOR_WHITE_MACROS;
+    }
+    return _addView;
 }
 
 @end

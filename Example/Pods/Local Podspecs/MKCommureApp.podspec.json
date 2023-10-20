@@ -124,6 +124,10 @@
               "source_files": "MKCommureApp/Classes/Expand/View/AlertView/**"
             },
             {
+              "name": "BatchUpdateCell",
+              "source_files": "MKCommureApp/Classes/Expand/View/BatchUpdateCell/**"
+            },
+            {
               "name": "BleWifiSettingsCell",
               "source_files": "MKCommureApp/Classes/Expand/View/BleWifiSettingsCell/**"
             },
@@ -280,6 +284,34 @@
             {
               "name": "View",
               "source_files": "MKCommureApp/Classes/Functions/BatchOtaPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "ConfiguredGatewayPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Controller/**",
+              "dependencies": {
+                "MKCommureApp/Functions/ConfiguredGatewayPage/Model": [
+
+                ],
+                "MKCommureApp/Functions/ConfiguredGatewayPage/View": [
+
+                ],
+                "MKCommureApp/Functions/QRCodePage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKCommureApp/Classes/Functions/ConfiguredGatewayPage/View/**"
             }
           ]
         },
@@ -871,6 +903,9 @@
                 ],
                 "MKCommureApp/Functions/AddDeviceModules": [
 
+                ],
+                "MKCommureApp/Functions/ConfiguredGatewayPage/Controller": [
+
                 ]
               }
             },
@@ -1150,6 +1185,24 @@
                     {
                       "name": "Model",
                       "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ConnectBeaconTimeout",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller/**",
+                      "dependencies": {
+                        "MKCommureApp/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKCommureApp/Classes/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model/**"
                     }
                   ]
                 },

@@ -10,7 +10,6 @@ typedef NS_ENUM(NSInteger, mk_cm_serverOperationID) {
     mk_cm_server_taskConfigOTAHostOperation,                    //OTA
     mk_cm_server_taskConfigNTPServerOperation,                  //配置NTP服务器信息
     mk_cm_server_taskConfigDeviceTimeZoneOperation,             //配置设备的UTC时间
-    mk_cm_server_taskConfigCommunicationTimeoutOperation,       //配置通信超时时间
     mk_cm_server_taskConfigIndicatorLightStatusOperation,       //配置指示灯开关
     mk_cm_server_taskResetDeviceOperation,              //恢复出厂设置
     mk_cm_server_taskConfigBleAdvStatusOperation,       //配置蓝牙广播状态
@@ -30,6 +29,8 @@ typedef NS_ENUM(NSInteger, mk_cm_serverOperationID) {
     mk_cm_server_taskConfigDataReportTimeoutOperation,      //配置数据包上报超时时间
     mk_cm_server_taskConfigBXBDecryptTimeOffsetOperation,   //配置BXP-B解析时间偏移
     mk_cm_server_taskConfigBXBDecryptKeyOperation,          //配置BXP-B秘钥
+    mk_cm_server_taskConfigCommunicationTimeoutOperation,       //配置通信超时时间
+    mk_cm_server_taskConfigConnectBeaconTimeoutOperation,       //配置BXP-B连接扫描等待超时时间
     
     mk_cm_server_taskConnectBXPButtonWithMacOperation,      //连接指定mac地址的BXP-Button设备
     
@@ -57,7 +58,6 @@ typedef NS_ENUM(NSInteger, mk_cm_serverOperationID) {
     mk_cm_server_taskReadNetworkReconnectTimeoutOperation,      //读取网络重连超时时间
     mk_cm_server_taskReadNTPServerOperation,                    //读取NTP服务器信息
     mk_cm_server_taskReadDeviceUTCTimeOperation,                //读取当前UTC时间
-    mk_cm_server_taskReadCommunicateTimeoutOperation,           //读取通信超时时间
     mk_cm_server_taskReadIndicatorLightStatusOperation,         //读取指示灯开关
     mk_cm_server_taskReadOtaStatusOperation,                    //读取当前设备OTA状态
     mk_cm_server_taskReadBleAdvStatusOperation,                 //读取蓝牙广播状态
@@ -75,6 +75,8 @@ typedef NS_ENUM(NSInteger, mk_cm_serverOperationID) {
     mk_cm_server_taskReadDataReportTimeoutOperation,    //读取数据上报超时时间
     mk_cm_server_taskReadBXBDecryptTimeOffsetOperation, //读取BXP-B解析时间偏移
     mk_cm_server_taskReadBXBDecryptKeyOperation,        //读取BXP-B秘钥
+    mk_cm_server_taskReadCommunicateTimeoutOperation,           //读取通信超时时间
+    mk_cm_server_taskReadConnectBeaconTimeoutOperation,         //读取BXP-B连接扫描等待超时时间
     
     mk_cm_server_taskReadBXPButtonConnectedDeviceInfoOperation, //读取已连接BXP-Button设备信息
     mk_cm_server_taskDisconnectBleDeviceOperation,          //断开连接
