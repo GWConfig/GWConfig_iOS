@@ -10,4 +10,12 @@
 
 @implementation MKCMConfiguredGatewayModel
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.pubTopic = @"/provision/gateway/data";
+        self.subTopic = @"/provision/gateway/cmd";
+    }
+    return self;
+}
+
 @end

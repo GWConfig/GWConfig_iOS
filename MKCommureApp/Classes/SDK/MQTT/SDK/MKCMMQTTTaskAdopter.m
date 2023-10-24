@@ -258,6 +258,22 @@
         }
         return [self dataParserGetDataSuccess:json operationID:mk_cm_server_taskConfigBatterySelfTestLedParamsOperation];
     }
+    if (msgID == 3173) {
+        //获取按键log
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cm_server_taskReadButtonLogOperation];
+    }
+    if (msgID == 3175) {
+        //清除按键log
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cm_server_taskClearButtonLogOperation];
+    }
     if (msgID == 3301) {
         //网关连接指定mac地址的蓝牙设备
         BOOL success = ([json[@"result_code"] integerValue] == 0);

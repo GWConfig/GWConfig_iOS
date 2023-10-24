@@ -535,6 +535,20 @@ TODO: Add long description of the pod here.
              
          end
          
+         sss.subspec 'ButtonLogPage' do |ssss|
+             ssss.subspec 'Controller' do |sssss|
+                 sssss.source_files = 'MKCommureApp/Classes/Functions/ManageBleModules/ButtonLogPage/Controller/**'
+                 
+                 sssss.dependency 'MKCommureApp/Functions/ManageBleModules/ButtonLogPage/View'
+                 
+             end
+             
+             ssss.subspec 'View' do |sssss|
+                 sssss.source_files = 'MKCommureApp/Classes/Functions/ManageBleModules/ButtonLogPage/View/**'
+             end
+             
+         end
+         
          sss.subspec 'ConnectedPage' do |ssss|
              ssss.subspec 'Controller' do |sssss|
                  sssss.source_files = 'MKCommureApp/Classes/Functions/ManageBleModules/ConnectedPage/Controller/**'
@@ -549,6 +563,7 @@ TODO: Add long description of the pod here.
                  sssss.dependency 'MKCommureApp/Functions/ManageBleModules/AccelerometerPage'
                  sssss.dependency 'MKCommureApp/Functions/ManageBleModules/SleepModePage'
                  sssss.dependency 'MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage'
+                 sssss.dependency 'MKCommureApp/Functions/ManageBleModules/ButtonLogPage'
                  
              end
              

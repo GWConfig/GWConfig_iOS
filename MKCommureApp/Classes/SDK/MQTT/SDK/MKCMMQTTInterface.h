@@ -1102,6 +1102,30 @@ NS_ASSUME_NONNULL_BEGIN
                                                     sucBlock:(void (^)(id returnData))sucBlock
                                                  failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Read Button Log.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cm_readButtonLogWithBleMacAddress:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Clear Button Log.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cm_clearButtonLogWithBleMacAddress:(NSString *)bleMacAddress
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock;
+
 
 @end
 

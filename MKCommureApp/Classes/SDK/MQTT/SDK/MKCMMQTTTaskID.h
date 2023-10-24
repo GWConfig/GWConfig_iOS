@@ -103,4 +103,8 @@ typedef NS_ENUM(NSInteger, mk_cm_serverOperationID) {
     mk_cm_server_taskConfigPasswordVerificationOperation,   //设置连接密码
     mk_cm_server_taskReadPasswordVerificationStatusOperation,     //读取密码校验开关状态
     mk_cm_server_taskConfigPasswordVerificationStatusOperation,     //设置密码校验开关状态
+    
+    
+    mk_cm_server_taskReadButtonLogOperation,                //获取按键log
+    mk_cm_server_taskClearButtonLogOperation,               //清除按键log
 };

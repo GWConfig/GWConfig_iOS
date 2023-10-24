@@ -85,6 +85,8 @@
 #import "MKCMBatteryTestModel.h"
 #import "MKCMBeaconOTAController.h"
 #import "MKCMBeaconOTAPageModel.h"
+#import "MKCMButtonLogController.h"
+#import "MKCMButtonLogHeader.h"
 #import "MKCMDeviceConnectedController.h"
 #import "MKCMDeviceConnectedModel.h"
 #import "MKCMDeviceConnectedButtonCell.h"

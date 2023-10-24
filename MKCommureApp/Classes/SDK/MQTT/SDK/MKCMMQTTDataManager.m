@@ -35,6 +35,8 @@ NSString *const MKCMReceiveBxpButtonBatchDfuResultNotification = @"MKCMReceiveBx
 NSString *const MKCMReceiveBxpButtonUpdateKeyResultNotification = @"MKCMReceiveBxpButtonUpdateKeyResultNotification";
 NSString *const MKCMReceiveBxpButtonBatchUpdateKeyResultNotification = @"MKCMReceiveBxpButtonBatchUpdateKeyResultNotification";
 
+NSString *const MKCMReceiveButtonLogNotification = @"MKCMReceiveButtonLogNotification";
+
 
 static MKCMMQTTDataManager *manager = nil;
 static dispatch_once_t onceToken;
@@ -139,6 +141,13 @@ static dispatch_once_t onceToken;
     if (msgID == 3108) {
         //网关与已连接的BXP-Button设备断开了链接，非主动断开
         [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveGatewayDisconnectBXPButtonNotification
+                                                            object:nil
+                                                          userInfo:data];
+        return;
+    }
+    if (msgID == 3176) {
+        //按键操作log
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKCMReceiveButtonLogNotification
                                                             object:nil
                                                           userInfo:data];
         return;

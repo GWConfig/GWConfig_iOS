@@ -18,6 +18,7 @@
 #import "MKHudManager.h"
 #import "MKCustomUIAdopter.h"
 #import "MKAlertView.h"
+#import "NirKxMenu.h"
 
 #import "MKNetworkManager.h"
 
@@ -98,8 +99,44 @@ MKCMDeviceModelDelegate>
 
 #pragma mark - super method
 - (void)leftButtonMethod {
-    MKCMServerForAppController *vc = [[MKCMServerForAppController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    KxMenuItem *aboutItem = [KxMenuItem menuItem:@"About"
+                                           image:nil
+                                          target:self
+                                          action:@selector(pushAboutPage)];
+    KxMenuItem *serverItem = [KxMenuItem menuItem:@"Server"
+                                            image:nil
+                                           target:self
+                                           action:@selector(pushServerForApp)];
+    Color textColor = {
+        R:1,
+        G:1,
+        B:1
+    };
+    Color menuBackgroundColor = {
+        R:(47.f / 255.0),
+        G:(132.f / 255.0),
+        B:(208.f / 255.0)
+    };
+    OptionalConfiguration options = {
+                arrowSize: 9,  //指示箭头大小
+                marginXSpacing: 5,  //MenuItem左右边距
+                marginYSpacing: 9,  //MenuItem上下边距
+                intervalSpacing: 25,  //MenuItemImage与MenuItemTitle的间距
+                menuCornerRadius: 6.5,  //菜单圆角半径
+                maskToBackground: true,  //是否添加覆盖在原View上的半透明遮罩
+                shadowOfMenu: false,  //是否添加菜单阴影
+                hasSeperatorLine: true,  //是否设置分割线
+                seperatorLineHasInsets: false,  //是否在分割线两侧留下Insets
+                textColor: textColor,  //menuItem字体颜色
+                menuBackgroundColor:menuBackgroundColor   //菜单的底色
+    };
+    
+    CGRect rect = CGRectMake(self.leftButton.frame.origin.x, self.leftButton.frame.origin.y + 52.f, self.leftButton.frame.size.width, self.leftButton.frame.size.height);
+    NSArray *itemList = @[aboutItem,serverItem];
+    [KxMenu showMenuInView:self.view
+                  fromRect:rect
+                 menuItems:itemList
+               withOptions:options];
 }
 
 - (void)rightButtonMethod {
@@ -172,6 +209,17 @@ MKCMDeviceModelDelegate>
 /// @param deviceID 当前设备的deviceID
 - (void)cm_deviceOfflineWithMacAddress:(NSString *)macAddress {
     [self deviceModelOnlineStateChanged:MKCMDeviceModelStateOffline macAddress:macAddress];
+}
+
+#pragma mark - event method
+- (void)pushAboutPage {
+    MKCMAboutController *vc = [[MKCMAboutController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)pushServerForApp {
+    MKCMServerForAppController *vc = [[MKCMServerForAppController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - note

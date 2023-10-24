@@ -43,6 +43,7 @@
 #import "MKCMAccelerometerController.h"
 #import "MKCMSleepModeController.h"
 #import "MKAdvParamsConfigController.h"
+#import "MKCMButtonLogController.h"
 
 @interface MKCMDeviceConnectedController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -207,6 +208,14 @@ MKCMDeviceConnectedButtonCellDelegate>
         [self showResetAlert];
         return;
     }
+    if (indexPath.section == 5 && indexPath.row == 8) {
+        //Button log
+        MKCMButtonLogController *vc = [[MKCMButtonLogController alloc] init];
+        vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
     if (indexPath.section == 6 && indexPath.row == 0) {
         //ADV parameters
         MKAdvParamsConfigController *vc = [[MKAdvParamsConfigController alloc] init];
@@ -868,6 +877,10 @@ MKCMDeviceConnectedButtonCellDelegate>
     MKSettingTextCellModel *cellModel9 = [[MKSettingTextCellModel alloc] init];
     cellModel9.leftMsg = @"Restore to factory settings";
     [self.section5List addObject:cellModel9];
+    
+    MKSettingTextCellModel *cellModel10 = [[MKSettingTextCellModel alloc] init];
+    cellModel10.leftMsg = @"Button log";
+    [self.section5List addObject:cellModel10];
 }
 
 - (void)loadSection6Datas {

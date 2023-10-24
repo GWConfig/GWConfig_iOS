@@ -784,6 +784,24 @@
               ]
             },
             {
+              "name": "ButtonLogPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/ButtonLogPage/Controller/**",
+                  "dependencies": {
+                    "MKCommureApp/Functions/ManageBleModules/ButtonLogPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKCommureApp/Classes/Functions/ManageBleModules/ButtonLogPage/View/**"
+                }
+              ]
+            },
+            {
               "name": "ConnectedPage",
               "subspecs": [
                 {
@@ -815,6 +833,9 @@
 
                     ],
                     "MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage": [
+
+                    ],
+                    "MKCommureApp/Functions/ManageBleModules/ButtonLogPage": [
 
                     ]
                   }

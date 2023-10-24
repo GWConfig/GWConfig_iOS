@@ -902,6 +902,7 @@ PODS:
     - MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage (= 0.0.2)
     - MKCommureApp/Functions/ManageBleModules/BatteryTestPage (= 0.0.2)
     - MKCommureApp/Functions/ManageBleModules/BeaconOTAPage (= 0.0.2)
+    - MKCommureApp/Functions/ManageBleModules/ButtonLogPage (= 0.0.2)
     - MKCommureApp/Functions/ManageBleModules/ConnectedPage (= 0.0.2)
     - MKCommureApp/Functions/ManageBleModules/ManageBleDevicesPage (= 0.0.2)
     - MKCommureApp/Functions/ManageBleModules/SelfTestTriggerPage (= 0.0.2)
@@ -1031,6 +1032,36 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
+  - MKCommureApp/Functions/ManageBleModules/ButtonLogPage (0.0.2):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/ManageBleModules/ButtonLogPage/Controller (= 0.0.2)
+    - MKCommureApp/Functions/ManageBleModules/ButtonLogPage/View (= 0.0.2)
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/ManageBleModules/ButtonLogPage/Controller (0.0.2):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/Functions/ManageBleModules/ButtonLogPage/View
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - MKCommureApp/Functions/ManageBleModules/ButtonLogPage/View (0.0.2):
+    - MKBaseModuleLibrary
+    - MKCommureApp/CTMediator
+    - MKCommureApp/DeviceModel
+    - MKCommureApp/Expand
+    - MKCommureApp/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
   - MKCommureApp/Functions/ManageBleModules/ConnectedPage (0.0.2):
     - MKBaseModuleLibrary
     - MKCommureApp/CTMediator
@@ -1052,6 +1083,7 @@ PODS:
     - MKCommureApp/Functions/ManageBleModules/AdvParamsConfigPage
     - MKCommureApp/Functions/ManageBleModules/BatteryTestPage
     - MKCommureApp/Functions/ManageBleModules/BeaconOTAPage
+    - MKCommureApp/Functions/ManageBleModules/ButtonLogPage
     - MKCommureApp/Functions/ManageBleModules/ConnectedPage/Model
     - MKCommureApp/Functions/ManageBleModules/ConnectedPage/View
     - MKCommureApp/Functions/ManageBleModules/SelfTestTriggerPage
@@ -2369,7 +2401,7 @@ SPEC CHECKSUMS:
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
   MKBaseModuleLibrary: 8d0292b517d87552083f9180eeaa4569605707db
   MKBaseMQTTModule: 5434692b017865eede3b2ac6d2b4df52acd65a91
-  MKCommureApp: 1e4bf7766a3487dd7755acf729f7c032ebf0546c
+  MKCommureApp: 97aaba7d036baea7d1db8f4e802f1fb6b60eefe4
   MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   SGQRCode: 6ad664d63f38f2842503bc5087812c5a3136d924
