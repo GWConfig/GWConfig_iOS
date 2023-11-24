@@ -150,8 +150,15 @@ MKCMButtonLogHeaderDelegate>
     if (!ValidDict(userInfo) || ![userInfo[@"data"][@"mac"] isEqualToString:self.bleMac]) {
         return;
     }
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:([userInfo[@"data"][@"timestamp"] longLongValue] / 1000)];
+    long long milliseconds = [userInfo[@"data"][@"timestamp"] longLongValue];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:(milliseconds / 1000.f)];
     NSString *timeString = [self.formatter stringFromDate:date];
+    // 添加毫秒
+    NSString *millisecondString = [NSString stringWithFormat:@".%03d", (int)(milliseconds) % 1000];
+    
+    timeString = [timeString stringByAppendingString:millisecondString];
+    
+    
     NSString *status = [NSString stringWithFormat:@"%@%@",@"0",userInfo[@"data"][@"key_status"]];
     NSString *text = [NSString stringWithFormat:@"\n%@\t%@\t%@",timeString,@"+",status];
     self.textView.text = [self.textView.text stringByAppendingString:text];
@@ -162,6 +169,7 @@ MKCMButtonLogHeaderDelegate>
 - (void)sendClearCommand {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
     [MKCMMQTTInterface cm_clearButtonLogWithBleMacAddress:self.bleMac macAddress:[MKCMDeviceModeManager shared].macAddress topic:[MKCMDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        self.textView.text = @"";
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Setup succeed!"];
     } failedBlock:^(NSError * _Nonnull error) {

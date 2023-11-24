@@ -333,7 +333,7 @@ NSString *const mk_cm_contentKey = @"mk_cm_contentKey";
             @"dns":dns
         };
         operationID = mk_cm_taskReadEthernetNetworkIpInfosOperation;
-    }else if ([cmd isEqualToString:@"50"]) {
+    }else if ([cmd isEqualToString:@"4d"]) {
         //读取国家地区参数
         NSString *type = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)];
         resultDic = @{@"parameter":type};

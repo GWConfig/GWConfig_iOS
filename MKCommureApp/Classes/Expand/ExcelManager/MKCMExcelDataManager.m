@@ -588,14 +588,10 @@ static NSString *const defaultKeyValueString = @"value:";
         if ([cell.column isEqualToString:@"A"]) {
             //MAC地址列
             [macList addObject:cell];
-        }else if ([cell.column isEqualToString:@"B"]) {
-            //Password列
-            [passwordList addObject:cell];
         }
     }
     //去掉每一列第一行说明性文字
     [macList removeObjectAtIndex:0];
-    [passwordList removeObjectAtIndex:0];
     NSMutableArray *resultList = [NSMutableArray array];
     NSInteger totalNum = macList.count;
     for (NSInteger i = 0; i < totalNum; i ++) {
@@ -604,18 +600,10 @@ static NSString *const defaultKeyValueString = @"value:";
         macAddress = [macAddress stringByReplacingOccurrencesOfString:@" " withString:@""];
         if (macAddress.length == 12 && [macAddress regularExpressions:isHexadecimal]) {
             //必须是有效的mac地址
-            for (NSInteger j = 0; j < totalNum; j ++) {
-                MKExcelCell *passwordCell = passwordList[j];
-                if (macCell.row == passwordCell.row) {
-                    //同一行的mac对应password
-                    NSDictionary *dic = @{
-                        @"macAddress":SafeStr(macCell.stringValue),
-                        @"password":SafeStr(passwordCell.stringValue),
-                    };
-                    [resultList addObject:dic];
-                    break;
-                }
-            }
+            NSDictionary *dic = @{
+                @"macAddress":SafeStr(macCell.stringValue),
+            };
+            [resultList addObject:dic];
         }
     }
     if (sucBlock) {
