@@ -7,7 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007666F72ADF8E25008605CA /* MKCMTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007666F52ADF8E25008605CA /* MKCMTestController.m */; };
+		00E895FB2B10776100AF9FD3 /* CTMediator+MKCommureAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E895EB2B10776100AF9FD3 /* CTMediator+MKCommureAdd.m */; };
+		00E895FC2B10776100AF9FD3 /* mk_commure_addUsIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895EF2B10776100AF9FD3 /* mk_commure_addUsIcon@3x.png */; };
+		00E895FD2B10776100AF9FD3 /* mk_commure_telIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F02B10776100AF9FD3 /* mk_commure_telIcon@2x.png */; };
+		00E895FE2B10776100AF9FD3 /* mk_commure_shouceIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F12B10776100AF9FD3 /* mk_commure_shouceIcon@3x.png */; };
+		00E895FF2B10776100AF9FD3 /* mk_commure_shouceIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F22B10776100AF9FD3 /* mk_commure_shouceIcon@2x.png */; };
+		00E896002B10776100AF9FD3 /* mk_commure_telIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F32B10776100AF9FD3 /* mk_commure_telIcon@3x.png */; };
+		00E896012B10776100AF9FD3 /* mk_commure_addUsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F42B10776100AF9FD3 /* mk_commure_addUsIcon@2x.png */; };
+		00E896022B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F52B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@3x.png */; };
+		00E896032B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F62B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@2x.png */; };
+		00E896042B10776100AF9FD3 /* mk_commure_faxIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F72B10776100AF9FD3 /* mk_commure_faxIcon@2x.png */; };
+		00E896052B10776100AF9FD3 /* mk_commure_faxIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F82B10776100AF9FD3 /* mk_commure_faxIcon@3x.png */; };
+		00E896062B10776100AF9FD3 /* mk_commure_aboutIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895F92B10776100AF9FD3 /* mk_commure_aboutIcon@2x.png */; };
+		00E896072B10776100AF9FD3 /* mk_commure_aboutIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E895FA2B10776100AF9FD3 /* mk_commure_aboutIcon@3x.png */; };
+		00E896132B1078E800AF9FD3 /* MKOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E8960A2B1078E800AF9FD3 /* MKOptionsController.m */; };
+		00E896142B1078E800AF9FD3 /* MKCommureAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E8960F2B1078E800AF9FD3 /* MKCommureAboutController.m */; };
+		00E896152B1078E800AF9FD3 /* MKCommureAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E896122B1078E800AF9FD3 /* MKCommureAboutCell.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -35,8 +50,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		007666F52ADF8E25008605CA /* MKCMTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCMTestController.m; sourceTree = "<group>"; };
-		007666F62ADF8E25008605CA /* MKCMTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCMTestController.h; sourceTree = "<group>"; };
+		00E895EB2B10776100AF9FD3 /* CTMediator+MKCommureAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTMediator+MKCommureAdd.m"; sourceTree = "<group>"; };
+		00E895EC2B10776100AF9FD3 /* CTMediator+MKCommureAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTMediator+MKCommureAdd.h"; sourceTree = "<group>"; };
+		00E895ED2B10776100AF9FD3 /* MKCommureMediatorKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCommureMediatorKey.h; sourceTree = "<group>"; };
+		00E895EF2B10776100AF9FD3 /* mk_commure_addUsIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_addUsIcon@3x.png"; sourceTree = "<group>"; };
+		00E895F02B10776100AF9FD3 /* mk_commure_telIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_telIcon@2x.png"; sourceTree = "<group>"; };
+		00E895F12B10776100AF9FD3 /* mk_commure_shouceIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_shouceIcon@3x.png"; sourceTree = "<group>"; };
+		00E895F22B10776100AF9FD3 /* mk_commure_shouceIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_shouceIcon@2x.png"; sourceTree = "<group>"; };
+		00E895F32B10776100AF9FD3 /* mk_commure_telIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_telIcon@3x.png"; sourceTree = "<group>"; };
+		00E895F42B10776100AF9FD3 /* mk_commure_addUsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_addUsIcon@2x.png"; sourceTree = "<group>"; };
+		00E895F52B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_scanRightAboutIcon@3x.png"; sourceTree = "<group>"; };
+		00E895F62B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_scanRightAboutIcon@2x.png"; sourceTree = "<group>"; };
+		00E895F72B10776100AF9FD3 /* mk_commure_faxIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_faxIcon@2x.png"; sourceTree = "<group>"; };
+		00E895F82B10776100AF9FD3 /* mk_commure_faxIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_faxIcon@3x.png"; sourceTree = "<group>"; };
+		00E895F92B10776100AF9FD3 /* mk_commure_aboutIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_aboutIcon@2x.png"; sourceTree = "<group>"; };
+		00E895FA2B10776100AF9FD3 /* mk_commure_aboutIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mk_commure_aboutIcon@3x.png"; sourceTree = "<group>"; };
+		00E8960A2B1078E800AF9FD3 /* MKOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOptionsController.m; sourceTree = "<group>"; };
+		00E8960B2B1078E800AF9FD3 /* MKOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOptionsController.h; sourceTree = "<group>"; };
+		00E8960E2B1078E800AF9FD3 /* MKCommureAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCommureAboutController.h; sourceTree = "<group>"; };
+		00E8960F2B1078E800AF9FD3 /* MKCommureAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommureAboutController.m; sourceTree = "<group>"; };
+		00E896112B1078E800AF9FD3 /* MKCommureAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCommureAboutCell.h; sourceTree = "<group>"; };
+		00E896122B1078E800AF9FD3 /* MKCommureAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommureAboutCell.m; sourceTree = "<group>"; };
 		35847C61A3FCC4FA4641C318 /* Pods_MKCommureApp_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MKCommureApp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39E36A0A0239057A22D2EB98 /* Pods-MKCommureApp_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKCommureApp_Example.release.xcconfig"; path = "Target Support Files/Pods-MKCommureApp_Example/Pods-MKCommureApp_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4CDBE876FAB645CB219FB3C7 /* Pods-MKCommureApp_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKCommureApp_Example.debug.xcconfig"; path = "Target Support Files/Pods-MKCommureApp_Example/Pods-MKCommureApp_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,10 +125,83 @@
 		007666F42ADF8E25008605CA /* Functions */ = {
 			isa = PBXGroup;
 			children = (
-				007666F52ADF8E25008605CA /* MKCMTestController.m */,
-				007666F62ADF8E25008605CA /* MKCMTestController.h */,
+				00E8960C2B1078E800AF9FD3 /* AboutPage */,
+				00E896082B1078E800AF9FD3 /* OptionsPage */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		00E895EA2B10776100AF9FD3 /* CTMediator */ = {
+			isa = PBXGroup;
+			children = (
+				00E895EC2B10776100AF9FD3 /* CTMediator+MKCommureAdd.h */,
+				00E895EB2B10776100AF9FD3 /* CTMediator+MKCommureAdd.m */,
+				00E895ED2B10776100AF9FD3 /* MKCommureMediatorKey.h */,
+			);
+			path = CTMediator;
+			sourceTree = "<group>";
+		};
+		00E895EE2B10776100AF9FD3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				00E895EF2B10776100AF9FD3 /* mk_commure_addUsIcon@3x.png */,
+				00E895F02B10776100AF9FD3 /* mk_commure_telIcon@2x.png */,
+				00E895F12B10776100AF9FD3 /* mk_commure_shouceIcon@3x.png */,
+				00E895F22B10776100AF9FD3 /* mk_commure_shouceIcon@2x.png */,
+				00E895F32B10776100AF9FD3 /* mk_commure_telIcon@3x.png */,
+				00E895F42B10776100AF9FD3 /* mk_commure_addUsIcon@2x.png */,
+				00E895F52B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@3x.png */,
+				00E895F62B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@2x.png */,
+				00E895F72B10776100AF9FD3 /* mk_commure_faxIcon@2x.png */,
+				00E895F82B10776100AF9FD3 /* mk_commure_faxIcon@3x.png */,
+				00E895F92B10776100AF9FD3 /* mk_commure_aboutIcon@2x.png */,
+				00E895FA2B10776100AF9FD3 /* mk_commure_aboutIcon@3x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		00E896082B1078E800AF9FD3 /* OptionsPage */ = {
+			isa = PBXGroup;
+			children = (
+				00E896092B1078E800AF9FD3 /* Controller */,
+			);
+			path = OptionsPage;
+			sourceTree = "<group>";
+		};
+		00E896092B1078E800AF9FD3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				00E8960B2B1078E800AF9FD3 /* MKOptionsController.h */,
+				00E8960A2B1078E800AF9FD3 /* MKOptionsController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		00E8960C2B1078E800AF9FD3 /* AboutPage */ = {
+			isa = PBXGroup;
+			children = (
+				00E8960D2B1078E800AF9FD3 /* Controller */,
+				00E896102B1078E800AF9FD3 /* View */,
+			);
+			path = AboutPage;
+			sourceTree = "<group>";
+		};
+		00E8960D2B1078E800AF9FD3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				00E8960E2B1078E800AF9FD3 /* MKCommureAboutController.h */,
+				00E8960F2B1078E800AF9FD3 /* MKCommureAboutController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		00E896102B1078E800AF9FD3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00E896112B1078E800AF9FD3 /* MKCommureAboutCell.h */,
+				00E896122B1078E800AF9FD3 /* MKCommureAboutCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		11589F60AEB9B71FA73CC2EA /* Pods */ = {
@@ -142,6 +249,8 @@
 		6003F593195388D20070C39A /* Example for MKCommureApp */ = {
 			isa = PBXGroup;
 			children = (
+				00E895EA2B10776100AF9FD3 /* CTMediator */,
+				00E895EE2B10776100AF9FD3 /* Resource */,
 				007666F42ADF8E25008605CA /* Functions */,
 				6003F59C195388D20070C39A /* MKAppDelegate.h */,
 				6003F59D195388D20070C39A /* MKAppDelegate.m */,
@@ -276,7 +385,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E896042B10776100AF9FD3 /* mk_commure_faxIcon@2x.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				00E896072B10776100AF9FD3 /* mk_commure_aboutIcon@3x.png in Resources */,
+				00E896062B10776100AF9FD3 /* mk_commure_aboutIcon@2x.png in Resources */,
+				00E896022B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@3x.png in Resources */,
+				00E895FD2B10776100AF9FD3 /* mk_commure_telIcon@2x.png in Resources */,
+				00E895FF2B10776100AF9FD3 /* mk_commure_shouceIcon@2x.png in Resources */,
+				00E896012B10776100AF9FD3 /* mk_commure_addUsIcon@2x.png in Resources */,
+				00E896002B10776100AF9FD3 /* mk_commure_telIcon@3x.png in Resources */,
+				00E896032B10776100AF9FD3 /* mk_commure_scanRightAboutIcon@2x.png in Resources */,
+				00E896052B10776100AF9FD3 /* mk_commure_faxIcon@3x.png in Resources */,
+				00E895FE2B10776100AF9FD3 /* mk_commure_shouceIcon@3x.png in Resources */,
+				00E895FC2B10776100AF9FD3 /* mk_commure_addUsIcon@3x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -325,13 +446,13 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CTMediator/CTMediator.framework",
 				"${BUILT_PRODUCTS_DIR}/CircleProgressBar/CircleProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/CommureGateway/CommureGateway.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MKBaseBleModule/MKBaseBleModule.framework",
 				"${BUILT_PRODUCTS_DIR}/MKBaseMQTTModule/MKBaseMQTTModule.framework",
 				"${BUILT_PRODUCTS_DIR}/MKBaseModuleLibrary/MKBaseModuleLibrary.framework",
-				"${BUILT_PRODUCTS_DIR}/MKCommureApp/MKCommureApp.framework",
 				"${BUILT_PRODUCTS_DIR}/MKCustomUIModule/MKCustomUIModule.framework",
 				"${BUILT_PRODUCTS_DIR}/MLInputDodger/MLInputDodger.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
@@ -346,13 +467,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTMediator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CircleProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CommureGateway.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKBaseBleModule.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKBaseMQTTModule.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKBaseModuleLibrary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKCommureApp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKCustomUIModule.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLInputDodger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
@@ -374,9 +495,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E896132B1078E800AF9FD3 /* MKOptionsController.m in Sources */,
+				00E895FB2B10776100AF9FD3 /* CTMediator+MKCommureAdd.m in Sources */,
+				00E896142B1078E800AF9FD3 /* MKCommureAboutController.m in Sources */,
 				6003F59E195388D20070C39A /* MKAppDelegate.m in Sources */,
+				00E896152B1078E800AF9FD3 /* MKCommureAboutCell.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				007666F72ADF8E25008605CA /* MKCMTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

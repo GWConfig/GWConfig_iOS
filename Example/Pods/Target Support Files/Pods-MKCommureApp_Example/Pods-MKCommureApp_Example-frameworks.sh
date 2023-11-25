@@ -41,7 +41,7 @@ install_framework()
 
   if [ -L "${source}" ]; then
     echo "Symlinked..."
-    source="$(readlink -f "${source}")"
+    source="$(readlink "${source}")"
   fi
 
   if [ -d "${source}/${BCSYMBOLMAP_DIR}" ]; then
@@ -179,13 +179,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CTMediator/CTMediator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CircleProgressBar/CircleProgressBar.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CommureGateway/CommureGateway.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKBaseBleModule/MKBaseBleModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKBaseMQTTModule/MKBaseMQTTModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKBaseModuleLibrary/MKBaseModuleLibrary.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/MKCommureApp/MKCommureApp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKCustomUIModule/MKCustomUIModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MLInputDodger/MLInputDodger.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
@@ -199,13 +199,13 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CTMediator/CTMediator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CircleProgressBar/CircleProgressBar.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CommureGateway/CommureGateway.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKBaseBleModule/MKBaseBleModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKBaseMQTTModule/MKBaseMQTTModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKBaseModuleLibrary/MKBaseModuleLibrary.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/MKCommureApp/MKCommureApp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MKCustomUIModule/MKCustomUIModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MLInputDodger/MLInputDodger.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"

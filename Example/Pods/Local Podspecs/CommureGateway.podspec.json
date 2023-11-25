@@ -1,0 +1,1386 @@
+{
+  "name": "CommureGateway",
+  "version": "0.0.1",
+  "summary": "A short description of CommureGateway.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/aadyx2007@163.com/CommureGateway",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "aadyx2007@163.com": "aadyx2007@163.com"
+  },
+  "source": {
+    "git": "https://github.com/aadyx2007@163.com/CommureGateway.git",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "resource_bundles": {
+    "CommureGateway": [
+      "CommureGateway/Assets/*.png"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Target",
+      "source_files": "CommureGateway/Classes/Target/**",
+      "dependencies": {
+        "MKBaseModuleLibrary": [
+
+        ],
+        "CommureGateway/Functions": [
+
+        ]
+      }
+    },
+    {
+      "name": "CTMediator",
+      "source_files": "CommureGateway/Classes/CTMediator/**",
+      "dependencies": {
+        "CTMediator": [
+
+        ],
+        "MKBaseModuleLibrary": [
+
+        ]
+      }
+    },
+    {
+      "name": "DeviceModel",
+      "source_files": "CommureGateway/Classes/DeviceModel/**",
+      "dependencies": {
+        "MKBaseModuleLibrary": [
+
+        ],
+        "CommureGateway/SDK/MQTT": [
+
+        ]
+      }
+    },
+    {
+      "name": "Expand",
+      "dependencies": {
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCustomUIModule": [
+
+        ]
+      },
+      "subspecs": [
+        {
+          "name": "BleBaseController",
+          "source_files": "CommureGateway/Classes/Expand/BleBaseController/**",
+          "dependencies": {
+            "CommureGateway/SDK/BLE": [
+
+            ]
+          }
+        },
+        {
+          "name": "BaseController",
+          "source_files": "CommureGateway/Classes/Expand/BaseController/**",
+          "dependencies": {
+            "CommureGateway/SDK/MQTT": [
+
+            ],
+            "CommureGateway/DeviceModel": [
+
+            ]
+          }
+        },
+        {
+          "name": "DatabaseManager",
+          "source_files": "CommureGateway/Classes/Expand/DatabaseManager/**",
+          "dependencies": {
+            "FMDB": [
+
+            ],
+            "CommureGateway/DeviceModel": [
+
+            ]
+          }
+        },
+        {
+          "name": "ExcelManager",
+          "source_files": "CommureGateway/Classes/Expand/ExcelManager/**",
+          "dependencies": {
+            "libxlsxwriter": [
+
+            ],
+            "SSZipArchive": [
+
+            ]
+          }
+        },
+        {
+          "name": "View",
+          "subspecs": [
+            {
+              "name": "AlertView",
+              "source_files": "CommureGateway/Classes/Expand/View/AlertView/**"
+            },
+            {
+              "name": "BatchUpdateCell",
+              "source_files": "CommureGateway/Classes/Expand/View/BatchUpdateCell/**"
+            },
+            {
+              "name": "BleWifiSettingsCell",
+              "source_files": "CommureGateway/Classes/Expand/View/BleWifiSettingsCell/**"
+            },
+            {
+              "name": "FilterCell",
+              "subspecs": [
+                {
+                  "name": "FilterBeaconCell",
+                  "source_files": "CommureGateway/Classes/Expand/View/FilterCell/FilterBeaconCell/**"
+                },
+                {
+                  "name": "FilterByRawDataCell",
+                  "source_files": "CommureGateway/Classes/Expand/View/FilterCell/FilterByRawDataCell/**"
+                },
+                {
+                  "name": "FilterEditSectionHeaderView",
+                  "source_files": "CommureGateway/Classes/Expand/View/FilterCell/FilterEditSectionHeaderView/**"
+                },
+                {
+                  "name": "FilterNormalTextFieldCell",
+                  "source_files": "CommureGateway/Classes/Expand/View/FilterCell/FilterNormalTextFieldCell/**"
+                }
+              ]
+            },
+            {
+              "name": "UserCredentialsView",
+              "source_files": "CommureGateway/Classes/Expand/View/UserCredentialsView/**"
+            },
+            {
+              "name": "WifiSettingsBandCell",
+              "source_files": "CommureGateway/Classes/Expand/View/WifiSettingsBandCell/**"
+            }
+          ]
+        },
+        {
+          "name": "ImportServerPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Expand/ImportServerPage/Controller/**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SDK",
+      "subspecs": [
+        {
+          "name": "BLE",
+          "source_files": "CommureGateway/Classes/SDK/BLE/**",
+          "dependencies": {
+            "MKBaseBleModule": [
+
+            ]
+          }
+        },
+        {
+          "name": "MQTT",
+          "subspecs": [
+            {
+              "name": "Manager",
+              "source_files": "CommureGateway/Classes/SDK/MQTT/Manager/**",
+              "dependencies": {
+                "MKBaseModuleLibrary": [
+
+                ],
+                "MKBaseMQTTModule": [
+
+                ]
+              }
+            },
+            {
+              "name": "SDK",
+              "source_files": "CommureGateway/Classes/SDK/MQTT/SDK/**",
+              "dependencies": {
+                "MKBaseModuleLibrary": [
+
+                ],
+                "CommureGateway/SDK/MQTT/Manager": [
+
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Functions",
+      "dependencies": {
+        "CommureGateway/SDK": [
+
+        ],
+        "CommureGateway/Expand": [
+
+        ],
+        "CommureGateway/CTMediator": [
+
+        ],
+        "CommureGateway/DeviceModel": [
+
+        ],
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCustomUIModule": [
+
+        ],
+        "MLInputDodger": [
+
+        ],
+        "SGQRCode": [
+
+        ]
+      },
+      "subspecs": [
+        {
+          "name": "AboutPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/AboutPage/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/LogPage": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "BatchOtaPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/BatchOtaPage/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/BatchOtaPage/Model": [
+
+                ],
+                "CommureGateway/Functions/BatchOtaPage/View": [
+
+                ],
+                "CommureGateway/Functions/QRCodePage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "CommureGateway/Classes/Functions/BatchOtaPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "CommureGateway/Classes/Functions/BatchOtaPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "ConfiguredGatewayPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/ConfiguredGatewayPage/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/ConfiguredGatewayPage/Model": [
+
+                ],
+                "CommureGateway/Functions/ConfiguredGatewayPage/View": [
+
+                ],
+                "CommureGateway/Functions/QRCodePage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "CommureGateway/Classes/Functions/ConfiguredGatewayPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "CommureGateway/Classes/Functions/ConfiguredGatewayPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "LogPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/LogPage/Controller/**"
+            }
+          ]
+        },
+        {
+          "name": "AddDeviceModules",
+          "subspecs": [
+            {
+              "name": "ParamsModel",
+              "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/ParamsModel/**"
+            },
+            {
+              "name": "Pages",
+              "dependencies": {
+                "CommureGateway/Functions/AddDeviceModules/ParamsModel": [
+
+                ]
+              },
+              "subspecs": [
+                {
+                  "name": "BleDeviceInfoPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "BleMqttConfigSelectPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/DeviceParamsListPage": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View/**"
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "BleNetworkSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "BleWifiSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ConnectSuccessPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "DeviceParamsListPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleDeviceInfoPage": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/BleWifiSettingsPage": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/ConnectSuccessPage": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/NTPTimezonePage": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/ServerForDevice": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "NTPTimezonePage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ServerForDevice",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/AddDeviceModules/Pages/ServerForDevice/Model": [
+
+                        ],
+                        "CommureGateway/Functions/AddDeviceModules/Pages/ServerForDevice/View": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Model/**"
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "CommureGateway/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/View/**"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DeviceDataPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/DeviceDataPage/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/DeviceDataPage/View": [
+
+                ],
+                "CommureGateway/Functions/SettingPages": [
+
+                ],
+                "CommureGateway/Functions/FilterPages/UploadOptionPage": [
+
+                ],
+                "CommureGateway/Functions/ManageBleModules": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "CommureGateway/Classes/Functions/DeviceDataPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "DeviceListPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/DeviceListPage/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/DeviceListPage/View": [
+
+                ],
+                "CommureGateway/Functions/DeviceListPage/Model": [
+
+                ],
+                "CommureGateway/Functions/ServerForApp": [
+
+                ],
+                "CommureGateway/Functions/ScanPage": [
+
+                ],
+                "CommureGateway/Functions/DeviceDataPage": [
+
+                ],
+                "CommureGateway/Functions/AboutPage": [
+
+                ],
+                "CommureGateway/Functions/BatchOtaPage": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "CommureGateway/Classes/Functions/DeviceListPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "CommureGateway/Classes/Functions/DeviceListPage/View/**",
+              "dependencies": {
+                "CommureGateway/Functions/DeviceListPage/Model": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "FilterPages",
+          "subspecs": [
+            {
+              "name": "FilterByMacPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/FilterByMacPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/FilterPages/FilterByMacPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/FilterByMacPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "FilterByTag",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/FilterByTag/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/FilterPages/FilterByTag/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/FilterByTag/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "TimeOffsetPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/TimeOffsetPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/FilterPages/TimeOffsetPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/TimeOffsetPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "DecryptionKeyPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/DecryptionKeyPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/FilterPages/DecryptionKeyPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/DecryptionKeyPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "UploadOptionPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/UploadOptionPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/FilterPages/UploadOptionPage/Model": [
+
+                    ],
+                    "CommureGateway/Functions/FilterPages/UploadOptionPage/View": [
+
+                    ],
+                    "CommureGateway/Functions/FilterPages/FilterByMacPage": [
+
+                    ],
+                    "CommureGateway/Functions/FilterPages/FilterByTag": [
+
+                    ],
+                    "CommureGateway/Functions/FilterPages/TimeOffsetPage": [
+
+                    ],
+                    "CommureGateway/Functions/FilterPages/DecryptionKeyPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/UploadOptionPage/Model/**"
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/FilterPages/UploadOptionPage/View/**"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ManageBleModules",
+          "subspecs": [
+            {
+              "name": "AccelerometerPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/AccelerometerPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/AccelerometerPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/AccelerometerPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "AdvParamsConfigPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/AdvParamsConfigPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/AdvParamsConfigPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/AdvParamsConfigPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "BatteryTestPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/BatteryTestPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/BatteryTestPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/BatteryTestPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "BeaconOTAPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/BeaconOTAPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/BeaconOTAPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/BeaconOTAPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "ButtonLogPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ButtonLogPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/ButtonLogPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ButtonLogPage/View/**"
+                }
+              ]
+            },
+            {
+              "name": "ConnectedPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ConnectedPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/ConnectedPage/View": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/ConnectedPage/Model": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/BeaconOTAPage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/SelfTestTriggerPage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/SosTriggerPage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/BatteryTestPage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/AccelerometerPage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/SleepModePage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/AdvParamsConfigPage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/ButtonLogPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ConnectedPage/Model/**"
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ConnectedPage/View/**"
+                }
+              ]
+            },
+            {
+              "name": "ManageBleDevicesPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ManageBleDevicesPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/ManageBleDevicesPage/View": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/ConnectedPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ManageBleDevicesPage/View/**"
+                }
+              ]
+            },
+            {
+              "name": "SelfTestTriggerPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/SelfTestTriggerPage/Controller/**"
+                }
+              ]
+            },
+            {
+              "name": "SleepModePage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/SleepModePage/Controller/**"
+                }
+              ]
+            },
+            {
+              "name": "SosTriggerPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/SosTriggerPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/SosTriggerPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/SosTriggerPage/View/**"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ScanPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/ScanPage/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/ScanPage/Model": [
+
+                ],
+                "CommureGateway/Functions/ScanPage/View": [
+
+                ],
+                "CommureGateway/Functions/AddDeviceModules": [
+
+                ],
+                "CommureGateway/Functions/ConfiguredGatewayPage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "CommureGateway/Classes/Functions/ScanPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "CommureGateway/Classes/Functions/ScanPage/View/**",
+              "dependencies": {
+                "CommureGateway/Functions/ScanPage/Model": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "QRCodePage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/QRCodePage/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/QRCodePage/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "CommureGateway/Classes/Functions/QRCodePage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "ServerForApp",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "CommureGateway/Classes/Functions/ServerForApp/Controller/**",
+              "dependencies": {
+                "CommureGateway/Functions/ServerForApp/Model": [
+
+                ],
+                "CommureGateway/Functions/ServerForApp/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "CommureGateway/Classes/Functions/ServerForApp/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "CommureGateway/Classes/Functions/ServerForApp/View/**"
+            }
+          ]
+        },
+        {
+          "name": "SettingPages",
+          "subspecs": [
+            {
+              "name": "BatchDfuBeaconPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/BatchDfuBeaconPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/SettingPages/BatchDfuBeaconPage/Model": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/BatchDfuBeaconPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/BatchDfuBeaconPage/View/**"
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/BatchDfuBeaconPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "BatchUpdateKeyPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/BatchUpdateKeyPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/SettingPages/BatchUpdateKeyPage/Model": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/BatchUpdateKeyPage/View": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/BatchUpdateKeyPage/View/**"
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/BatchUpdateKeyPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "DeviceInfoPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/DeviceInfoPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/SettingPages/DeviceInfoPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/DeviceInfoPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "ModifyNetworkPages",
+              "subspecs": [
+                {
+                  "name": "ModifyNetworkDataModel",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel/**"
+                },
+                {
+                  "name": "MqttConfigSelectPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View/**"
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttNetworkSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttParamsListPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttServerPage": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttServerPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model/**"
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttWifiSettingsPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model/**"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "NormalSettings",
+              "subspecs": [
+                {
+                  "name": "CommunicatePage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/NormalSettings/CommunicatePage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ConnectBeaconTimeout",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "DataReportPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/NormalSettings/DataReportPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "NetworkStatusPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "NTPServerPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/NormalSettings/NTPServerPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "ResetByButtonPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/NormalSettings/ResetByButtonPage/View": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/View/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "SystemTimePage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/Controller/**",
+                      "dependencies": {
+                        "CommureGateway/Functions/SettingPages/NormalSettings/SystemTimePage/View": [
+
+                        ],
+                        "CommureGateway/Functions/SettingPages/NormalSettings/NTPServerPage": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "CommureGateway/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/View/**"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "OTAPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/OTAPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/SettingPages/OTAPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/OTAPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "SettingPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/SettingPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/SettingPages/SettingPage/Model": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/DeviceInfoPage": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/ModifyNetworkPages": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/NormalSettings": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/OTAPage": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/BatchDfuBeaconPage": [
+
+                    ],
+                    "CommureGateway/Functions/SettingPages/BatchUpdateKeyPage": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/SettingPages/SettingPage/Model/**"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

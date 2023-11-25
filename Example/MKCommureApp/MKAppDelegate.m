@@ -10,7 +10,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "MKCMDeviceListController.h"
+#import "MKOptionsController.h"
 
 @interface MKAppDelegate ()
 
@@ -26,7 +26,7 @@
 {
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.backgroundColor = [UIColor whiteColor];
-    MKCMDeviceListController *vc = [[MKCMDeviceListController alloc] init];
+    MKOptionsController *vc = [[MKOptionsController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     _window.rootViewController = nav;
     [_window makeKeyAndVisible];
