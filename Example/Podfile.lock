@@ -1906,6 +1906,1829 @@ PODS:
   - CommureGateway/Target (0.0.1):
     - CommureGateway/Functions
     - MKBaseModuleLibrary
+  - CommureGWThree (0.0.1):
+    - CommureGWThree/CTMediator (= 0.0.1)
+    - CommureGWThree/DeviceModel (= 0.0.1)
+    - CommureGWThree/Expand (= 0.0.1)
+    - CommureGWThree/Functions (= 0.0.1)
+    - CommureGWThree/SDK (= 0.0.1)
+    - CommureGWThree/Target (= 0.0.1)
+  - CommureGWThree/CTMediator (0.0.1):
+    - CTMediator
+    - MKBaseModuleLibrary
+  - CommureGWThree/DeviceModel (0.0.1):
+    - CommureGWThree/SDK/MQTT
+    - MKBaseModuleLibrary
+  - CommureGWThree/Expand (0.0.1):
+    - CommureGWThree/Expand/BaseController (= 0.0.1)
+    - CommureGWThree/Expand/BleBaseController (= 0.0.1)
+    - CommureGWThree/Expand/DatabaseManager (= 0.0.1)
+    - CommureGWThree/Expand/ExcelManager (= 0.0.1)
+    - CommureGWThree/Expand/ImportServerPage (= 0.0.1)
+    - CommureGWThree/Expand/View (= 0.0.1)
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/BaseController (0.0.1):
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/SDK/MQTT
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/BleBaseController (0.0.1):
+    - CommureGWThree/SDK/BLE
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/DatabaseManager (0.0.1):
+    - CommureGWThree/DeviceModel
+    - FMDB
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/ExcelManager (0.0.1):
+    - libxlsxwriter
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - SSZipArchive
+  - CommureGWThree/Expand/ImportServerPage (0.0.1):
+    - CommureGWThree/Expand/ImportServerPage/Controller (= 0.0.1)
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/ImportServerPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View (0.0.1):
+    - CommureGWThree/Expand/View/AlertView (= 0.0.1)
+    - CommureGWThree/Expand/View/BatchUpdateCell (= 0.0.1)
+    - CommureGWThree/Expand/View/BleWifiSettingsCell (= 0.0.1)
+    - CommureGWThree/Expand/View/FilterCell (= 0.0.1)
+    - CommureGWThree/Expand/View/UserCredentialsView (= 0.0.1)
+    - CommureGWThree/Expand/View/WifiSettingsBandCell (= 0.0.1)
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/AlertView (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/BatchUpdateCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/BleWifiSettingsCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/FilterCell (0.0.1):
+    - CommureGWThree/Expand/View/FilterCell/FilterBeaconCell (= 0.0.1)
+    - CommureGWThree/Expand/View/FilterCell/FilterByRawDataCell (= 0.0.1)
+    - CommureGWThree/Expand/View/FilterCell/FilterEditSectionHeaderView (= 0.0.1)
+    - CommureGWThree/Expand/View/FilterCell/FilterNormalTextFieldCell (= 0.0.1)
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/FilterCell/FilterBeaconCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/FilterCell/FilterByRawDataCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/FilterCell/FilterEditSectionHeaderView (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/FilterCell/FilterNormalTextFieldCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/UserCredentialsView (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Expand/View/WifiSettingsBandCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - CommureGWThree/Functions (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AboutPage (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules (= 0.0.1)
+    - CommureGWThree/Functions/BatchOtaPage (= 0.0.1)
+    - CommureGWThree/Functions/ConfiguredGatewayPage (= 0.0.1)
+    - CommureGWThree/Functions/DeviceDataPage (= 0.0.1)
+    - CommureGWThree/Functions/DeviceListPage (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages (= 0.0.1)
+    - CommureGWThree/Functions/LogPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules (= 0.0.1)
+    - CommureGWThree/Functions/QRCodePage (= 0.0.1)
+    - CommureGWThree/Functions/ScanPage (= 0.0.1)
+    - CommureGWThree/Functions/ServerForApp (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AboutPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AboutPage/Controller (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AboutPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/LogPage
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View
+    - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage
+    - CommureGWThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage
+    - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model
+    - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/View (= 0.0.1)
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model
+    - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/View
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/Pages/ServerForDevice/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules/ParamsModel
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/AddDeviceModules/ParamsModel (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/BatchOtaPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/BatchOtaPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/BatchOtaPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/BatchOtaPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/BatchOtaPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/BatchOtaPage/Model
+    - CommureGWThree/Functions/BatchOtaPage/View
+    - CommureGWThree/Functions/QRCodePage/Controller
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/BatchOtaPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/BatchOtaPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ConfiguredGatewayPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ConfiguredGatewayPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ConfiguredGatewayPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/ConfiguredGatewayPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ConfiguredGatewayPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ConfiguredGatewayPage/Model
+    - CommureGWThree/Functions/ConfiguredGatewayPage/View
+    - CommureGWThree/Functions/QRCodePage/Controller
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ConfiguredGatewayPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ConfiguredGatewayPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/DeviceDataPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/DeviceDataPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/DeviceDataPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/DeviceDataPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/DeviceDataPage/View
+    - CommureGWThree/Functions/FilterPages/UploadOptionPage
+    - CommureGWThree/Functions/ManageBleModules
+    - CommureGWThree/Functions/SettingPages
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/DeviceDataPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/DeviceListPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/DeviceListPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/DeviceListPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/DeviceListPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/DeviceListPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AboutPage
+    - CommureGWThree/Functions/BatchOtaPage
+    - CommureGWThree/Functions/DeviceDataPage
+    - CommureGWThree/Functions/DeviceListPage/Model
+    - CommureGWThree/Functions/DeviceListPage/View
+    - CommureGWThree/Functions/ScanPage
+    - CommureGWThree/Functions/ServerForApp
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/DeviceListPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/DeviceListPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/DeviceListPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/DecryptionKeyPage (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/FilterByMacPage (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/FilterByTag (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/TimeOffsetPage (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/UploadOptionPage (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/DecryptionKeyPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/DecryptionKeyPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/DecryptionKeyPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/DecryptionKeyPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/DecryptionKeyPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/DecryptionKeyPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/FilterByMacPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/FilterByMacPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/FilterByMacPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/FilterByMacPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/FilterByMacPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/FilterByMacPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/FilterByTag (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/FilterByTag/Controller (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/FilterByTag/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/FilterByTag/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/FilterByTag/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/FilterByTag/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/TimeOffsetPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/TimeOffsetPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/TimeOffsetPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/TimeOffsetPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/TimeOffsetPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/TimeOffsetPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/UploadOptionPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/UploadOptionPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/UploadOptionPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/FilterPages/UploadOptionPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/UploadOptionPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/FilterPages/DecryptionKeyPage
+    - CommureGWThree/Functions/FilterPages/FilterByMacPage
+    - CommureGWThree/Functions/FilterPages/FilterByTag
+    - CommureGWThree/Functions/FilterPages/TimeOffsetPage
+    - CommureGWThree/Functions/FilterPages/UploadOptionPage/Model
+    - CommureGWThree/Functions/FilterPages/UploadOptionPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/UploadOptionPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/FilterPages/UploadOptionPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/LogPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/LogPage/Controller (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/LogPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/AccelerometerPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/BatteryTestPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/ButtonLogPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/ConnectedPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/ManageBleDevicesPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/SelfTestTriggerPage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/SleepModePage (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/SosTriggerPage (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/AccelerometerPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/AccelerometerPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/AccelerometerPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/AccelerometerPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/AccelerometerPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/AccelerometerPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/BatteryTestPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/BatteryTestPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/BatteryTestPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/BatteryTestPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/BatteryTestPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/BatteryTestPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ButtonLogPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/ButtonLogPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/ButtonLogPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ButtonLogPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/ButtonLogPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ButtonLogPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ConnectedPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/ConnectedPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/ConnectedPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/ConnectedPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ConnectedPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/AccelerometerPage
+    - CommureGWThree/Functions/ManageBleModules/AdvParamsConfigPage
+    - CommureGWThree/Functions/ManageBleModules/BatteryTestPage
+    - CommureGWThree/Functions/ManageBleModules/BeaconOTAPage
+    - CommureGWThree/Functions/ManageBleModules/ButtonLogPage
+    - CommureGWThree/Functions/ManageBleModules/ConnectedPage/Model
+    - CommureGWThree/Functions/ManageBleModules/ConnectedPage/View
+    - CommureGWThree/Functions/ManageBleModules/SelfTestTriggerPage
+    - CommureGWThree/Functions/ManageBleModules/SleepModePage
+    - CommureGWThree/Functions/ManageBleModules/SosTriggerPage
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ConnectedPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ConnectedPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ManageBleDevicesPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/ManageBleDevicesPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/ManageBleDevicesPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ManageBleDevicesPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/ConnectedPage
+    - CommureGWThree/Functions/ManageBleModules/ManageBleDevicesPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/ManageBleDevicesPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/SelfTestTriggerPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/SelfTestTriggerPage/Controller (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/SelfTestTriggerPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/SleepModePage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/SleepModePage/Controller (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/SleepModePage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/SosTriggerPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/SosTriggerPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ManageBleModules/SosTriggerPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/SosTriggerPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ManageBleModules/SosTriggerPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ManageBleModules/SosTriggerPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/QRCodePage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/QRCodePage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/QRCodePage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/QRCodePage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/QRCodePage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/QRCodePage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ScanPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ScanPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ScanPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/ScanPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ScanPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/AddDeviceModules
+    - CommureGWThree/Functions/ConfiguredGatewayPage/Controller
+    - CommureGWThree/Functions/ScanPage/Model
+    - CommureGWThree/Functions/ScanPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ScanPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ScanPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ScanPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ServerForApp (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ServerForApp/Controller (= 0.0.1)
+    - CommureGWThree/Functions/ServerForApp/Model (= 0.0.1)
+    - CommureGWThree/Functions/ServerForApp/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ServerForApp/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/ServerForApp/Model
+    - CommureGWThree/Functions/ServerForApp/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ServerForApp/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/ServerForApp/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/DeviceInfoPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/OTAPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/SettingPage (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/Model
+    - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/Model
+    - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/DeviceInfoPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/DeviceInfoPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/DeviceInfoPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/DeviceInfoPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/DeviceInfoPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/DeviceInfoPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/CommunicatePage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/DataReportPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NetworkStatusPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ResetByButtonPage (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/SystemTimePage (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/CommunicatePage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/DataReportPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/DataReportPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/DataReportPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/DataReportPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/DataReportPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/DataReportPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/NetworkStatusPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/ResetByButtonPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/SystemTimePage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/NormalSettings/SystemTimePage/View (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/NormalSettings/NTPServerPage
+    - CommureGWThree/Functions/SettingPages/NormalSettings/SystemTimePage/View
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/NormalSettings/SystemTimePage/View (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/OTAPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/OTAPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/OTAPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/OTAPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/OTAPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/OTAPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/SettingPage (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/SettingPage/Controller (= 0.0.1)
+    - CommureGWThree/Functions/SettingPages/SettingPage/Model (= 0.0.1)
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/SettingPage/Controller (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/Functions/SettingPages/BatchDfuBeaconPage
+    - CommureGWThree/Functions/SettingPages/BatchUpdateKeyPage
+    - CommureGWThree/Functions/SettingPages/DeviceInfoPage
+    - CommureGWThree/Functions/SettingPages/ModifyNetworkPages
+    - CommureGWThree/Functions/SettingPages/NormalSettings
+    - CommureGWThree/Functions/SettingPages/OTAPage
+    - CommureGWThree/Functions/SettingPages/SettingPage/Model
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/Functions/SettingPages/SettingPage/Model (0.0.1):
+    - CommureGWThree/CTMediator
+    - CommureGWThree/DeviceModel
+    - CommureGWThree/Expand
+    - CommureGWThree/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGWThree/SDK (0.0.1):
+    - CommureGWThree/SDK/BLE (= 0.0.1)
+    - CommureGWThree/SDK/MQTT (= 0.0.1)
+  - CommureGWThree/SDK/BLE (0.0.1):
+    - MKBaseBleModule
+  - CommureGWThree/SDK/MQTT (0.0.1):
+    - CommureGWThree/SDK/MQTT/Manager (= 0.0.1)
+    - CommureGWThree/SDK/MQTT/SDK (= 0.0.1)
+  - CommureGWThree/SDK/MQTT/Manager (0.0.1):
+    - MKBaseModuleLibrary
+    - MKBaseMQTTModule
+  - CommureGWThree/SDK/MQTT/SDK (0.0.1):
+    - CommureGWThree/SDK/MQTT/Manager
+    - MKBaseModuleLibrary
+  - CommureGWThree/Target (0.0.1):
+    - CommureGWThree/Functions
+    - MKBaseModuleLibrary
   - CTMediator (48)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -2358,6 +4181,7 @@ PODS:
 
 DEPENDENCIES:
   - "CommureGateway (from `git@120.27.8.241:Commure-Tag_AC347/Commure-MK110_AC347_IOS.git`, branch `main`)"
+  - "CommureGWThree (from `git@120.27.8.241:Commure-Tag_AC347/Commure-Tag_AC347_GW_iOS.git`, branch `main`)"
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -2383,16 +4207,23 @@ EXTERNAL SOURCES:
   CommureGateway:
     :branch: main
     :git: "git@120.27.8.241:Commure-Tag_AC347/Commure-MK110_AC347_IOS.git"
+  CommureGWThree:
+    :branch: main
+    :git: "git@120.27.8.241:Commure-Tag_AC347/Commure-Tag_AC347_GW_iOS.git"
 
 CHECKOUT OPTIONS:
   CommureGateway:
-    :commit: 1b11e9bd588c24c28652a10556fb45060a3ac403
+    :commit: 01824133568952a290b4f353354febfdc8d690b9
     :git: "git@120.27.8.241:Commure-Tag_AC347/Commure-MK110_AC347_IOS.git"
+  CommureGWThree:
+    :commit: 22b38b0a3879c82ec89b51c4d6665a9526623769
+    :git: "git@120.27.8.241:Commure-Tag_AC347/Commure-Tag_AC347_GW_iOS.git"
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
   CommureGateway: c6e204ce56f34f8ce8779d76888f9ddf0af4af99
+  CommureGWThree: 2f5ea3511eed60a397b190094bc838544db26834
   CTMediator: 3f3578b525b3a46a7a2f92a99922ec40363f4269
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   libxlsxwriter: 07cdc00cf0edb30ce9773efbbb49a03459a6e0f0
@@ -2409,6 +4240,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   WRNavigationBar: 10bfdf96addf14d640d07c2ef08a029c18d8af10
 
-PODFILE CHECKSUM: 2b2db847aff5cf405f7ab2105ea2e012424cf7fd
+PODFILE CHECKSUM: 4e638e94a307e0fa12c8568462033ff47d60fb5f
 
 COCOAPODS: 1.11.3

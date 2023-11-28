@@ -69,7 +69,7 @@
 #pragma mark - down method
 
 - (BOOL)downExcelData {
-    NSString *excelPath = [self filePathWithName:@"MQTT Settings for Device.xlsx"];
+    NSString *excelPath = [self filePathWithName:@"MK110 MQTT Settings for Device.xlsx"];
     
     if (![self deleteFile:excelPath]) {
         [self operationFailedBlockWithMsg:@"Delete Excel Failed" block:self.failedBlock];
@@ -81,7 +81,7 @@
 
 - (NSDictionary *)parseExcelData {
     __block NSDictionary *result = nil;
-    NSString *excelPath = [self filePathWithName:@"MQTT Settings for Device.xlsx"];
+    NSString *excelPath = [self filePathWithName:@"MK110 MQTT Settings for Device.xlsx"];
     
     NSURL *url = [NSURL URLWithString:excelPath];
     

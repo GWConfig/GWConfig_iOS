@@ -158,8 +158,6 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
             return;
         }
         
-        [self updateCloudParams];
-        
         if (![self configMqttInfos]) {
             [self operationFailedBlockWithMsg:@"Config Mqtt Infos Error" block:failedBlock];
             return;
@@ -170,6 +168,8 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
                 return;
             }
         }
+        
+        [self updateCloudParams];
         
         moko_dispatch_main_safe(^{
             sucBlock();

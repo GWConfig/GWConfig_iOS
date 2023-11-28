@@ -374,34 +374,4 @@
                          failureBlock:failedBlock];
 }
 
-+ (void)cg_readNetworkTypeWithSucBlock:(void (^)(id returnData))sucBlock
-                           failedBlock:(void (^)(NSError *error))failedBlock {
-    NSString *commandString = @"ed004d00";
-    [centralManager addTaskWithTaskID:mk_cg_taskReadNetworkTypeOperation
-                       characteristic:peripheral.cg_custom
-                          commandData:commandString
-                         successBlock:sucBlock
-                         failureBlock:failedBlock];
-}
-
-+ (void)cg_readEthernetDHCPStatusWithSucBlock:(void (^)(id returnData))sucBlock
-                                  failedBlock:(void (^)(NSError *error))failedBlock {
-    NSString *commandString = @"ed004e00";
-    [centralManager addTaskWithTaskID:mk_cg_taskReadEthernetDHCPStatusOperation
-                       characteristic:peripheral.cg_custom
-                          commandData:commandString
-                         successBlock:sucBlock
-                         failureBlock:failedBlock];
-}
-
-+ (void)cg_readEthernetNetworkIpInfosWithSucBlock:(void (^)(id returnData))sucBlock
-                                      failedBlock:(void (^)(NSError *error))failedBlock {
-    NSString *commandString = @"ed004f00";
-    [centralManager addTaskWithTaskID:mk_cg_taskReadEthernetNetworkIpInfosOperation
-                       characteristic:peripheral.cg_custom
-                          commandData:commandString
-                         successBlock:sucBlock
-                         failureBlock:failedBlock];
-}
-
 @end

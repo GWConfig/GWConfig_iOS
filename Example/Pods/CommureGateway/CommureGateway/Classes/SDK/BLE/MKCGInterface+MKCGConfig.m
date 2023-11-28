@@ -710,49 +710,6 @@ static const NSInteger packDataMaxLen = 150;
                    failedBlock:failedBlock];
 }
 
-+ (void)cg_configNetworkType:(mk_cg_networkType)type
-                    sucBlock:(void (^)(void))sucBlock
-                 failedBlock:(void (^)(NSError *error))failedBlock {
-    NSString *value = [MKBLEBaseSDKAdopter fetchHexValue:type byteLen:1];
-    NSString *commandString = [@"ed014d01" stringByAppendingString:value];
-    [self configDataWithTaskID:mk_cg_taskConfigNetworkTypeOperation
-                          data:commandString
-                      sucBlock:sucBlock
-                   failedBlock:failedBlock];
-}
-
-+ (void)cg_configEthernetDHCPStatus:(BOOL)isOn
-                           sucBlock:(void (^)(void))sucBlock
-                        failedBlock:(void (^)(NSError *error))failedBlock {
-    NSString *commandString = (isOn ? @"ed014e0101" : @"ed014e0100");
-    [self configDataWithTaskID:mk_cg_taskConfigEthernetDHCPStatusOperation
-                          data:commandString
-                      sucBlock:sucBlock
-                   failedBlock:failedBlock];
-}
-
-+ (void)cg_configEthernetIpAddress:(NSString *)ip
-                              mask:(NSString *)mask
-                           gateway:(NSString *)gateway
-                               dns:(NSString *)dns
-                          sucBlock:(void (^)(void))sucBlock
-                       failedBlock:(void (^)(NSError *error))failedBlock {
-    if (![MKCGSDKDataAdopter isIpAddress:ip] || ![MKCGSDKDataAdopter isIpAddress:mask]
-        || ![MKCGSDKDataAdopter isIpAddress:gateway] || ![MKCGSDKDataAdopter isIpAddress:dns]) {
-        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
-        return;
-    }
-    NSString *ipValue = [MKCGSDKDataAdopter ipAddressToHex:ip];
-    NSString *maskValue = [MKCGSDKDataAdopter ipAddressToHex:mask];
-    NSString *gatewayValue = [MKCGSDKDataAdopter ipAddressToHex:gateway];
-    NSString *dnsValue = [MKCGSDKDataAdopter ipAddressToHex:dns];
-    NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@%@",@"ed014f10",ipValue,maskValue,gatewayValue,dnsValue];
-    [self configDataWithTaskID:mk_cg_taskConfigEthernetIpInfoOperation
-                          data:commandString
-                      sucBlock:sucBlock
-                   failedBlock:failedBlock];
-}
-
 #pragma mark - Private method
 
 + (void)configDataWithTaskID:(mk_cg_taskOperationID)taskID

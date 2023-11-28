@@ -309,30 +309,6 @@ NSString *const mk_cg_contentKey = @"mk_cg_contentKey";
             @"dns":dns
         };
         operationID = mk_cg_taskReadWIFINetworkIpInfosOperation;
-    }else if ([cmd isEqualToString:@"4d"]) {
-        //读取网络接口类型
-        resultDic = @{
-            @"type":[MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)]
-        };
-        operationID = mk_cg_taskReadNetworkTypeOperation;
-    }else if ([cmd isEqualToString:@"4e"]) {
-        //读取Ethernet DHCP开关
-        BOOL isOn = ([content isEqualToString:@"01"]);
-        resultDic = @{@"isOn":@(isOn)};
-        operationID = mk_cg_taskReadEthernetDHCPStatusOperation;
-    }else if ([cmd isEqualToString:@"4f"]) {
-        //读取Ethernet IP信息
-        NSString *ip = [MKCGSDKDataAdopter parseIpAddress:[content substringWithRange:NSMakeRange(0, 8)]];
-        NSString *mask = [MKCGSDKDataAdopter parseIpAddress:[content substringWithRange:NSMakeRange(8, 8)]];
-        NSString *gateway = [MKCGSDKDataAdopter parseIpAddress:[content substringWithRange:NSMakeRange(16, 8)]];
-        NSString *dns = [MKCGSDKDataAdopter parseIpAddress:[content substringWithRange:NSMakeRange(24, 8)]];
-        resultDic = @{
-            @"ip":ip,
-            @"mask":mask,
-            @"gateway":gateway,
-            @"dns":dns
-        };
-        operationID = mk_cg_taskReadEthernetNetworkIpInfosOperation;
     }
     
     return [self dataParserGetDataSuccess:resultDic operationID:operationID];
@@ -407,15 +383,6 @@ NSString *const mk_cg_contentKey = @"mk_cg_contentKey";
     }else if ([cmd isEqualToString:@"4c"]) {
         //配置Wifi IP地址相关信息
         operationID = mk_cg_taskConfigWIFIIpInfoOperation;
-    }else if ([cmd isEqualToString:@"4d"]) {
-        //配置网络接口类型
-        operationID = mk_cg_taskConfigNetworkTypeOperation;
-    }else if ([cmd isEqualToString:@"4e"]) {
-        //配置Ethernet DHCP状态
-        operationID = mk_cg_taskConfigEthernetDHCPStatusOperation;
-    }else if ([cmd isEqualToString:@"4f"]) {
-        //配置Ethernet IP地址相关信息
-        operationID = mk_cg_taskConfigEthernetIpInfoOperation;
     }
     
     return [self dataParserGetDataSuccess:@{@"success":@(success)} operationID:operationID];

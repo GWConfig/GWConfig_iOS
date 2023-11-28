@@ -17,8 +17,6 @@ typedef NS_ENUM(NSInteger, mk_cg_serverOperationID) {
     mk_cg_server_taskModifyWifiInfosOperation,          //配置wifi网络
     mk_cg_server_taskModifyWifiCertsOperation,          //配置EAP证书
     mk_cg_server_taskModifyWifiNetworkInfoOperation,        //配置Wifi网络参数
-    mk_cg_server_taskModifyNetworkTypeOperation,            //配置网络接口类型
-    mk_cg_server_taskModifyEthernetNetworkInfoOperation,    //配置Ethernet网络参数
     mk_cg_server_taskModifyMqttInfoOperation,           //配置MQTT参数
     mk_cg_server_taskModifyMqttCertsOperation,          //配置MQTT证书
     mk_cg_server_taskConfigScanSwitchStatusOperation,   //配置扫描开关状态
@@ -65,7 +63,6 @@ typedef NS_ENUM(NSInteger, mk_cg_serverOperationID) {
     mk_cg_server_taskReadWifiInfosOperation,                    //读取设备当前连接的wifi信息
     mk_cg_server_taskReadWifiNetworkInfosOperation,                 //读取Wifi网络参数
     mk_cg_server_taskReadNetworkTypeOperation,                  //读取网络接口选择
-    mk_cg_server_taskReadEthernetNetworkInfosOperation,         //读取读取Ethernet网络参数
     mk_cg_server_taskReadMQTTParamsOperation,                   //读取MQTT服务器信息
     mk_cg_server_taskReadScanSwitchStatusOperation,    //读取扫描开关状态
     mk_cg_server_taskReadFilterRelationshipsOperation,  //读取过滤逻辑

@@ -520,63 +520,6 @@
                                failedBlock:failedBlock];
 }
 
-+ (void)cg_modifyNetworkType:(mk_cg_mqtt_networkType)type
-                  macAddress:(NSString *)macAddress
-                       topic:(NSString *)topic
-                    sucBlock:(void (^)(id returnData))sucBlock
-                 failedBlock:(void (^)(NSError *error))failedBlock {
-    NSDictionary *data = @{
-        @"msg_id":@(1024),
-        @"device_info":@{
-                @"mac":macAddress
-        },
-        @"data":@{
-            @"net_interface":@(type),
-        },
-    };
-    [[MKCGMQTTDataManager shared] sendData:data
-                                     topic:topic
-                                macAddress:macAddress
-                                    taskID:mk_cg_server_taskModifyNetworkTypeOperation
-                                  sucBlock:sucBlock
-                               failedBlock:failedBlock];
-}
-
-+ (void)cg_modifyEthernetNetworkInfos:(id <mk_cg_mqttModifyNetworkProtocol>)protocol
-                           macAddress:(NSString *)macAddress
-                                topic:(NSString *)topic
-                             sucBlock:(void (^)(id returnData))sucBlock
-                          failedBlock:(void (^)(NSError *error))failedBlock {
-    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
-    if (ValidStr(checkMsg)) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
-        return;
-    }
-    if (![self isConfirmNetworkProtocol:protocol]) {
-        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
-        return;
-    }
-    NSDictionary *data = @{
-        @"msg_id":@(1025),
-        @"device_info":@{
-                @"mac":macAddress
-        },
-        @"data":@{
-            @"dhcp_en":(protocol.dhcp ? @(1) : @(0)),
-            @"ip":SafeStr(protocol.ip),
-            @"netmask":SafeStr(protocol.mask),
-            @"gw":SafeStr(protocol.gateway),
-            @"dns":SafeStr(protocol.dns),
-        },
-    };
-    [[MKCGMQTTDataManager shared] sendData:data
-                                     topic:topic
-                                macAddress:macAddress
-                                    taskID:mk_cg_server_taskModifyEthernetNetworkInfoOperation
-                                  sucBlock:sucBlock
-                               failedBlock:failedBlock];
-}
-
 + (void)cg_modifyMqttInfos:(id <mk_cg_modifyMqttServerProtocol>)protocol
                 macAddress:(NSString *)macAddress
                      topic:(NSString *)topic
@@ -1783,29 +1726,6 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_cg_server_taskReadNetworkTypeOperation
-                                  sucBlock:sucBlock
-                               failedBlock:failedBlock];
-}
-
-+ (void)cg_readEthernetNetworkInfosWithMacAddress:(NSString *)macAddress
-                                            topic:(NSString *)topic
-                                         sucBlock:(void (^)(id returnData))sucBlock
-                                      failedBlock:(void (^)(NSError *error))failedBlock {
-    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
-    if (ValidStr(checkMsg)) {
-        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
-        return;
-    }
-    NSDictionary *data = @{
-        @"msg_id":@(2025),
-        @"device_info":@{
-                @"mac":macAddress
-        },
-    };
-    [[MKCGMQTTDataManager shared] sendData:data
-                                     topic:topic
-                                macAddress:macAddress
-                                    taskID:mk_cg_server_taskReadEthernetNetworkInfosOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }

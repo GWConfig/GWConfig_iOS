@@ -274,36 +274,6 @@ NS_ASSUME_NONNULL_BEGIN
                       sucBlock:(void (^)(void))sucBlock
                    failedBlock:(void (^)(NSError *error))failedBlock;
 
-/// Type For Network.
-/// @param type type
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cg_configNetworkType:(mk_cg_networkType)type
-                    sucBlock:(void (^)(void))sucBlock
-                 failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// DHCP Status For Ethernet.
-/// @param isOn isOn
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cg_configEthernetDHCPStatus:(BOOL)isOn
-                           sucBlock:(void (^)(void))sucBlock
-                        failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// IP Information For Ethernet.
-/// @param ip e.g.(@"47.104.81.55")
-/// @param mask e.g.(@"255.255.255.255")
-/// @param gateway e.g.(@"255.255.255.1")
-/// @param dns e.g.(@"47.104.81.55")
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cg_configEthernetIpAddress:(NSString *)ip
-                              mask:(NSString *)mask
-                           gateway:(NSString *)gateway
-                               dns:(NSString *)dns
-                          sucBlock:(void (^)(void))sucBlock
-                       failedBlock:(void (^)(NSError *error))failedBlock;
-
 @end
 
 NS_ASSUME_NONNULL_END

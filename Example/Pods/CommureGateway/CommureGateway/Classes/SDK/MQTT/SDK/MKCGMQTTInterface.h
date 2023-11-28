@@ -210,30 +210,6 @@ NS_ASSUME_NONNULL_BEGIN
                          sucBlock:(void (^)(id returnData))sucBlock
                       failedBlock:(void (^)(NSError *error))failedBlock;
 
-/// Network Type.
-/// @param type type
-/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
-/// @param topic topic 1-128 Characters
-/// @param sucBlock Success callback
-/// @param failedBlock Failed callback
-+ (void)cg_modifyNetworkType:(mk_cg_mqtt_networkType)type
-                  macAddress:(NSString *)macAddress
-                       topic:(NSString *)topic
-                    sucBlock:(void (^)(id returnData))sucBlock
-                 failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Ethernet Network Settings.
-/// @param protocol protocol
-/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
-/// @param topic topic 1-128 Characters
-/// @param sucBlock Success callback
-/// @param failedBlock Failed callback
-+ (void)cg_modifyEthernetNetworkInfos:(id <mk_cg_mqttModifyNetworkProtocol>)protocol
-                           macAddress:(NSString *)macAddress
-                                topic:(NSString *)topic
-                             sucBlock:(void (^)(id returnData))sucBlock
-                          failedBlock:(void (^)(NSError *error))failedBlock;
-
 /// MQTT Settings.
 /// @param protocol protocol
 /// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
@@ -700,16 +676,6 @@ NS_ASSUME_NONNULL_BEGIN
                                    topic:(NSString *)topic
                                 sucBlock:(void (^)(id returnData))sucBlock
                              failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// Read the Ethernet's network information that the device is currently connected to.
-/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
-/// @param topic topic 1-128 Characters
-/// @param sucBlock Success callback
-/// @param failedBlock Failed callback
-+ (void)cg_readEthernetNetworkInfosWithMacAddress:(NSString *)macAddress
-                                            topic:(NSString *)topic
-                                         sucBlock:(void (^)(id returnData))sucBlock
-                                      failedBlock:(void (^)(NSError *error))failedBlock;
 
 /// Read the MQTT Params.
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)

@@ -28,9 +28,6 @@ typedef NS_ENUM(NSInteger, mk_cg_taskOperationID) {
     mk_cg_taskReadWIFIVerifyServerStatusOperation,  //读取是否校验服务器
     mk_cg_taskReadWIFIDHCPStatusOperation,              //读取Wifi DHCP开关
     mk_cg_taskReadWIFINetworkIpInfosOperation,          //读取Wifi IP信息
-    mk_cg_taskReadNetworkTypeOperation,                 //读取网络类型
-    mk_cg_taskReadEthernetDHCPStatusOperation,          //读取Ethernet DHCP开关
-    mk_cg_taskReadEthernetNetworkIpInfosOperation,      //读取Ethernet IP信息
     
 #pragma mark - MQTT Params
     mk_cg_taskReadServerHostOperation,          //读取MQTT服务器域名
@@ -68,9 +65,6 @@ typedef NS_ENUM(NSInteger, mk_cg_taskOperationID) {
     mk_cg_taskConfigWIFIClientPrivateKeyOperation,      //配置WIFI私钥
     mk_cg_taskConfigWIFIDHCPStatusOperation,                //配置Wifi DHCP开关
     mk_cg_taskConfigWIFIIpInfoOperation,                    //配置Wifi IP地址相关信息
-    mk_cg_taskConfigNetworkTypeOperation,                   //配置网络接口类型
-    mk_cg_taskConfigEthernetDHCPStatusOperation,            //配置Ethernet DHCP开关
-    mk_cg_taskConfigEthernetIpInfoOperation,                //配置Ethernet IP地址相关信息
     
 #pragma mark - MQTT Params
     mk_cg_taskConfigServerHostOperation,        //配置MQTT服务器域名

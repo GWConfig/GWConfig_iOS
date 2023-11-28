@@ -347,42 +347,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)cg_readWIFINetworkIpInfosWithSucBlock:(void (^)(id returnData))sucBlock
                                   failedBlock:(void (^)(NSError *error))failedBlock;
 
-/// Type For Network.
-/*
-    @{
-    @"type":@"0",       //@"0":Ethernet   @"1":Wifi
- }
- */
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cg_readNetworkTypeWithSucBlock:(void (^)(id returnData))sucBlock
-                           failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// DHCP Status For Ethernet.
-/*
-    @{
-    @"isOn":@(YES)
- }
- */
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cg_readEthernetDHCPStatusWithSucBlock:(void (^)(id returnData))sucBlock
-                                  failedBlock:(void (^)(NSError *error))failedBlock;
-
-/// IP Information For Ethernet.
-/*
-    @{
-    @"ip":@"47.104.81.55",
-    @"mask":@"255.255.255.255",
-    @"gateway":@"255.255.255.1",
-    @"dns":@"47.104.81.55",
- }
- */
-/// @param sucBlock Success callback
-/// @param failedBlock Failure callback
-+ (void)cg_readEthernetNetworkIpInfosWithSucBlock:(void (^)(id returnData))sucBlock
-                                      failedBlock:(void (^)(NSError *error))failedBlock;
-
 @end
 
 NS_ASSUME_NONNULL_END

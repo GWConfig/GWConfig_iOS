@@ -647,7 +647,6 @@ static NSString *const defaultKeyValueString = @"value:";
         [self operationFailedBlockWithMsg:@"Load Excel Data Failed" block:failedBlock];
         return;
     }
-    NSArray *list = sheet.cellArray;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     //根据横竖坐标，获取单元格
     //Host

@@ -54,11 +54,11 @@
 
 - (void)configDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
-        [self updateValues];
         if (![self configNetworkInfos]) {
             [self operationFailedBlockWithMsg:@"Config Network Infos Error" block:failedBlock];
             return;
         }
+        [self updateValues];
         moko_dispatch_main_safe(^{
             sucBlock();
         });

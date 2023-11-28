@@ -69,8 +69,6 @@
             return;
         }
         
-        [self updateCloudParams];
-        
         if (![self configWifiInfos]) {
             [self operationFailedBlockWithMsg:@"Config Wifi Infos Error" block:failedBlock];
             return;
@@ -85,6 +83,8 @@
                 }
             }
         }
+        
+        [self updateCloudParams];
         
         moko_dispatch_main_safe(^{
             sucBlock();

@@ -81,12 +81,6 @@ typedef NS_ENUM(NSInteger, mk_cg_txPower) {
 };
 
 
-typedef NS_ENUM(NSInteger, mk_cg_mqtt_networkType) {
-    mk_cg_mqtt_networkType_ethernet,
-    mk_cg_mqtt_networkType_wifi,
-};
-
-
 @protocol cg_indicatorLightStatusProtocol <NSObject>
 
 @property (nonatomic, assign)BOOL ble_advertising;

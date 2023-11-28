@@ -1,0 +1,6 @@
+framework module CommureGWThree {
+  umbrella header "CommureGWThree-umbrella.h"
+
+  export *
+  module * { export * }
+}

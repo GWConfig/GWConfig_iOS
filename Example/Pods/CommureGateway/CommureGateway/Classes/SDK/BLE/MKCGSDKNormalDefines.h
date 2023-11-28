@@ -12,11 +12,6 @@ typedef NS_ENUM(NSInteger, mk_cg_centralManagerStatus) {
     mk_cg_centralManagerStatusEnable,                           //可用状态
 };
 
-typedef NS_ENUM(NSInteger, mk_cg_networkType) {
-    mk_cg_networkType_ethernet,
-    mk_cg_networkType_wifi,
-};
-
 
 typedef NS_ENUM(NSInteger, mk_cg_wifiSecurity) {
     mk_cg_wifiSecurity_personal,

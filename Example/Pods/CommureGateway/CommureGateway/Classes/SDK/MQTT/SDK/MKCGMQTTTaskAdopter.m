@@ -335,12 +335,6 @@
     }else if (msgID == 1023) {
         //配置Wifi网络参数
         operationID = mk_cg_server_taskModifyWifiNetworkInfoOperation;
-    }else if (msgID == 1024) {
-        //配置网络接口类型
-        operationID = mk_cg_server_taskModifyNetworkTypeOperation;
-    }else if (msgID == 1025) {
-        //配置Ethernet网络参数
-        operationID = mk_cg_server_taskModifyEthernetNetworkInfoOperation;
     }else if (msgID == 1030) {
         //配置MQTT参数
         operationID = mk_cg_server_taskModifyMqttInfoOperation;
@@ -434,9 +428,6 @@
     }else if (msgID == 2024) {
         //读取网络接口选择
         operationID = mk_cg_server_taskReadNetworkTypeOperation;
-    }else if (msgID == 2025) {
-        //读取读取Ethernet网络参数
-        operationID = mk_cg_server_taskReadEthernetNetworkInfosOperation;
     }else if (msgID == 2030) {
         //读取MQTT参数
         operationID = mk_cg_server_taskReadMQTTParamsOperation;

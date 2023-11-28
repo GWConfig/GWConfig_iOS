@@ -60,6 +60,12 @@ UITableViewDataSource>
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
+    if (indexPath.row == 1) {
+        //MKGW3
+        UIViewController *vc = [[CTMediator sharedInstance] CTMediator_Commure_GW3_DeviceListPage];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -83,9 +89,9 @@ UITableViewDataSource>
     cellModel1.leftMsg = @"MK110";
     [self.dataList addObject:cellModel1];
     
-//    MKSettingTextCellModel *cellModel2 = [[MKSettingTextCellModel alloc] init];
-//    cellModel2.leftMsg = @"Remote gateway";
-//    [self.dataList addObject:cellModel2];
+    MKSettingTextCellModel *cellModel2 = [[MKSettingTextCellModel alloc] init];
+    cellModel2.leftMsg = @"MKGW3";
+    [self.dataList addObject:cellModel2];
     
     
     [self.tableView reloadData];
