@@ -96,7 +96,7 @@
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(defaultTopInset + 15.f);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(15.f);
         make.height.mas_equalTo(180.f);
     }];
     

@@ -54,7 +54,7 @@
     [self.aboutIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(110.f);
-        make.top.mas_equalTo(defaultTopInset + 40.f);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(40.f);
         make.height.mas_equalTo(110.f);
     }];
     [self.versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,7 +86,7 @@
         _versionLabel.textColor = RGBCOLOR(189, 189, 189);
         _versionLabel.textAlignment = NSTextAlignmentCenter;
         _versionLabel.font = MKFont(16.f);
-        _versionLabel.text = @"Version: V2.0.0";
+        _versionLabel.text = @"Version: V2.0.1";
     }
     return _versionLabel;
 }

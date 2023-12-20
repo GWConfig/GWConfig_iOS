@@ -498,6 +498,11 @@ mk_cf_mqttModifyWifiEapCertProtocol>
             }
         }
         
+        if (![self reboot]) {
+            [self operationFailedBlockWithMsg:@"Reboot Error" block:failedBlock];
+            return;
+        }
+        
         moko_dispatch_main_safe(^{
             sucBlock();
         });
@@ -613,6 +618,19 @@ mk_cf_mqttModifyWifiEapCertProtocol>
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);
     }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)reboot {
+    __block BOOL success = NO;
+    [MKCFMQTTInterface cf_rebootDeviceWithMacAddress:[MKCFDeviceModeManager shared].macAddress topic:[MKCFDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return success;
 }

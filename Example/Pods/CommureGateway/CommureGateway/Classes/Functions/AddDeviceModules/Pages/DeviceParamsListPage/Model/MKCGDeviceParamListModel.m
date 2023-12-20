@@ -126,6 +126,19 @@
 - (void)configDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock {
     [self loadParams];
     dispatch_async(self.readQueue, ^{
+        if (![self readDeviceMac]) {
+            [self operationFailedBlockWithMsg:@"Read Mac Address Timeout" block:failedBlock];
+            return;
+        }
+        if (![self readDeviceName]) {
+            [self operationFailedBlockWithMsg:@"Read Device Name Timeout" block:failedBlock];
+            return;
+        }
+        if (![self readClientID]) {
+            [self operationFailedBlockWithMsg:@"Read Client ID Timeout" block:failedBlock];
+            return;
+        }
+        
         NSString *wifiMsg = [self checkWifiMsg];
         if (ValidStr(wifiMsg)) {
             [self operationFailedBlockWithMsg:wifiMsg block:failedBlock];
@@ -147,15 +160,6 @@
         NSString *ntpMsg = [self checkNtpServerMsg];
         if (ValidStr(ntpMsg)) {
             [self operationFailedBlockWithMsg:ntpMsg block:failedBlock];
-            return;
-        }
-        
-        if (![self readDeviceMac]) {
-            [self operationFailedBlockWithMsg:@"Read Mac Address Timeout" block:failedBlock];
-            return;
-        }
-        if (![self readDeviceName]) {
-            [self operationFailedBlockWithMsg:@"Read Device Name Timeout" block:failedBlock];
             return;
         }
         
@@ -352,6 +356,19 @@
         
         [MKCGDeviceMQTTParamsModel shared].deviceModel.deviceName = self.deviceName;
         
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)readClientID {
+    __block BOOL success = NO;
+    [MKCGInterface cg_readClientIDWithSucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.clientID = returnData[@"result"][@"clientID"];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);
@@ -916,7 +933,6 @@
     //MQTT
     self.host = [MKCGDeviceMQTTParamsModel shared].params[@"host"];
     self.port = [MKCGDeviceMQTTParamsModel shared].params[@"port"];
-    self.clientID = [MKCGDeviceMQTTParamsModel shared].params[@"clientID"];
     self.subscribeTopic = [MKCGDeviceMQTTParamsModel shared].params[@"subscribeTopic"];
     self.publishTopic = [MKCGDeviceMQTTParamsModel shared].params[@"publishTopic"];
     self.cleanSession = [[MKCGDeviceMQTTParamsModel shared].params[@"cleanSession"] boolValue];
@@ -944,7 +960,7 @@
     
     [MKCGDeviceMQTTParamsModel shared].deviceModel.publishedTopic = [MKCGDeviceMQTTParamsModel shared].params[@"publishTopic"];
     [MKCGDeviceMQTTParamsModel shared].deviceModel.subscribedTopic = [MKCGDeviceMQTTParamsModel shared].params[@"subscribeTopic"];
-    [MKCGDeviceMQTTParamsModel shared].deviceModel.clientID = [MKCGDeviceMQTTParamsModel shared].params[@"clientID"];
+    [MKCGDeviceMQTTParamsModel shared].deviceModel.clientID = self.clientID;
 }
 
 - (void)operationFailedBlockWithMsg:(NSString *)msg block:(void (^)(NSError *error))block {

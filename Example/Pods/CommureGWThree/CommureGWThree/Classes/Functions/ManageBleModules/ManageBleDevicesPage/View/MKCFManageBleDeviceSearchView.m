@@ -159,7 +159,7 @@ static CGFloat const signalIconHeight = 15.f;
     [self.slider setValue:(-127 - rssi)];
     [self.rssiValueLabel setText:[NSString stringWithFormat:@"%lddBm",(long)rssi]];
     [UIView animateWithDuration:0.25 animations:^{
-        self.backView.transform = CGAffineTransformMakeTranslation(0, backViewHeight + defaultTopInset);
+        self.backView.transform = CGAffineTransformMakeTranslation(0, backViewHeight + kNavigationBarHeight + 44.f);
     } completion:^(BOOL finished) {
         [self.nameTextField becomeFirstResponder];
     }];

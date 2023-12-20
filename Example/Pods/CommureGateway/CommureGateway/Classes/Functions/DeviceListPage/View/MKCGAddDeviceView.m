@@ -12,6 +12,8 @@
 
 #import "MKMacroDefines.h"
 
+#import "MKCGDeviceListTableHeader.h"
+
 @interface MKCGAddDeviceView ()
 
 @property (nonatomic, strong)UILabel *msgLabel;

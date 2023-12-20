@@ -106,6 +106,10 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
             [self operationFailedBlockWithMsg:@"Read Device Name Timeout" block:failedBlock];
             return;
         }
+        if (![self readClientID]) {
+            [self operationFailedBlockWithMsg:@"Read Client ID Timeout" block:failedBlock];
+            return;
+        }
         
         if ([MKCGDeviceMQTTParamsModel shared].cloud) {
             //从云端导入
@@ -114,6 +118,7 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
             model.caFileName = @"ca.pem";
             model.clientCertName = @"certificate.pem.crt";
             model.clientKeyName = @"private.pem.key";
+            model.clientID = self.clientID;
             [self updateValue:model];
             moko_dispatch_main_safe(^{
                 if (sucBlock) {
@@ -129,10 +134,6 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
         }
         if (![self readPort]) {
             [self operationFailedBlockWithMsg:@"Read Port Timeout" block:failedBlock];
-            return;
-        }
-        if (![self readClientID]) {
-            [self operationFailedBlockWithMsg:@"Read Client ID Timeout" block:failedBlock];
             return;
         }
         if (![self readUsername]) {

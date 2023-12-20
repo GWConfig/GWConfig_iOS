@@ -16,7 +16,7 @@
     "tag": "0.0.1"
   },
   "platforms": {
-    "ios": "12.0"
+    "ios": "14.0"
   },
   "resource_bundles": {
     "CommureGateway": [
@@ -256,6 +256,67 @@
 
                 ]
               }
+            }
+          ]
+        },
+        {
+          "name": "BatchModifyModules",
+          "subspecs": [
+            {
+              "name": "BatchModifyPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/BatchModifyModules/BatchModifyPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/BatchModifyModules/BatchModifyPage/Model": [
+
+                    ],
+                    "CommureGateway/Functions/BatchModifyModules/Manager": [
+
+                    ],
+                    "CommureGateway/Functions/QRCodePage/Controller": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/BatchModifyModules/BatchModifyPage/Model/**"
+                },
+                {
+                  "name": "View",
+                  "source_files": "CommureGateway/Classes/Functions/BatchModifyModules/BatchModifyPage/View/**"
+                }
+              ]
+            },
+            {
+              "name": "DownLoadModifyPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/BatchModifyModules/DownLoadModifyPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/BatchModifyModules/DownLoadModifyPage/Model": [
+
+                    ],
+                    "CommureGateway/Functions/BatchModifyModules/BatchModifyPage/Controller": [
+
+                    ],
+                    "CommureGateway/Functions/BatchModifyModules/Manager": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/BatchModifyModules/DownLoadModifyPage/Model/**"
+                }
+              ]
+            },
+            {
+              "name": "Manager",
+              "source_files": "CommureGateway/Classes/Functions/BatchModifyModules/Manager/**"
             }
           ]
         },
@@ -566,6 +627,9 @@
 
                 ],
                 "CommureGateway/Functions/BatchOtaPage": [
+
+                ],
+                "CommureGateway/Functions/BatchModifyModules": [
 
                 ]
               }

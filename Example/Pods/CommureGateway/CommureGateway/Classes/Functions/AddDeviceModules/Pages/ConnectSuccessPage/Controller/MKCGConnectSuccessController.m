@@ -97,21 +97,21 @@
     [self.msgLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
         make.right.mas_equalTo(-15.f);
-        make.top.mas_equalTo(defaultTopInset + 20.f);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(20.f);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
     [self.view addSubview:self.textField];
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
         make.right.mas_equalTo(-15.f);
-        make.top.mas_equalTo(defaultTopInset + 20.f);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(20.f);
         make.height.mas_equalTo(35.f);
     }];
     [self.view addSubview:self.saveButton];
     [self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30.f);
         make.right.mas_equalTo(-30.f);
-        make.bottom.mas_equalTo(-VirtualHomeHeight - 50.f);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).mas_offset(-50.f);
         make.height.mas_equalTo(40.f);
     }];
 }

@@ -185,7 +185,7 @@ MKCGButtonLogHeaderDelegate>
     [self.headerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(defaultTopInset);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
         make.height.mas_equalTo(80.f);
     }];
     [self.view addSubview:self.textView];
@@ -193,7 +193,7 @@ MKCGButtonLogHeaderDelegate>
         make.left.mas_equalTo(15.f);
         make.right.mas_equalTo(-15.f);
         make.top.mas_equalTo(self.headerView.mas_bottom).mas_equalTo(10.f);
-        make.bottom.mas_equalTo(-VirtualHomeHeight - 30.f);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).mas_offset(-30.f);
     }];
 }
 

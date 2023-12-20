@@ -20,8 +20,6 @@ const NSString *defaultUrl = @"http://47.104.172.169:8080/updata_fold/commureMK1
 const NSString *defaultSubTopic = @"/provision/gateway/cmds";
 const NSString *defaultPubTopic = @"/provision/gateway/data";
 
-const CGFloat msgLabelWidth = 130.f;
-
 @interface MKCGBatchOtaTableHeader ()
 
 @property (nonatomic, strong)UILabel *urlLabel;
@@ -77,7 +75,7 @@ const CGFloat msgLabelWidth = 130.f;
     }];
     [self.urlLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(msgLabelWidth);
+        make.width.mas_equalTo(175.f);
         make.centerY.mas_equalTo(self.urlTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
@@ -89,7 +87,7 @@ const CGFloat msgLabelWidth = 130.f;
     }];
     [self.subTopicLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(msgLabelWidth);
+        make.width.mas_equalTo(175.f);
         make.centerY.mas_equalTo(self.subTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
@@ -101,7 +99,7 @@ const CGFloat msgLabelWidth = 130.f;
     }];
     [self.pubTopicLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(msgLabelWidth);
+        make.width.mas_equalTo(175.f);
         make.centerY.mas_equalTo(self.pubTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];

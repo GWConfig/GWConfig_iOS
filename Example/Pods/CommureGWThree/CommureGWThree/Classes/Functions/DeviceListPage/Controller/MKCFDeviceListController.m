@@ -38,19 +38,22 @@
 #import "MKCFAddDeviceView.h"
 #import "MKCFDeviceListCell.h"
 #import "MKCFEasyShowView.h"
+#import "MKCFDeviceListTableHeader.h"
 
 #import "MKCFServerForAppController.h"
 #import "MKCFScanPageController.h"
 #import "MKCFDeviceDataController.h"
 #import "MKCFAboutController.h"
 #import "MKCFBatchOtaController.h"
+#import "MKCFDownLoadModifyController.h"
 
 static NSTimeInterval const kRefreshInterval = 0.5f;
 
 @interface MKCFDeviceListController ()<UITableViewDelegate,
 UITableViewDataSource,
 MKCFDeviceListCellDelegate,
-MKCFDeviceModelDelegate>
+MKCFDeviceModelDelegate,
+MKCFDeviceListTableHeaderDelegate>
 
 /// 没有添加设备的时候显示
 @property (nonatomic, strong)MKCFAddDeviceView *addView;
@@ -58,11 +61,18 @@ MKCFDeviceModelDelegate>
 /// 本地有设备的时候显示
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
+@property (nonatomic, strong)MKCFDeviceListTableHeader *headerView;
+
 @property (nonatomic, strong)UIView *footerView;
 
 @property (nonatomic, strong)MKCFEasyShowView *loadingView;
 
 @property (nonatomic, strong)NSMutableArray *dataList;
+
+@property (nonatomic, strong)NSMutableArray *onlineList;
+
+/// 是不是显示在线列表
+@property (nonatomic, assign)BOOL showOnline;
 
 /// 定时刷新
 @property (nonatomic, assign)CFRunLoopObserverRef observerRef;
@@ -98,7 +108,6 @@ MKCFDeviceModelDelegate>
 }
 
 #pragma mark - super method
-
 - (void)rightButtonMethod {
     KxMenuItem *aboutItem = [KxMenuItem menuItem:@"About"
                                            image:nil
@@ -112,6 +121,10 @@ MKCFDeviceModelDelegate>
                                               image:nil
                                              target:self
                                              action:@selector(pushBatchOtaPage)];
+    KxMenuItem *modifyItem = [KxMenuItem menuItem:@"BatchModify"
+                                            image:nil
+                                           target:self
+                                           action:@selector(pushDownLoadModifyPage)];
     Color textColor = {
         R:1,
         G:1,
@@ -137,7 +150,7 @@ MKCFDeviceModelDelegate>
     };
     
     CGRect rect = CGRectMake(kViewWidth - self.rightButton.frame.size.width - 15.f, self.rightButton.frame.origin.y + 52.f, self.rightButton.frame.size.width, self.rightButton.frame.size.height);
-    NSArray *itemList = @[aboutItem,serverItem,batchOtaItem];
+    NSArray *itemList = @[aboutItem,serverItem,batchOtaItem,modifyItem];
     [KxMenu showMenuInView:self.view
                   fromRect:rect
                  menuItems:itemList
@@ -150,7 +163,15 @@ MKCFDeviceModelDelegate>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MKCFDeviceListModel *deviceModel = self.dataList[indexPath.row];
+    
+    MKCFDeviceListModel *deviceModel = nil;
+    
+    if (self.showOnline) {
+        deviceModel = self.onlineList[indexPath.row];
+    }else {
+        deviceModel = self.dataList[indexPath.row];
+    }
+     
     if (deviceModel.onLineState != MKCFDeviceModelStateOnline) {
         [self.view showCentralToast:@"Device is off-line!"];
         return;
@@ -166,13 +187,20 @@ MKCFDeviceModelDelegate>
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.showOnline) {
+        return self.onlineList.count;
+    }
     return self.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MKCFDeviceListCell *cell = [MKCFDeviceListCell initCellWithTableView:tableView];
     cell.indexPath = indexPath;
-    cell.dataModel = self.dataList[indexPath.row];
+    if (self.showOnline) {
+        cell.dataModel = self.onlineList[indexPath.row];
+    }else {
+        cell.dataModel = self.dataList[indexPath.row];
+    }
     cell.delegate = self;
     return cell;
 }
@@ -184,9 +212,6 @@ MKCFDeviceModelDelegate>
  @param index 所在index
  */
 - (void)cf_cellDeleteButtonPressed:(NSInteger)index {
-    if (index >= self.dataList.count) {
-        return;
-    }
     
     @weakify(self);
     MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"Cancel" handler:^{
@@ -211,6 +236,34 @@ MKCFDeviceModelDelegate>
     [self deviceModelOnlineStateChanged:MKCFDeviceModelStateOffline macAddress:macAddress];
 }
 
+#pragma mark - MKCFDeviceListTableHeaderDelegate
+
+/// 过滤
+/// - Parameter type: 0:All   1:Online
+- (void)cf_deviceListFilter:(NSInteger)type {
+    self.showOnline = (type == 1);
+    [self.onlineList removeAllObjects];
+    [self loadMainViews];
+    if (type == 0) {
+        //全部
+        [[MKHudManager share] showHUDWithTitle:@"Loading..." inView:self.view isPenetration:NO];
+        [self.tableView reloadData];
+        [[MKHudManager share] hide];
+        return;
+    }
+    //筛选在线
+    [[MKHudManager share] showHUDWithTitle:@"Loading..." inView:self.view isPenetration:NO];
+    NSInteger totalNumber = self.dataList.count;
+    for (NSInteger i = 0; i < totalNumber; i ++) {
+        MKCFDeviceModel *deviceModel = self.dataList[i];
+        if (deviceModel.onLineState == MKCFDeviceModelStateOnline) {
+            [self.onlineList addObject:deviceModel];
+        }
+    }
+    [[MKHudManager share] hide];
+    [self.tableView reloadData];
+}
+
 #pragma mark - event method
 - (void)pushAboutPage {
     MKCFAboutController *vc = [[MKCFAboutController alloc] init];
@@ -224,6 +277,11 @@ MKCFDeviceModelDelegate>
 
 - (void)pushBatchOtaPage {
     MKCFBatchOtaController *vc = [[MKCFBatchOtaController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)pushDownLoadModifyPage {
+    MKCFDownLoadModifyController *vc = [[MKCFDownLoadModifyController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -246,26 +304,9 @@ MKCFDeviceModelDelegate>
     deviceModel.delegate = self;
     [deviceModel startStateMonitoringTimer];
     
-    NSInteger index = 0;
-    BOOL contain = NO;
-    for (NSInteger i = 0; i < self.dataList.count; i ++) {
-        MKCFDeviceListModel *model = self.dataList[i];
-        if ([model.macAddress isEqualToString:deviceModel.macAddress]) {
-            index = i;
-            contain = YES;
-            break;
-        }
-    }
-    if (contain) {
-        //当前设备列表存在deviceID相同的设备，替换，本地数据库已经替换过了
-        [self.dataList replaceObjectAtIndex:index withObject:deviceModel];
-    }else {
-        //不存在，则添加到设备列表
-        if (self.dataList.count > 0) {
-            [self.dataList insertObject:deviceModel atIndex:0];
-        }else {
-            [self.dataList addObject:deviceModel];
-        }
+    [self addDeviceToList:deviceModel list:self.dataList];
+    if (self.showOnline) {
+        [self addDeviceToList:deviceModel list:self.onlineList];
     }
     
     [self loadMainViews];
@@ -287,13 +328,45 @@ MKCFDeviceModelDelegate>
     if (!ValidDict(user) || !ValidStr(user[@"macAddress"]) || self.dataList.count == 0) {
         return;
     }
+    MKCFDeviceListModel *deviceModel = nil;
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
-        MKCFDeviceListModel *deviceModel = self.dataList[i];
-        if ([deviceModel.macAddress isEqualToString:user[@"macAddress"]]) {
-            deviceModel.onLineState = MKCFDeviceModelStateOnline;
-            [deviceModel startStateMonitoringTimer];
-            deviceModel.wifiLevel = [user[@"data"][@"net_status"] integerValue];
+        MKCFDeviceListModel *tempDevice = self.dataList[i];
+        if ([tempDevice.macAddress isEqualToString:user[@"macAddress"]]) {
+            tempDevice.onLineState = MKCFDeviceModelStateOnline;
+            [tempDevice startStateMonitoringTimer];
+            tempDevice.wifiLevel = [user[@"data"][@"net_status"] integerValue];
+            deviceModel = tempDevice;
             break;
+        }
+    }
+    if (!deviceModel) {
+        return;
+    }
+    if (!self.showOnline) {
+        [self needRefreshList];
+        return;
+    }
+    //当前显示的是在线列表
+    BOOL contain = NO;
+    for (NSInteger i = 0; i < self.onlineList.count; i ++) {
+        MKCFDeviceListModel *tempDevice = self.onlineList[i];
+        if ([tempDevice.macAddress isEqualToString:deviceModel.macAddress]) {
+            tempDevice.onLineState = MKCFDeviceModelStateOnline;
+            [tempDevice startStateMonitoringTimer];
+            tempDevice.wifiLevel = [user[@"data"][@"net_status"] integerValue];
+            deviceModel = tempDevice;
+            contain = YES;
+            break;
+        }
+    }
+    if (!contain) {
+        //在线列表没有包含
+        if (self.onlineList.count > 0) {
+            //插入
+            [self.onlineList insertObject:deviceModel atIndex:0];
+        }else {
+            //天津
+            [self.onlineList addObject:deviceModel];
         }
     }
     [self needRefreshList];
@@ -313,7 +386,21 @@ MKCFDeviceModelDelegate>
             break;
         }
     }
-    [self.tableView mk_reloadRow:index inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+    if (!self.showOnline) {
+        [self.tableView mk_reloadRow:index inSection:0 withRowAnimation:UITableViewRowAnimationNone];
+        return;
+    }
+    //显示的是在线列表
+    NSInteger onlineIndex = 0;
+    for (NSInteger i = 0; i < self.onlineList.count; i ++) {
+        MKCFDeviceListModel *deviceModel = self.onlineList[i];
+        if ([deviceModel.macAddress isEqualToString:user[@"macAddress"]]) {
+            deviceModel.deviceName = user[@"deviceName"];
+            onlineIndex = i;
+            break;
+        }
+    }
+    [self.tableView mk_reloadRow:onlineIndex inSection:0 withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)receiveDeleteDevice:(NSNotification *)note {
@@ -333,6 +420,18 @@ MKCFDeviceModelDelegate>
     if (!deviceModel) {
         return;
     }
+    
+    if (self.showOnline) {
+        //在线列表
+        for (NSInteger i = 0; i < self.onlineList.count; i ++) {
+            MKCFDeviceListModel *model = self.onlineList[i];
+            if ([model.macAddress isEqualToString:user[@"macAddress"]]) {
+                [self.onlineList removeObject:model];
+                break;
+            }
+        }
+    }
+    
     NSMutableArray *unSubTopicList = [NSMutableArray array];
     [unSubTopicList addObject:[deviceModel currentPublishedTopic]];
     [[MKCFMQTTDataManager shared] unsubscriptions:unSubTopicList];
@@ -365,6 +464,19 @@ MKCFDeviceModelDelegate>
     if (!contain) {
         return;
     }
+    
+    if (self.showOnline) {
+        //在线列表
+        for (NSInteger i = 0; i < self.onlineList.count; i ++) {
+            MKCFDeviceModel *model = self.onlineList[i];
+            if ([model.macAddress isEqualToString:user[@"macAddress"]]) {
+                [subTopicList removeObject:model];
+                contain = YES;
+                break;
+            }
+        }
+    }
+    
     [[MKCFMQTTDataManager shared] unsubscriptions:unsubTopicList];
     [self performSelector:@selector(resubTopics:) withObject:subTopicList afterDelay:1.f];
 }
@@ -415,6 +527,15 @@ MKCFDeviceModelDelegate>
             deviceModel.onLineState = MKCFDeviceModelStateOffline;
             [unSubTopicList addObject:[deviceModel currentPublishedTopic]];
             break;
+        }
+    }
+    if (self.showOnline) {
+        for (NSInteger i = 0; i < self.onlineList.count; i ++) {
+            MKCFDeviceListModel *deviceModel = self.onlineList[i];
+            if ([deviceModel.macAddress isEqualToString:macAddress]) {
+                [self.onlineList removeObject:deviceModel];
+                break;
+            }
         }
     }
     [[MKCFMQTTDataManager shared] unsubscriptions:unSubTopicList];
@@ -480,6 +601,47 @@ MKCFDeviceModelDelegate>
         }
     }
     
+    if (self.showOnline) {
+        for (NSInteger i = 0; i < deviceList.count; i ++) {
+            MKCFDeviceModel *receiveModel = deviceList[i];
+            MKCFDeviceListModel *deviceModel = [[MKCFDeviceListModel alloc] init];
+            deviceModel.deviceType = receiveModel.deviceType;
+            deviceModel.clientID = receiveModel.clientID;
+            deviceModel.deviceName = receiveModel.deviceName;
+            deviceModel.subscribedTopic = receiveModel.subscribedTopic;
+            deviceModel.publishedTopic = receiveModel.publishedTopic;
+            deviceModel.macAddress = receiveModel.macAddress;
+            deviceModel.onLineState = receiveModel.onLineState;
+            deviceModel.wifiLevel = 2;
+            deviceModel.delegate = self;
+            [deviceModel startStateMonitoringTimer];
+            
+            publishedTopic = [deviceModel currentPublishedTopic];
+            
+            NSInteger index = 0;
+            BOOL contain = NO;
+            for (NSInteger i = 0; i < self.onlineList.count; i ++) {
+                MKCFDeviceListModel *model = self.onlineList[i];
+                if ([model.macAddress isEqualToString:deviceModel.macAddress]) {
+                    index = i;
+                    contain = YES;
+                    break;
+                }
+            }
+            if (contain) {
+                //当前设备列表存在deviceID相同的设备，替换，本地数据库已经替换过了
+                [self.onlineList replaceObjectAtIndex:index withObject:deviceModel];
+            }else {
+                //不存在，则添加到设备列表
+                if (self.onlineList.count > 0) {
+                    [self.onlineList insertObject:deviceModel atIndex:0];
+                }else {
+                    [self.onlineList addObject:deviceModel];
+                }
+            }
+        }
+    }
+    
     [self loadMainViews];
     [[MKCFMQTTDataManager shared] subscriptions:@[publishedTopic]];
 }
@@ -505,13 +667,24 @@ MKCFDeviceModelDelegate>
     if (self.addView.superview) {
         [self.addView removeFromSuperview];
     }
+    if (self.showOnline) {
+        [self.view addSubview:self.tableView];
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.top.mas_equalTo(self.headerView.mas_bottom);
+            make.bottom.mas_equalTo(self.footerView.mas_top);
+        }];
+        [self.tableView reloadData];
+        return;
+    }
     if (!ValidArray(self.dataList)) {
         //没有设备的情况下，隐藏设备列表，显示添加设备页面
         [self.view addSubview:self.addView];
         [self.addView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
-            make.top.mas_equalTo(defaultTopInset);
+            make.top.mas_equalTo(self.headerView.mas_bottom);
             make.bottom.mas_equalTo(self.footerView.mas_top);
         }];
         return;
@@ -521,7 +694,7 @@ MKCFDeviceModelDelegate>
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(defaultTopInset);
+        make.top.mas_equalTo(self.headerView.mas_bottom);
         make.bottom.mas_equalTo(self.footerView.mas_top);
     }];
     [self.tableView reloadData];
@@ -562,6 +735,7 @@ MKCFDeviceModelDelegate>
 }
 
 - (void)deviceModelOnlineStateChanged:(MKCFDeviceModelState)state macAddress:(NSString *)macAddress {
+    MKCFDeviceListModel *currentModel = nil;
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKCFDeviceListModel *deviceModel = self.dataList[i];
         if ([deviceModel.macAddress isEqualToString:macAddress]) {
@@ -570,24 +744,111 @@ MKCFDeviceModelDelegate>
                 //在线状态开启监听
                 [deviceModel startStateMonitoringTimer];
             }
+            currentModel = deviceModel;
             break;
         }
     }
-    [self needRefreshList];
+    if (!self.showOnline) {
+        [self needRefreshList];
+        return;
+    }
+    if (!currentModel) {
+        return;
+    }
+    //当前显示的在线列表
+    if (state == MKCFDeviceModelStateOffline) {
+        //设备离线
+        NSInteger onlineCount = self.onlineList.count;
+        for (NSInteger i = 0; i < onlineCount; i ++) {
+            MKCFDeviceListModel *deviceModel = self.onlineList[i];
+            if ([deviceModel.macAddress isEqualToString:macAddress]) {
+                [self.onlineList removeObject:deviceModel];
+                break;
+            }
+        }
+    }else {
+        //设备在线
+        BOOL contain = NO;
+        NSInteger onlineCount = self.onlineList.count;
+        for (NSInteger i = 0; i < onlineCount; i ++) {
+            MKCFDeviceListModel *deviceModel = self.onlineList[i];
+            if ([deviceModel.macAddress isEqualToString:macAddress]) {
+                [self.onlineList replaceObjectAtIndex:i withObject:currentModel];
+                contain = YES;
+                break;
+            }
+        }
+        if (!contain) {
+            if (self.onlineList.count > 0) {
+                [self.onlineList insertObject:currentModel atIndex:0];
+            }else {
+                [self.onlineList addObject:currentModel];
+            }
+        }
+    }
 }
 
 - (void)removeDeviceFromLocal:(NSInteger)index {
-    MKCFDeviceListModel *deviceModel = self.dataList[index];
+    MKCFDeviceListModel *deviceModel = nil;
+    if (self.showOnline) {
+        deviceModel = self.onlineList[index];
+    }else {
+        deviceModel = self.dataList[index];
+    }
+     
     [[MKHudManager share] showHUDWithTitle:@"Delete..." inView:self.view isPenetration:NO];
     [MKCFDeviceDatabaseManager deleteDeviceWithMacAddress:deviceModel.macAddress sucBlock:^{
+        [self deleteDeviceWithMac:deviceModel.macAddress];
         [[MKHudManager share] hide];
-        [self.dataList removeObject:deviceModel];
         [[MKCFMQTTDataManager shared] unsubscriptions:@[[deviceModel currentPublishedTopic]]];
         [self loadMainViews];
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
+}
+
+- (void)deleteDeviceWithMac:(NSString *)macAddress {
+    NSInteger onlineCount = self.onlineList.count;
+    for (NSInteger i = 0; i < onlineCount; i ++) {
+        MKCFDeviceListModel *deviceModel = self.onlineList[i];
+        if ([deviceModel.macAddress isEqualToString:macAddress]) {
+            [self.onlineList removeObject:deviceModel];
+            break;
+        }
+    }
+    NSInteger allCount = self.dataList.count;
+    for (NSInteger i = 0; i < allCount; i ++) {
+        MKCFDeviceListModel *deviceModel = self.dataList[i];
+        if ([deviceModel.macAddress isEqualToString:macAddress]) {
+            [self.dataList removeObject:deviceModel];
+            break;
+        }
+    }
+}
+
+- (void)addDeviceToList:(MKCFDeviceModel *)deviceModel list:(NSMutableArray *)list{
+    NSInteger index = 0;
+    BOOL contain = NO;
+    for (NSInteger i = 0; i < list.count; i ++) {
+        MKCFDeviceListModel *model = list[i];
+        if ([model.macAddress isEqualToString:deviceModel.macAddress]) {
+            index = i;
+            contain = YES;
+            break;
+        }
+    }
+    if (contain) {
+        //当前设备列表存在deviceID相同的设备，替换，本地数据库已经替换过了
+        [list replaceObjectAtIndex:index withObject:deviceModel];
+    }else {
+        //不存在，则添加到设备列表
+        if (list.count > 0) {
+            [list insertObject:deviceModel atIndex:0];
+        }else {
+            [list addObject:deviceModel];
+        }
+    }
 }
 
 - (void)addNotifications {
@@ -676,7 +937,14 @@ MKCFDeviceModelDelegate>
     [self.footerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-VirtualHomeHeight);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        make.height.mas_equalTo(60.f);
+    }];
+    [self.view addSubview:self.headerView];
+    [self.headerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
         make.height.mas_equalTo(60.f);
     }];
 }
@@ -690,6 +958,14 @@ MKCFDeviceModelDelegate>
         _tableView.backgroundColor = RGBCOLOR(242, 242, 242);
     }
     return _tableView;
+}
+
+- (MKCFDeviceListTableHeader *)headerView {
+    if (!_headerView) {
+        _headerView = [[MKCFDeviceListTableHeader alloc] init];
+        _headerView.delegate = self;
+    }
+    return _headerView;
 }
 
 - (MKCFAddDeviceView *)addView {
@@ -711,6 +987,13 @@ MKCFDeviceModelDelegate>
         _dataList = [NSMutableArray array];
     }
     return _dataList;
+}
+
+- (NSMutableArray *)onlineList {
+    if (!_onlineList) {
+        _onlineList = [NSMutableArray array];
+    }
+    return _onlineList;
 }
 
 - (UIView *)footerView {

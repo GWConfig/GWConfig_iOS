@@ -391,7 +391,7 @@ MKCFConfiguredGatewayHeaderViewDelegate>
     [self.addView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-VirtualHomeHeight);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         make.height.mas_equalTo(60.f);
     }];
     
@@ -406,7 +406,7 @@ MKCFConfiguredGatewayHeaderViewDelegate>
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10.f);
         make.right.mas_equalTo(-10.f);
-        make.top.mas_equalTo(defaultTopInset);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
         make.bottom.mas_equalTo(self.addView.mas_top);
     }];
 }
