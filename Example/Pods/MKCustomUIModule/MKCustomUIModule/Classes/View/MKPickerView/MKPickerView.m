@@ -165,7 +165,7 @@ static CGFloat const pickViewRowHeight = 30;
         [topView addSubview:cancelButton];
         
         UIButton *confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        confirmBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 10 - 60, 10, 60, 30);
+        confirmBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 10 - 70, 10, 70, 30);
         [confirmBtn setBackgroundColor:COLOR_CLEAR_MACROS];
         [confirmBtn setTitle:@"Confirm" forState:UIControlStateNormal];
         [confirmBtn setTitleColor:DEFAULT_TEXT_COLOR forState:UIControlStateNormal];

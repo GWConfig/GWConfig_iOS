@@ -10,6 +10,10 @@
 #endif
 #endif
 
+#import "MKFilterBeaconCell.h"
+#import "MKFilterByRawDataCell.h"
+#import "MKFilterEditSectionHeaderView.h"
+#import "MKFilterNormalTextFieldCell.h"
 #import "MKLoRaAdvancedSettingCell.h"
 #import "MKFilterConditionCell.h"
 #import "MKFilterDataCell.h"
@@ -19,6 +23,8 @@
 #import "MKMixedChoiceCell.h"
 #import "MKRawAdvDataOperationCell.h"
 #import "MKButtonMsgCell.h"
+#import "MKDeviceInfoCell.h"
+#import "MKDeviceInfoDfuCell.h"
 #import "MKNormalSliderCell.h"
 #import "MKNormalTextCell.h"
 #import "MKSettingTextCell.h"
