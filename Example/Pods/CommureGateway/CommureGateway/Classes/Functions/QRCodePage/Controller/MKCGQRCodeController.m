@@ -18,6 +18,7 @@
 @property (nonatomic, strong) SGScanView *scanView;
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) MKCGQRToolBar *toolBar;
+@property (nonatomic, assign)BOOL received;
 @end
 
 @implementation MKCGQRCodeController
@@ -78,10 +79,14 @@
 }
 
 - (void)scanCode:(SGScanCode *)scanCode result:(NSString *)result {
+    if (self.received) {
+        return;
+    }
     [self stop];
     if (self.scanMacAddressBlock) {
         self.scanMacAddressBlock([result lowercaseString]);
     }
+    self.received = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

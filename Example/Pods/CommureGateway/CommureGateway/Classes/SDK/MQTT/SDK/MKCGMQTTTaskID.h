@@ -104,4 +104,18 @@ typedef NS_ENUM(NSInteger, mk_cg_serverOperationID) {
     
     mk_cg_server_taskReadButtonLogOperation,                //获取按键log
     mk_cg_server_taskClearButtonLogOperation,               //清除按键log
+    
+    
+    mk_cg_server_taskReadSosAlarmNotiOperation,             //读取Sos报警Led与Buzzer参数
+    mk_cg_server_taskConfigSosAlarmNotiOperation,           //配置Sos报警Led与Buzzer参数
+    
+    
+    mk_cg_server_taskReadHardwareSelfTestOperation,         //读取硬件自检Led与Buzzer参数
+    mk_cg_server_taskConfigHardwareSelfTestOperation,       //配置硬件自检Led与Buzzer参数
+    
+    mk_cg_server_taskReadDismissSosAlarmNotiOperation,             //读取消除Sos报警Led与Buzzer参数
+    mk_cg_server_taskConfigDismissSosAlarmNotiOperation,           //配置消除Sos报警Led与Buzzer参数
+    
+    mk_cg_server_taskReadButtonPressEffectiveIntervalOperation,     //读取按键有效间隔参数
+    mk_cg_server_taskConfigButtonPressEffectiveIntervalOperation,   //配置按键有效间隔参数
 };

@@ -836,7 +836,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (!ValidStr(key) || key.length != 64 || ![key regularExpressions:isHexadecimal]) {
+    if (!ValidStr(key) || key.length != 52 || ![key regularExpressions:isHexadecimal]) {
         [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
@@ -1266,7 +1266,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (!ValidStr(key) || key.length != 64 || ![key regularExpressions:isHexadecimal]) {
+    if (!ValidStr(key) || key.length != 52 || ![key regularExpressions:isHexadecimal]) {
         [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
@@ -2764,6 +2764,319 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_cg_server_taskClearButtonLogOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_readSosAlarmNotiWithBleMacAddress:(NSString *)bleMacAddress
+                                  macAddress:(NSString *)macAddress
+                                       topic:(NSString *)topic
+                                    sucBlock:(void (^)(id returnData))sucBlock
+                                 failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1177),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskReadSosAlarmNotiOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_configSosAlarmNotiWithColor:(mk_cg_reminderLedColor)color
+                   ledBlinkingInterval:(NSInteger)ledBlinkingInterval
+                   ledBlinkingDuration:(NSInteger)ledBlinkingDuration
+                 buzzerBeepingInterval:(NSInteger)buzzerBeepingInterval
+                 buzzerBeepingDuration:(NSInteger)buzzerBeepingDuration
+                         bleMacAddress:(NSString *)bleMacAddress
+                            macAddress:(NSString *)macAddress
+                                 topic:(NSString *)topic
+                              sucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (ledBlinkingInterval < 0 || ledBlinkingInterval > 100 || ledBlinkingDuration < 1 || ledBlinkingDuration > 255 || buzzerBeepingInterval < 0 || buzzerBeepingInterval > 100 || buzzerBeepingDuration < 0 || buzzerBeepingDuration > 655) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSString *ledColor = @"red";
+    if (color == mk_cg_reminderLedColor_blue) {
+        ledColor = @"blue";
+    }else if (color == mk_cg_reminderLedColor_green) {
+        ledColor = @"green";
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1179),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"led_color":ledColor,
+            @"led_off_time":@(ledBlinkingInterval * 100),
+            @"led_work_time":@(ledBlinkingDuration),
+            @"buzzer_off_time":@(buzzerBeepingInterval * 100),
+            @"buzzer_work_time":@(buzzerBeepingDuration * 100),
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskConfigSosAlarmNotiOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_readHardwareSelfTestWithBleMacAddress:(NSString *)bleMacAddress
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1181),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskReadHardwareSelfTestOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_configHardwareSelfTestLedBlinkingDuration:(NSInteger)ledBlinkingDuration
+                               buzzerBeepingInterval:(NSInteger)buzzerBeepingInterval
+                               buzzerBeepingDuration:(NSInteger)buzzerBeepingDuration
+                                       bleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (ledBlinkingDuration < 1 || ledBlinkingDuration > 255 || buzzerBeepingInterval < 0 || buzzerBeepingInterval > 100 || buzzerBeepingDuration < 0 || buzzerBeepingDuration > 655) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1183),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"led_flash_time":@(ledBlinkingDuration),
+            @"buzzer_off_time":@(buzzerBeepingInterval * 100),
+            @"buzzer_work_time":@(buzzerBeepingDuration * 100),
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskConfigHardwareSelfTestOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_readDismissSosAlarmNotiWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1185),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskReadDismissSosAlarmNotiOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_configDismissSosAlarmNotiWithColor:(mk_cg_reminderLedColor)color
+                          ledBlinkingInterval:(NSInteger)ledBlinkingInterval
+                          ledBlinkingDuration:(NSInteger)ledBlinkingDuration
+                        buzzerBeepingInterval:(NSInteger)buzzerBeepingInterval
+                        buzzerBeepingDuration:(NSInteger)buzzerBeepingDuration
+                                bleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (ledBlinkingInterval < 0 || ledBlinkingInterval > 100 || ledBlinkingDuration < 0 || ledBlinkingDuration > 655 || buzzerBeepingInterval < 0 || buzzerBeepingInterval > 100 || buzzerBeepingDuration < 0 || buzzerBeepingDuration > 655) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSString *ledColor = @"red";
+    if (color == mk_cg_reminderLedColor_blue) {
+        ledColor = @"blue";
+    }else if (color == mk_cg_reminderLedColor_green) {
+        ledColor = @"green";
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1187),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"led_color":ledColor,
+            @"led_off_time":@(ledBlinkingInterval * 100),
+            @"led_work_time":@(ledBlinkingDuration * 100),
+            @"buzzer_off_time":@(buzzerBeepingInterval * 100),
+            @"buzzer_work_time":@(buzzerBeepingDuration * 100),
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskConfigDismissSosAlarmNotiOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_readButtonPressEffectiveIntervalWithBleMacAddress:(NSString *)bleMacAddress
+                                                  macAddress:(NSString *)macAddress
+                                                       topic:(NSString *)topic
+                                                    sucBlock:(void (^)(id returnData))sucBlock
+                                                 failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1189),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskReadButtonPressEffectiveIntervalOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)cg_configButtonPressEffectiveIntervalWithBleMacAddress:(NSString *)bleMacAddress
+                                                      interval:(NSInteger)interval
+                                                    macAddress:(NSString *)macAddress
+                                                         topic:(NSString *)topic
+                                                      sucBlock:(void (^)(id returnData))sucBlock
+                                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (interval < 5 || interval > 20) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1191),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"key_valid_interval":@(interval),
+        }
+    };
+    [[MKCGMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_cg_server_taskConfigButtonPressEffectiveIntervalOperation
                                    timeout:50
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];

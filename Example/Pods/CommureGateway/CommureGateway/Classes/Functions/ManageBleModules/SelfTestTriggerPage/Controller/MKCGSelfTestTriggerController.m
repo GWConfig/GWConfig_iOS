@@ -97,6 +97,7 @@
 #pragma mark - UI
 - (void)loadSubViews {
     self.defaultTitle = @"Self test triggered by button";
+    self.titleLabel.font = MKFont(15.f);
     [self.rightButton setImage:LOADICON(@"CommureGateway", @"MKCGSelfTestTriggerController", @"cg_saveIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.textField];
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {

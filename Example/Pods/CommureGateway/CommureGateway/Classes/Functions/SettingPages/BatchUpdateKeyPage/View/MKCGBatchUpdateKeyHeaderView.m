@@ -148,10 +148,10 @@
                 [self.delegate cg_encryptionKeyChanged:text];
             }
         };
-        _keyTextField.placeholder = @"32 Bytes";
+        _keyTextField.placeholder = @"26 Bytes";
         _keyTextField.textColor = DEFAULT_TEXT_COLOR;
         _keyTextField.textAlignment = NSTextAlignmentLeft;
-        _keyTextField.maxLength = 64;
+        _keyTextField.maxLength = 52;
         _keyTextField.font = MKFont(13.f);
         
         _keyTextField.layer.masksToBounds = YES;

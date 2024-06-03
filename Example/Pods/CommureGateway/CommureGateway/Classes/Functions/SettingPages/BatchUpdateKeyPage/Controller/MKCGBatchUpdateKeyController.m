@@ -306,8 +306,8 @@ MKCGBatchUpdateCellDelegate>
         [self.view showCentralToast:@"Beacon list MAC error"];
         return;
     }
-    if (!ValidStr(self.dataModel.encryptionKey) || self.dataModel.encryptionKey.length != 64) {
-        [self.view showCentralToast:@"Encryption key must be 32 Bytes"];
+    if (!ValidStr(self.dataModel.encryptionKey) || self.dataModel.encryptionKey.length != 52) {
+        [self.view showCentralToast:@"Encryption key must be 26 Bytes"];
         return;
     }
     if (self.dataModel.password.length > 16) {

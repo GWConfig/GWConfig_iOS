@@ -3,7 +3,8 @@
  *
  * Used in conjunction with the libxlsxwriter library.
  *
- * Copyright 2014-2022, John McNamara, jmcnamara@cpan.org. See LICENSE.txt.
+ * SPDX-License-Identifier: BSD-2-Clause
+ * Copyright 2014-2024, John McNamara, jmcnamara@cpan.org.
  *
  */
 
@@ -66,16 +67,16 @@ STATIC void
 _free_doc_properties(lxw_doc_properties *properties)
 {
     if (properties) {
-        free(properties->title);
-        free(properties->subject);
-        free(properties->author);
-        free(properties->manager);
-        free(properties->company);
-        free(properties->category);
-        free(properties->keywords);
-        free(properties->comments);
-        free(properties->status);
-        free(properties->hyperlink_base);
+        free((void *) properties->title);
+        free((void *) properties->subject);
+        free((void *) properties->author);
+        free((void *) properties->manager);
+        free((void *) properties->company);
+        free((void *) properties->category);
+        free((void *) properties->keywords);
+        free((void *) properties->comments);
+        free((void *) properties->status);
+        free((void *) properties->hyperlink_base);
     }
 
     free(properties);
@@ -261,9 +262,10 @@ lxw_workbook_free(lxw_workbook *workbook)
     lxw_hash_free(workbook->used_xf_formats);
     lxw_hash_free(workbook->used_dxf_formats);
     lxw_sst_free(workbook->sst);
-    free(workbook->options.tmpdir);
+    free((void *) workbook->options.tmpdir);
     free(workbook->ordered_charts);
     free(workbook->vba_project);
+    free(workbook->vba_project_signature);
     free(workbook->vba_codename);
     free(workbook);
 }
@@ -1971,8 +1973,8 @@ workbook_add_worksheet(lxw_workbook *self, const char *sheetname)
     return worksheet;
 
 mem_error:
-    free(init_data.name);
-    free(init_data.quoted_name);
+    free((void *) init_data.name);
+    free((void *) init_data.quoted_name);
     free(worksheet_name);
     free(worksheet);
     return NULL;
@@ -2055,8 +2057,8 @@ workbook_add_chartsheet(lxw_workbook *self, const char *sheetname)
     return chartsheet;
 
 mem_error:
-    free(init_data.name);
-    free(init_data.quoted_name);
+    free((void *) init_data.name);
+    free((void *) init_data.quoted_name);
     free(chartsheet_name);
     free(chartsheet);
     return NULL;
@@ -2638,7 +2640,7 @@ workbook_add_vba_project(lxw_workbook *self, const char *filename)
 
     if (!filename) {
         LXW_WARN("workbook_add_vba_project(): "
-                 "filename must be specified.");
+                 "project filename must be specified.");
         return LXW_ERROR_NULL_PARAMETER_IGNORED;
     }
 
@@ -2646,13 +2648,48 @@ workbook_add_vba_project(lxw_workbook *self, const char *filename)
     filehandle = lxw_fopen(filename, "rb");
     if (!filehandle) {
         LXW_WARN_FORMAT1("workbook_add_vba_project(): "
-                         "file doesn't exist or can't be opened: %s.",
+                         "project file doesn't exist or can't be opened: %s.",
                          filename);
         return LXW_ERROR_PARAMETER_VALIDATION;
     }
     fclose(filehandle);
 
     self->vba_project = lxw_strdup(filename);
+
+    return LXW_NO_ERROR;
+}
+
+/*
+ * Add a vbaProject binary and a vbaProjectSignature binary to the Excel workbook.
+ */
+lxw_error
+workbook_add_signed_vba_project(lxw_workbook *self,
+                                const char *vba_project,
+                                const char *signature)
+{
+    FILE *filehandle;
+
+    lxw_error error = workbook_add_vba_project(self, vba_project);
+    if (error != LXW_NO_ERROR)
+        return error;
+
+    if (!signature) {
+        LXW_WARN("workbook_add_signed_vba_project(): "
+                 "signature filename must be specified.");
+        return LXW_ERROR_NULL_PARAMETER_IGNORED;
+    }
+
+    /* Check that the vbaProjectSignature file exists and can be opened. */
+    filehandle = lxw_fopen(signature, "rb");
+    if (!filehandle) {
+        LXW_WARN_FORMAT1("workbook_add_signed_vba_project(): "
+                         "signature file doesn't exist or can't be opened: %s.",
+                         signature);
+        return LXW_ERROR_PARAMETER_VALIDATION;
+    }
+    fclose(filehandle);
+
+    self->vba_project_signature = lxw_strdup(signature);
 
     return LXW_NO_ERROR;
 }

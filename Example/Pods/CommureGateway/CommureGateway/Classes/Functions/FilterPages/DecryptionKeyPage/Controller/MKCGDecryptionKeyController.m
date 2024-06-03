@@ -114,8 +114,8 @@
 - (MKTextField *)textField {
     if (!_textField) {
         _textField = [[MKTextField alloc] initWithTextFieldType:mk_hexCharOnly];
-        _textField.maxLength = 64;
-        _textField.placeholder = @"32 Bytes";
+        _textField.maxLength = 52;
+        _textField.placeholder = @"26 Bytes";
         _textField.borderStyle = UITextBorderStyleNone;
         _textField.font = MKFont(13.f);
         

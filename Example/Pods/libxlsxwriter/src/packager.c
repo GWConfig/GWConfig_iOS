@@ -31,7 +31,7 @@
  *     | | |____ theme1.xml
  *     | |
  *     | |_____rels
- *     | |____ workbook.xml.rels
+ *     |   |____ workbook.xml.rels
  *     |
  *     |_____rels
  *       |____ .rels
@@ -39,7 +39,8 @@
  * The Packager class coordinates the classes that represent the
  * elements of the package and writes them into the XLSX file.
  *
- * Copyright 2014-2022, John McNamara, jmcnamara@cpan.org. See LICENSE.txt.
+ * SPDX-License-Identifier: BSD-2-Clause
+ * Copyright 2014-2024, John McNamara, jmcnamara@cpan.org.
  *
  */
 
@@ -52,7 +53,7 @@
 STATIC lxw_error _add_file_to_zip(lxw_packager *self, FILE * file,
                                   const char *filename);
 
-STATIC lxw_error _add_buffer_to_zip(lxw_packager *self, char *buffer,
+STATIC lxw_error _add_buffer_to_zip(lxw_packager *self, const char *buffer,
                                     size_t buffer_size, const char *filename);
 
 STATIC lxw_error _add_to_zip(lxw_packager *self, FILE * file,
@@ -81,7 +82,7 @@ STATIC lxw_error _write_vml_drawing_rels_file(lxw_packager *self,
 #ifdef _WIN32
 
 /* Silence Windows warning with duplicate symbol for SLIST_ENTRY in local
- * queue.h and widows.h. */
+ * queue.h and windows.h. */
 #undef SLIST_ENTRY
 
 #include <windows.h>
@@ -153,7 +154,7 @@ _fclose_memstream(voidpf opaque, voidpf stream)
         GOTO_LABEL_ON_MEM_ERROR(packager->output_buffer, mem_error);
 
         rewind(file);
-        if (fread(packager->output_buffer, size, 1, file) < 1)
+        if (fread((void *) packager->output_buffer, size, 1, file) < 1)
             goto mem_error;
 
         packager->output_buffer_size = size;
@@ -170,7 +171,7 @@ mem_error:
  * Create a new packager object.
  */
 lxw_packager *
-lxw_packager_new(const char *filename, char *tmpdir, uint8_t use_zip64)
+lxw_packager_new(const char *filename, const char *tmpdir, uint8_t use_zip64)
 {
     zlib_filefunc_def filefunc;
     lxw_packager *packager = calloc(1, sizeof(lxw_packager));
@@ -239,8 +240,8 @@ lxw_packager_free(lxw_packager *packager)
     if (!packager)
         return;
 
-    free(packager->buffer);
-    free(packager->filename);
+    free((void *) packager->buffer);
+    free((void *) packager->filename);
     free(packager);
 }
 
@@ -444,6 +445,35 @@ _add_vba_project(lxw_packager *self)
     }
 
     err = _add_file_to_zip(self, image_stream, "xl/vbaProject.bin");
+    fclose(image_stream);
+    RETURN_ON_ERROR(err);
+
+    return LXW_NO_ERROR;
+}
+
+/*
+ * Write the xl/vbaProjectSignature.bin file.
+ */
+STATIC lxw_error
+_add_vba_project_signature(lxw_packager *self)
+{
+    lxw_workbook *workbook = self->workbook;
+    lxw_error err;
+    FILE *image_stream;
+
+    if (!workbook->vba_project_signature)
+        return LXW_NO_ERROR;
+
+    /* Check that the image file exists and can be opened. */
+    image_stream = lxw_fopen(workbook->vba_project_signature, "rb");
+    if (!image_stream) {
+        LXW_WARN_FORMAT1("Error adding vbaProjectSignature.bin to xlsx file: "
+                         "file doesn't exist or can't be opened: %s.",
+                         workbook->vba_project_signature);
+        return LXW_ERROR_CREATING_TMPFILE;
+    }
+
+    err = _add_file_to_zip(self, image_stream, "xl/vbaProjectSignature.bin");
     fclose(image_stream);
     RETURN_ON_ERROR(err);
 
@@ -1244,6 +1274,10 @@ _write_content_types_file(lxw_packager *self)
         lxw_ct_add_override(content_types, "/xl/workbook.xml",
                             LXW_APP_DOCUMENT "spreadsheetml.sheet.main+xml");
 
+    if (workbook->vba_project_signature)
+        lxw_ct_add_override(content_types, "/xl/vbaProjectSignature.bin",
+                            "application/vnd.ms-office.vbaProjectSignature");
+
     STAILQ_FOREACH(sheet, workbook->sheets, list_pointers) {
         if (sheet->is_chartsheet) {
             lxw_snprintf(filename, LXW_FILENAME_LENGTH,
@@ -1440,15 +1474,15 @@ _write_worksheet_rels_file(lxw_packager *self)
             lxw_add_worksheet_relationship(rels, rel->type, rel->target,
                                            rel->target_mode);
 
-        STAILQ_FOREACH(rel, worksheet->external_table_links, list_pointers) {
-            lxw_add_worksheet_relationship(rels, rel->type, rel->target,
-                                           rel->target_mode);
-        }
-
         rel = worksheet->external_background_link;
         if (rel)
             lxw_add_worksheet_relationship(rels, rel->type, rel->target,
                                            rel->target_mode);
+
+        STAILQ_FOREACH(rel, worksheet->external_table_links, list_pointers) {
+            lxw_add_worksheet_relationship(rels, rel->type, rel->target,
+                                           rel->target_mode);
+        }
 
         rel = worksheet->external_comment_link;
         if (rel)
@@ -1638,6 +1672,50 @@ _write_vml_drawing_rels_file(lxw_packager *self, lxw_worksheet *worksheet,
 }
 
 /*
+ * Write the vbaProject .rels xml file.
+ */
+STATIC lxw_error
+_write_vba_project_rels_file(lxw_packager *self)
+{
+    lxw_relationships *rels;
+    lxw_workbook *workbook = self->workbook;
+    lxw_error err = LXW_NO_ERROR;
+    char *buffer = NULL;
+    size_t buffer_size = 0;
+
+    if (!workbook->vba_project_signature)
+        return LXW_NO_ERROR;
+
+    rels = lxw_relationships_new();
+    if (!rels) {
+        err = LXW_ERROR_MEMORY_MALLOC_FAILED;
+        goto mem_error;
+    }
+
+    rels->file = lxw_get_filehandle(&buffer, &buffer_size, self->tmpdir);
+    if (!rels->file) {
+        err = LXW_ERROR_CREATING_TMPFILE;
+        goto mem_error;
+    }
+
+    lxw_add_ms_package_relationship(rels, "/vbaProjectSignature",
+                                    "vbaProjectSignature.bin");
+
+    lxw_relationships_assemble_xml_file(rels);
+
+    err = _add_to_zip(self, rels->file, &buffer, &buffer_size,
+                      "xl/_rels/vbaProject.bin.rels");
+
+    fclose(rels->file);
+    free(buffer);
+
+mem_error:
+    lxw_free_relationships(rels);
+
+    return err;
+}
+
+/*
  * Write the _rels/.rels xml file.
  */
 STATIC lxw_error
@@ -1715,7 +1793,7 @@ _add_file_to_zip(lxw_packager *self, FILE * file, const char *filename)
     fflush(file);
     rewind(file);
 
-    size_read = fread(self->buffer, 1, self->buffer_size, file);
+    size_read = fread((void *) self->buffer, 1, self->buffer_size, file);
 
     while (size_read) {
 
@@ -1734,7 +1812,8 @@ _add_file_to_zip(lxw_packager *self, FILE * file, const char *filename)
             RETURN_ON_ZIP_ERROR(error, LXW_ERROR_ZIP_FILE_ADD);
         }
 
-        size_read = fread(self->buffer, 1, self->buffer_size, file);
+        size_read =
+            fread((void *) (void *) self->buffer, 1, self->buffer_size, file);
     }
 
     error = zipCloseFileInZip(self->zipfile);
@@ -1747,7 +1826,7 @@ _add_file_to_zip(lxw_packager *self, FILE * file, const char *filename)
 }
 
 STATIC lxw_error
-_add_buffer_to_zip(lxw_packager *self, char *buffer, size_t buffer_size,
+_add_buffer_to_zip(lxw_packager *self, const char *buffer, size_t buffer_size,
                    const char *filename)
 {
     int16_t error = ZIP_OK;
@@ -1795,7 +1874,7 @@ _add_to_zip(lxw_packager *self, FILE * file, char **buffer,
 }
 
 /*
- * Write the xml files that make up the XLXS OPC package.
+ * Write the xml files that make up the XLSX OPC package.
  */
 lxw_error
 lxw_create_package(lxw_packager *self)
@@ -1861,6 +1940,12 @@ lxw_create_package(lxw_packager *self)
     RETURN_AND_ZIPCLOSE_ON_ERROR(error);
 
     error = _add_vba_project(self);
+    RETURN_AND_ZIPCLOSE_ON_ERROR(error);
+
+    error = _add_vba_project_signature(self);
+    RETURN_AND_ZIPCLOSE_ON_ERROR(error);
+
+    error = _write_vba_project_rels_file(self);
     RETURN_AND_ZIPCLOSE_ON_ERROR(error);
 
     error = _write_core_file(self);

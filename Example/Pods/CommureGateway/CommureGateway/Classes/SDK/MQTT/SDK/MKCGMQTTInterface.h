@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
                     failedBlock:(void (^)(NSError *error))failedBlock;
 
 /// Communication timeout.
-/// @param timeout 0~60 Mins.
+/// @param timeout 0s~60s.
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters
 /// @param sucBlock Success callback
@@ -327,7 +327,7 @@ NS_ASSUME_NONNULL_BEGIN
                           failedBlock:(void (^)(NSError *error))failedBlock;
 
 /// The allowed decrypt key between gateway and badge.
-/// @param key 32 Bytes.
+/// @param key 26 Bytes.
 /// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters
 /// @param sucBlock Success callback
@@ -483,7 +483,7 @@ NS_ASSUME_NONNULL_BEGIN
               failedBlock:(void (^)(NSError *error))failedBlock;
 
 /// Batch update key.
-/// @param key Encryption key,32 Bytes.
+/// @param key Encryption key,26 Bytes.
 /// @param beaconList @[@{@"macAddress":@"AABBCCDDEEFF",@"password":@"Moko4321"}]
 /// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters
@@ -1091,6 +1091,130 @@ NS_ASSUME_NONNULL_BEGIN
                                      topic:(NSString *)topic
                                   sucBlock:(void (^)(id returnData))sucBlock
                                failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// SOS alarm notifications.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_readSosAlarmNotiWithBleMacAddress:(NSString *)bleMacAddress
+                                  macAddress:(NSString *)macAddress
+                                       topic:(NSString *)topic
+                                    sucBlock:(void (^)(id returnData))sucBlock
+                                 failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// SOS alarm notifications.
+/// @param color LED Color.
+/// @param ledBlinkingInterval Led off time Range: 0 x 100ms~100 x 100ms
+/// @param ledBlinkingDuration Led flash time Range: 1s~255s
+/// @param buzzerBeepingInterval Buzzer off time Range: 0 x 100ms~100 x 100ms
+/// @param buzzerBeepingDuration Buzzer work time.(0 * 100ms~655 * 100ms)
+/// @param bleMacAddressThe mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_configSosAlarmNotiWithColor:(mk_cg_reminderLedColor)color
+                   ledBlinkingInterval:(NSInteger)ledBlinkingInterval
+                   ledBlinkingDuration:(NSInteger)ledBlinkingDuration
+                 buzzerBeepingInterval:(NSInteger)buzzerBeepingInterval
+                 buzzerBeepingDuration:(NSInteger)buzzerBeepingDuration
+                         bleMacAddress:(NSString *)bleMacAddress
+                            macAddress:(NSString *)macAddress
+                                 topic:(NSString *)topic
+                              sucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Hardware test parameters.(Led and buzzer parameters)
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_readHardwareSelfTestWithBleMacAddress:(NSString *)bleMacAddress
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Hardware test parameters.(Led and buzzer parameters)
+/// @param ledBlinkingDuration Led flash time Range: 1s~255s
+/// @param buzzerBeepingInterval Buzzer off time Range: 0 x 100ms~100 x 100ms
+/// @param buzzerBeepingDuration Buzzer work time.(0 * 100ms~655 * 100ms)
+/// @param bleMacAddressThe mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_configHardwareSelfTestLedBlinkingDuration:(NSInteger)ledBlinkingDuration
+                               buzzerBeepingInterval:(NSInteger)buzzerBeepingInterval
+                               buzzerBeepingDuration:(NSInteger)buzzerBeepingDuration
+                                       bleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Dismiss SOS alarm notifications.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_readDismissSosAlarmNotiWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Dismiss SOS alarm notifications.
+/// @param color LED Color.
+/// @param ledBlinkingInterval Led off time Range: 0 x 100ms~100 x 100ms
+/// @param ledBlinkingDuration Led flash time Range: (0 * 100ms~655 * 100ms)
+/// @param buzzerBeepingInterval Buzzer off time Range: 0 x 100ms~100 x 100ms
+/// @param buzzerBeepingDuration Buzzer work time.(0 * 100ms~655 * 100ms)
+/// @param bleMacAddressThe mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_configDismissSosAlarmNotiWithColor:(mk_cg_reminderLedColor)color
+                          ledBlinkingInterval:(NSInteger)ledBlinkingInterval
+                          ledBlinkingDuration:(NSInteger)ledBlinkingDuration
+                        buzzerBeepingInterval:(NSInteger)buzzerBeepingInterval
+                        buzzerBeepingDuration:(NSInteger)buzzerBeepingDuration
+                                bleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Button press effective interval.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_readButtonPressEffectiveIntervalWithBleMacAddress:(NSString *)bleMacAddress
+                                                  macAddress:(NSString *)macAddress
+                                                       topic:(NSString *)topic
+                                                    sucBlock:(void (^)(id returnData))sucBlock
+                                                 failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Button press effective interval.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param interval 5 x 100ms~20 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)cg_configButtonPressEffectiveIntervalWithBleMacAddress:(NSString *)bleMacAddress
+                                                      interval:(NSInteger)interval
+                                                    macAddress:(NSString *)macAddress
+                                                         topic:(NSString *)topic
+                                                      sucBlock:(void (^)(id returnData))sucBlock
+                                                   failedBlock:(void (^)(NSError *error))failedBlock;
 
 
 @end

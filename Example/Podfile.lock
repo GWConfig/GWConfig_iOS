@@ -937,10 +937,12 @@ PODS:
     - CommureGateway/Functions/ManageBleModules/BatteryTestPage (= 0.0.1)
     - CommureGateway/Functions/ManageBleModules/BeaconOTAPage (= 0.0.1)
     - CommureGateway/Functions/ManageBleModules/ButtonLogPage (= 0.0.1)
+    - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage (= 0.0.1)
     - CommureGateway/Functions/ManageBleModules/ConnectedPage (= 0.0.1)
     - CommureGateway/Functions/ManageBleModules/ManageBleDevicesPage (= 0.0.1)
     - CommureGateway/Functions/ManageBleModules/SelfTestTriggerPage (= 0.0.1)
     - CommureGateway/Functions/ManageBleModules/SleepModePage (= 0.0.1)
+    - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage (= 0.0.1)
     - CommureGateway/Functions/ManageBleModules/SosTriggerPage (= 0.0.1)
     - CommureGateway/SDK
     - MKBaseModuleLibrary
@@ -1097,6 +1099,36 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
+  - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage (0.0.1):
+    - CommureGateway/CTMediator
+    - CommureGateway/DeviceModel
+    - CommureGateway/Expand
+    - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage/Controller (= 0.0.1)
+    - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model (= 0.0.1)
+    - CommureGateway/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage/Controller (0.0.1):
+    - CommureGateway/CTMediator
+    - CommureGateway/DeviceModel
+    - CommureGateway/Expand
+    - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model
+    - CommureGateway/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model (0.0.1):
+    - CommureGateway/CTMediator
+    - CommureGateway/DeviceModel
+    - CommureGateway/Expand
+    - CommureGateway/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
   - CommureGateway/Functions/ManageBleModules/ConnectedPage (0.0.1):
     - CommureGateway/CTMediator
     - CommureGateway/DeviceModel
@@ -1118,10 +1150,12 @@ PODS:
     - CommureGateway/Functions/ManageBleModules/BatteryTestPage
     - CommureGateway/Functions/ManageBleModules/BeaconOTAPage
     - CommureGateway/Functions/ManageBleModules/ButtonLogPage
+    - CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage
     - CommureGateway/Functions/ManageBleModules/ConnectedPage/Model
     - CommureGateway/Functions/ManageBleModules/ConnectedPage/View
     - CommureGateway/Functions/ManageBleModules/SelfTestTriggerPage
     - CommureGateway/Functions/ManageBleModules/SleepModePage
+    - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage
     - CommureGateway/Functions/ManageBleModules/SosTriggerPage
     - CommureGateway/SDK
     - MKBaseModuleLibrary
@@ -1207,6 +1241,36 @@ PODS:
     - MLInputDodger
     - SGQRCode
   - CommureGateway/Functions/ManageBleModules/SleepModePage/Controller (0.0.1):
+    - CommureGateway/CTMediator
+    - CommureGateway/DeviceModel
+    - CommureGateway/Expand
+    - CommureGateway/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage (0.0.1):
+    - CommureGateway/CTMediator
+    - CommureGateway/DeviceModel
+    - CommureGateway/Expand
+    - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage/Controller (= 0.0.1)
+    - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage/Model (= 0.0.1)
+    - CommureGateway/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage/Controller (0.0.1):
+    - CommureGateway/CTMediator
+    - CommureGateway/DeviceModel
+    - CommureGateway/Expand
+    - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage/Model
+    - CommureGateway/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage/Model (0.0.1):
     - CommureGateway/CTMediator
     - CommureGateway/DeviceModel
     - CommureGateway/Expand
@@ -3924,13 +3988,13 @@ PODS:
     - CommureGWThree/Functions
     - MKBaseModuleLibrary
   - CTMediator (48)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
-  - libxlsxwriter (1.1.5)
+  - FMDB (2.7.11):
+    - FMDB/standard (= 2.7.11)
+  - FMDB/standard (2.7.11)
+  - libxlsxwriter (1.1.7)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
-  - MJRefresh (3.7.6)
+  - MJRefresh (3.7.9)
   - MKBaseBleModule (1.1.4)
   - MKBaseModuleLibrary (2.0.9):
     - MKBaseModuleLibrary/Base (= 2.0.9)
@@ -4402,7 +4466,7 @@ PODS:
   - MLInputDodger (1.5.2)
   - SGQRCode (4.1.0)
   - SSZipArchive (2.4.3)
-  - Toast (4.1.0)
+  - Toast (4.1.1)
   - WRNavigationBar (1.4.0)
 
 DEPENDENCIES:
@@ -4439,7 +4503,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CommureGateway:
-    :commit: 458c5df0b9195045e76182460fc8d960a0ca9fe4
+    :commit: cd09b8bad7f4cd73e60c0cd87fdf61117ff83b1c
     :git: "git@120.27.8.241:Commure-Tag_AC347/Commure-MK110_AC347_IOS.git"
   CommureGWThree:
     :commit: 954f5845a80497f70a83d7d360c0dda4ab720c9c
@@ -4448,14 +4512,14 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
-  CommureGateway: f6f726e321f85ae4bf59b0dd749b427fec612784
+  CommureGateway: fd3471140acca9ed0a65bef755f493eb239550d8
   CommureGWThree: fd95e5a95522a489cf1ba0a816f55e9d3ab683a3
   CTMediator: 3f3578b525b3a46a7a2f92a99922ec40363f4269
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  libxlsxwriter: 07cdc00cf0edb30ce9773efbbb49a03459a6e0f0
+  FMDB: 57486c1117fd8e0e6b947b2f54c3f42bf8e57a4e
+  libxlsxwriter: e83575045c1888806f49a181cad1384f2e4198d3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJRefresh: 2fe7fb43a5167ceda20bb7e63f130c04fd1814a5
+  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
   MKBaseModuleLibrary: 2b79bcae588c755588413fbb643b510253271b23
   MKBaseMQTTModule: 5434692b017865eede3b2ac6d2b4df52acd65a91
@@ -4463,7 +4527,7 @@ SPEC CHECKSUMS:
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   SGQRCode: 6ad664d63f38f2842503bc5087812c5a3136d924
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
-  Toast: ec33c32b8688982cecc6348adeae667c1b9938da
+  Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
   WRNavigationBar: 10bfdf96addf14d640d07c2ef08a029c18d8af10
 
 PODFILE CHECKSUM: 74723c5fd76b30c776de172217720984326ac113

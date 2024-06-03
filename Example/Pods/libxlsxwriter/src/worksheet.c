@@ -3,7 +3,8 @@
  *
  * Used in conjunction with the libxlsxwriter library.
  *
- * Copyright 2014-2022, John McNamara, jmcnamara@cpan.org. See LICENSE.txt.
+ * SPDX-License-Identifier: BSD-2-Clause
+ * Copyright 2014-2024, John McNamara, jmcnamara@cpan.org.
  *
  */
 
@@ -369,7 +370,7 @@ _free_cell(lxw_cell *cell)
     if (cell->type != NUMBER_CELL && cell->type != STRING_CELL
         && cell->type != BLANK_CELL && cell->type != BOOLEAN_CELL) {
 
-        free(cell->u.string);
+        free((void *) cell->u.string);
     }
 
     free(cell->user_data1);
@@ -486,9 +487,9 @@ _free_worksheet_table_column(lxw_table_column *column)
     if (!column)
         return;
 
-    free(column->header);
-    free(column->formula);
-    free(column->total_string);
+    free((void *) column->header);
+    free((void *) column->formula);
+    free((void *) column->total_string);
 
     free(column);
 }
@@ -785,8 +786,8 @@ lxw_worksheet_free(lxw_worksheet *worksheet)
 
     free(worksheet->hbreaks);
     free(worksheet->vbreaks);
-    free(worksheet->name);
-    free(worksheet->quoted_name);
+    free((void *) worksheet->name);
+    free((void *) worksheet->quoted_name);
     free(worksheet->vba_codename);
     free(worksheet->vml_data_id_str);
     free(worksheet->vml_header_id_str);
@@ -896,7 +897,7 @@ _new_inline_string_cell(lxw_row_t row_num,
  */
 STATIC lxw_cell *
 _new_inline_rich_string_cell(lxw_row_t row_num,
-                             lxw_col_t col_num, char *string,
+                             lxw_col_t col_num, const char *string,
                              lxw_format *format)
 {
     lxw_cell *cell = calloc(1, sizeof(lxw_cell));
@@ -1452,7 +1453,7 @@ lxw_basename(const char *path)
 /* Function to count the total concatenated length of the strings in a
  * validation list array, including commas. */
 size_t
-_validation_list_length(char **list)
+_validation_list_length(const char **list)
 {
     uint8_t i = 0;
     size_t length = 0;
@@ -1460,7 +1461,7 @@ _validation_list_length(char **list)
     if (!list || !list[0])
         return 0;
 
-    while (list[i] && length <= LXW_VALIDATION_MAX_STRING_LENGTH) {
+    while (list[i] && length < LXW_VALIDATION_MAX_STRING_LENGTH) {
         /* Include commas in the length. */
         length += 1 + lxw_utf8_strlen(list[i]);
         i++;
@@ -1475,14 +1476,14 @@ _validation_list_length(char **list)
 /* Function to convert an array of strings into a CSV string for data
  * validation lists. */
 char *
-_validation_list_to_csv(char **list)
+_validation_list_to_csv(const char **list)
 {
     uint8_t i = 0;
     char *str;
 
     /* Create a buffer for the concatenated, and quoted, string. */
-    /* Add +3 for quotes and EOL. */
-    str = calloc(1, LXW_VALIDATION_MAX_STRING_LENGTH + 3);
+    /* Allow for 4 byte UTF-8 chars and add 3 bytes for quotes and EOL. */
+    str = calloc(1, LXW_VALIDATION_MAX_STRING_LENGTH * 4 + 3);
     if (!str)
         return NULL;
 
@@ -1670,10 +1671,10 @@ _set_default_table_columns(lxw_table_obj *table_obj)
  *  "[#This Row]" in table formulas. This is the format that Excel uses to
  *  store the references. */
 char *
-_expand_table_formula(char *formula)
+_expand_table_formula(const char *formula)
 {
     char *expanded;
-    char *ptr;
+    const char *ptr;
     size_t i;
     size_t ref_count = 0;
     size_t expanded_len;
@@ -1753,7 +1754,7 @@ _set_custom_table_columns(lxw_table_obj *table_obj,
             RETURN_ON_MEM_ERROR(str, LXW_ERROR_MEMORY_MALLOC_FAILED);
 
             /* Free the default column header. */
-            free(table_column->header);
+            free((void *) table_column->header);
             table_column->header = str;
         }
 
@@ -2993,7 +2994,6 @@ _worksheet_position_object_pixels(lxw_worksheet *self,
     drawing_object->to.row_offset = y2;
     drawing_object->col_absolute = x_abs;
     drawing_object->row_absolute = y_abs;
-
 }
 
 /*
@@ -4447,7 +4447,7 @@ STATIC void
 _write_inline_rich_string_cell(lxw_worksheet *self, char *range,
                                int32_t style_index, lxw_cell *cell)
 {
-    char *string = cell->u.string;
+    const char *string = cell->u.string;
 
     if (style_index)
         fprintf(self->file,
@@ -4744,7 +4744,7 @@ lxw_worksheet_write_single_row(lxw_worksheet *self)
 
 /* Process a header/footer image and store it in the correct slot. */
 lxw_error
-_worksheet_set_header_footer_image(lxw_worksheet *self, char *filename,
+_worksheet_set_header_footer_image(lxw_worksheet *self, const char *filename,
                                    uint8_t image_position)
 {
     FILE *image_stream;
@@ -7959,7 +7959,7 @@ _store_array_formula(lxw_worksheet *self,
     RETURN_ON_MEM_ERROR(range, LXW_ERROR_MEMORY_MALLOC_FAILED);
 
     if (first_row == last_row && first_col == last_col)
-        lxw_rowcol_to_cell(range, first_row, last_col);
+        lxw_rowcol_to_cell(range, first_row, first_col);
     else
         lxw_rowcol_to_range(range, first_row, first_col, last_row, last_col);
 
@@ -8423,7 +8423,7 @@ worksheet_write_rich_string(lxw_worksheet *self,
     uint8_t i;
     long file_size;
     char *rich_string = NULL;
-    char *string_copy = NULL;
+    const char *string_copy = NULL;
     lxw_styles *styles = NULL;
     lxw_format *default_format = NULL;
     lxw_rich_string_tuple *rich_string_tuple = NULL;
@@ -8500,9 +8500,9 @@ worksheet_write_rich_string(lxw_worksheet *self,
 
         /* Rewind the file and read the data into the memory buffer. */
         rewind(tmpfile);
-        if (fread(rich_string, file_size, 1, tmpfile) < 1) {
+        if (fread((void *) rich_string, file_size, 1, tmpfile) < 1) {
             fclose(tmpfile);
-            free(rich_string);
+            free((void *) rich_string);
             return LXW_ERROR_READING_TMPFILE;
         }
     }
@@ -8511,14 +8511,14 @@ worksheet_write_rich_string(lxw_worksheet *self,
     fclose(tmpfile);
 
     if (lxw_utf8_strlen(rich_string) > LXW_STR_MAX) {
-        free(rich_string);
+        free((void *) rich_string);
         return LXW_ERROR_MAX_STRING_LENGTH_EXCEEDED;
     }
 
     if (!self->optimize) {
         /* Get the SST element and string id. */
         sst_element = lxw_get_sst_index(self->sst, rich_string, LXW_TRUE);
-        free(rich_string);
+        free((void *) rich_string);
 
         if (!sst_element)
             return LXW_ERROR_SHARED_STRING_INDEX_NOT_FOUND;
@@ -8531,7 +8531,7 @@ worksheet_write_rich_string(lxw_worksheet *self,
         /* Look for and escape control chars in the string. */
         if (lxw_has_control_characters(rich_string)) {
             string_copy = lxw_escape_control_characters(rich_string);
-            free(rich_string);
+            free((void *) rich_string);
         }
         else {
             string_copy = rich_string;
@@ -9153,7 +9153,7 @@ worksheet_filter_column2(lxw_worksheet *self, lxw_col_t col,
  * Set two autofilter rules for a filter column.
  */
 lxw_error
-worksheet_filter_list(lxw_worksheet *self, lxw_col_t col, char **list)
+worksheet_filter_list(lxw_worksheet *self, lxw_col_t col, const char **list)
 {
     lxw_filter_rule_obj *rule_obj;
     uint16_t rule_index;
@@ -10380,10 +10380,12 @@ worksheet_insert_image_buffer_opt(lxw_worksheet *self,
     /* Write the image buffer to a file (preferably in memory) so we can read
      * the dimensions like an ordinary file. */
 #ifdef USE_FMEMOPEN
-    image_stream = fmemopen(NULL, image_size, "w+b");
+    image_stream = fmemopen((void *) image_buffer, image_size, "rb");
+
+    if (!image_stream)
+        return LXW_ERROR_CREATING_TMPFILE;
 #else
     image_stream = lxw_tmpfile(self->tmpdir);
-#endif
 
     if (!image_stream)
         return LXW_ERROR_CREATING_TMPFILE;
@@ -10394,6 +10396,7 @@ worksheet_insert_image_buffer_opt(lxw_worksheet *self,
     }
 
     rewind(image_stream);
+#endif
 
     /* Create a new object to hold the image properties. */
     object_props = calloc(1, sizeof(lxw_object_properties));
@@ -10534,10 +10537,12 @@ worksheet_set_background_buffer(lxw_worksheet *self,
     /* Write the image buffer to a file (preferably in memory) so we can read
      * the dimensions like an ordinary file. */
 #ifdef USE_FMEMOPEN
-    image_stream = fmemopen(NULL, image_size, "w+b");
+    image_stream = fmemopen((void *) image_buffer, image_size, "rb");
+
+    if (!image_stream)
+        return LXW_ERROR_CREATING_TMPFILE;
 #else
     image_stream = lxw_tmpfile(self->tmpdir);
-#endif
 
     if (!image_stream)
         return LXW_ERROR_CREATING_TMPFILE;
@@ -10548,6 +10553,7 @@ worksheet_set_background_buffer(lxw_worksheet *self,
     }
 
     rewind(image_stream);
+#endif
 
     /* Create a new object to hold the image properties. */
     object_props = calloc(1, sizeof(lxw_object_properties));
@@ -10849,7 +10855,7 @@ worksheet_data_validation_range(lxw_worksheet *self, lxw_row_t first_row,
 
     /* Create the data validation range. */
     if (first_row == last_row && first_col == last_col)
-        lxw_rowcol_to_cell(copy->sqref, first_row, last_col);
+        lxw_rowcol_to_cell(copy->sqref, first_row, first_col);
     else
         lxw_rowcol_to_range(copy->sqref, first_row, first_col, last_row,
                             last_col);
@@ -10909,11 +10915,6 @@ worksheet_data_validation_range(lxw_worksheet *self, lxw_row_t first_row,
     /* Copy the validation list as a csv string. */
     if (validation->validate == LXW_VALIDATION_TYPE_LIST) {
         copy->value_formula = _validation_list_to_csv(validation->value_list);
-        GOTO_LABEL_ON_MEM_ERROR(copy->value_formula, mem_error);
-    }
-
-    if (validation->validate == LXW_VALIDATION_TYPE_LIST_FORMULA) {
-        copy->value_formula = lxw_strdup_formula(validation->value_formula);
         GOTO_LABEL_ON_MEM_ERROR(copy->value_formula, mem_error);
     }
 
@@ -11029,13 +11030,13 @@ worksheet_conditional_format_range(lxw_worksheet *self, lxw_row_t first_row,
 
     /* Create the data validation range. */
     if (first_row == last_row && first_col == last_col)
-        lxw_rowcol_to_cell(cond_format->sqref, first_row, last_col);
+        lxw_rowcol_to_cell(cond_format->sqref, first_row, first_col);
     else
         lxw_rowcol_to_range(cond_format->sqref, first_row, first_col,
                             last_row, last_col);
 
     /* Store the first cell string for text and date rules. */
-    lxw_rowcol_to_cell(cond_format->first_cell, first_row, last_col);
+    lxw_rowcol_to_cell(cond_format->first_cell, first_row, first_col);
 
     /* Overwrite the sqref range with a user supplied set of ranges. */
     if (user_options->multi_range) {

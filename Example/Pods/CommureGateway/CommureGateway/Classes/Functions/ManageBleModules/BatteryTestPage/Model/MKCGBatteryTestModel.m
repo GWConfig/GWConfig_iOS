@@ -30,6 +30,10 @@
 
 - (void)readDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
+        if (![self readHardwareParams]) {
+            [self operationFailedBlockWithMsg:@"Read Hardware Params Error" block:failedBlock];
+            return;
+        }
         if (![self readBatteryParams]) {
             [self operationFailedBlockWithMsg:@"Read Battery Params Error" block:failedBlock];
             return;
@@ -54,11 +58,15 @@
             [self operationFailedBlockWithMsg:@"Params Error" block:failedBlock];
             return;
         }
+        if (![self configHardwareParams]) {
+            [self operationFailedBlockWithMsg:@"Config Hardware Params Error" block:failedBlock];
+            return;
+        }
         if (![self configBatteryParams]) {
             [self operationFailedBlockWithMsg:@"Config Battery Params Error" block:failedBlock];
             return;
         }
-        if (!self.isOn) {
+        if (!self.batteryLedSwitch) {
             moko_dispatch_main_safe(^{
                 sucBlock();
             });
@@ -79,6 +87,36 @@
 }
 
 #pragma mark - interface
+- (BOOL)readHardwareParams {
+    __block BOOL success = NO;
+    [MKCGMQTTInterface cg_readHardwareSelfTestWithBleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        if ([returnData[@"data"][@"result_code"] integerValue] == 0) {
+            //成功
+            success = YES;
+            self.ledDuration = [NSString stringWithFormat:@"%@",returnData[@"data"][@"led_flash_time"]];
+            self.beepingInterval = [NSString stringWithFormat:@"%ld",[returnData[@"data"][@"buzzer_off_time"] integerValue] / 100];
+            self.beepingDuration = [NSString stringWithFormat:@"%ld",[returnData[@"data"][@"buzzer_work_time"] integerValue] / 100];
+        }
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)configHardwareParams {
+    __block BOOL success = NO;
+    [MKCGMQTTInterface cg_configHardwareSelfTestLedBlinkingDuration:[self.ledDuration integerValue] buzzerBeepingInterval:[self.beepingInterval integerValue] buzzerBeepingDuration:[self.beepingDuration integerValue] bleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        success = [returnData[@"data"][@"result_code"] integerValue] == 0;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
 
 - (BOOL)readBatteryParams {
     __block BOOL success = NO;
@@ -86,7 +124,7 @@
         if ([returnData[@"data"][@"result_code"] integerValue] == 0) {
             //成功
             success = YES;
-            self.isOn = ([returnData[@"data"][@"led_warn_switch"] integerValue] == 1);
+            self.batteryLedSwitch = ([returnData[@"data"][@"led_warn_switch"] integerValue] == 1);
             self.voltageThreshold = [NSString stringWithFormat:@"%@",returnData[@"data"][@"batt_warn_threshold"]];
         }
         dispatch_semaphore_signal(self.semaphore);
@@ -99,7 +137,7 @@
 
 - (BOOL)configBatteryParams {
     __block BOOL success = NO;
-    [MKCGMQTTInterface cg_configBatterySelfTestWithLedState:self.isOn voltageThreshold:[self.voltageThreshold integerValue] bleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKCGMQTTInterface cg_configBatterySelfTestWithLedState:self.batteryLedSwitch voltageThreshold:[self.voltageThreshold integerValue] bleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = [returnData[@"data"][@"result_code"] integerValue] == 0;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -119,9 +157,9 @@
             self.underDuration = [NSString stringWithFormat:@"%@",returnData[@"data"][@"led_flash_time"]];
             NSString *ledColor = SafeStr(returnData[@"data"][@"led_color"]);
             if ([ledColor isEqualToString:@"blue"]) {
-                self.color = 1;
+                self.underColor = 1;
             }else if ([ledColor isEqualToString:@"green"]) {
-                self.color = 2;
+                self.underColor = 2;
             }
         }
         dispatch_semaphore_signal(self.semaphore);
@@ -134,7 +172,7 @@
 
 - (BOOL)configBatteryTestLedParams0 {
     __block BOOL success = NO;
-    [MKCGMQTTInterface cg_configBatterySelfTestLedParams:0 ledColor:self.color interval:[self.underInterval integerValue] duration:[self.underDuration integerValue] bleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKCGMQTTInterface cg_configBatterySelfTestLedParams:0 ledColor:self.underColor interval:[self.underInterval integerValue] duration:[self.underDuration integerValue] bleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = [returnData[@"data"][@"result_code"] integerValue] == 0;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -152,6 +190,12 @@
             success = YES;
             self.overInterval = [NSString stringWithFormat:@"%ld",[returnData[@"data"][@"led_off_time"] integerValue] / 100];
             self.overDuration = [NSString stringWithFormat:@"%@",returnData[@"data"][@"led_flash_time"]];
+            NSString *ledColor = SafeStr(returnData[@"data"][@"led_color"]);
+            if ([ledColor isEqualToString:@"blue"]) {
+                self.overColor = 1;
+            }else if ([ledColor isEqualToString:@"green"]) {
+                self.overColor = 2;
+            }
         }
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -163,7 +207,7 @@
 
 - (BOOL)configBatteryTestLedParams1 {
     __block BOOL success = NO;
-    [MKCGMQTTInterface cg_configBatterySelfTestLedParams:1 ledColor:self.color interval:[self.overInterval integerValue] duration:[self.overDuration integerValue] bleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKCGMQTTInterface cg_configBatterySelfTestLedParams:1 ledColor:self.overColor interval:[self.overInterval integerValue] duration:[self.overDuration integerValue] bleMacAddress:self.bleMac macAddress:[MKCGDeviceModeManager shared].macAddress topic:[MKCGDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = [returnData[@"data"][@"result_code"] integerValue] == 0;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -185,7 +229,16 @@
 }
 
 - (BOOL)validParams {
-    if (!self.isOn) {
+    if (!ValidStr(self.ledDuration) || [self.ledDuration integerValue] < 1 || [self.ledDuration integerValue] > 255) {
+        return NO;
+    }
+    if (!ValidStr(self.beepingInterval) || [self.beepingInterval integerValue] < 0 || [self.beepingInterval integerValue] > 100) {
+        return NO;
+    }
+    if (!ValidStr(self.beepingDuration) || [self.beepingDuration integerValue] < 0|| [self.beepingDuration integerValue] > 655) {
+        return NO;
+    }
+    if (!self.batteryLedSwitch) {
         return YES;
     }
     if (!ValidStr(self.overInterval) || [self.overInterval integerValue] < 0 || [self.overInterval integerValue] > 100) {

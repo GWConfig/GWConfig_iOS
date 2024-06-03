@@ -44,6 +44,8 @@
 #import "MKCGSleepModeController.h"
 #import "MKCGAdvParamsConfigController.h"
 #import "MKCGButtonLogController.h"
+#import "MKCGSosAlarmNotiController.h"
+#import "MKCGButtonPressEffIntervalController.h"
 
 @interface MKCGDeviceConnectedController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -70,6 +72,10 @@ MKCGDeviceConnectedButtonCellDelegate>
 
 @property (nonatomic, strong)NSMutableArray *section8List;
 
+@property (nonatomic, strong)NSMutableArray *section9List;
+
+@property (nonatomic, strong)NSMutableArray *section10List;
+
 @property (nonatomic, strong)NSMutableArray *headerList;
 
 @property (nonatomic, strong)MKCGDeviceConnectedModel *dataModel;
@@ -79,6 +85,8 @@ MKCGDeviceConnectedButtonCellDelegate>
 @property (nonatomic, copy)NSString *encryptionKey;
 
 @property (nonatomic, copy)NSString *password;
+
+@property (nonatomic, assign)BOOL supportAxis;
 
 @end
 
@@ -96,6 +104,7 @@ MKCGDeviceConnectedButtonCellDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.supportAxis = ([self.deviceBleInfo[@"data"][@"sensor_type"] integerValue] & 0x1 == 0x1);
     [self loadSubViews];
     [self loadSectionDatas];
     [self addNotes];
@@ -130,7 +139,7 @@ MKCGDeviceConnectedButtonCellDelegate>
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0 || section == 2 || section == 4 || section == 6) {
+    if (section == 0 || section == 2 || section == 4 || section == 8) {
         return 20.f;
     }
     return 0.f;
@@ -178,52 +187,75 @@ MKCGDeviceConnectedButtonCellDelegate>
         return;
     }
     if (indexPath.section == 5 && indexPath.row == 3) {
-        //Battery test parameters
+        //Device self-test parameters
         MKCGBatteryTestController *vc = [[MKCGBatteryTestController alloc] init];
         vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    if (indexPath.section == 5 && indexPath.row == 4) {
+    if (indexPath.section == 6 && indexPath.row == 0) {
         //Accelerometer parameters
         MKCGAccelerometerController *vc = [[MKCGAccelerometerController alloc] init];
         vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    if (indexPath.section == 5 && indexPath.row == 5) {
+    if (indexPath.section == 6 && indexPath.row == 1) {
         //Sleep mode parameters
         MKCGSleepModeController *vc = [[MKCGSleepModeController alloc] init];
         vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    if (indexPath.section == 5 && indexPath.row == 6) {
+    if (indexPath.section == 7 && indexPath.row == 0) {
         //Power off
         [self showPowerOffAlert];
         return;
     }
-    if (indexPath.section == 5 && indexPath.row == 7) {
+    if (indexPath.section == 7 && indexPath.row == 1) {
         //Restore to factory settings
         [self showResetAlert];
         return;
     }
-    if (indexPath.section == 5 && indexPath.row == 8) {
+    if (indexPath.section == 7 && indexPath.row == 2) {
         //Button log
         MKCGButtonLogController *vc = [[MKCGButtonLogController alloc] init];
         vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
+    if (indexPath.section == 7 && indexPath.row == 3) {
+        //SOS alarm notification
+        MKCGSosAlarmNotiController *vc = [[MKCGSosAlarmNotiController alloc] init];
+        vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
+        vc.pageType = mk_cg_sosAlarmNotiPageType_normal;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    if (indexPath.section == 7 && indexPath.row == 4) {
+        //Dismiss-SOS alarm notification
+        MKCGSosAlarmNotiController *vc = [[MKCGSosAlarmNotiController alloc] init];
+        vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
+        vc.pageType = mk_cg_sosAlarmNotiPageType_dismiss;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    if (indexPath.section == 7 && indexPath.row == 5) {
+        //Button press effective interval
+        MKCGButtonPressEffIntervalController *vc = [[MKCGButtonPressEffIntervalController alloc] init];
+        vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     
-    if (indexPath.section == 6 && indexPath.row == 0) {
+    if (indexPath.section == 8 && indexPath.row == 0) {
         //ADV parameters
         MKCGAdvParamsConfigController *vc = [[MKCGAdvParamsConfigController alloc] init];
         vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    if (indexPath.section == 8 && indexPath.row == 0) {
+    if (indexPath.section == 10 && indexPath.row == 0) {
         //Change password
         [self showPasswordAlert];
         return;
@@ -255,13 +287,19 @@ MKCGDeviceConnectedButtonCellDelegate>
         return self.section5List.count;
     }
     if (section == 6) {
-        return self.section6List.count;
+        return (self.supportAxis ? self.section6List.count : 0);
     }
     if (section == 7) {
         return self.section7List.count;
     }
     if (section == 8) {
-        return (self.dataModel.passwordVerification ? self.section8List.count : 0);
+        return self.section8List.count;
+    }
+    if (section == 9) {
+        return self.section9List.count;
+    }
+    if (section == 10) {
+        return (self.dataModel.passwordVerification ? self.section10List.count : 0);
     }
     return 0;
 }
@@ -306,13 +344,23 @@ MKCGDeviceConnectedButtonCellDelegate>
         return cell;
     }
     if (indexPath.section == 7) {
-        MKTextSwitchCell *cell = [MKTextSwitchCell initCellWithTableView:tableView];
+        MKSettingTextCell *cell = [MKSettingTextCell initCellWithTableView:tableView];
         cell.dataModel = self.section7List[indexPath.row];
+        return cell;
+    }
+    if (indexPath.section == 8) {
+        MKSettingTextCell *cell = [MKSettingTextCell initCellWithTableView:tableView];
+        cell.dataModel = self.section8List[indexPath.row];
+        return cell;
+    }
+    if (indexPath.section == 9) {
+        MKTextSwitchCell *cell = [MKTextSwitchCell initCellWithTableView:tableView];
+        cell.dataModel = self.section9List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
     MKSettingTextCell *cell = [MKSettingTextCell initCellWithTableView:tableView];
-    cell.dataModel = self.section8List[indexPath.row];
+    cell.dataModel = self.section10List[indexPath.row];
     return cell;
 }
 
@@ -480,7 +528,7 @@ MKCGDeviceConnectedButtonCellDelegate>
 }
 
 - (void)sendEncryptionKeyToDevice {
-    if (!ValidStr(self.encryptionKey) || self.encryptionKey.length != 64 || ![self.encryptionKey regularExpressions:isHexadecimal]) {
+    if (!ValidStr(self.encryptionKey) || self.encryptionKey.length != 52 || ![self.encryptionKey regularExpressions:isHexadecimal]) {
         [self.view showCentralToast:@"Params Error"];
         return;
     }
@@ -556,13 +604,13 @@ MKCGDeviceConnectedButtonCellDelegate>
         }
         [self.view showCentralToast:@"setup success!"];
         self.dataModel.passwordVerification = isOn;
-        MKTextSwitchCellModel *cellModel = self.section7List[0];
+        MKTextSwitchCellModel *cellModel = self.section9List[0];
         cellModel.isOn = isOn;
-        [self.tableView mk_reloadSection:8 withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView mk_reloadSection:10 withRowAnimation:UITableViewRowAnimationNone];
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"setup failed!"];
-        [self.tableView mk_reloadSection:7 withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView mk_reloadSection:9 withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 
@@ -585,7 +633,7 @@ MKCGDeviceConnectedButtonCellDelegate>
         alarmModel.valueMsg = @"Self testing";
     }
     
-    MKTextSwitchCellModel *passCellModel = self.section7List[0];
+    MKTextSwitchCellModel *passCellModel = self.section9List[0];
     passCellModel.isOn = self.dataModel.passwordVerification;
     
     [self.tableView reloadData];
@@ -659,9 +707,9 @@ MKCGDeviceConnectedButtonCellDelegate>
         [self sendEncryptionKeyToDevice];
     }];
     MKAlertViewTextField *textField = [[MKAlertViewTextField alloc] initWithTextValue:@""
-                                                                          placeholder:@"32 Bytes"
+                                                                          placeholder:@"26 Bytes"
                                                                         textFieldType:mk_hexCharOnly
-                                                                            maxLength:64
+                                                                            maxLength:52
                                                                               handler:^(NSString * _Nonnull text) {
         @strongify(self);
         self.encryptionKey = text;
@@ -761,8 +809,10 @@ MKCGDeviceConnectedButtonCellDelegate>
     [self loadSection6Datas];
     [self loadSection7Datas];
     [self loadSection8Datas];
+    [self loadSection9Datas];
+    [self loadSection10Datas];
     
-    for (NSInteger i = 0; i < 9; i ++) {
+    for (NSInteger i = 0; i < 11; i ++) {
         MKTableSectionLineHeaderModel *headerModel = [[MKTableSectionLineHeaderModel alloc] init];
         if (i == 0) {
             headerModel.text = @"Device info and battery";
@@ -770,7 +820,7 @@ MKCGDeviceConnectedButtonCellDelegate>
             headerModel.text = @"Alarm response";
         }else if (i == 4) {
             headerModel.text = @"System parameters";
-        }else if (i == 6) {
+        }else if (i == 8) {
             headerModel.text = @"BLE parameters";
         }
         [self.headerList addObject:headerModel];
@@ -824,11 +874,11 @@ MKCGDeviceConnectedButtonCellDelegate>
 
 - (void)loadSection3Datas {
     MKSettingTextCellModel *cellModel1 = [[MKSettingTextCellModel alloc] init];
-    cellModel1.leftMsg = @"LED reminder";
+    cellModel1.leftMsg = @"LED remote reminder";
     [self.section3List addObject:cellModel1];
     
     MKSettingTextCellModel *cellModel2 = [[MKSettingTextCellModel alloc] init];
-    cellModel2.leftMsg = @"Buzzer reminder";
+    cellModel2.leftMsg = @"Buzzer remote reminder";
     [self.section3List addObject:cellModel2];
 }
 
@@ -859,47 +909,62 @@ MKCGDeviceConnectedButtonCellDelegate>
     [self.section5List addObject:cellModel4];
     
     MKSettingTextCellModel *cellModel5 = [[MKSettingTextCellModel alloc] init];
-    cellModel5.leftMsg = @"Battery test parameters";
+    cellModel5.leftMsg = @"Device self-test parameters";
     [self.section5List addObject:cellModel5];
-    
-    MKSettingTextCellModel *cellModel6 = [[MKSettingTextCellModel alloc] init];
-    cellModel6.leftMsg = @"Accelerometer parameters";
-    [self.section5List addObject:cellModel6];
-    
-    MKSettingTextCellModel *cellModel7 = [[MKSettingTextCellModel alloc] init];
-    cellModel7.leftMsg = @"Sleep mode parameters";
-    [self.section5List addObject:cellModel7];
-    
-    MKSettingTextCellModel *cellModel8 = [[MKSettingTextCellModel alloc] init];
-    cellModel8.leftMsg = @"Power off";
-    [self.section5List addObject:cellModel8];
-    
-    MKSettingTextCellModel *cellModel9 = [[MKSettingTextCellModel alloc] init];
-    cellModel9.leftMsg = @"Restore to factory settings";
-    [self.section5List addObject:cellModel9];
-    
-    MKSettingTextCellModel *cellModel10 = [[MKSettingTextCellModel alloc] init];
-    cellModel10.leftMsg = @"Button log";
-    [self.section5List addObject:cellModel10];
 }
 
 - (void)loadSection6Datas {
-    MKSettingTextCellModel *cellModel = [[MKSettingTextCellModel alloc] init];
-    cellModel.leftMsg = @"ADV parameters";
-    [self.section6List addObject:cellModel];
+    MKSettingTextCellModel *cellModel6 = [[MKSettingTextCellModel alloc] init];
+    cellModel6.leftMsg = @"Accelerometer parameters";
+    [self.section6List addObject:cellModel6];
+    
+    MKSettingTextCellModel *cellModel7 = [[MKSettingTextCellModel alloc] init];
+    cellModel7.leftMsg = @"Sleep mode parameters";
+    [self.section6List addObject:cellModel7];
 }
 
 - (void)loadSection7Datas {
+    MKSettingTextCellModel *cellModel8 = [[MKSettingTextCellModel alloc] init];
+    cellModel8.leftMsg = @"Power off";
+    [self.section7List addObject:cellModel8];
+    
+    MKSettingTextCellModel *cellModel9 = [[MKSettingTextCellModel alloc] init];
+    cellModel9.leftMsg = @"Restore to factory settings";
+    [self.section7List addObject:cellModel9];
+    
+    MKSettingTextCellModel *cellModel10 = [[MKSettingTextCellModel alloc] init];
+    cellModel10.leftMsg = @"Button log";
+    [self.section7List addObject:cellModel10];
+    
+    MKSettingTextCellModel *cellModel11 = [[MKSettingTextCellModel alloc] init];
+    cellModel11.leftMsg = @"SOS alarm notification";
+    [self.section7List addObject:cellModel11];
+    
+    MKSettingTextCellModel *cellModel12 = [[MKSettingTextCellModel alloc] init];
+    cellModel12.leftMsg = @"Dismiss-SOS alarm notification";
+    [self.section7List addObject:cellModel12];
+    
+    MKSettingTextCellModel *cellModel13 = [[MKSettingTextCellModel alloc] init];
+    cellModel13.leftMsg = @"Button press effective interval";
+    [self.section7List addObject:cellModel13];
+}
+- (void)loadSection8Datas {
+    MKSettingTextCellModel *cellModel = [[MKSettingTextCellModel alloc] init];
+    cellModel.leftMsg = @"ADV parameters";
+    [self.section8List addObject:cellModel];
+}
+
+- (void)loadSection9Datas {
     MKTextSwitchCellModel *cellModel = [[MKTextSwitchCellModel alloc] init];
     cellModel.index = 0;
     cellModel.msg = @"Password verification";
     cellModel.isOn = self.dataModel.passwordVerification;
-    [self.section7List addObject:cellModel];
+    [self.section9List addObject:cellModel];
 }
-- (void)loadSection8Datas {
+- (void)loadSection10Datas {
     MKSettingTextCellModel *cellModel = [[MKSettingTextCellModel alloc] init];
     cellModel.leftMsg = @"Change password";
-    [self.section8List addObject:cellModel];
+    [self.section10List addObject:cellModel];
 }
 
 #pragma mark - UI
@@ -987,6 +1052,20 @@ MKCGDeviceConnectedButtonCellDelegate>
         _section8List = [NSMutableArray array];
     }
     return _section8List;
+}
+
+- (NSMutableArray *)section9List {
+    if (!_section9List) {
+        _section9List = [NSMutableArray array];
+    }
+    return _section9List;
+}
+
+- (NSMutableArray *)section10List {
+    if (!_section10List) {
+        _section10List = [NSMutableArray array];
+    }
+    return _section10List;
 }
 
 - (NSMutableArray *)headerList {

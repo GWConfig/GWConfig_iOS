@@ -857,6 +857,24 @@
               ]
             },
             {
+              "name": "ButtonPressEffIntervalPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ButtonPressEffIntervalPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model/**"
+                }
+              ]
+            },
+            {
               "name": "ConnectedPage",
               "subspecs": [
                 {
@@ -878,6 +896,9 @@
                     "CommureGateway/Functions/ManageBleModules/SosTriggerPage": [
 
                     ],
+                    "CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage": [
+
+                    ],
                     "CommureGateway/Functions/ManageBleModules/BatteryTestPage": [
 
                     ],
@@ -891,6 +912,9 @@
 
                     ],
                     "CommureGateway/Functions/ManageBleModules/ButtonLogPage": [
+
+                    ],
+                    "CommureGateway/Functions/ManageBleModules/ButtonPressEffIntervalPage": [
 
                     ]
                   }
@@ -941,6 +965,24 @@
                 {
                   "name": "Controller",
                   "source_files": "CommureGateway/Classes/Functions/ManageBleModules/SleepModePage/Controller/**"
+                }
+              ]
+            },
+            {
+              "name": "SosAlarmNotiPage",
+              "subspecs": [
+                {
+                  "name": "Controller",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/SosAlarmNotiPage/Controller/**",
+                  "dependencies": {
+                    "CommureGateway/Functions/ManageBleModules/SosAlarmNotiPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Model",
+                  "source_files": "CommureGateway/Classes/Functions/ManageBleModules/SosAlarmNotiPage/Model/**"
                 }
               ]
             },

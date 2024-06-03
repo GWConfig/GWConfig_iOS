@@ -44,6 +44,12 @@ MKTextButtonCellDelegate>
 
 @property (nonatomic, strong)NSMutableArray *section4List;
 
+@property (nonatomic, strong)NSMutableArray *section5List;
+
+@property (nonatomic, strong)NSMutableArray *section6List;
+
+@property (nonatomic, strong)NSMutableArray *section7List;
+
 @property (nonatomic, strong)NSMutableArray *headerList;
 
 @property (nonatomic, strong)MKCGBatteryTestModel *dataModel;
@@ -79,7 +85,10 @@ MKTextButtonCellDelegate>
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.dataModel.isOn && (section == 3 || section == 4)) {
+    if (section == 0 || section == 1 || section == 2) {
+        return 20.f;
+    }
+    if (self.dataModel.batteryLedSwitch && (section == 4 || section == 6)) {
         return 20.f;
     }
     return 0.f;
@@ -104,14 +113,24 @@ MKTextButtonCellDelegate>
         return self.section1List.count;
     }
     if (section == 2) {
-        return (self.dataModel.isOn ? self.section2List.count : 0);
+        return self.section2List.count;
     }
     if (section == 3) {
-        return (self.dataModel.isOn ? self.section3List.count : 0);
+        return self.section3List.count;
     }
     if (section == 4) {
-        return (self.dataModel.isOn ? self.section4List.count : 0);
+        return (self.dataModel.batteryLedSwitch ? self.section4List.count : 0);
     }
+    if (section == 5) {
+        return (self.dataModel.batteryLedSwitch ? self.section5List.count : 0);
+    }
+    if (section == 6) {
+        return (self.dataModel.batteryLedSwitch ? self.section6List.count : 0);
+    }
+    if (section == 7) {
+        return (self.dataModel.batteryLedSwitch ? self.section7List.count : 0);
+    }
+    
     return 0;
 }
 
@@ -123,25 +142,43 @@ MKTextButtonCellDelegate>
         return cell;
     }
     if (indexPath.section == 1) {
-        MKTextSwitchCell *cell = [MKTextSwitchCell initCellWithTableView:tableView];
+        MKTextFieldCell *cell = [MKTextFieldCell initCellWithTableView:tableView];
         cell.dataModel = self.section1List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
     if (indexPath.section == 2) {
-        MKTextButtonCell *cell = [MKTextButtonCell initCellWithTableView:tableView];
+        MKTextFieldCell *cell = [MKTextFieldCell initCellWithTableView:tableView];
         cell.dataModel = self.section2List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
     if (indexPath.section == 3) {
-        MKTextFieldCell *cell = [MKTextFieldCell initCellWithTableView:tableView];
+        MKTextSwitchCell *cell = [MKTextSwitchCell initCellWithTableView:tableView];
         cell.dataModel = self.section3List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
+    if (indexPath.section == 4) {
+        MKTextButtonCell *cell = [MKTextButtonCell initCellWithTableView:tableView];
+        cell.dataModel = self.section4List[indexPath.row];
+        cell.delegate = self;
+        return cell;
+    }
+    if (indexPath.section == 5) {
+        MKTextFieldCell *cell = [MKTextFieldCell initCellWithTableView:tableView];
+        cell.dataModel = self.section5List[indexPath.row];
+        cell.delegate = self;
+        return cell;
+    }
+    if (indexPath.section == 6) {
+        MKTextButtonCell *cell = [MKTextButtonCell initCellWithTableView:tableView];
+        cell.dataModel = self.section6List[indexPath.row];
+        cell.delegate = self;
+        return cell;
+    }
     MKTextFieldCell *cell = [MKTextFieldCell initCellWithTableView:tableView];
-    cell.dataModel = self.section4List[indexPath.row];
+    cell.dataModel = self.section7List[indexPath.row];
     cell.delegate = self;
     return cell;
 }
@@ -152,37 +189,59 @@ MKTextButtonCellDelegate>
 /// @param value 当前textField的值
 - (void)mk_deviceTextCellValueChanged:(NSInteger)index textValue:(NSString *)value {
     if (index == 0) {
-        //Voltage threshold
-        self.dataModel.voltageThreshold = value;
+        //LED Self-test
+        //Blinking duration
+        self.dataModel.ledDuration = value;
         MKTextFieldCellModel *cellModel = self.section0List[0];
         cellModel.textFieldValue = value;
         return;
     }
     if (index == 1) {
-        //When battery voltage>=threshold Blinking interval
-        self.dataModel.overInterval = value;
-        MKTextFieldCellModel *cellModel = self.section3List[0];
+        //Beeping interval
+        self.dataModel.beepingInterval = value;
+        MKTextFieldCellModel *cellModel = self.section1List[0];
         cellModel.textFieldValue = value;
         return;
     }
     if (index == 2) {
-        //When battery voltage>=threshold Blinking duration
-        self.dataModel.overDuration = value;
-        MKTextFieldCellModel *cellModel = self.section3List[1];
+        //Beeping duration
+        self.dataModel.beepingDuration = value;
+        MKTextFieldCellModel *cellModel = self.section1List[1];
         cellModel.textFieldValue = value;
         return;
     }
     if (index == 3) {
-        //When battery voltage<threshold Blinking interval
-        self.dataModel.underInterval = value;
-        MKTextFieldCellModel *cellModel = self.section4List[0];
+        //Voltage threshold
+        self.dataModel.voltageThreshold = value;
+        MKTextFieldCellModel *cellModel = self.section2List[0];
         cellModel.textFieldValue = value;
         return;
     }
     if (index == 4) {
+        //When battery voltage>=threshold Blinking interval
+        self.dataModel.overInterval = value;
+        MKTextFieldCellModel *cellModel = self.section5List[0];
+        cellModel.textFieldValue = value;
+        return;
+    }
+    if (index == 5) {
+        //When battery voltage>=threshold Blinking duration
+        self.dataModel.overDuration = value;
+        MKTextFieldCellModel *cellModel = self.section5List[1];
+        cellModel.textFieldValue = value;
+        return;
+    }
+    if (index == 6) {
+        //When battery voltage<threshold Blinking interval
+        self.dataModel.underInterval = value;
+        MKTextFieldCellModel *cellModel = self.section7List[0];
+        cellModel.textFieldValue = value;
+        return;
+    }
+    if (index == 7) {
         //When battery voltage<threshold Blinking duration
         self.dataModel.underDuration = value;
-        MKTextFieldCellModel *cellModel = self.section4List[1];
+        MKTextFieldCellModel *cellModel = self.section7List[1];
         cellModel.textFieldValue = value;
         return;
     }
@@ -195,8 +254,8 @@ MKTextButtonCellDelegate>
 - (void)mk_textSwitchCellStatusChanged:(BOOL)isOn index:(NSInteger)index {
     if (index == 0) {
         //LED switch
-        self.dataModel.isOn = isOn;
-        MKTextSwitchCellModel *cellModel = self.section1List[0];
+        self.dataModel.batteryLedSwitch = isOn;
+        MKTextSwitchCellModel *cellModel = self.section3List[0];
         cellModel.isOn = isOn;
         [self.tableView reloadData];
         return;
@@ -212,9 +271,18 @@ MKTextButtonCellDelegate>
                         dataListIndex:(NSInteger)dataListIndex
                                 value:(NSString *)value {
     if (index == 0) {
+        //When battery voltage>=threshold
         //LED color
-        self.dataModel.color = dataListIndex;
-        MKTextButtonCellModel *cellModel = self.section2List[0];
+        self.dataModel.overColor = dataListIndex;
+        MKTextButtonCellModel *cellModel = self.section4List[0];
+        cellModel.dataListIndex = dataListIndex;
+        return;
+    }
+    if (index == 1) {
+        //When battery voltage<threshold
+        //LED color
+        self.dataModel.underColor = dataListIndex;
+        MKTextButtonCellModel *cellModel = self.section6List[0];
         cellModel.dataListIndex = dataListIndex;
         return;
     }
@@ -256,12 +324,24 @@ MKTextButtonCellDelegate>
     [self loadSection2Datas];
     [self loadSection3Datas];
     [self loadSection4Datas];
+    [self loadSection5Datas];
+    [self loadSection6Datas];
+    [self loadSection7Datas];
     
-    for (NSInteger i = 0; i < 5; i ++) {
+    for (NSInteger i = 0; i < 8; i ++) {
         MKTableSectionLineHeaderModel *headerModel = [[MKTableSectionLineHeaderModel alloc] init];
-        if (i == 3) {
-            headerModel.text = @"When battery voltage>=threshold";
+        if (i == 0) {
+            headerModel.text = @"LED Self-test";
+            headerModel.msgTextColor = NAVBAR_COLOR_MACROS;
+        }else if (i == 1) {
+            headerModel.text = @"Buzzer Self-test";
+            headerModel.msgTextColor = NAVBAR_COLOR_MACROS;
+        }else if (i == 2) {
+            headerModel.text = @"Battery Self-test";
+            headerModel.msgTextColor = NAVBAR_COLOR_MACROS;
         }else if (i == 4) {
+            headerModel.text = @"When battery voltage>=threshold";
+        }else if (i == 6) {
             headerModel.text = @"When battery voltage<threshold";
         }
         [self.headerList addObject:headerModel];
@@ -273,79 +353,122 @@ MKTextButtonCellDelegate>
 - (void)loadSection0Datas {
     MKTextFieldCellModel *cellModel = [[MKTextFieldCellModel alloc] init];
     cellModel.index = 0;
+    cellModel.msg = @"Blinking duration";
+    cellModel.textPlaceholder = @"1-255";
+    cellModel.maxLength = 3;
+    cellModel.textFieldType = mk_realNumberOnly;
+    cellModel.textFieldValue = self.dataModel.ledDuration;
+    cellModel.unit = @"s";
+    [self.section0List addObject:cellModel];
+}
+
+- (void)loadSection1Datas {
+    MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
+    cellModel1.index = 1;
+    cellModel1.msg = @"Beeping interval";
+    cellModel1.textPlaceholder = @"0-100";
+    cellModel1.maxLength = 3;
+    cellModel1.textFieldType = mk_realNumberOnly;
+    cellModel1.textFieldValue = self.dataModel.beepingInterval;
+    cellModel1.unit = @"x 100ms";
+    [self.section1List addObject:cellModel1];
+    
+    MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
+    cellModel2.index = 2;
+    cellModel2.msg = @"Beeping duration";
+    cellModel2.textPlaceholder = @"0-655";
+    cellModel2.maxLength = 3;
+    cellModel2.textFieldType = mk_realNumberOnly;
+    cellModel2.textFieldValue = self.dataModel.beepingDuration;
+    cellModel2.unit = @"x 100ms";
+    [self.section1List addObject:cellModel2];
+}
+
+- (void)loadSection2Datas {
+    MKTextFieldCellModel *cellModel = [[MKTextFieldCellModel alloc] init];
+    cellModel.index = 3;
     cellModel.msg = @"Voltage threshold";
     cellModel.textPlaceholder = @"2000-4200";
     cellModel.maxLength = 4;
     cellModel.textFieldType = mk_realNumberOnly;
     cellModel.textFieldValue = self.dataModel.voltageThreshold;
     cellModel.unit = @"mV";
-    [self.section0List addObject:cellModel];
-}
-
-- (void)loadSection1Datas {
-    MKTextSwitchCellModel *cellModel = [[MKTextSwitchCellModel alloc] init];
-    cellModel.index = 0;
-    cellModel.msg = @"LED switch";
-    cellModel.isOn = self.dataModel.isOn;
-    [self.section1List addObject:cellModel];
-}
-
-- (void)loadSection2Datas {
-    MKTextButtonCellModel *cellModel = [[MKTextButtonCellModel alloc] init];
-    cellModel.index = 0;
-    cellModel.msg = @"LED color";
-    cellModel.dataList = @[@"Red",@"Blue",@"Green"];
-    cellModel.dataListIndex = self.dataModel.color;
     [self.section2List addObject:cellModel];
 }
 
 - (void)loadSection3Datas {
+    MKTextSwitchCellModel *cellModel = [[MKTextSwitchCellModel alloc] init];
+    cellModel.index = 0;
+    cellModel.msg = @"LED switch";
+    cellModel.isOn = self.dataModel.batteryLedSwitch;
+    [self.section3List addObject:cellModel];
+}
+
+- (void)loadSection4Datas {
+    MKTextButtonCellModel *cellModel = [[MKTextButtonCellModel alloc] init];
+    cellModel.index = 0;
+    cellModel.msg = @"LED color";
+    cellModel.dataList = @[@"Red",@"Blue",@"Green"];
+    cellModel.dataListIndex = self.dataModel.overColor;
+    [self.section4List addObject:cellModel];
+}
+
+- (void)loadSection5Datas {
     MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
-    cellModel1.index = 1;
+    cellModel1.index = 4;
     cellModel1.msg = @"Blinking interval";
     cellModel1.textPlaceholder = @"0-100";
     cellModel1.maxLength = 3;
     cellModel1.textFieldType = mk_realNumberOnly;
     cellModel1.textFieldValue = self.dataModel.overInterval;
     cellModel1.unit = @"x 100ms";
-    [self.section3List addObject:cellModel1];
+    [self.section5List addObject:cellModel1];
     
     MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
-    cellModel2.index = 2;
+    cellModel2.index = 5;
     cellModel2.msg = @"Blinking duration";
     cellModel2.textPlaceholder = @"1-255";
     cellModel2.maxLength = 3;
     cellModel2.textFieldType = mk_realNumberOnly;
     cellModel2.textFieldValue = self.dataModel.overDuration;
     cellModel2.unit = @"s";
-    [self.section3List addObject:cellModel2];
+    [self.section5List addObject:cellModel2];
 }
 
-- (void)loadSection4Datas {
+- (void)loadSection6Datas {
+    MKTextButtonCellModel *cellModel = [[MKTextButtonCellModel alloc] init];
+    cellModel.index = 1;
+    cellModel.msg = @"LED color";
+    cellModel.dataList = @[@"Red",@"Blue",@"Green"];
+    cellModel.dataListIndex = self.dataModel.underColor;
+    [self.section6List addObject:cellModel];
+}
+
+- (void)loadSection7Datas {
     MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
-    cellModel1.index = 3;
+    cellModel1.index = 6;
     cellModel1.msg = @"Blinking interval";
     cellModel1.textPlaceholder = @"0-100";
     cellModel1.maxLength = 3;
     cellModel1.textFieldType = mk_realNumberOnly;
     cellModel1.textFieldValue = self.dataModel.underInterval;
     cellModel1.unit = @"x 100ms";
-    [self.section4List addObject:cellModel1];
+    [self.section7List addObject:cellModel1];
     
     MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
-    cellModel2.index = 4;
+    cellModel2.index = 7;
     cellModel2.msg = @"Blinking duration";
     cellModel2.textPlaceholder = @"1-255";
     cellModel2.maxLength = 3;
     cellModel2.textFieldType = mk_realNumberOnly;
     cellModel2.textFieldValue = self.dataModel.underDuration;
     cellModel2.unit = @"s";
-    [self.section4List addObject:cellModel2];
+    [self.section7List addObject:cellModel2];
 }
 
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = @"Battery test parameters";
+    self.defaultTitle = @"Device self-test parameters";
     [self.rightButton setImage:LOADICON(@"CommureGateway", @"MKCGBatteryTestController", @"cg_saveIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -400,6 +523,27 @@ MKTextButtonCellDelegate>
         _section4List = [NSMutableArray array];
     }
     return _section4List;
+}
+
+- (NSMutableArray *)section5List {
+    if (!_section5List) {
+        _section5List = [NSMutableArray array];
+    }
+    return _section5List;
+}
+
+- (NSMutableArray *)section6List {
+    if (!_section6List) {
+        _section6List = [NSMutableArray array];
+    }
+    return _section6List;
+}
+
+- (NSMutableArray *)section7List {
+    if (!_section7List) {
+        _section7List = [NSMutableArray array];
+    }
+    return _section7List;
 }
 
 - (NSMutableArray *)headerList {

@@ -15,15 +15,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *bleMac;
 
 
-@property (nonatomic, assign)BOOL isOn;
+
+@property (nonatomic, copy)NSString *ledDuration;
+
+@property (nonatomic, copy)NSString *beepingInterval;
+
+@property (nonatomic, copy)NSString *beepingDuration;
+
+@property (nonatomic, assign)BOOL batteryLedSwitch;
 
 @property (nonatomic, copy)NSString *voltageThreshold;
 
-@property (nonatomic, assign)NSInteger color;
+@property (nonatomic, assign)NSInteger overColor;
 
 @property (nonatomic, copy)NSString *overInterval;
 
 @property (nonatomic, copy)NSString *overDuration;
+
+@property (nonatomic, assign)NSInteger underColor;
 
 @property (nonatomic, copy)NSString *underInterval;
 

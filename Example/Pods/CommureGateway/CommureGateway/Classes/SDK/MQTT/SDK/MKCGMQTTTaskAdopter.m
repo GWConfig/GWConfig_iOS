@@ -274,6 +274,70 @@
         }
         return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskClearButtonLogOperation];
     }
+    if (msgID == 3178) {
+        //读取Sos报警Led与Buzzer参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskReadSosAlarmNotiOperation];
+    }
+    if (msgID == 3180) {
+        //配置Sos报警Led与Buzzer参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskConfigSosAlarmNotiOperation];
+    }
+    if (msgID == 3186) {
+        //读取消除Sos报警Led与Buzzer参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskReadDismissSosAlarmNotiOperation];
+    }
+    if (msgID == 3188) {
+        //配置消除Sos报警Led与Buzzer参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskConfigDismissSosAlarmNotiOperation];
+    }
+    if (msgID == 3182) {
+        //读取硬件自检Led与Buzzer参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskReadHardwareSelfTestOperation];
+    }
+    if (msgID == 3184) {
+        //配置硬件自检Led与Buzzer参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskConfigHardwareSelfTestOperation];
+    }
+    if (msgID == 3190) {
+        //读取按键有效间隔参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskReadButtonPressEffectiveIntervalOperation];
+    }
+    if (msgID == 3192) {
+        //配置按键有效间隔参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_cg_server_taskConfigButtonPressEffectiveIntervalOperation];
+    }
     if (msgID == 3301) {
         //网关连接指定mac地址的蓝牙设备
         BOOL success = ([json[@"result_code"] integerValue] == 0);
