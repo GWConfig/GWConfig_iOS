@@ -388,7 +388,7 @@ MKTextButtonCellDelegate>
     MKTextFieldCellModel *cellModel = [[MKTextFieldCellModel alloc] init];
     cellModel.index = 3;
     cellModel.msg = @"Voltage threshold";
-    cellModel.textPlaceholder = @"2000-4200";
+    cellModel.textPlaceholder = @"2000-3600";
     cellModel.maxLength = 4;
     cellModel.textFieldType = mk_realNumberOnly;
     cellModel.textFieldValue = self.dataModel.voltageThreshold;

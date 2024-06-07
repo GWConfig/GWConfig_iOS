@@ -889,7 +889,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Battery test parameters.
 /// @param isOn Led is on.
-/// @param voltage Voltage threshold.2000mV~4200mV.
+/// @param voltage Voltage threshold.2000mV~3600mV.
 /// @param bleMacAddressThe mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters

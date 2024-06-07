@@ -2264,7 +2264,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (voltage < 2000 || voltage > 4200) {
+    if (voltage < 2000 || voltage > 3600) {
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }

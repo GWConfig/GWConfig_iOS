@@ -18,6 +18,7 @@
 
 #import "MKCGBatchModifySubModel.h"
 
+#import "MKCGBatchModifyManager.h"
 
 @interface MKCGBatchModifyModel ()
 
@@ -33,8 +34,8 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.subTopic = @"/provision/gateway/cmds";
-        self.pubTopic = @"/provision/gateway/data";
+        self.subTopic = SafeStr([MKCGBatchModifyManager shared].params[@"subscribeTopic"]);
+        self.pubTopic = SafeStr([MKCGBatchModifyManager shared].params[@"publishTopic"]);
     }
     return self;
 }
