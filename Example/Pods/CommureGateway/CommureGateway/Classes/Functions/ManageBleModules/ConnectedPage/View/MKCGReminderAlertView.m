@@ -291,6 +291,12 @@ static CGFloat const textFieldHeight = 30.f;
     self.titleLabel.text = SafeStr(dataModel.title);
     self.intervalLabel.text = SafeStr(dataModel.intervalMsg);
     self.durationLabel.text = SafeStr(dataModel.durationMsg);
+    self.intervalTextField.text = SafeStr(dataModel.interval);
+    self.durationTextField.text = SafeStr(dataModel.duration);
+    if (dataModel.needColor) {
+        self.currentColor = dataModel.color;
+        [self setupColorIcons];
+    }
     self.handler = confirmAction;
     self.colorView.hidden = !dataModel.needColor;
     [self setupColorIcons];

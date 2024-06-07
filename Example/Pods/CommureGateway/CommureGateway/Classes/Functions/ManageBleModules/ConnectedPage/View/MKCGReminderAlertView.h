@@ -20,6 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *durationMsg;
 
+/// needColor=YES的时候才有效.0:Red 1:Blue 2:Green
+@property (nonatomic, assign)NSInteger color;
+
+@property (nonatomic, copy)NSString *interval;
+
+@property (nonatomic, copy)NSString *duration;
+
 @end
 
 @interface MKCGReminderAlertView : UIView

@@ -162,7 +162,8 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
 - (MKTextField *)firmwareTextField {
     if (!_firmwareTextField) {
         _firmwareTextField = [[MKTextField alloc] initWithTextFieldType:mk_normal];
-        _firmwareTextField.text = defaultFirmwareUrl;
+//        _firmwareTextField.text = defaultFirmwareUrl;
+        _firmwareTextField.placeholder = @"1-256 Characters";
         @weakify(self);
         _firmwareTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);
@@ -197,7 +198,8 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
 - (MKTextField *)dataTextField {
     if (!_dataTextField) {
         _dataTextField = [[MKTextField alloc] initWithTextFieldType:mk_normal];
-        _dataTextField.text = defaultInitDataUrl;
+//        _dataTextField.text = defaultInitDataUrl;
+        _dataTextField.placeholder = @"1-256 Characters";
         @weakify(self);
         _dataTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);
@@ -232,6 +234,7 @@ static NSString *defaultInitDataUrl = @"http://47.104.172.169:8080/updata_fold/C
 - (MKTextField *)passwordTextField {
     if (!_passwordTextField) {
         _passwordTextField = [[MKTextField alloc] initWithTextFieldType:mk_normal];
+        _passwordTextField.text = @"Commure4321";
         @weakify(self);
         _passwordTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);

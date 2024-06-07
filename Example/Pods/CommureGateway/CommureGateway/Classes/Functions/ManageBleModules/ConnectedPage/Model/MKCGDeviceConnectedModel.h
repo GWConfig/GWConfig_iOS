@@ -25,6 +25,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)BOOL passwordVerification;
 
+
+/// 0:Red 1:Blue 2:Green
+@property (nonatomic, assign)NSInteger rgb;
+
+@property (nonatomic, copy)NSString *blinkingInterval;
+
+@property (nonatomic, copy)NSString *blinkingDuration;
+
+
+
+@property (nonatomic, copy)NSString *ringInterval;
+
+@property (nonatomic, copy)NSString *ringDuration;
+
 - (void)readDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock;
 
 @end

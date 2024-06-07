@@ -176,6 +176,7 @@
 - (MKTextField *)passwordTextField {
     if (!_passwordTextField) {
         _passwordTextField = [[MKTextField alloc] initWithTextFieldType:mk_normal];
+        _passwordTextField.text = @"Commure4321";
         @weakify(self);
         _passwordTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);

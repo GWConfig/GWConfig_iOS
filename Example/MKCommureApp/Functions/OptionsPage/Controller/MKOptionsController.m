@@ -101,7 +101,8 @@ UITableViewDataSource>
 - (void)loadSubViews {
     self.defaultTitle = @"Select Device Type";
     self.leftButton.hidden = YES;
-    [self.rightButton setImage:LOADIMAGE(@"mk_commure_scanRightAboutIcon", @"png") forState:UIControlStateNormal];
+    self.rightButton.hidden = YES;
+//    [self.rightButton setImage:LOADIMAGE(@"mk_commure_scanRightAboutIcon", @"png") forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);

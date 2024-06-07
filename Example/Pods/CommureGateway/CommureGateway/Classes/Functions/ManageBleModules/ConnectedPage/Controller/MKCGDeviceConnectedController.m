@@ -485,6 +485,9 @@ MKCGDeviceConnectedButtonCellDelegate>
             [self.view showCentralToast:@"setup failed!"];
             return;
         }
+        self.dataModel.rgb = color;
+        self.dataModel.blinkingInterval = interval;
+        self.dataModel.blinkingDuration = duration;
         [self.view showCentralToast:@"setup success!"];
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
@@ -504,6 +507,8 @@ MKCGDeviceConnectedButtonCellDelegate>
             [self.view showCentralToast:@"setup failed!"];
             return;
         }
+        self.dataModel.ringInterval = interval;
+        self.dataModel.ringDuration = duration;
         [self.view showCentralToast:@"setup success!"];
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
@@ -679,6 +684,9 @@ MKCGDeviceConnectedButtonCellDelegate>
     dataModel.title = @"LED Reminder";
     dataModel.intervalMsg = @"Blinking interval";
     dataModel.durationMsg = @"Blinking duration";
+    dataModel.color = self.dataModel.rgb;
+    dataModel.interval = self.dataModel.blinkingInterval;
+    dataModel.duration = self.dataModel.blinkingDuration;
     MKCGReminderAlertView *alertView = [[MKCGReminderAlertView alloc] init];
     [alertView showAlertWithModel:dataModel confirmAction:^(NSString * _Nonnull interval, NSString * _Nonnull duration, NSInteger color) {
         [self sendLedReminder:interval duration:duration color:color];
@@ -690,6 +698,8 @@ MKCGDeviceConnectedButtonCellDelegate>
     dataModel.title = @"Buzzer Reminder";
     dataModel.intervalMsg = @"Ring interval";
     dataModel.durationMsg = @"Ring duration";
+    dataModel.interval = self.dataModel.ringInterval;
+    dataModel.duration = self.dataModel.ringDuration;
     MKCGReminderAlertView *alertView = [[MKCGReminderAlertView alloc] init];
     [alertView showAlertWithModel:dataModel confirmAction:^(NSString * _Nonnull interval, NSString * _Nonnull duration, NSInteger color) {
         [self sendBuzzerReminder:interval duration:duration];

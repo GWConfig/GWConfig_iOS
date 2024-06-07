@@ -354,7 +354,7 @@ MKCGBatchUpdateCellDelegate>
         _tableView.dataSource = self;
         
         _tableView.tableHeaderView = self.headerView;
-        _tableView.tableFooterView = [self footerView];
+//        _tableView.tableFooterView = [self footerView];
     }
     return _tableView;
 }

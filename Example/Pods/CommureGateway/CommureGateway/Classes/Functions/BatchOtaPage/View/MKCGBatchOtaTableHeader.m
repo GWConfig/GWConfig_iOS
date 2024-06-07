@@ -158,7 +158,7 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
 
 - (MKTextField *)urlTextField {
     if (!_urlTextField) {
-        _urlTextField = [MKCustomUIAdopter customNormalTextFieldWithText:defaultUrl placeHolder:@"1- 256 Characters" textType:mk_normal];
+        _urlTextField = [MKCustomUIAdopter customNormalTextFieldWithText:@"" placeHolder:@"1- 256 Characters" textType:mk_normal];
         _urlTextField.maxLength = 256;
         @weakify(self);
         _urlTextField.textChangedBlock = ^(NSString * _Nonnull text) {

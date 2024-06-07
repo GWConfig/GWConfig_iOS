@@ -29,6 +29,8 @@
 
 @property (nonatomic, strong)UIButton *downLoadButton;
 
+@property (nonatomic, strong)UIButton *nextButton;
+
 @property (nonatomic, strong)MKCGDownLoadModifyModel *dataModel;
 
 @end
@@ -62,13 +64,18 @@
         
         [MKCGBatchModifyManager shared].params = params;
         
-        MKCGBatchModifyController *vc = [[MKCGBatchModifyController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        self.nextButton.hidden = NO;
     } failedBlock:^(NSError * _Nonnull error) {
         @strongify(self);
+        self.nextButton.hidden = YES;
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
+}
+
+- (void)nextButtonPressed {
+    MKCGBatchModifyController *vc = [[MKCGBatchModifyController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UI
@@ -88,6 +95,14 @@
         make.top.mas_equalTo(self.textField.mas_bottom).mas_offset(50.f);
         make.height.mas_equalTo(40.f);
     }];
+    [self.view addSubview:self.nextButton];
+    [self.nextButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(50.f);
+        make.right.mas_equalTo(-50.f);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).mas_offset(-40.f);
+        make.height.mas_equalTo(40.f);
+    }];
+    self.nextButton.hidden = YES;
 }
 
 #pragma mark - getter
@@ -112,6 +127,15 @@
                                                             action:@selector(downLoadButtonPressed)];
     }
     return _downLoadButton;
+}
+
+- (UIButton *)nextButton {
+    if (!_nextButton) {
+        _nextButton = [MKCustomUIAdopter customButtonWithTitle:@"Next"
+                                                        target:self
+                                                        action:@selector(nextButtonPressed)];
+    }
+    return _nextButton;
 }
 
 - (MKCGDownLoadModifyModel *)dataModel {

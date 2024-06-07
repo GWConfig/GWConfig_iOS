@@ -143,8 +143,8 @@ MKCGConfiguredGatewayHeaderViewDelegate>
         [[MKHudManager share] hide];
         [self.dataList removeAllObjects];
         [self.macCache removeAllObjects];
-        NSInteger number = 20;
-        if (beaconList.count < 20) {
+        NSInteger number = 50;
+        if (beaconList.count < 50) {
             number = beaconList.count;
         }
         for (NSInteger i = 0; i < number; i ++) {

@@ -4503,7 +4503,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CommureGateway:
-    :commit: cd09b8bad7f4cd73e60c0cd87fdf61117ff83b1c
+    :commit: d5c1cff8d6a49911a7b55107c9f32f4743de0dff
     :git: "git@120.27.8.241:Commure-Tag_AC347/Commure-MK110_AC347_IOS.git"
   CommureGWThree:
     :commit: 954f5845a80497f70a83d7d360c0dda4ab720c9c

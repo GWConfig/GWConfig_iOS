@@ -16,6 +16,8 @@
 #import "MKTextField.h"
 #import "MKCustomUIAdopter.h"
 
+#import "MKCGBatchModifyManager.h"
+
 @interface MKCGBatchModifyTableHeader ()
 
 @property (nonatomic, strong)UILabel *subTopicLabel;
@@ -138,10 +140,11 @@
 
 - (MKTextField *)subTextField {
     if (!_subTextField) {
-        _subTextField = [MKCustomUIAdopter customNormalTextFieldWithText:@"/provision/gateway/cmds"
+        _subTextField = [MKCustomUIAdopter customNormalTextFieldWithText:SafeStr([MKCGBatchModifyManager shared].params[@"subscribeTopic"])
                                                                placeHolder:@"1- 128 Characters"
                                                                   textType:mk_normal];
         _subTextField.maxLength = 128;
+        _subTextField.font = MKFont(13.f);
         @weakify(self);
         _subTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);
@@ -162,10 +165,11 @@
 
 - (MKTextField *)pubTextField {
     if (!_pubTextField) {
-        _pubTextField = [MKCustomUIAdopter customNormalTextFieldWithText:@"/provision/gateway/data"
+        _pubTextField = [MKCustomUIAdopter customNormalTextFieldWithText:SafeStr([MKCGBatchModifyManager shared].params[@"publishTopic"])
                                                                placeHolder:@"1- 128 Characters"
                                                                   textType:mk_normal];
         _pubTextField.maxLength = 128;
+        _pubTextField.font = MKFont(13.f);
         @weakify(self);
         _pubTextField.textChangedBlock = ^(NSString * _Nonnull text) {
             @strongify(self);
@@ -224,7 +228,7 @@
 - (UILabel *)loadLabelWithMsg:(NSString *)msg {
     UILabel *tempLabel = [[UILabel alloc] init];
     tempLabel.textColor = DEFAULT_TEXT_COLOR;
-    tempLabel.font = MKFont(15.f);
+    tempLabel.font = MKFont(13.f);
     tempLabel.textAlignment = NSTextAlignmentLeft;
     tempLabel.text = msg;
     return tempLabel;
