@@ -28,6 +28,13 @@
 
 @implementation MKCGBatchUpdateKeyModel
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.password = @"Commure4321";
+    }
+    return self;
+}
+
 - (void)configDataWithBeaconList:(NSArray <NSString *>*)list
                         sucBlock:(void (^)(void))sucBlock
                      failedBlock:(void (^)(NSError *error))failedBlock {
