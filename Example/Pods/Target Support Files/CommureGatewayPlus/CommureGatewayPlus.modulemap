@@ -1,0 +1,6 @@
+framework module CommureGatewayPlus {
+  umbrella header "CommureGatewayPlus-umbrella.h"
+
+  export *
+  module * { export * }
+}

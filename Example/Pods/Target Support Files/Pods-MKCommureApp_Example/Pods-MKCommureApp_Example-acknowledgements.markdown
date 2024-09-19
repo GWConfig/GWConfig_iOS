@@ -55,7 +55,7 @@ SOFTWARE.
 
 
 
-## CommureGWThree
+## CommureGateway
 
 Copyright (c) 2023 lovexiaoxia <aadyx2007@163.com>
 
@@ -78,7 +78,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## CommureGateway
+## CommureGatewayPlus
 
 Copyright (c) 2023 lovexiaoxia <aadyx2007@163.com>
 

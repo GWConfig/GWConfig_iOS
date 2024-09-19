@@ -130,7 +130,7 @@ MKCGBatchUpdateCellDelegate>
         if (beaconInfoList.count < 20) {
             number = beaconInfoList.count;
         }
-        for (NSInteger i = 0; i < beaconInfoList.count; i ++) {
+        for (NSInteger i = 0; i < number; i ++) {
             NSDictionary *beaconDic = beaconInfoList[i];
             MKCGBatchUpdateCellModel *cellModel = [[MKCGBatchUpdateCellModel alloc] init];
             cellModel.macAddress = beaconDic[@"macAddress"];

@@ -217,7 +217,7 @@
 - (void)loadValues {
     self.host = [MKCGBatchModifyManager shared].params[@"host"];
     self.port = [MKCGBatchModifyManager shared].params[@"port"];
-    self.clientID = [MKCGBatchModifyManager shared].params[@"clientID"];
+//    self.clientID = [MKCGBatchModifyManager shared].params[@"clientID"];
     self.subscribeTopic = [MKCGBatchModifyManager shared].params[@"subscribeTopic"];
     self.publishTopic = [MKCGBatchModifyManager shared].params[@"publishTopic"];
     self.cleanSession = [[MKCGBatchModifyManager shared].params[@"cleanSession"] boolValue];
@@ -332,6 +332,7 @@
         }
         
         MKCGBatchModifyServerModel *serverModel = [[MKCGBatchModifyServerModel alloc] init];
+        serverModel.clientID = macAddress;
         NSString *serverMsg = [serverModel checkParams];
         if (ValidStr(serverMsg)) {
             [self operationFailedBlockWithMsg:serverMsg block:failedBlock];

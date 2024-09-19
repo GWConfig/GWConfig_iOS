@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// MK110
 - (UIViewController *)CTMediator_Commure_CG_DeviceListPage;
 
-/// MKGW3
-- (UIViewController *)CTMediator_Commure_GW3_DeviceListPage;
+/// MK110Plus03
+- (UIViewController *)CTMediator_Commure_CH_DeviceListPage;
 
 @end
 

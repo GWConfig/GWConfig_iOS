@@ -17,9 +17,9 @@
                                                   params:@{}];
 }
 
-- (UIViewController *)CTMediator_Commure_GW3_DeviceListPage {
-    return [self Action_Commure_ViewControllerWithTarget:kTarget_commure_GW3_module
-                                                  action:kAction_commure_GW3_deviceListPage
+- (UIViewController *)CTMediator_Commure_CH_DeviceListPage {
+    return [self Action_Commure_ViewControllerWithTarget:kTarget_commure_CH_module
+                                                  action:kAction_commure_CH_deviceListPage
                                                   params:@{}];
 }
 

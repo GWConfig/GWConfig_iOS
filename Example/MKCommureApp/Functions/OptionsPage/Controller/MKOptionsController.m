@@ -61,8 +61,8 @@ UITableViewDataSource>
         return;
     }
     if (indexPath.row == 1) {
-        //MKGW3
-        UIViewController *vc = [[CTMediator sharedInstance] CTMediator_Commure_GW3_DeviceListPage];
+        //MK110Plus03
+        UIViewController *vc = [[CTMediator sharedInstance] CTMediator_Commure_CH_DeviceListPage];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
@@ -90,7 +90,7 @@ UITableViewDataSource>
     [self.dataList addObject:cellModel1];
     
     MKSettingTextCellModel *cellModel2 = [[MKSettingTextCellModel alloc] init];
-    cellModel2.leftMsg = @"MKGW3";
+    cellModel2.leftMsg = @"MK110PLUS03";
     [self.dataList addObject:cellModel2];
     
     

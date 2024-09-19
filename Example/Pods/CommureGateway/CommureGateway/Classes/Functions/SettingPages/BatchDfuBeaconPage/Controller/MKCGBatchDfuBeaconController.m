@@ -130,7 +130,7 @@ MKCGBatchUpdateCellDelegate>
         if (beaconInfoList.count < 20) {
             number = beaconInfoList.count;
         }
-        for (NSInteger i = 0; i < beaconInfoList.count; i ++) {
+        for (NSInteger i = 0; i < number; i ++) {
             NSDictionary *beaconDic = beaconInfoList[i];
             MKCGBatchUpdateCellModel *cellModel = [[MKCGBatchUpdateCellModel alloc] init];
             cellModel.macAddress = beaconDic[@"macAddress"];
@@ -355,18 +355,25 @@ MKCGBatchUpdateCellDelegate>
 }
 
 - (void)addQRCode:(NSString *)macAddress {
+    NSString *tempMac = macAddress;
+    if ([macAddress containsString:@"/"] && [macAddress containsString:@"//"]) {
+        NSArray *stringList = [macAddress componentsSeparatedByString:@"/"];
+        if (stringList.count > 0) {
+            tempMac = stringList.lastObject;
+        }
+    }
     if (self.dataList.count >= 20) {
         [self.view showCentralToast:@"Max 20 gateways are allowed!"];
         return;
     }
-    NSNumber *contain = self.macCache[macAddress];
+    NSNumber *contain = self.macCache[tempMac];
     if (contain) {
         //已经包含，重复添加
         [self.view showCentralToast:@"The current device is already in the list."];
         return;
     }
     MKCGBatchUpdateCellModel *cellModel = [[MKCGBatchUpdateCellModel alloc] init];
-    cellModel.macAddress = macAddress;
+    cellModel.macAddress = tempMac;
     cellModel.status = 0;
     
     if (self.dataList.count > 0) {

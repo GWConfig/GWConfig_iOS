@@ -16,5 +16,5 @@ platform :ios, '14.0'
 
 target 'MKCommureApp_Example' do
   pod 'CommureGateway', :git => 'git@120.27.8.241:Commure-Tag_AC347/Commure-MK110_AC347_IOS.git', :branch => 'main'
-  pod 'CommureGWThree', :git => 'git@120.27.8.241:Commure-Tag_AC347/Commure-Tag_AC347_GW_iOS.git', :branch => 'main'
+  pod 'CommureGatewayPlus', :git => 'git@120.27.8.241:MK110_plus_03_AC347/MK110_plus_03_AC347_iOS.git', :branch => 'main'
 end

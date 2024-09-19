@@ -109,7 +109,7 @@ THE SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>CommureGWThree</string>
+			<string>CommureGateway</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -138,7 +138,7 @@ THE SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>CommureGateway</string>
+			<string>CommureGatewayPlus</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
