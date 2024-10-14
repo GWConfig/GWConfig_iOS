@@ -44,7 +44,7 @@ const NSString *defaultOtaPubTopic = @"/provision/gateway/data";
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.filePath = defaultOtaUrl;
+//        self.filePath = defaultOtaUrl;
         self.subTopic = defaultOtaSubTopic;
         self.pubTopic = defaultOtaPubTopic;
     }
@@ -60,6 +60,7 @@ const NSString *defaultOtaPubTopic = @"/provision/gateway/data";
     for (NSInteger i = 0; i < macList.count; i ++) {
         NSString *macAddress = macList[i];
         MKCHBatchOtaModel *otaModel = [[MKCHBatchOtaModel alloc] init];
+        otaModel.firwareType = self.firwareType;
         otaModel.macAddress = macAddress;
         otaModel.subTopic = self.subTopic;
         otaModel.pubTopic = self.pubTopic;

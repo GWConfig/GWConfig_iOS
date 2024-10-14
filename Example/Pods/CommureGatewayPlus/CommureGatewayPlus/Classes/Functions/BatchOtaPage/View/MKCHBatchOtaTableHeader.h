@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MKCHBatchOtaTableHeaderDelegate <NSObject>
 
+- (void)ch_firwareTypeChanged:(NSInteger)type;
+
 - (void)ch_urlValueChanged:(NSString *)url;
 
 /// topic输入框内容改变

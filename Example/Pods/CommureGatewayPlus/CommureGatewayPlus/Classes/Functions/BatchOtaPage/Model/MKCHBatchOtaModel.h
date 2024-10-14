@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKCHBatchOtaModel : NSObject
 
+/// 0:WIFI firmware 1:Bluetooth firmware
+@property (nonatomic, assign)NSInteger firwareType;
+
 @property (nonatomic, copy)NSString *macAddress;
 
 @property (nonatomic, copy)NSString *subTopic;

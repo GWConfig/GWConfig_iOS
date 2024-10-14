@@ -15,12 +15,17 @@
 
 #import "MKTextField.h"
 #import "MKCustomUIAdopter.h"
+#import "MKPickerView.h"
 
 const NSString *defaultUrl = @"http://47.104.172.169:8080/updata_fold/commureMK110_V1.0.4.bin";
 const NSString *defaultSubTopic = @"/provision/gateway/cmds";
 const NSString *defaultPubTopic = @"/provision/gateway/data";
 
 @interface MKCHBatchOtaTableHeader ()
+
+@property (nonatomic, strong)UILabel *typeLabel;
+
+@property (nonatomic, strong)UIButton *typeButton;
 
 @property (nonatomic, strong)UILabel *urlLabel;
 
@@ -44,12 +49,16 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
 
 @property (nonatomic, strong)UILabel *statusLabel;
 
+@property (nonatomic, strong)NSArray *typeList;
+
 @end
 
 @implementation MKCHBatchOtaTableHeader
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        [self addSubview:self.typeLabel];
+        [self addSubview:self.typeButton];
         [self addSubview:self.urlLabel];
         [self addSubview:self.urlTextField];
         [self addSubview:self.subTopicLabel];
@@ -67,15 +76,28 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self.typeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15.f);
+        make.width.mas_equalTo(180.f);
+        make.centerY.mas_equalTo(self.typeButton.mas_centerY);
+        make.height.mas_equalTo(MKFont(15.f).lineHeight);
+    }];
+    [self.typeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-15.f);
+        make.left.mas_equalTo(self.typeLabel.mas_right).mas_offset(5.f);
+        make.top.mas_equalTo(15.f);
+        make.height.mas_equalTo(30.f);
+    }];
+    
     [self.urlTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15.f);
         make.left.mas_equalTo(self.urlLabel.mas_right).mas_offset(5.f);
-        make.top.mas_equalTo(15.f);
+        make.top.mas_equalTo(self.typeButton.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(25.f);
     }];
     [self.urlLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(175.f);
+        make.width.mas_equalTo(180.f);
         make.centerY.mas_equalTo(self.urlTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
@@ -87,7 +109,7 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
     }];
     [self.subTopicLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(175.f);
+        make.width.mas_equalTo(180.f);
         make.centerY.mas_equalTo(self.subTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
@@ -99,7 +121,7 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
     }];
     [self.pubTopicLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(175.f);
+        make.width.mas_equalTo(180.f);
         make.centerY.mas_equalTo(self.pubTextField.mas_centerY);
         make.height.mas_equalTo(MKFont(15.f).lineHeight);
     }];
@@ -136,6 +158,25 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
 }
 
 #pragma mark - event method
+-(void)typeButtonPressed {
+    //隐藏其他cell里面的输入框键盘
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MKTextFieldNeedHiddenKeyboard" object:nil];
+    NSInteger row = 0;
+    for (NSInteger i = 0; i < self.typeList.count; i ++) {
+        if ([self.typeButton.titleLabel.text isEqualToString:self.typeList[i]]) {
+            row = i;
+            break;
+        }
+    }
+    MKPickerView *pickView = [[MKPickerView alloc] init];
+    [pickView showPickViewWithDataList:self.typeList selectedRow:row block:^(NSInteger currentRow) {
+        [self.typeButton setTitle:self.typeList[currentRow] forState:UIControlStateNormal];
+        if ([self.delegate respondsToSelector:@selector(ch_firwareTypeChanged:)]) {
+            [self.delegate ch_firwareTypeChanged:currentRow];
+        }
+    }];
+}
+
 - (void)excelButtonPressed {
     if ([self.delegate respondsToSelector:@selector(ch_listButtonPressed)]) {
         [self.delegate ch_listButtonPressed];
@@ -149,6 +190,22 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
 }
 
 #pragma mark - getter
+- (UILabel *)typeLabel {
+    if (!_typeLabel) {
+        _typeLabel = [self loadLabelWithMsg:@"Firmware type"];
+    }
+    return _typeLabel;
+}
+
+- (UIButton *)typeButton {
+    if (!_typeButton) {
+        _typeButton = [MKCustomUIAdopter customButtonWithTitle:@"WIFI firmware" 
+                                                        target:self
+                                                        action:@selector(typeButtonPressed)];
+    }
+    return _typeButton;
+}
+
 - (UILabel *)urlLabel {
     if (!_urlLabel) {
         _urlLabel = [self loadLabelWithMsg:@"Firmware file URL"];
@@ -262,11 +319,17 @@ const NSString *defaultPubTopic = @"/provision/gateway/data";
     return _statusLabel;
 }
 
+- (NSArray *)typeList {
+    if (!_typeList) {
+        _typeList = @[@"WIFI firmware",@"Bluetooth firmware"];
+    }
+    return _typeList;
+}
 
 - (UILabel *)loadLabelWithMsg:(NSString *)msg {
     UILabel *tempLabel = [[UILabel alloc] init];
     tempLabel.textColor = DEFAULT_TEXT_COLOR;
-    tempLabel.font = MKFont(15.f);
+    tempLabel.font = MKFont(13.f);
     tempLabel.textAlignment = NSTextAlignmentLeft;
     tempLabel.text = msg;
     return tempLabel;

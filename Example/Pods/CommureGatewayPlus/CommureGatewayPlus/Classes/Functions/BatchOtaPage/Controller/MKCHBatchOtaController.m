@@ -103,6 +103,10 @@ MKCHBatchUpdateCellDelegate>
         [self.view showCentralToast:@"Gateway publish topic must be 1 - 128 Characters"];
         return;
     }
+    if ([self.otaManager.pubTopic isEqualToString:self.otaManager.subTopic]) {
+        [self.view showCentralToast:@"Gateway publish topic must be different to the subscribe topic"];
+        return;
+    }
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
     self.leftButton.enabled = NO;
     self.rightButton.enabled = NO;
@@ -170,6 +174,10 @@ MKCHBatchUpdateCellDelegate>
 }
 
 #pragma mark - MKCHBatchOtaTableHeaderDelegate
+- (void)ch_firwareTypeChanged:(NSInteger)type {
+    self.otaManager.firwareType = type;
+}
+
 - (void)ch_urlValueChanged:(NSString *)url {
     self.otaManager.filePath = url;
 }
@@ -363,7 +371,7 @@ MKCHBatchUpdateCellDelegate>
 
 - (MKCHBatchOtaTableHeader *)headerView {
     if (!_headerView) {
-        _headerView = [[MKCHBatchOtaTableHeader alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 190.f)];
+        _headerView = [[MKCHBatchOtaTableHeader alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 240.f)];
         _headerView.delegate = self;
     }
     return _headerView;

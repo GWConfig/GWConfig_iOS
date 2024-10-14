@@ -48,6 +48,7 @@
         self.hardware = returnData[@"data"][@"hardware_version"];
         self.software = returnData[@"data"][@"software_version"];
         self.btMac = returnData[@"data"][@"ble_mac"];
+        self.bleFirmware = returnData[@"data"][@"sl_ble_version"];
         self.wifiStaMac = [MKCHDeviceModeManager shared].macAddress;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

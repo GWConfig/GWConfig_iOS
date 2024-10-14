@@ -105,7 +105,10 @@ MKCHBatchUpdateCellDelegate>
         [self.view showCentralToast:@"Gateway publish topic must be 1 - 128 Characters"];
         return;
     }
-    
+    if ([self.dataModel.pubTopic isEqualToString:self.dataModel.subTopic]) {
+        [self.view showCentralToast:@"Gateway publish topic must be different to the subscribe topic"];
+        return;
+    }
     [[MKCHMQTTDataManager shared] subscriptions:@[self.dataModel.pubTopic]];
     
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];

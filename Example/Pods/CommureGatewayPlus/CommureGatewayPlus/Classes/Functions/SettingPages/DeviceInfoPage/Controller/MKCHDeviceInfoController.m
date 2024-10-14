@@ -88,24 +88,24 @@
     cellModel2.rightMsg = self.dataModel.productMode;
     [self.dataList addObject:cellModel2];
     
-//    MKNormalTextCellModel *cellModel3 = [[MKNormalTextCellModel alloc] init];
-//    cellModel3.leftMsg = @"Manufacturer";
-//    cellModel3.rightMsg = self.dataModel.manu;
-//    [self.dataList addObject:cellModel3];
+    MKNormalTextCellModel *cellModel3 = [[MKNormalTextCellModel alloc] init];
+    cellModel3.leftMsg = @"Firmware version";
+    cellModel3.rightMsg = self.dataModel.firmware;
+    [self.dataList addObject:cellModel3];
     
     MKNormalTextCellModel *cellModel4 = [[MKNormalTextCellModel alloc] init];
-    cellModel4.leftMsg = @"Hardware version";
-    cellModel4.rightMsg = self.dataModel.hardware;
+    cellModel4.leftMsg = @"Software version";
+    cellModel4.rightMsg = self.dataModel.software;
     [self.dataList addObject:cellModel4];
     
     MKNormalTextCellModel *cellModel5 = [[MKNormalTextCellModel alloc] init];
-    cellModel5.leftMsg = @"Software version";
-    cellModel5.rightMsg = self.dataModel.software;
+    cellModel5.leftMsg = @"BLE firmware vesrion";
+    cellModel5.rightMsg = self.dataModel.bleFirmware;
     [self.dataList addObject:cellModel5];
     
     MKNormalTextCellModel *cellModel6 = [[MKNormalTextCellModel alloc] init];
-    cellModel6.leftMsg = @"Firmware version";
-    cellModel6.rightMsg = self.dataModel.firmware;
+    cellModel6.leftMsg = @"Hardware version";
+    cellModel6.rightMsg = self.dataModel.hardware;
     [self.dataList addObject:cellModel6];
     
     MKNormalTextCellModel *cellModel7 = [[MKNormalTextCellModel alloc] init];

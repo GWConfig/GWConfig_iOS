@@ -51,24 +51,44 @@
             })
             return;
         }
-        if (![self startOTA]) {
-            moko_dispatch_main_safe(^{
-                if (block) {
-                    block(self.macAddress,ch_batchOtaStatus_timeout);
-                }
-            })
-            return;
+        if (self.firwareType == 0) {
+            if (![self startOTA]) {
+                moko_dispatch_main_safe(^{
+                    if (block) {
+                        block(self.macAddress,ch_batchOtaStatus_timeout);
+                    }
+                })
+                return;
+            }
+        }else {
+            if (![self startNpcOTA]) {
+                moko_dispatch_main_safe(^{
+                    if (block) {
+                        block(self.macAddress,ch_batchOtaStatus_timeout);
+                    }
+                })
+                return;
+            }
         }
+        
         moko_dispatch_main_safe(^{
             if (block) {
                 block(self.macAddress,ch_batchOtaStatus_upgrading);
             }
             self.otaBlock = nil;
             self.otaBlock = block;
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(receiveOTAResult:)
-                                                         name:MKCHReceiveDeviceOTAResultNotification
-                                                       object:nil];
+            if (self.firwareType == 0) {
+                [[NSNotificationCenter defaultCenter] addObserver:self
+                                                         selector:@selector(receiveOTAResult:)
+                                                             name:MKCHReceiveDeviceOTAResultNotification
+                                                           object:nil];
+            }else {
+                [[NSNotificationCenter defaultCenter] addObserver:self
+                                                         selector:@selector(receiveOTAResult:)
+                                                             name:MKCHReceiveDeviceNpcOTAResultNotification
+                                                           object:nil];
+            }
+            
         });
     });
 }
@@ -111,6 +131,18 @@
 - (BOOL)startOTA {
     __block BOOL success = NO;
     [MKCHMQTTInterface ch_configOTAWithFilePath:self.filePath macAddress:self.macAddress topic:self.subTopic sucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)startNpcOTA {
+    __block BOOL success = NO;
+    [MKCHMQTTInterface ch_configNpcOTAWithFilePath:self.filePath macAddress:self.macAddress topic:self.subTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

@@ -2067,131 +2067,131 @@ PODS:
   - CommureGateway/Target (0.0.1):
     - CommureGateway/Functions
     - MKBaseModuleLibrary
-  - CommureGatewayPlus (0.0.1):
-    - CommureGatewayPlus/CTMediator (= 0.0.1)
-    - CommureGatewayPlus/DeviceModel (= 0.0.1)
-    - CommureGatewayPlus/Expand (= 0.0.1)
-    - CommureGatewayPlus/Functions (= 0.0.1)
-    - CommureGatewayPlus/SDK (= 0.0.1)
-    - CommureGatewayPlus/Target (= 0.0.1)
-  - CommureGatewayPlus/CTMediator (0.0.1):
+  - CommureGatewayPlus (0.0.2):
+    - CommureGatewayPlus/CTMediator (= 0.0.2)
+    - CommureGatewayPlus/DeviceModel (= 0.0.2)
+    - CommureGatewayPlus/Expand (= 0.0.2)
+    - CommureGatewayPlus/Functions (= 0.0.2)
+    - CommureGatewayPlus/SDK (= 0.0.2)
+    - CommureGatewayPlus/Target (= 0.0.2)
+  - CommureGatewayPlus/CTMediator (0.0.2):
     - CTMediator
     - MKBaseModuleLibrary
-  - CommureGatewayPlus/DeviceModel (0.0.1):
+  - CommureGatewayPlus/DeviceModel (0.0.2):
     - CommureGatewayPlus/SDK/MQTT
     - MKBaseModuleLibrary
-  - CommureGatewayPlus/Expand (0.0.1):
-    - CommureGatewayPlus/Expand/BaseController (= 0.0.1)
-    - CommureGatewayPlus/Expand/BleBaseController (= 0.0.1)
-    - CommureGatewayPlus/Expand/DatabaseManager (= 0.0.1)
-    - CommureGatewayPlus/Expand/ExcelManager (= 0.0.1)
-    - CommureGatewayPlus/Expand/ImportServerPage (= 0.0.1)
-    - CommureGatewayPlus/Expand/View (= 0.0.1)
+  - CommureGatewayPlus/Expand (0.0.2):
+    - CommureGatewayPlus/Expand/BaseController (= 0.0.2)
+    - CommureGatewayPlus/Expand/BleBaseController (= 0.0.2)
+    - CommureGatewayPlus/Expand/DatabaseManager (= 0.0.2)
+    - CommureGatewayPlus/Expand/ExcelManager (= 0.0.2)
+    - CommureGatewayPlus/Expand/ImportServerPage (= 0.0.2)
+    - CommureGatewayPlus/Expand/View (= 0.0.2)
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/BaseController (0.0.1):
+  - CommureGatewayPlus/Expand/BaseController (0.0.2):
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/SDK/MQTT
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/BleBaseController (0.0.1):
+  - CommureGatewayPlus/Expand/BleBaseController (0.0.2):
     - CommureGatewayPlus/SDK/BLE
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/DatabaseManager (0.0.1):
+  - CommureGatewayPlus/Expand/DatabaseManager (0.0.2):
     - CommureGatewayPlus/DeviceModel
     - FMDB
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/ExcelManager (0.0.1):
+  - CommureGatewayPlus/Expand/ExcelManager (0.0.2):
     - libxlsxwriter
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - SSZipArchive
-  - CommureGatewayPlus/Expand/ImportServerPage (0.0.1):
-    - CommureGatewayPlus/Expand/ImportServerPage/Controller (= 0.0.1)
+  - CommureGatewayPlus/Expand/ImportServerPage (0.0.2):
+    - CommureGatewayPlus/Expand/ImportServerPage/Controller (= 0.0.2)
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/ImportServerPage/Controller (0.0.1):
+  - CommureGatewayPlus/Expand/ImportServerPage/Controller (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View (0.0.1):
-    - CommureGatewayPlus/Expand/View/AlertView (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/BatchUpdateCell (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/BleWifiSettingsCell (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/FilterCell (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/UserCredentialsView (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/WifiSettingsBandCell (= 0.0.1)
+  - CommureGatewayPlus/Expand/View (0.0.2):
+    - CommureGatewayPlus/Expand/View/AlertView (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/BatchUpdateCell (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/BleWifiSettingsCell (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/FilterCell (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/UserCredentialsView (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/WifiSettingsBandCell (= 0.0.2)
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/AlertView (0.0.1):
+  - CommureGatewayPlus/Expand/View/AlertView (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/BatchUpdateCell (0.0.1):
+  - CommureGatewayPlus/Expand/View/BatchUpdateCell (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/BleWifiSettingsCell (0.0.1):
+  - CommureGatewayPlus/Expand/View/BleWifiSettingsCell (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/FilterCell (0.0.1):
-    - CommureGatewayPlus/Expand/View/FilterCell/FilterBeaconCell (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/FilterCell/FilterByRawDataCell (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/FilterCell/FilterEditSectionHeaderView (= 0.0.1)
-    - CommureGatewayPlus/Expand/View/FilterCell/FilterNormalTextFieldCell (= 0.0.1)
+  - CommureGatewayPlus/Expand/View/FilterCell (0.0.2):
+    - CommureGatewayPlus/Expand/View/FilterCell/FilterBeaconCell (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/FilterCell/FilterByRawDataCell (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/FilterCell/FilterEditSectionHeaderView (= 0.0.2)
+    - CommureGatewayPlus/Expand/View/FilterCell/FilterNormalTextFieldCell (= 0.0.2)
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/FilterCell/FilterBeaconCell (0.0.1):
+  - CommureGatewayPlus/Expand/View/FilterCell/FilterBeaconCell (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/FilterCell/FilterByRawDataCell (0.0.1):
+  - CommureGatewayPlus/Expand/View/FilterCell/FilterByRawDataCell (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/FilterCell/FilterEditSectionHeaderView (0.0.1):
+  - CommureGatewayPlus/Expand/View/FilterCell/FilterEditSectionHeaderView (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/FilterCell/FilterNormalTextFieldCell (0.0.1):
+  - CommureGatewayPlus/Expand/View/FilterCell/FilterNormalTextFieldCell (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/UserCredentialsView (0.0.1):
+  - CommureGatewayPlus/Expand/View/UserCredentialsView (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Expand/View/WifiSettingsBandCell (0.0.1):
+  - CommureGatewayPlus/Expand/View/WifiSettingsBandCell (0.0.2):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-  - CommureGatewayPlus/Functions (0.0.1):
+  - CommureGatewayPlus/Functions (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AboutPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchModifyModules (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchOtaPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ConfiguredGatewayPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/DeviceDataPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/DeviceListPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages (= 0.0.1)
-    - CommureGatewayPlus/Functions/LogPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules (= 0.0.1)
-    - CommureGatewayPlus/Functions/QRCodePage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ScanPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ServerForApp (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages (= 0.0.1)
+    - CommureGatewayPlus/Functions/AboutPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchModifyModules (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchOtaPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ConfiguredGatewayPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/DeviceDataPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/DeviceListPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages (= 0.0.2)
+    - CommureGatewayPlus/Functions/LogPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules (= 0.0.2)
+    - CommureGatewayPlus/Functions/QRCodePage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ScanPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ServerForApp (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AboutPage (0.0.1):
+  - CommureGatewayPlus/Functions/AboutPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AboutPage/Controller (= 0.0.1)
+    - CommureGatewayPlus/Functions/AboutPage/Controller (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AboutPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AboutPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2201,48 +2201,48 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2253,7 +2253,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2263,20 +2263,20 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2289,7 +2289,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2299,7 +2299,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleMqttConfigSelectPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2309,19 +2309,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2332,7 +2332,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2342,19 +2342,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2365,7 +2365,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2375,18 +2375,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2396,19 +2396,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2425,7 +2425,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2435,19 +2435,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2458,7 +2458,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2468,20 +2468,20 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/View (= 0.0.2)
     - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2493,7 +2493,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Model (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2503,7 +2503,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/View (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/Pages/ServerForDevice/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2513,7 +2513,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel (0.0.1):
+  - CommureGatewayPlus/Functions/AddDeviceModules/ParamsModel (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2522,31 +2522,31 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchModifyModules/Manager (= 0.0.1)
+    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchModifyModules/Manager (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2558,7 +2558,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2567,7 +2567,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/BatchModifyPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2576,18 +2576,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2599,7 +2599,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/DownLoadModifyPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2608,7 +2608,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchModifyModules/Manager (0.0.1):
+  - CommureGatewayPlus/Functions/BatchModifyModules/Manager (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2617,19 +2617,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchOtaPage (0.0.1):
+  - CommureGatewayPlus/Functions/BatchOtaPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/BatchOtaPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchOtaPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/BatchOtaPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/BatchOtaPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchOtaPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/BatchOtaPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchOtaPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/BatchOtaPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2641,7 +2641,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchOtaPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/BatchOtaPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2650,7 +2650,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/BatchOtaPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/BatchOtaPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2659,19 +2659,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ConfiguredGatewayPage (0.0.1):
+  - CommureGatewayPlus/Functions/ConfiguredGatewayPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/ConfiguredGatewayPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/ConfiguredGatewayPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2683,7 +2683,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ConfiguredGatewayPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2692,7 +2692,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ConfiguredGatewayPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/ConfiguredGatewayPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2701,18 +2701,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/DeviceDataPage (0.0.1):
+  - CommureGatewayPlus/Functions/DeviceDataPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/DeviceDataPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/DeviceDataPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/DeviceDataPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/DeviceDataPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/DeviceDataPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/DeviceDataPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2725,7 +2725,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/DeviceDataPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/DeviceDataPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2734,19 +2734,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/DeviceListPage (0.0.1):
+  - CommureGatewayPlus/Functions/DeviceListPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/DeviceListPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/DeviceListPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/DeviceListPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/DeviceListPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/DeviceListPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/DeviceListPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/DeviceListPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/DeviceListPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2763,7 +2763,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/DeviceListPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/DeviceListPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2772,7 +2772,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/DeviceListPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/DeviceListPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2782,32 +2782,32 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/FilterByTag (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage (= 0.0.1)
+    - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/FilterByTag (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2817,7 +2817,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/DecryptionKeyPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2826,18 +2826,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2847,7 +2847,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/FilterByMacPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2856,18 +2856,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/FilterByTag (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/FilterByTag (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2877,7 +2877,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Model (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/FilterByTag/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2886,18 +2886,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2907,7 +2907,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/TimeOffsetPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2916,19 +2916,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2943,7 +2943,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2952,7 +2952,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/FilterPages/UploadOptionPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2961,17 +2961,17 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/LogPage (0.0.1):
+  - CommureGatewayPlus/Functions/LogPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/LogPage/Controller (= 0.0.1)
+    - CommureGatewayPlus/Functions/LogPage/Controller (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/LogPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/LogPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -2980,39 +2980,39 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3022,7 +3022,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/AccelerometerPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3031,18 +3031,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3052,7 +3052,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/AdvParamsConfigPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3061,18 +3061,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3082,7 +3082,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/BatteryTestPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3091,18 +3091,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3112,7 +3112,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/BeaconOTAPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3121,18 +3121,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3142,7 +3142,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ButtonLogPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3151,18 +3151,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3172,7 +3172,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ButtonPressEffIntervalPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3181,19 +3181,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3214,7 +3214,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3223,7 +3223,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ConnectedPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3232,18 +3232,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3254,7 +3254,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/ManageBleDevicesPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3263,36 +3263,17 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage/Controller (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage/Controller (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage/Controller (0.0.1):
-    - CommureGatewayPlus/CTMediator
-    - CommureGatewayPlus/DeviceModel
-    - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/SDK
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MLInputDodger
-    - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage (0.0.1):
-    - CommureGatewayPlus/CTMediator
-    - CommureGatewayPlus/DeviceModel
-    - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage/Controller (= 0.0.1)
-    - CommureGatewayPlus/SDK
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MLInputDodger
-    - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SelfTestTriggerPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3301,18 +3282,37 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage/Controller (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SleepModePage/Controller (0.0.2):
+    - CommureGatewayPlus/CTMediator
+    - CommureGatewayPlus/DeviceModel
+    - CommureGatewayPlus/Expand
+    - CommureGatewayPlus/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage (0.0.2):
+    - CommureGatewayPlus/CTMediator
+    - CommureGatewayPlus/DeviceModel
+    - CommureGatewayPlus/Expand
+    - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Model (= 0.0.2)
+    - CommureGatewayPlus/SDK
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MLInputDodger
+    - SGQRCode
+  - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3322,7 +3322,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SosAlarmNotiPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3331,18 +3331,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3352,7 +3352,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/ManageBleModules/SosTriggerPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3361,18 +3361,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/QRCodePage (0.0.1):
+  - CommureGatewayPlus/Functions/QRCodePage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/QRCodePage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/QRCodePage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/QRCodePage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/QRCodePage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/QRCodePage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/QRCodePage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3382,7 +3382,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/QRCodePage/View (0.0.1):
+  - CommureGatewayPlus/Functions/QRCodePage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3391,19 +3391,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ScanPage (0.0.1):
+  - CommureGatewayPlus/Functions/ScanPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ScanPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ScanPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/ScanPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/ScanPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ScanPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/ScanPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ScanPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ScanPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3416,7 +3416,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ScanPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ScanPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3425,7 +3425,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ScanPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/ScanPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3435,19 +3435,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ServerForApp (0.0.1):
+  - CommureGatewayPlus/Functions/ServerForApp (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/ServerForApp/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/ServerForApp/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/ServerForApp/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/ServerForApp/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/ServerForApp/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/ServerForApp/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ServerForApp/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/ServerForApp/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3458,7 +3458,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ServerForApp/Model (0.0.1):
+  - CommureGatewayPlus/Functions/ServerForApp/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3467,7 +3467,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/ServerForApp/View (0.0.1):
+  - CommureGatewayPlus/Functions/ServerForApp/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3476,35 +3476,35 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/OTAPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/SettingPage (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/OTAPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/SettingPage (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3515,7 +3515,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3524,7 +3524,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchDfuBeaconPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3533,19 +3533,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3556,7 +3556,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3565,7 +3565,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/BatchUpdateKeyPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3574,18 +3574,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3595,7 +3595,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/DeviceInfoPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3604,22 +3604,22 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/ModifyNetworkDataModel (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3628,19 +3628,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3653,7 +3653,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3662,7 +3662,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttConfigSelectPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3671,18 +3671,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3693,7 +3693,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3702,18 +3702,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3727,7 +3727,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3736,19 +3736,19 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3760,7 +3760,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3769,7 +3769,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3778,18 +3778,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3800,7 +3800,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3809,34 +3809,34 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3846,7 +3846,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/CommunicatePage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3855,18 +3855,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3876,7 +3876,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ConnectBeaconTimeout/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3885,18 +3885,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3906,7 +3906,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/DataReportPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3915,18 +3915,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3936,7 +3936,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3945,18 +3945,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3966,7 +3966,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/NTPServerPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3975,18 +3975,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -3996,7 +3996,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -4005,18 +4005,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/View (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/View (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -4027,7 +4027,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/View (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/NormalSettings/SystemTimePage/View (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -4036,18 +4036,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/OTAPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/OTAPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/OTAPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/OTAPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/OTAPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/OTAPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/OTAPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/OTAPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -4057,7 +4057,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/OTAPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/OTAPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -4066,18 +4066,18 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/SettingPage (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/SettingPage (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
-    - CommureGatewayPlus/Functions/SettingPages/SettingPage/Controller (= 0.0.1)
-    - CommureGatewayPlus/Functions/SettingPages/SettingPage/Model (= 0.0.1)
+    - CommureGatewayPlus/Functions/SettingPages/SettingPage/Controller (= 0.0.2)
+    - CommureGatewayPlus/Functions/SettingPages/SettingPage/Model (= 0.0.2)
     - CommureGatewayPlus/SDK
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/SettingPage/Controller (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/SettingPage/Controller (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -4093,7 +4093,7 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/Functions/SettingPages/SettingPage/Model (0.0.1):
+  - CommureGatewayPlus/Functions/SettingPages/SettingPage/Model (0.0.2):
     - CommureGatewayPlus/CTMediator
     - CommureGatewayPlus/DeviceModel
     - CommureGatewayPlus/Expand
@@ -4102,21 +4102,21 @@ PODS:
     - MKCustomUIModule
     - MLInputDodger
     - SGQRCode
-  - CommureGatewayPlus/SDK (0.0.1):
-    - CommureGatewayPlus/SDK/BLE (= 0.0.1)
-    - CommureGatewayPlus/SDK/MQTT (= 0.0.1)
-  - CommureGatewayPlus/SDK/BLE (0.0.1):
+  - CommureGatewayPlus/SDK (0.0.2):
+    - CommureGatewayPlus/SDK/BLE (= 0.0.2)
+    - CommureGatewayPlus/SDK/MQTT (= 0.0.2)
+  - CommureGatewayPlus/SDK/BLE (0.0.2):
     - MKBaseBleModule
-  - CommureGatewayPlus/SDK/MQTT (0.0.1):
-    - CommureGatewayPlus/SDK/MQTT/Manager (= 0.0.1)
-    - CommureGatewayPlus/SDK/MQTT/SDK (= 0.0.1)
-  - CommureGatewayPlus/SDK/MQTT/Manager (0.0.1):
+  - CommureGatewayPlus/SDK/MQTT (0.0.2):
+    - CommureGatewayPlus/SDK/MQTT/Manager (= 0.0.2)
+    - CommureGatewayPlus/SDK/MQTT/SDK (= 0.0.2)
+  - CommureGatewayPlus/SDK/MQTT/Manager (0.0.2):
     - MKBaseModuleLibrary
     - MKBaseMQTTModule
-  - CommureGatewayPlus/SDK/MQTT/SDK (0.0.1):
+  - CommureGatewayPlus/SDK/MQTT/SDK (0.0.2):
     - CommureGatewayPlus/SDK/MQTT/Manager
     - MKBaseModuleLibrary
-  - CommureGatewayPlus/Target (0.0.1):
+  - CommureGatewayPlus/Target (0.0.2):
     - CommureGatewayPlus/Functions
     - MKBaseModuleLibrary
   - CTMediator (48)
@@ -4640,14 +4640,14 @@ CHECKOUT OPTIONS:
     :commit: 0364cbf28016b10a5d364f659866f72fc3b7c035
     :git: "git@120.27.8.241:Commure-Tag_AC347/Commure-MK110_AC347_IOS.git"
   CommureGatewayPlus:
-    :commit: b595526f118690b66108457672e449ab1991a45b
+    :commit: 69310d0bc9b3b0ad50d3785127ec310d840e3a7c
     :git: "git@120.27.8.241:MK110_plus_03_AC347/MK110_plus_03_AC347_iOS.git"
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
   CommureGateway: fd3471140acca9ed0a65bef755f493eb239550d8
-  CommureGatewayPlus: a1a15c44fea76efaee7a7b1d2c0e1562dd663753
+  CommureGatewayPlus: bb839c67dffc865a75e0c01a8cb407e9a4d6ad7f
   CTMediator: 3f3578b525b3a46a7a2f92a99922ec40363f4269
   FMDB: 728731dd336af3936ce00f91d9d8495f5718a0e6
   libxlsxwriter: 472a51cfb751ce5c807d4146a93207c76c46dc8f

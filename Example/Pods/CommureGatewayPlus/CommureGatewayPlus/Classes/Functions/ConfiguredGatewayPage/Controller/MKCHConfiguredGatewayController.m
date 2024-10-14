@@ -251,6 +251,10 @@ MKCHConfiguredGatewayHeaderViewDelegate>
             [self.view showCentralToast:@"Gateway subscribe topic error!"];
             return;
         }
+        if ([self.dataModel.pubTopic isEqualToString:self.dataModel.subTopic]) {
+            [self.view showCentralToast:@"Gateway publish topic must be different to the subscribe topic"];
+            return;
+        }
         if (self.dataList.count == 0) {
             [self.view showCentralToast:@"Gateway list is empty!"];
             return;
@@ -379,7 +383,7 @@ MKCHConfiguredGatewayHeaderViewDelegate>
 
 - (NSString *)deviceName:(NSString *)macAddress {
     NSString *temp = [[macAddress substringFromIndex:8] uppercaseString];
-    return [@"MK110-" stringByAppendingString:temp];
+    return [@"MK110 Plus 03-" stringByAppendingString:temp];
 }
 
 #pragma mark - UI

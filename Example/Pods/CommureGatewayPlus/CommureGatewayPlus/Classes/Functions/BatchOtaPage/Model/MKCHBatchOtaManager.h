@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKCHBatchOtaManager : NSObject
 
+/// 0:WIFI firmware 1:Bluetooth firmware
+@property (nonatomic, assign)NSInteger firwareType;
+
 @property (nonatomic, copy)NSString *filePath;
 
 /// 升级订阅的topic，根据用户填写的Gateway subscribe  topic确定，如果用户使用默认的/gateway/provision/#，则/gateway/provision/macAddress，否则就是用户输入的topic

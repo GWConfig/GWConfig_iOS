@@ -171,6 +171,10 @@ MKTextFieldCellDelegate>
 
 #pragma mark - interface
 - (void)configDataToDevice {
+    if (!ValidStr(self.dataModel.firmwareUrl) || self.dataModel.firmwareUrl.length > 256 || !ValidStr(self.dataModel.dataUrl) || self.dataModel.dataUrl.length > 256) {
+        [self.view showCentralToast:@"File URL error"];
+        return;
+    }
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
     @weakify(self);
     self.leftButton.enabled = NO;

@@ -30,8 +30,8 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.firmwareUrl = @"http://47.104.172.169:8080/updata_fold/CommureTag_V1.0.4.bin";
-        self.dataUrl = @"http://47.104.172.169:8080/updata_fold/CommureTag_V1.0.4.dat";
+//        self.firmwareUrl = @"http://47.104.172.169:8080/updata_fold/CommureTag_V1.0.4.bin";
+//        self.dataUrl = @"http://47.104.172.169:8080/updata_fold/CommureTag_V1.0.4.dat";
         self.password = @"Commure4321";
     }
     return self;

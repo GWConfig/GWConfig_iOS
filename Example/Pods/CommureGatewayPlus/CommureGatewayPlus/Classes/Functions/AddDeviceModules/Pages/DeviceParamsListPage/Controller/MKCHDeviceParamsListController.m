@@ -282,6 +282,7 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
             moko_dispatch_main_safe(^{
                 [self.progressView dismiss];
                 [self.view showCentralToast:@"Connect Failed!"];
+                [self performSelector:@selector(leftButtonMethod) withObject:nil afterDelay:0.5f];
             });
             return ;
         }
