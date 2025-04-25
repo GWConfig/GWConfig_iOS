@@ -140,8 +140,6 @@ static dispatch_once_t onceToken;
 
 #pragma mark - note
 - (void)networkStateChanged{
-    NSString *stateMsg = [NSString stringWithFormat:@"%@:%@",@"Network State Changed",[MKNetworkManager currentWifiSSID]];
-    [MKMQTTServerLogManager saveDataWithFileName:mqttLogName dataList:@[stateMsg]];
     if (![self.paramsModel paramsCanConnectServer]) {
         //服务器连接参数缺失
         return;

@@ -8,7 +8,9 @@
 
 #import "MKNetworkManager.h"
 
-#import <SystemConfiguration/CaptiveNetwork.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <netinet/in.h>
+#import <arpa/inet.h>
 
 NSString *const MKNetworkStatusChangedNotification = @"MKNetworkStatusChangedNotification";
 
@@ -26,7 +28,7 @@ NSString *const MKNetworkStatusChangedNotification = @"MKNetworkStatusChangedNot
 
 @interface MKNetworkManager()
 
-@property(nonatomic, assign)AFNetworkReachabilityStatus currentNetStatus;//当前网络状态
+@property (nonatomic, assign) SCNetworkReachabilityRef reachabilityRef;
 
 @end
 
@@ -38,66 +40,107 @@ NSString *const MKNetworkStatusChangedNotification = @"MKNetworkStatusChangedNot
     dispatch_once(&onceToken, ^{
         if (!manager) {
             manager = [MKNetworkManager new];
-            [manager startMonitoring];
         }
     });
     return manager;
 }
 
-#pragma mark - public method
-
-+ (NSString *)currentWifiSSID{
-    CFArrayRef tempArray = CNCopySupportedInterfaces();
-    if (!tempArray) {
-        return @"<<NONE>>";
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // 初始化网络监控
+        [self startMonitoring];
     }
-    CFStringRef interfaceName = CFArrayGetValueAtIndex(tempArray, 0);
-    CFDictionaryRef captiveNtwrkDict = CNCopyCurrentNetworkInfo(interfaceName);
-    NSDictionary* wifiDic = (__bridge NSDictionary *) captiveNtwrkDict;
-    if (!wifiDic || wifiDic.allValues.count == 0) {
-        CFRelease(tempArray);
-        return @"<<NONE>>";
-    }
-    CFRelease(tempArray);
-    return wifiDic[@"SSID"];
+    return self;
 }
 
-+ (BOOL)currentWifiIsCorrect {
-    if ([MKNetworkManager sharedInstance].currentNetStatus != AFNetworkReachabilityStatusReachableViaWiFi) {
-        return NO;
+- (void)dealloc {
+    // 停止监控并释放资源
+    if (_reachabilityRef) {
+        SCNetworkReachabilityUnscheduleFromRunLoop(_reachabilityRef, CFRunLoopGetMain(), kCFRunLoopCommonModes);
+        CFRelease(_reachabilityRef);
     }
-    NSString *wifiSSID = [self currentWifiSSID];
-    if (!wifiSSID || ![wifiSSID isKindOfClass:NSString.class] || wifiSSID.length == 0 || [wifiSSID isEqualToString:@"<<NONE>>"] || wifiSSID.length < 2) {
-        //当前wifi的ssid未知
-        return NO;
-    }
-    NSString *ssidHeader = [[wifiSSID substringWithRange:NSMakeRange(0, 2)] uppercaseString];
-    if ([ssidHeader isEqualToString:@"MK"]) {
-        return YES;
-    }
-    return NO;
 }
 
-- (BOOL)currentNetworkAvailable{
-    if (self.currentNetStatus == AFNetworkReachabilityStatusUnknown
-        || self.currentNetStatus == AFNetworkReachabilityStatusNotReachable) {
+#pragma mark - Public method
+- (BOOL)currentNetworkAvailable {
+    if (self.currentNetStatus == AFNetworkReachabilityStatusUnknown || self.currentNetStatus == AFNetworkReachabilityStatusNotReachable) {
         return NO;
     }
     return YES;
 }
 
-- (BOOL)currentNetworkIsWifi{
-    return (self.currentNetStatus == AFNetworkReachabilityStatusReachableViaWiFi);
+#pragma mark - 开始监听网络连接
+- (void)startMonitoring {
+    // 创建 SCNetworkReachabilityRef
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+
+    _reachabilityRef = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr *)&zeroAddress);
+    if (!_reachabilityRef) {
+        NSLog(@"Failed to create reachability reference");
+        return;
+    }
+
+    // 设置回调
+    SCNetworkReachabilityContext context = {0, (__bridge void *)self, NULL, NULL, NULL};
+    if (!SCNetworkReachabilitySetCallback(_reachabilityRef, ReachabilityCallback, &context)) {
+        NSLog(@"Failed to set reachability callback");
+        CFRelease(_reachabilityRef);
+        _reachabilityRef = NULL;
+        return;
+    }
+
+    // 添加到 RunLoop
+    if (!SCNetworkReachabilityScheduleWithRunLoop(_reachabilityRef, CFRunLoopGetMain(), kCFRunLoopCommonModes)) {
+        NSLog(@"Failed to schedule reachability");
+        CFRelease(_reachabilityRef);
+        _reachabilityRef = NULL;
+        return;
+    }
+    
+    // 主动获取当前网络状态并触发回调
+    SCNetworkReachabilityFlags flags;
+    if (SCNetworkReachabilityGetFlags(_reachabilityRef, &flags)) {
+        [self handleReachabilityChange:flags];
+    }
 }
 
-#pragma mark 网络监听相关方法
-- (void)startMonitoring{
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        // 当网络状态改变了, 就会调用这个block
+#pragma mark - 网络状态回调
+static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info) {
+    MKNetworkManager *networkStatus = (__bridge MKNetworkManager *)info;
+    [networkStatus handleReachabilityChange:flags];
+}
+
+- (void)handleReachabilityChange:(SCNetworkReachabilityFlags)flags {
+    AFNetworkReachabilityStatus status = [self networkStatusForFlags:flags];
+    if (self.currentNetStatus != status) {
         self.currentNetStatus = status;
         [[NSNotificationCenter defaultCenter] postNotificationName:MKNetworkStatusChangedNotification object:nil];
-    }];
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    }
+}
+
+#pragma mark - 获取当前网络状态
+- (AFNetworkReachabilityStatus)networkStatusForFlags:(SCNetworkReachabilityFlags)flags {
+    if ((flags & kSCNetworkReachabilityFlagsReachable) == 0) {
+        return AFNetworkReachabilityStatusNotReachable;
+    }
+
+    if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) {
+        return AFNetworkReachabilityStatusReachableViaWiFi;
+    }
+    if (((flags & kSCNetworkReachabilityFlagsConnectionOnDemand) != 0) ||
+        ((flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0)) {
+        if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0) {
+            return AFNetworkReachabilityStatusReachableViaWiFi;
+        }
+    }
+    if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN) {
+        return AFNetworkReachabilityStatusReachableViaWWAN;
+    }
+    return AFNetworkReachabilityStatusUnknown;
 }
 
 @end

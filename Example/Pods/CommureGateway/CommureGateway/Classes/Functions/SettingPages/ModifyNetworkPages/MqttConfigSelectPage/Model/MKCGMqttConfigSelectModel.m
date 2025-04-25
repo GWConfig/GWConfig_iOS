@@ -8,15 +8,11 @@
 
 #import "MKCGMqttConfigSelectModel.h"
 
-#import <AFNetworking/AFNetworking.h>
-
 #import "MKMacroDefines.h"
 
 #import "MKCGExcelDataManager.h"
 
 @interface MKCGMqttConfigSelectModel ()
-
-@property (nonatomic, strong)AFURLSessionManager *manager;
 
 @property (nonatomic, copy)void (^sucBlock)(NSDictionary *params);
 
@@ -117,28 +113,39 @@
 }
 
 - (BOOL)downloadWithPath:(NSString *)path filePath:(NSString *)localPath {
-    
     __block BOOL success = NO;
-    
+
     NSURL *url = [NSURL URLWithString:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
+    if (!url) {
+        [self operationFailedBlockWithMsg:@"Invalid URL" block:self.failedBlock];
+        return NO;
+    }
+
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+
     @weakify(self);
-    NSURLSessionDownloadTask *downloadTask = [self.manager downloadTaskWithRequest:request progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        // 指定文件的保存路径
-            return [NSURL fileURLWithPath:localPath];
-    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         @strongify(self);
         if (!error) {
-            success = YES;
+            // 将下载的文件移动到指定路径
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSError *moveError;
+            [fileManager moveItemAtURL:location toURL:[NSURL fileURLWithPath:localPath] error:&moveError];
+            if (moveError) {
+                NSLog(@"移动文件失败：%@", moveError);
+            } else {
+                success = YES;
+            }
+        } else {
+            NSLog(@"下载失败：%@", error);
         }
-        NSLog(@"下载完成，文件保存在：%@", localPath);
         dispatch_semaphore_signal(self.semaphore);
     }];
-    
+
     // 开始下载任务
     [downloadTask resume];
-    
+
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return success;
 }
@@ -156,14 +163,6 @@
 }
 
 #pragma mark - getter
-- (AFURLSessionManager *)manager {
-    if (!_manager) {
-        _manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    }
-    return _manager;
-}
-
 - (dispatch_semaphore_t)semaphore {
     if (!_semaphore) {
         _semaphore = dispatch_semaphore_create(0);

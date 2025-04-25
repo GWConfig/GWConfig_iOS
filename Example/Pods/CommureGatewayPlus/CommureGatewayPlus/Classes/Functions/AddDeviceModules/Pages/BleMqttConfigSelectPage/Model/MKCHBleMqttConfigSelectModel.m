@@ -7,23 +7,18 @@
 //
 
 #import "MKCHBleMqttConfigSelectModel.h"
-
-#import <AFNetworking/AFNetworking.h>
-
 #import "MKMacroDefines.h"
-
 #import "MKCHExcelDataManager.h"
 
 @interface MKCHBleMqttConfigSelectModel ()
 
-@property (nonatomic, strong)AFURLSessionManager *manager;
+@property (nonatomic, strong) NSURLSession *urlSession;
+@property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
 
 @property (nonatomic, copy)void (^sucBlock)(NSDictionary *params);
-
 @property (nonatomic, copy)void (^failedBlock)(NSError *error);
 
 @property (nonatomic, strong)dispatch_queue_t downloadQueue;
-
 @property (nonatomic, strong)dispatch_semaphore_t semaphore;
 
 @end
@@ -172,7 +167,7 @@
     __block NSDictionary *result = nil;
     NSString *excelPath = [self filePathWithName:@"MK110 Settings for Device.xlsx"];
     
-    NSURL *url = [NSURL URLWithString:excelPath];
+    NSURL *url = [NSURL fileURLWithPath:excelPath];
     
     [MKCHExcelDataManager parseDeviceAllParams:url sucBlock:^(NSDictionary * _Nonnull returnData) {
         NSLog(@"%@",returnData);
@@ -191,7 +186,6 @@
 }
 
 - (BOOL)deleteFile:(NSString *)filePath {
-    // 检查本地文件是否存在，如果存在则删除
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:filePath]) {
@@ -206,28 +200,38 @@
 }
 
 - (BOOL)downloadWithPath:(NSString *)path filePath:(NSString *)localPath {
-    
     __block BOOL success = NO;
     
     NSURL *url = [NSURL URLWithString:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    if (!url) {
+        return NO;
+    }
     
-    @weakify(self);
-    NSURLSessionDownloadTask *downloadTask = [self.manager downloadTaskWithRequest:request progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        // 指定文件的保存路径
-            return [NSURL fileURLWithPath:localPath];
-    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        @strongify(self);
+    NSURLSessionDownloadTask *downloadTask = [self.urlSession downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error) {
-            success = YES;
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSError *fileError = nil;
+            
+            // Remove existing file if it exists
+            if ([fileManager fileExistsAtPath:localPath]) {
+                [fileManager removeItemAtPath:localPath error:&fileError];
+                if (fileError) {
+                    NSLog(@"Error removing existing file: %@", fileError);
+                }
+            }
+            
+            // Move the downloaded file to the desired location
+            if (!fileError) {
+                [fileManager moveItemAtURL:location toURL:[NSURL fileURLWithPath:localPath] error:&fileError];
+                if (!fileError) {
+                    success = YES;
+                }
+            }
         }
-        NSLog(@"下载完成，文件保存在：%@", localPath);
         dispatch_semaphore_signal(self.semaphore);
     }];
     
-    // 开始下载任务
     [downloadTask resume];
-    
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return success;
 }
@@ -240,17 +244,17 @@
                                                         code:-999
                                                     userInfo:@{@"errorInfo":msg}];
             block(error);
-        })
+        });
     }
 }
 
 #pragma mark - getter
-- (AFURLSessionManager *)manager {
-    if (!_manager) {
-        _manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+- (NSURLSession *)urlSession {
+    if (!_urlSession) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _urlSession = [NSURLSession sessionWithConfiguration:configuration];
     }
-    return _manager;
+    return _urlSession;
 }
 
 - (dispatch_semaphore_t)semaphore {
